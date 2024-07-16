@@ -1,14 +1,13 @@
 import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
 import Handler from "./components/Handler";
-import ErrorBoundary from "./components/ErrorBoundary";
 
-function App() {
+const App = () => {
   return (
-    <ErrorBoundary>
+    <Router>
       <Handler />
-    </ErrorBoundary>
+    </Router>
   );
-}
+};
 
 export default App;
-

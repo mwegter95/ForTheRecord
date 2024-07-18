@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Route, Routes, Link, Navigate } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import axios from "axios";
 import SignUp from "./SignUp";
 import Login from "./Login";
+import TopNavbar from "./Navbar";
 
 const ROLE_ADMIN = "admin";
 const SECRET_KEY = "your_secret_key";
@@ -13,17 +14,15 @@ const Handler = () => {
   const [loggedOut, setLoggedOut] = useState(false);
 
   useEffect(() => {
-    // Check if there's a token in localStorage
     const token = localStorage.getItem("token");
     if (token) {
-      // Assuming you have a way to get user details from the token
       const userDetails = getUserDetailsFromToken(token);
       setUser(userDetails);
     }
   }, []);
 
   const handleLogin = (token, firstName, lastName) => {
-    setUser({ token, firstName, lastName, role: "user" }); // Assuming default role as 'user'
+    setUser({ token, firstName, lastName, role: "user" });
     localStorage.setItem("token", token);
   };
 
@@ -67,8 +66,6 @@ const Handler = () => {
   };
 
   const getUserDetailsFromToken = (token) => {
-    // Mock function to decode token and get user details
-    // Replace with actual implementation
     return {
       firstName: "John",
       lastName: "Doe",
@@ -82,69 +79,7 @@ const Handler = () => {
 
   return (
     <div>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/" data-action="home" onClick={handleClick}>
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link to="/about" data-action="about" onClick={handleClick}>
-              About
-            </Link>
-          </li>
-          <li>
-            <Link to="/contact" data-action="contact" onClick={handleClick}>
-              Contact
-            </Link>
-          </li>
-          {user && user.role === ROLE_ADMIN && (
-            <li>
-              <Link to="/logs" onClick={getLogs}>
-                Logs
-              </Link>
-            </li>
-          )}
-          {!user ? (
-            <>
-              <li>
-                <Link to="/signup">Sign Up</Link>
-              </li>
-              <li>
-                <Link to="/login">Login</Link>
-              </li>
-            </>
-          ) : (
-            <>
-              <li>
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    backgroundColor: "#0078d4",
-                    color: "white",
-                    borderRadius: "50%",
-                    width: "40px",
-                    height: "40px",
-                    justifyContent: "center",
-                    marginRight: "10px",
-                  }}
-                >
-                  {user.firstName[0]}
-                  {user.lastName[0]}
-                </div>
-                <span>
-                  {user.firstName} {user.lastName}
-                </span>
-              </li>
-              <li>
-                <button onClick={handleLogout}>Logout</button>
-              </li>
-            </>
-          )}
-        </ul>
-      </nav>
+      <TopNavbar user={user} handleLogout={handleLogout} />
       <Routes>
         <Route path="/about" element={<h2>About Us</h2>} />
         <Route path="/contact" element={<h2>Contact Us</h2>} />

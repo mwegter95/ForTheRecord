@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Route, Routes, Navigate, useNavigate } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import axios from "axios";
 import SignUp from "./SignUp";
 import Login from "./Login";
 import TopNavbar from "./Navbar";
+import Home from "./Home";
 
 const ROLE_ADMIN = "admin";
 const SECRET_KEY = "your_secret_key";
@@ -11,7 +12,7 @@ const SECRET_KEY = "your_secret_key";
 const Handler = () => {
   const [user, setUser] = useState(null);
   const [logs, setLogs] = useState([]);
-  const navigate = useNavigate();
+  const [loggedOut, setLoggedOut] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -24,13 +25,16 @@ const Handler = () => {
   const handleLogin = (token, firstName, lastName) => {
     setUser({ token, firstName, lastName, role: "user" });
     localStorage.setItem("token", token);
-    navigate("/");
+    localStorage.setItem("firstName", firstName);
+    localStorage.setItem("lastName", lastName);
   };
 
   const handleLogout = () => {
     setUser(null);
     localStorage.removeItem("token");
-    navigate("/"); // Refreshes the page upon logout
+    localStorage.removeItem("firstName");
+    localStorage.removeItem("lastName");
+    setLoggedOut(true);
   };
 
   const logAction = (action, reaction) => {
@@ -67,10 +71,19 @@ const Handler = () => {
   };
 
   const getUserDetailsFromToken = (token) => {
-    // Replace this with the actual implementation
-    // that retrieves user details from the token
-    return JSON.parse(atob(token.split(".")[1])); // Simplified example
+    // Ideally, decode token to get user details or fetch from backend
+    const firstName = localStorage.getItem("firstName");
+    const lastName = localStorage.getItem("lastName");
+    return {
+      firstName: firstName || "FirstName",
+      lastName: lastName || "LastName",
+      role: "user",
+    };
   };
+
+  if (loggedOut) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <div>
@@ -93,7 +106,7 @@ const Handler = () => {
         />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login onLogin={handleLogin} />} />
-        <Route path="/" element={<h2>Welcome to For the Record</h2>} />
+        <Route path="/" element={<Home />} />
       </Routes>
     </div>
   );

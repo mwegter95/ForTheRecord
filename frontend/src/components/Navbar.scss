@@ -8,13 +8,16 @@
     color: #fff;
     font-size: 1.5rem;
     font-weight: bold;
+    text-decoration: none;
   }
 
   .nav-link {
     color: #fff;
     margin-right: 1rem;
+    text-decoration: none;  /* This line removes the underline */
     &:hover {
       color: #f8e71c;
+      text-decoration: none;  /* Ensure it stays removed on hover */
     }
   }
 

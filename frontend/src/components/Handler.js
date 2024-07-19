@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Route, Routes, Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
 import SignUp from "./SignUp";
 import Login from "./Login";
@@ -11,7 +11,7 @@ const SECRET_KEY = "your_secret_key";
 const Handler = () => {
   const [user, setUser] = useState(null);
   const [logs, setLogs] = useState([]);
-  const [loggedOut, setLoggedOut] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -24,12 +24,13 @@ const Handler = () => {
   const handleLogin = (token, firstName, lastName) => {
     setUser({ token, firstName, lastName, role: "user" });
     localStorage.setItem("token", token);
+    navigate("/");
   };
 
   const handleLogout = () => {
     setUser(null);
     localStorage.removeItem("token");
-    setLoggedOut(true);
+    navigate("/"); // Refreshes the page upon logout
   };
 
   const logAction = (action, reaction) => {
@@ -66,16 +67,10 @@ const Handler = () => {
   };
 
   const getUserDetailsFromToken = (token) => {
-    return {
-      firstName: "John",
-      lastName: "Doe",
-      role: "user",
-    };
+    // Replace this with the actual implementation
+    // that retrieves user details from the token
+    return JSON.parse(atob(token.split(".")[1])); // Simplified example
   };
-
-  if (loggedOut) {
-    return <Navigate to="/" />;
-  }
 
   return (
     <div>

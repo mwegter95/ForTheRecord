@@ -6,9 +6,9 @@ import "./Navbar.scss";
 const TopNavbar = ({ user, handleLogout }) => {
   return (
     <Navbar className="navbar-custom">
-      <Container>
+      <Container fluid>
         <Navbar.Brand href="/">DJ Synfinity</Navbar.Brand>
-        <Nav className="ml-auto">
+        <Nav className="ml-auto nav-links">
           <LinkContainer to="/">
             <Nav.Link>Home</Nav.Link>
           </LinkContainer>

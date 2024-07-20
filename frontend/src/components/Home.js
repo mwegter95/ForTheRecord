@@ -9,7 +9,7 @@ const Home = () => {
   return (
     <div id="home" className="hero">
       <div className="hero-content">
-        <h1>For the Record</h1>
+        <h1>For The Record</h1>
         <p>Exceptional audio expertise for your perfect sounding day.</p>
         <a href="#booknow" className="hero-button">
           Book Now!

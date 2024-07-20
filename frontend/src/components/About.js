@@ -11,8 +11,8 @@ const About = () => {
       <Container>
         <h1>About Us</h1>
         <p>
-          Welcome to For the Record! We are dedicated to providing the best DJ
-          experience for your events. Learn more about our journey, our team,
+          Welcome to For the Record! We are dedicated to providing the best DJ and audio
+          experience for your events. Learn more about our journey,
           and what makes us unique.
         </p>
         <Row>
@@ -22,22 +22,20 @@ const About = () => {
               <Card.Body>
                 <Card.Title>Our Team</Card.Title>
                 <Card.Text>
-                  Meet the people who make the magic happen. We are a team of
-                  experienced DJs and event planners dedicated to making your
+                  Meet the people who make the magic happen. Here at For The Record, we're a team of one! Michael is an experienced DJ and event audio planner dedicated to making your
                   event unforgettable.
                   {/* Placeholder text for interview/mad libs */}
                   <ul>
                     <li>
-                      <strong>Founder:</strong> [Founder Name] started the
-                      company in [Year] with a vision to [Vision Statement].
+                      <strong>Founder:</strong> Michael W started the
+                      company in 2024 with a vision to provide excellent audio for weddings and events, so no one has to suffer bad audio during their day. These memories will be for the record, and you want them to sound great.
                     </li>
                     <li>
-                      <strong>DJ Experience:</strong> Our DJs have over [X]
+                      <strong>DJ Experience:</strong> Michael has over 9
                       years of combined experience in the industry.
                     </li>
                     <li>
-                      <strong>Specialties:</strong> We specialize in [Specialty
-                      1], [Specialty 2], and [Specialty 3].
+                      <strong>Specialties:</strong> We specialize in Audio and Microphones, DJing, and MCing.
                     </li>
                   </ul>
                 </Card.Text>

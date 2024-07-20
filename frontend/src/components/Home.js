@@ -16,6 +16,7 @@ const Home = () => {
         <Row>
           <Col md={4}>
             <Card className="info-card">
+              <div className="card-photo-placeholder"></div>
               <Card.Body>
                 <Card.Title>About Us</Card.Title>
                 <Card.Text>
@@ -29,6 +30,7 @@ const Home = () => {
           </Col>
           <Col md={4}>
             <Card className="info-card">
+              <div className="card-photo-placeholder"></div>
               <Card.Body>
                 <Card.Title>Weddings</Card.Title>
                 <Card.Text>
@@ -42,6 +44,7 @@ const Home = () => {
           </Col>
           <Col md={4}>
             <Card className="info-card">
+              <div className="card-photo-placeholder"></div>
               <Card.Body>
                 <Card.Title>Events</Card.Title>
                 <Card.Text>

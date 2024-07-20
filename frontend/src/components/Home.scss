@@ -2,15 +2,14 @@
   background-image: url('https://source.unsplash.com/random/1600x900?dj');
   background-size: cover;
   background-position: center;
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   color: white;
   text-align: center;
   padding: 2rem;
-  margin-top: -20px;
   position: relative;
   z-index: 1;
 
@@ -18,7 +17,9 @@
     background: rgba(0, 0, 0, 0.5);
     padding: 2rem;
     border-radius: 10px;
-    width: 100%;
+    width: 80%; /* Adjust the width as needed */
+    max-width: 1200px;
+    margin-top: 20px; /* Adjust this to set the desired space between the navbar and hero content */
   }
 
   .hero-button {
@@ -46,7 +47,18 @@
     background: rgba(0, 0, 0, 0.5);
     color: white;
     margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Ensure content is spaced out */
+    height: 100%; /* Ensure all cards have equal height */
     
+    .card-photo-placeholder {
+      background: #333; /* Dark background for placeholder */
+      height: 200px; /* Set fixed height for placeholder */
+      border-radius: 10px;
+      margin: 1rem;
+    }
+
     .btn-primary {
       background-color: white;
       color: #007bff;

@@ -1,6 +1,9 @@
 import React from "react";
 import { Card, Button, Container, Row, Col } from "react-bootstrap";
 import "./Home.scss";
+import PortraitMe from "../images/Portrait_me.jpeg";
+import WeddingDance from "../images/wedding_dance_bouqet_toss.jpg";
+import DJDecks from "../images/DJ_Decks.jpeg";
 
 const Home = () => {
   return (
@@ -16,7 +19,9 @@ const Home = () => {
         <Row>
           <Col md={4}>
             <Card className="info-card">
-              <div className="card-photo-placeholder"></div>
+              <div className="card-photo">
+                <img src={PortraitMe} alt="About Us" />
+              </div>
               <Card.Body>
                 <Card.Title>About Us</Card.Title>
                 <Card.Text>
@@ -30,7 +35,9 @@ const Home = () => {
           </Col>
           <Col md={4}>
             <Card className="info-card">
-              <div className="card-photo-placeholder"></div>
+              <div className="card-photo">
+                <img src={WeddingDance} alt="Weddings" />
+              </div>
               <Card.Body>
                 <Card.Title>Weddings</Card.Title>
                 <Card.Text>
@@ -44,7 +51,9 @@ const Home = () => {
           </Col>
           <Col md={4}>
             <Card className="info-card">
-              <div className="card-photo-placeholder"></div>
+              <div className="card-photo">
+                <img src={DJDecks} alt="Events" />
+              </div>
               <Card.Body>
                 <Card.Title>Events</Card.Title>
                 <Card.Text>

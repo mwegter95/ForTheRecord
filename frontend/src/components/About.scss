@@ -1,53 +1,41 @@
 .about-page {
-  position: relative;
   padding: 2rem;
   text-align: center;
+  background-image: url('../images/djing_wedding_rings_image.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: repeat-y;
   min-height: 100vh;
   color: white;
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: -30px; /* Negative margin to fill out the curve of the navbar */
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('../images/djing_wedding_rings_image.jpeg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: repeat-y;
-    z-index: -1; /* Ensure the background is behind the content */
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
   h1 {
     margin-bottom: 2rem;
-    color: #243b55;
+    color: #f8e71c;
   }
 
-  p {
-    margin-bottom: 2rem;
-    color: #666;
+  .about-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
   }
 
   .about-card {
     margin-bottom: 2rem;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.7); /* Darker background for readability */
     color: white;
     border: none;
+    width: 100%;
+    max-width: 600px;
 
     .card-img-top {
-      border-radius: 10px 10px 0 0;
-      object-fit: cover;
-      height: 200px;
-    }
-
-    .embedded-photo {
-      display: block;
-      margin: 1rem auto;
-      width: 100%;
-      height: auto;
-      max-width: 300px;
       border-radius: 10px;
+      object-fit: cover;
+      height: 100%;
     }
 
     .card-title {
@@ -72,6 +60,15 @@
           color: #f8e71c;
         }
       }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .about-content {
+      flex-direction: column;
+    }
+    .about-card {
+      max-width: 100%;
     }
   }
 }

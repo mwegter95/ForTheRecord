@@ -1,108 +1,68 @@
 import React from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import "./About.scss";
-import Portrait_me from "../images/Portrait_me.jpeg";
-import Ashley_and_me from "../images/Ashley_and_me.jpeg";
-import DJ_Decks from "../images/DJ_Decks.jpeg";
+import portraitImage from "../images/Portrait_me.jpeg"; // Import the image
 
 const About = () => {
   return (
-    <div className="about-page">
-      <Container>
-        <h1>About Us</h1>
-        <p>
-          Welcome to For the Record! We are dedicated to providing the best DJ and audio
-          experience for your events. Learn more about our journey,
-          and what makes us unique.
-        </p>
-        <Row>
-          <Col md={12}>
-            <Card className="about-card">
-              <Card.Img variant="top" src={Portrait_me} alt="Our Team" />
-              <Card.Body>
-                <Card.Title>Our Team</Card.Title>
-                <Card.Text>
-                  Meet the people who make the magic happen. Here at For The Record, we're a team of one! Michael is an experienced DJ and event audio planner dedicated to making your
-                  event unforgettable.
-                  {/* Placeholder text for interview/mad libs */}
-                  <ul>
-                    <li>
-                      <strong>Founder:</strong> Michael W started the
-                      company in 2024 with a vision to provide excellent audio for weddings and events, so no one has to suffer bad audio during their day. These memories will be for the record, and you want them to sound great.
-                    </li>
-                    <li>
-                      <strong>DJ Experience:</strong> Michael has over 9
-                      years of combined experience in the industry.
-                    </li>
-                    <li>
-                      <strong>Specialties:</strong> We specialize in Audio and Microphones, DJing, and MCing.
-                    </li>
-                  </ul>
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-        <Row>
-          <Col md={12}>
-            <Card className="about-card">
-              <Card.Body>
-                <Card.Title>Our Journey</Card.Title>
-                <Card.Text>
-                  From humble beginnings to becoming a leading name in the DJ
-                  industry, our journey is a testament to our passion and
-                  dedication.
-                  <img
-                    src={Ashley_and_me}
-                    alt="Our Journey"
-                    className="embedded-photo"
-                  />
-                  {/* Placeholder text for interview/mad libs */}
-                  <p>
-                    It all started in [Year] when [Founder Name] decided to
-                    [Founder’s Initial Steps]. Over the years, we have [Major
-                    Milestones].
-                  </p>
-                  <p>
-                    Today, we are proud to have [Achievements]. Our mission is
-                    to [Mission Statement].
-                  </p>
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-        <Row>
-          <Col md={12}>
-            <Card className="about-card">
-              <Card.Img variant="top" src={DJ_Decks} alt="Our Events" />
-              <Card.Body>
-                <Card.Title>What We Offer</Card.Title>
-                <Card.Text>
-                  We provide a range of DJ services tailored to your needs. From
-                  weddings to corporate events, we have you covered.
-                  {/* Placeholder text for interview/mad libs */}
-                  <ul>
-                    <li>
-                      <strong>Weddings:</strong> Create unforgettable memories
-                      with our wedding DJ services.
-                    </li>
-                    <li>
-                      <strong>Corporate Events:</strong> Make your corporate
-                      events more lively with our professional DJs.
-                    </li>
-                    <li>
-                      <strong>Private Parties:</strong> Turn your private
-                      parties into extraordinary events.
-                    </li>
-                  </ul>
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-      </Container>
-    </div>
+    <Container className="about-page">
+      <h1>About Us</h1>
+      <Row className="about-content">
+        <Col md={4}>
+          <Card className="about-card">
+            <Card.Img
+              variant="top"
+              src={portraitImage}
+              className="card-img-top"
+            />
+          </Card>
+        </Col>
+        <Col md={8}>
+          <Card className="about-card">
+            <Card.Body>
+              <Card.Title>DJ Synfinity</Card.Title>
+              <Card.Text>
+                Welcome to the world of DJ Synfinity. Our passion for music and
+                commitment to excellence have made us one of the most
+                sought-after DJ services in the area. We specialize in weddings,
+                events, and parties, providing a tailored experience that keeps
+                your guests dancing all night long.
+              </Card.Text>
+              <Card.Text>
+                <strong>Our Story:</strong> It all started with a love for music
+                and a desire to bring people together through unforgettable
+                events. Over the years, we have perfected our craft, ensuring
+                that every performance is better than the last.
+              </Card.Text>
+              <Card.Text>
+                <strong>What We Offer:</strong> From state-of-the-art sound
+                systems to a vast library of tracks spanning various genres, we
+                have everything needed to make your event a success. Our team
+                works closely with you to understand your preferences and
+                deliver a personalized experience.
+              </Card.Text>
+              <Card.Text>
+                <strong>Why Choose Us?</strong>
+                <ul>
+                  <li>
+                    <strong>Professionalism:</strong> We pride ourselves on our
+                    professionalism and reliability.
+                  </li>
+                  <li>
+                    <strong>Experience:</strong> Years of experience in the
+                    industry.
+                  </li>
+                  <li>
+                    <strong>Flexibility:</strong> We cater to a wide range of
+                    musical tastes and event styles.
+                  </li>
+                </ul>
+              </Card.Text>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

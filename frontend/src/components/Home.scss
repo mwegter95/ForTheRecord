@@ -1,8 +1,5 @@
 .hero {
-  background-image: url('https://source.unsplash.com/random/1600x900?dj');
-  background-size: cover;
-  background-position: top center;
-  background-repeat: repeat-y;
+  position: relative;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -11,8 +8,21 @@
   color: white;
   text-align: center;
   padding: 2rem;
-  position: relative;
   z-index: 1;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -30px; /* Negative margin to fill out the curve of the navbar */
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../images/djing_wedding_rings_image.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat-y;
+    z-index: -1; /* Ensure the background is behind the content */
+  }
 
   .hero-content {
     background: rgba(0, 0, 0, 0.5);
@@ -78,7 +88,7 @@
       &.dj-decks img {
         height: 100%;
         width: auto;
-        transform: translateX(-10%); /* Move the image to the left by 20% */
+        transform: translateX(-20%); /* Move the image to the left by 20% */
       }
     }
 

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Route, Routes, Link, Navigate } from "react-router-dom";
 import axios from "axios";
 import SignUp from "./SignUp";
 import Login from "./Login";
-import TopNavbar from "./Navbar";
 import Home from "./Home";
-import "./Handler.scss";
+import About from "./About";
+import TopNavbar from "./Navbar";
 
 const ROLE_ADMIN = "admin";
 const SECRET_KEY = "your_secret_key";
@@ -26,15 +26,11 @@ const Handler = () => {
   const handleLogin = (token, firstName, lastName) => {
     setUser({ token, firstName, lastName, role: "user" });
     localStorage.setItem("token", token);
-    localStorage.setItem("firstName", firstName);
-    localStorage.setItem("lastName", lastName);
   };
 
   const handleLogout = () => {
     setUser(null);
     localStorage.removeItem("token");
-    localStorage.removeItem("firstName");
-    localStorage.removeItem("lastName");
     setLoggedOut(true);
   };
 
@@ -72,11 +68,9 @@ const Handler = () => {
   };
 
   const getUserDetailsFromToken = (token) => {
-    const firstName = localStorage.getItem("firstName");
-    const lastName = localStorage.getItem("lastName");
     return {
-      firstName: firstName || "FirstName",
-      lastName: lastName || "LastName",
+      firstName: "John",
+      lastName: "Doe",
       role: "user",
     };
   };
@@ -86,10 +80,11 @@ const Handler = () => {
   }
 
   return (
-    <div className="app-container">
+    <div>
       <TopNavbar user={user} handleLogout={handleLogout} />
       <Routes>
-        <Route path="/about" element={<h2>About Us</h2>} />
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
         <Route path="/contact" element={<h2>Contact Us</h2>} />
         <Route
           path="/logs"
@@ -106,7 +101,6 @@ const Handler = () => {
         />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login onLogin={handleLogin} />} />
-        <Route path="/" element={<Home />} />
       </Routes>
     </div>
   );

@@ -1,5 +1,6 @@
 import React from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
 import "./Navbar.scss";
 
@@ -7,35 +8,49 @@ const TopNavbar = ({ user, handleLogout }) => {
   return (
     <Navbar expand="lg" className="navbar-custom">
       <Container>
-        <Navbar.Brand href="#home">DJ Synfinity</Navbar.Brand>
+        <Navbar.Brand href="#home">For The Record</Navbar.Brand>
         <Navbar.Toggle
           aria-controls="basic-navbar-nav"
           className="custom-toggler"
         />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
-            <LinkContainer to="/">
-              <Nav.Link>Home</Nav.Link>
+            <LinkContainer to="/" exact>
+              <Nav.Link as={NavLink} to="/" activeClassName="active">
+                Home
+              </Nav.Link>
             </LinkContainer>
             <LinkContainer to="/about">
-              <Nav.Link>About</Nav.Link>
+              <Nav.Link as={NavLink} to="/about" activeClassName="active">
+                About
+              </Nav.Link>
             </LinkContainer>
             <LinkContainer to="/weddings">
-              <Nav.Link>Weddings</Nav.Link>
+              <Nav.Link as={NavLink} to="/weddings" activeClassName="active">
+                Weddings
+              </Nav.Link>
             </LinkContainer>
             <LinkContainer to="/events">
-              <Nav.Link>Events</Nav.Link>
+              <Nav.Link as={NavLink} to="/events" activeClassName="active">
+                Events
+              </Nav.Link>
             </LinkContainer>
             <LinkContainer to="/whyus">
-              <Nav.Link>Why Us?</Nav.Link>
+              <Nav.Link as={NavLink} to="/whyus" activeClassName="active">
+                Why Us?
+              </Nav.Link>
             </LinkContainer>
             {!user ? (
               <>
                 <LinkContainer to="/login">
-                  <Nav.Link>Log In</Nav.Link>
+                  <Nav.Link as={NavLink} to="/login" activeClassName="active">
+                    Log In
+                  </Nav.Link>
                 </LinkContainer>
                 <LinkContainer to="/signup">
-                  <Nav.Link>Sign Up</Nav.Link>
+                  <Nav.Link as={NavLink} to="/signup" activeClassName="active">
+                    Sign Up
+                  </Nav.Link>
                 </LinkContainer>
               </>
             ) : (
@@ -63,7 +78,14 @@ const TopNavbar = ({ user, handleLogout }) => {
               </>
             )}
             <LinkContainer to="/booknow">
-              <Nav.Link className="book-now">Book Now!</Nav.Link>
+              <Nav.Link
+                as={NavLink}
+                to="/booknow"
+                activeClassName="active"
+                className="book-now"
+              >
+                Book Now!
+              </Nav.Link>
             </LinkContainer>
           </Nav>
         </Navbar.Collapse>

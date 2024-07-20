@@ -7,7 +7,7 @@ const Home = () => {
     <div className="hero">
       <div className="hero-content">
         <h1>For the Record</h1>
-        <p>Your Premier DJ Experience</p>
+        <p>Exceptional audio expertise for your perfect sounding day</p>
         <LinkContainer to="/booknow">
           <button className="hero-button">Book Now!</button>
         </LinkContainer>

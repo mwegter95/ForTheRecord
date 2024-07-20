@@ -2,14 +2,15 @@
   background-image: url('https://source.unsplash.com/random/1600x900?dj');
   background-size: cover;
   background-position: center;
-  height: calc(100vh + 20px); /* Increase height to cover the overlap */
+  height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   color: white;
   text-align: center;
   padding: 2rem;
-  margin-top: -20px; /* Negative margin to overlap with the navbar */
+  margin-top: -20px;
   position: relative;
   z-index: 1;
 
@@ -17,16 +18,6 @@
     background: rgba(0, 0, 0, 0.5);
     padding: 2rem;
     border-radius: 10px;
-  }
-
-  h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-  }
-
-  p {
-    font-size: 1.5rem;
-    margin-bottom: 2rem;
   }
 
   .hero-button {
@@ -42,6 +33,23 @@
     &:hover {
       background: #fff;
       color: #141e30;
+    }
+  }
+}
+
+.cards-container {
+  margin-top: 2rem;
+}
+
+.info-card {
+  margin-bottom: 2rem;
+  .btn-primary {
+    background-color: white;
+    color: #007bff;
+    border: 1px solid #007bff;
+    &:hover {
+      background-color: #007bff;
+      color: white;
     }
   }
 }

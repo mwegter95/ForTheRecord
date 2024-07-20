@@ -19,7 +19,7 @@ const Home = () => {
         <Row>
           <Col md={4}>
             <Card className="info-card">
-              <div className="card-photo">
+              <div className="card-photo portrait">
                 <img src={PortraitMe} alt="About Us" />
               </div>
               <Card.Body>

@@ -5,6 +5,7 @@ import SignUp from "./SignUp";
 import Login from "./Login";
 import Home from "./Home";
 import About from "./About";
+import BookNow from "./BookNow";
 import TopNavbar from "./Navbar";
 
 const ROLE_ADMIN = "admin";
@@ -86,6 +87,7 @@ const Handler = () => {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<h2>Contact Us</h2>} />
+        <Route path="/booknow" element={<BookNow />} />
         <Route
           path="/logs"
           element={

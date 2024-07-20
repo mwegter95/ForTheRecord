@@ -1,5 +1,5 @@
 .hero {
-  background-image: url('https://source.unsplash.com/random/1600x900?dj');
+  background-image: url("../images/djing_wedding_rings_image.jpeg");
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -9,9 +9,6 @@
   color: white;
   text-align: center;
   padding: 2rem;
-  padding-top: 5rem; /* Add padding to prevent overlap with the navbar */
-  position: relative;
-  z-index: 1;
 
   .hero-content {
     background: rgba(0, 0, 0, 0.5);

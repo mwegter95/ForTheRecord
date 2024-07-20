@@ -2,7 +2,9 @@
   background: linear-gradient(to right, #141e30, #243b55);
   border-radius: 0 0 30px 30px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 1rem 2rem;
+  padding: 1rem 1rem;
+  margin-bottom: -20px; /* Negative margin to overlap with hero section */
+  z-index: 10;
 
   .navbar-brand {
     color: #fff;
@@ -46,7 +48,7 @@
 
   @media (min-width: 992px) {
     .navbar-collapse {
-      background: linear-gradient(to right, #141e30, #243b55);
+      background: transparent;
       padding: 1rem;
     }
 

@@ -5,6 +5,7 @@ import SignUp from "./SignUp";
 import Login from "./Login";
 import TopNavbar from "./Navbar";
 import Home from "./Home";
+import "./Handler.scss";
 
 const ROLE_ADMIN = "admin";
 const SECRET_KEY = "your_secret_key";
@@ -71,7 +72,6 @@ const Handler = () => {
   };
 
   const getUserDetailsFromToken = (token) => {
-    // Ideally, decode token to get user details or fetch from backend
     const firstName = localStorage.getItem("firstName");
     const lastName = localStorage.getItem("lastName");
     return {
@@ -86,7 +86,7 @@ const Handler = () => {
   }
 
   return (
-    <div>
+    <div className="app-container">
       <TopNavbar user={user} handleLogout={handleLogout} />
       <Routes>
         <Route path="/about" element={<h2>About Us</h2>} />

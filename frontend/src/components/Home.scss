@@ -2,14 +2,14 @@
   background-image: url('https://source.unsplash.com/random/1600x900?dj');
   background-size: cover;
   background-position: center;
-  height: 100vh;
+  height: calc(100vh + 20px); /* Increase height to cover the overlap */
   display: flex;
   justify-content: center;
   align-items: center;
   color: white;
   text-align: center;
   padding: 2rem;
-  padding-top: 5rem; /* Add padding to prevent overlap with the navbar */
+  margin-top: -20px; /* Negative margin to overlap with the navbar */
   position: relative;
   z-index: 1;
 

@@ -1,8 +1,9 @@
 .hero {
   background-image: url('https://source.unsplash.com/random/1600x900?dj');
   background-size: cover;
-  background-position: center;
-  height: 100vh;
+  background-position: top center;
+  background-repeat: repeat-y;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -49,25 +50,35 @@
     margin-bottom: 2rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Ensure content is spaced out */
-    height: 100%; /* Ensure all cards have equal height */
-    
+    justify-content: space-between;
+    height: 100%;
+
     .card-photo {
       position: relative;
-      height: 200px; /* Set fixed height for placeholder */
+      height: 200px;
       overflow: hidden;
-      border-radius: 10px 10px 0 0; /* Round the top corners */
+      border-radius: 10px 10px 0 0;
 
       img {
         width: 100%;
         height: auto;
+        object-fit: cover;
       }
 
-      &.portrait {
-        img {
-          position: relative;
-          top: -50px; /* Move the image up by 50px */
-        }
+      &.portrait img {
+        position: relative;
+        top: -50px;
+      }
+
+      &.bouquet img {
+        position: relative;
+        top: -20px;
+      }
+
+      &.dj-decks img {
+        height: 100%;
+        width: auto;
+        transform: translateX(-10%); /* Move the image to the left by 20% */
       }
     }
 

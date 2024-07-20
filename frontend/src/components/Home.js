@@ -10,7 +10,7 @@ const Home = () => {
     <div id="home" className="hero">
       <div className="hero-content">
         <h1>For the Record</h1>
-        <p>Your Premier DJ Experience</p>
+        <p>Exceptional audio expertise for your perfect sounding day.</p>
         <a href="#booknow" className="hero-button">
           Book Now!
         </a>
@@ -35,7 +35,7 @@ const Home = () => {
           </Col>
           <Col md={4}>
             <Card className="info-card">
-              <div className="card-photo">
+              <div className="card-photo bouquet">
                 <img src={WeddingDance} alt="Weddings" />
               </div>
               <Card.Body>
@@ -51,7 +51,7 @@ const Home = () => {
           </Col>
           <Col md={4}>
             <Card className="info-card">
-              <div className="card-photo">
+              <div className="card-photo dj-decks">
                 <img src={DJDecks} alt="Events" />
               </div>
               <Card.Body>

@@ -7,7 +7,7 @@ const TopNavbar = ({ user, handleLogout }) => {
   return (
     <Navbar expand="lg" className="navbar-custom">
       <Container>
-        <Navbar.Brand href="/">DJ Synfinity</Navbar.Brand>
+        <Navbar.Brand href="/">For The Record</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">

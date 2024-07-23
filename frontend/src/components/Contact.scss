@@ -1,15 +1,79 @@
-.section {
-  background: #f8f9fa; /* Light background color for contrast */
-  padding: 100px 20px; /* Adjust padding as needed */
+.contact-page {
+  position: relative;
   min-height: 100vh;
+  padding: 2rem;
+  text-align: center;
+  color: white;
+  z-index: 1;
 
-  h2 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
+  &::before {
+    content: "";
+    position: absolute;
+    top: -30px; /* Negative margin to fill out the curve of the navbar */
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../images/djing_wedding_rings_image.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat-y;
+    z-index: -1; /* Ensure the background is behind the content */
   }
 
-  p {
-    font-size: 1.5rem;
+  h1 {
     margin-bottom: 2rem;
+    color: #f8e71c;
+  }
+
+  .contact-card {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+
+    .business-card {
+      width: 300px;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      border: none;
+    }
+  }
+
+  .contact-form {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 2rem;
+    border-radius: 10px;
+    color: white;
+    text-align: left;
+
+    .form-control {
+      background: rgba(255, 255, 255, 0.8);
+      border: none;
+      border-radius: 5px;
+      margin-bottom: 1rem;
+    }
+
+    .btn-primary {
+      background-color: #f8e71c;
+      color: #000;
+      border: none;
+      border-radius: 20px;
+      padding: 0.75rem 1.5rem;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+
+      &:hover {
+        background: #fff;
+        color: #141e30;
+      }
+    }
+  }
+
+  .alert-success {
+    background-color: #28a745;
+    border: none;
+    border-radius: 10px;
+    padding: 1rem;
+    text-align: center;
   }
 }

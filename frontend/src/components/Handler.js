@@ -1,10 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { Route, Routes, Link, Navigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  Navigate,
+} from "react-router-dom";
 import axios from "axios";
 import SignUp from "./SignUp";
 import Login from "./Login";
 import Home from "./Home";
 import About from "./About";
+import Contact from "./Contact";
 import BookNow from "./BookNow";
 import TopNavbar from "./Navbar";
 
@@ -86,7 +93,7 @@ const Handler = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<h2>Contact Us</h2>} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="/booknow" element={<BookNow />} />
         <Route
           path="/logs"

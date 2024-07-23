@@ -25,9 +25,9 @@ const Home = () => {
               <Card.Body>
                 <Card.Title>About Us</Card.Title>
                 <Card.Text>
-                  Learn more about DJ Synfinity and our journey.
+                  Learn more about For The Record and our journey.
                 </Card.Text>
-                <Button variant="primary" href="#about">
+                <Button variant="primary" href="/about">
                   Learn More
                 </Button>
               </Card.Body>

@@ -1,16 +1,24 @@
 .about-page {
+  position: relative;
+  min-height: 100vh;
   padding: 2rem;
   text-align: center;
-  background-image: url('../images/djing_wedding_rings_image.jpeg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: repeat-y;
-  min-height: 100vh;
   color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  z-index: 1;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -30px; /* Negative margin to fill out the curve of the navbar */
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../images/djing_wedding_rings_image.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat-y;
+    z-index: -1; /* Ensure the background is behind the content */
+  }
 
   h1 {
     margin-bottom: 2rem;

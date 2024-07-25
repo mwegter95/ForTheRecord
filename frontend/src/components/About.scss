@@ -25,6 +25,13 @@
     color: #f8e71c;
   }
 
+  .about-container {
+    width: 100% !important; /* Ensure full width */
+    max-width: 100% !important; /* Override any max-width constraints */
+    margin: 0 !important; /* Remove any margin */
+    padding: 0 !important; /* Remove padding */
+  }
+
   .about-content {
     display: flex;
     flex-wrap: wrap;
@@ -68,6 +75,15 @@
           color: #f8e71c;
         }
       }
+    }
+
+    .embedded-photo {
+      display: block;
+      margin: 1rem auto;
+      width: 80%;
+      max-width: 100%; /* Ensure the image does not exceed the card width */
+      height: auto; /* Maintain aspect ratio */
+      border-radius: 10px;
     }
   }
 

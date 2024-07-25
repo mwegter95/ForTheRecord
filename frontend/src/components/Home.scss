@@ -83,19 +83,19 @@
       &.portrait img {
         position: relative;
         top: -50px;
-        transform: scale(1.0); /* Zoom out by 20% */
+        transform: scale(0.8); /* Zoom out by 20% */
       }
 
       &.bouquet img {
         position: relative;
         top: -20px;
-        transform: scale(1.0); /* Zoom out by 20% */
+        transform: scale(0.8); /* Zoom out by 20% */
       }
 
       &.dj-decks img {
         height: 100%;
         width: auto;
-        transform: translateX(-20%) scale(.9); /* Move the image to the left by 20% and zoom in by 10% */
+        transform: translateX(-20%) scale(1.1); /* Move the image to the left by 20% and zoom in by 10% */
       }
     }
 

@@ -10,15 +10,28 @@ const About = () => {
     <div className="about-page">
       <Container className="about-container">
         <h1>About Us</h1>
-        <p>
-          Welcome to For the Record! We are dedicated to providing the best DJ
-          and audio experience for your events. Learn more about our journey,
-          and what makes us unique.
-        </p>
-        <Row>
-          <Col md={12}>
+        <div className="welcome-text">
+          <h2>Welcome to For the Record</h2>
+          <p>
+            Welcome to For the Record! We are dedicated to providing the best DJ
+            and audio experience for your events. Learn more about our journey,
+            and what makes us unique.
+          </p>
+          <h2>WHY US?</h2>
+          <p>
+            For The Record is all about making sure your event's audio is
+            sounding great and has no hiccups. Founded by Michael "DJ Synfinity"
+            Wegter with the intention to root out bad audio at events, For The
+            Record is dedicated to using passion and experience to provide great
+            service, with a great sound, at a great rate.
+          </p>
+        </div>
+        <Row className="about-row">
+          <Col md={6} className="about-card-image">
+            <img src={PortraitMe} alt="Our Team" />
+          </Col>
+          <Col md={6} className="about-card-text">
             <Card className="about-card">
-              <Card.Img variant="top" src={PortraitMe} alt="Our Team" />
               <Card.Body>
                 <Card.Title>Our Team</Card.Title>
                 <Card.Text>
@@ -42,14 +55,18 @@ const About = () => {
                       <strong>Specialties:</strong> We specialize in Audio and
                       Microphones, DJing, and MCing.
                     </li>
+                    <li>
+                      <strong>Education:</strong> Bachelor of Arts in Music from
+                      St. Olaf College, 2018.
+                    </li>
                   </ul>
                 </Card.Text>
               </Card.Body>
             </Card>
           </Col>
         </Row>
-        <Row>
-          <Col md={12}>
+        <Row className="about-row">
+          <Col md={12} className="about-card-text">
             <Card className="about-card">
               <Card.Body>
                 <Card.Title>Our Journey</Card.Title>
@@ -77,8 +94,8 @@ const About = () => {
             </Card>
           </Col>
         </Row>
-        <Row>
-          <Col md={12}>
+        <Row className="about-row">
+          <Col md={12} className="about-card-text">
             <Card className="about-card">
               <Card.Img variant="top" src={DJDecks} alt="Our Events" />
               <Card.Body>

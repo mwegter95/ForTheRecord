@@ -20,20 +20,36 @@
     z-index: -1; /* Ensure the background is behind the content */
   }
 
-  h1 {
+  .about-us-heading {
     margin-bottom: 2rem;
     color: #f8e71c;
     font-size: 3rem;
+    background: rgba(0, 0, 0, 0.7); /* Black transparent background */
+    padding: 1rem;
+    border-radius: 10px;
+    display: inline-block;
   }
 
-  .welcome-text {
-    background: rgba(0, 0, 0, 0.7);
+  .about-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.7); /* Black transparent background */
     padding: 2rem;
     border-radius: 10px;
-    width: 80%;
-    max-width: 1200px;
-    margin: 0 auto 2rem;
-    font-size: 1.5rem;
+    margin-bottom: 2rem;
+
+    .about-header-content {
+      flex: 1 1 50%;
+      padding: 1rem;
+    }
+
+    .about-header-image {
+      flex: 1 1 50%;
+      max-width: 300px;
+      border-radius: 10px;
+    }
   }
 
   .about-container {
@@ -72,18 +88,16 @@
     .card-text {
       text-align: left;
       color: #ddd;
-    }
 
-    ul {
-      padding-left: 1rem;
-      text-align: left;
+      ul {
+        padding-left: 1rem;
 
-      li {
-        margin-bottom: 1rem;
-        color: #ddd;
+        li {
+          margin-bottom: 1rem;
 
-        strong {
-          color: #f8e71c;
+          strong {
+            color: #f8e71c;
+          }
         }
       }
     }
@@ -128,9 +142,19 @@
   }
 
   @media (max-width: 768px) {
-    .about-content {
+    .about-header {
       flex-direction: column;
+
+      .about-header-content,
+      .about-header-image {
+        flex: 1 1 100%;
+      }
+
+      .about-header-image {
+        margin-top: 1rem;
+      }
     }
+
     .about-card {
       max-width: 100%;
     }

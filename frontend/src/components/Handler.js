@@ -14,6 +14,8 @@ import About from "./About";
 import Contact from "./Contact";
 import BookNow from "./BookNow";
 import TopNavbar from "./Navbar";
+import Weddings from "./Weddings";
+import Events from "./Events";
 
 const ROLE_ADMIN = "admin";
 const SECRET_KEY = "your_secret_key";
@@ -93,8 +95,11 @@ const Handler = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
         <Route path="/booknow" element={<BookNow />} />
+        <Route path="/weddings" element={<Weddings />} />
+        <Route path="/events" element={<Events />} />
+        <Route path="/contact" element={<Contact />} />
+        
         <Route
           path="/logs"
           element={

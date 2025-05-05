@@ -9,7 +9,7 @@
   &::before {
     content: "";
     position: absolute;
-    top: -30px; /* Negative margin to fill out the curve of the navbar */
+    top: -30px;
     left: 0;
     right: 0;
     bottom: 0;
@@ -17,14 +17,14 @@
     background-size: cover;
     background-position: center;
     background-repeat: repeat-y;
-    z-index: -1; /* Ensure the background is behind the content */
+    z-index: -1;
   }
 
   h1 {
     margin-bottom: 2rem;
     color: #f8e71c;
     font-size: 3rem;
-    background: rgba(0, 0, 0, 0.7); /* Black transparent background */
+    background: rgba(0, 0, 0, 0.7);
     padding: 1rem;
     border-radius: 10px;
     display: inline-block;
@@ -46,9 +46,11 @@
   @media (max-width: 768px) {
     .contact-card {
       flex-direction: column;
+      align-items: center; /* Add this to center child cards */
 
       .business-card {
         max-width: 100%;
+        margin-bottom: 1rem; /* Optional spacing */
       }
     }
   }

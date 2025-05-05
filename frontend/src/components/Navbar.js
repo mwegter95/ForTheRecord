@@ -24,6 +24,12 @@ const TopNavbar = ({ user, handleLogout }) => {
             <LinkContainer to="/about">
               <Nav.Link data-action="about">About</Nav.Link>
             </LinkContainer>
+            <LinkContainer to="/weddings">
+              <Nav.Link data-action="weddings">Weddings</Nav.Link>
+            </LinkContainer>
+            <LinkContainer to="/events">
+              <Nav.Link data-action="events">Events</Nav.Link>
+            </LinkContainer>
             <LinkContainer to="/contact">
               <Nav.Link data-action="contact">Contact</Nav.Link>
             </LinkContainer>

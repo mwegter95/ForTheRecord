@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import React from "react";
 import { Card, Button, Container, Row, Col } from "react-bootstrap";
 import "./Home.scss";
@@ -11,9 +12,9 @@ const Home = () => {
       <div className="hero-content">
         <h1>For The Record</h1>
         <p>Exceptional audio expertise for your perfect sounding day.</p>
-        <a href="#booknow" className="hero-button">
+        <Link to="/booknow" className="hero-button">
           Book Now!
-        </a>
+        </Link>
       </div>
       <Container className="cards-container">
         <Row>

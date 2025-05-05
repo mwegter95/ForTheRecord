@@ -2,6 +2,11 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from .routes.handler import router as handler_router
 from .routes.auth import router as auth_router
+from .routes.email import router as email_router
+from dotenv import load_dotenv
+import os
+
+load_dotenv()  # Load environment variables from .env file
 
 app = FastAPI()
 
@@ -16,6 +21,7 @@ app.add_middleware(
 
 app.include_router(handler_router)
 app.include_router(auth_router)
+app.include_router(email_router)
 
 @app.get("/")
 def read_root():

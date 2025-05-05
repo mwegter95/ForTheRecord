@@ -9,23 +9,24 @@
     color: #fff;
     font-size: 1.5rem;
     font-weight: bold;
-    transition: color 0.3s ease; /* Smooth transition */
+    transition: color 0.3s ease;
 
     &:hover {
-      color: #f8e71c; /* Same yellow color as other nav links */
+      color: #f8e71c;
     }
   }
 
   .nav-link {
     color: #fff;
     margin-right: 1rem;
+
     &:hover {
       color: #f8e71c;
     }
   }
 
   .nav-link.active {
-    color: #00c8ff !important; /* Bright sky blue */
+    color: #00c8ff !important;
     font-weight: bold;
   }
 
@@ -34,6 +35,7 @@
     color: #000;
     border-radius: 20px;
     padding: 0.5rem 1rem;
+
     &:hover {
       background: #fff;
       color: #141e30;
@@ -41,12 +43,40 @@
   }
 
   .custom-toggler {
-    display: block;
-    margin-left: auto;
     border: none;
+    background: transparent;
 
     .navbar-toggler-icon {
-      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%280, 200, 255, 1%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E"); /* Bright sky blue */
+      background: none;
+      width: 30px;
+      height: 22px;
+      position: relative;
+      display: inline-block;
+
+      &::before,
+      &::after,
+      span {
+        content: "";
+        position: absolute;
+        left: 0;
+        height: 4px;
+        width: 100%;
+        background-color: white;
+        border-radius: 2px;
+        transition: all 0.3s ease;
+      }
+
+      span {
+        top: 9px;
+      }
+
+      &::before {
+        top: 0;
+      }
+
+      &::after {
+        bottom: 0;
+      }
     }
   }
 
@@ -61,3 +91,4 @@
     }
   }
 }
+  

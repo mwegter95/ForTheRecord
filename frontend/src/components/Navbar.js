@@ -8,7 +8,14 @@ const TopNavbar = ({ user, handleLogout }) => {
     <Navbar expand="lg" className="navbar-custom">
       <Container>
         <Navbar.Brand href="/">For The Record</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Toggle
+          aria-controls="basic-navbar-nav"
+          className="custom-toggler"
+        >
+          <span className="navbar-toggler-icon">
+            <span></span>
+          </span>
+        </Navbar.Toggle>
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
             <LinkContainer to="/">

@@ -1,3 +1,9 @@
+/* Full responsive and fixed Home.scss */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 .hero {
   position: relative;
   min-height: 100vh;
@@ -7,30 +13,34 @@
   align-items: center;
   color: white;
   text-align: center;
-  padding: 2rem;
+  padding: 2rem 1rem;
   z-index: 1;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
 
   &::before {
     content: "";
     position: absolute;
-    top: -30px; /* Negative margin to fill out the curve of the navbar */
+    top: -30px;
     left: 0;
     right: 0;
     bottom: 0;
+    width: 100%;
     background-image: url('../images/djing_wedding_rings_image.jpeg');
     background-size: cover;
     background-position: center;
-    background-repeat: repeat-y;
-    z-index: -1; /* Ensure the background is behind the content */
+    background-repeat: no-repeat;
+    z-index: -1;
   }
 
   .hero-content {
     background: rgba(0, 0, 0, 0.5);
     padding: 2rem;
     border-radius: 10px;
-    width: 80%; /* Adjust the width as needed */
+    width: 100%;
     max-width: 1200px;
-    margin-top: 20px; /* Adjust this to set the desired space between the navbar and hero content */
+    margin-top: 20px;
   }
 
   .hero-button {
@@ -51,22 +61,26 @@
 }
 
 .cards-container {
-  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  justify-content: center;
+  align-items: stretch;
+  gap: 2rem;
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
 
   .info-card {
     background: rgba(0, 0, 0, 0.5);
     color: white;
-    margin-bottom: 2rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Ensure content is spaced out */
-    height: 100%;
-    flex: 1 0 30%; /* Adjust this to set the width of each card */
-    margin: 0 1rem; /* Add space between cards */
+    justify-content: space-between;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 100%;
+    max-width: 100%;
 
     .card-photo {
       position: relative;
@@ -76,37 +90,77 @@
 
       img {
         width: 100%;
-        height: auto;
+        height: 100%;
         object-fit: cover;
       }
 
       &.portrait img {
-        position: relative;
-        top: -50px;
-        transform: scale(0.8); /* Zoom out by 20% */
+        position: absolute;
+        top: 50%; /* move image downward in frame */
+        left: 50%;
+        transform: translate(-50%, -50%) scale(1.2); /* center + zoom out slightly */
+        width: auto;
+        height: 100%;
       }
+
+
 
       &.bouquet img {
-        position: relative;
-        top: -20px;
-        transform: scale(0.8); /* Zoom out by 20% */
+        position: absolute;
+        top: 60%; /* Move it down */
+        left: 50%;
+        transform: translate(-50%, -50%) scale(1.2); /* Center & zoom slightly */
+        width: auto;
+        height: 100%;
       }
 
+
       &.dj-decks img {
-        height: 100%;
         width: auto;
-        transform: translateX(-20%) scale(1.1); /* Move the image to the left by 20% and zoom in by 10% */
+        height: 100%;
+        transform: translateX(-20%) scale(1.1);
       }
+    }
+
+    .card-body {
+      padding: 1rem;
     }
 
     .btn-primary {
       background-color: white;
       color: #007bff;
       border: 1px solid #007bff;
+      margin-top: 1rem;
+
       &:hover {
         background-color: #007bff;
         color: white;
       }
     }
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 1.5rem 1rem;
+  }
+
+  .cards-container {
+    grid-template-columns: 1fr;
+    padding: 0 1rem;
+  }
+
+  .info-card .card-photo {
+    &.portrait img,
+    &.bouquet img {
+      transform: scale(0.5);
+      top: -30px;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  html, body {
+    overflow-x: hidden;
   }
 }

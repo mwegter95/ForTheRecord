@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { Form, Button, Container, Alert } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import useEmail from "../hooks/useEmail";
 import "./BookNow.scss";
 
 const BookNow = () => {
+  const { status, sendEmail } = useEmail();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -12,7 +14,6 @@ const BookNow = () => {
     phone: "",
     date: new Date(),
   });
-  const [submitted, setSubmitted] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -31,13 +32,13 @@ const BookNow = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Here you can handle form submission (e.g., send the data to a backend)
-    setSubmitted(true);
+    console.log("Submitting form with data: ", formData); // Debugging log
+    sendEmail(formData);
   };
 
   return (
     <Container className="book-now-container">
-      {submitted ? (
+      {status.state === "success" ? (
         <Alert variant="success">
           <h4>Thank You!</h4>
           <p>
@@ -89,7 +90,7 @@ const BookNow = () => {
             />
           </Form.Group>
           <Form.Group controlId="formDate">
-            <Form.Label>Date</Form.Label>
+            <Form.Label>Date of Event</Form.Label>
             <DatePicker
               selected={formData.date}
               onChange={handleDateChange}
@@ -100,6 +101,11 @@ const BookNow = () => {
           <Button variant="primary" type="submit">
             Submit
           </Button>
+          {status.state === "error" && (
+            <Alert variant="danger" className="mt-3">
+              {status.message}
+            </Alert>
+          )}
         </Form>
       )}
     </Container>

@@ -42,46 +42,76 @@
 
   .card-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
     justify-content: center;
 
     .info-card {
-        background: rgba(0, 0, 0, 0.6);
-        color: white;
-        border: none;
-        border-radius: 10px;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
 
-        .card-photo {
+      .card-photo {
         width: 100%;
         height: 220px;
         overflow: hidden;
 
         img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
         }
-        }
+      }
 
-        .card-body {
+      .card-body {
         padding: 1rem;
 
         .card-title {
-            color: #f8e71c;
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
+          color: #f8e71c;
+          font-size: 1.3rem;
+          margin-bottom: 0.5rem;
         }
 
         .card-text {
-            font-size: 1rem;
-            color: #ddd;
+          font-size: 1rem;
+          color: #ddd;
         }
-        }
+      }
     }
+
+    .info-card:nth-child(1) .card-photo img {
+      object-position: center 40%;
+    }
+
+    .info-card:nth-child(2) .card-photo img {
+      object-position: center 60%;
+    }
+
+    .info-card:nth-child(3) .card-photo img {
+      object-position: center 45%;
+    }
+  }
+
+  @media (max-width: 992px) {
+    .card-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+/* ✅ OUTSIDE override with flat selectors */
+@media (min-width: 464px) and (max-width: 964px) {
+  .weddings-page .card-grid .info-card:nth-child(1) .card-photo img,
+  .weddings-page .card-grid .info-card:nth-child(3) .card-photo img {
+    object-position: center 90% !important;
+  }
+
+  .weddings-page .card-grid .info-card:nth-child(2) .card-photo img {
+    object-position: center 10% !important;
   }
 }

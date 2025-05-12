@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/ForTheRecord/static/css/main.4c4d5ef2.css",
+    "main.js": "/ForTheRecord/static/js/main.6333e5aa.js",
+    "static/media/wedding_dance_bouqet_toss.jpg": "/ForTheRecord/static/media/wedding_dance_bouqet_toss.7cdaf84d7ea8ba5617e4.jpg",
+    "static/media/Ashley_and_me.jpeg": "/ForTheRecord/static/media/Ashley_and_me.5ddeb4fba06e97bac140.jpeg",
+    "static/media/djing_wedding_rings_image.jpeg": "/ForTheRecord/static/media/djing_wedding_rings_image.bfbc2b817aa7002075cc.jpeg",
+    "static/media/DJ_Decks.jpeg": "/ForTheRecord/static/media/DJ_Decks.8b3a2fbaeeceb8be1ce4.jpeg",
+    "static/media/Portrait_me.jpeg": "/ForTheRecord/static/media/Portrait_me.0ee2602ddace7479a465.jpeg",
+    "index.html": "/ForTheRecord/index.html",
+    "main.4c4d5ef2.css.map": "/ForTheRecord/static/css/main.4c4d5ef2.css.map",
+    "main.6333e5aa.js.map": "/ForTheRecord/static/js/main.6333e5aa.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4c4d5ef2.css",
+    "static/js/main.6333e5aa.js"
+  ]
+}

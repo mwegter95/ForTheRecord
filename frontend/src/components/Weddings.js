@@ -4,6 +4,8 @@ import wedding1 from '../images/wedding1.jpg';
 import React from "react";
 import { Container, Card } from "react-bootstrap";
 import "./Weddings.scss";
+import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const Weddings = () => {
   return (
@@ -54,6 +56,9 @@ const Weddings = () => {
               </Card.Text>
             </Card.Body>
           </Card>
+          <Button as={Link} to="/booknow" variant="primary">
+            Book Now!
+          </Button>
         </div>
       </Container>
     </div>

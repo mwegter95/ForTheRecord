@@ -1,12 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Link,
-  Navigate,
-} from "react-router-dom";
-import axios from "axios";
+import { Routes, Route, Navigate } from "react-router-dom";
 import SignUp from "./SignUp";
 import Login from "./Login";
 import Home from "./Home";
@@ -17,12 +10,8 @@ import TopNavbar from "./Navbar";
 import Weddings from "./Weddings";
 import Events from "./Events";
 
-const ROLE_ADMIN = "admin";
-const SECRET_KEY = "your_secret_key";
-
 const Handler = () => {
   const [user, setUser] = useState(null);
-  const [logs, setLogs] = useState([]);
   const [loggedOut, setLoggedOut] = useState(false);
 
   useEffect(() => {
@@ -44,50 +33,13 @@ const Handler = () => {
     setLoggedOut(true);
   };
 
-  const logAction = (action, reaction) => {
-    axios
-      .post(
-        "http://localhost:8000/log",
-        { action, reaction },
-        { headers: { "secret-key": SECRET_KEY } }
-      )
-      .then((response) => console.log(response.data))
-      .catch((error) =>
-        console.error("There was an error logging the action!", error)
-      );
-  };
+  const getUserDetailsFromToken = () => ({
+    firstName: "John",
+    lastName: "Doe",
+    role: "user",
+  });
 
-  const getLogs = () => {
-    axios
-      .get("http://localhost:8000/logs", { headers: getAuthHeader() })
-      .then((response) => setLogs(response.data))
-      .catch((error) =>
-        console.error("There was an error fetching the logs!", error)
-      );
-  };
-
-  const handleClick = (e) => {
-    const action = e.target.getAttribute("data-action");
-    const reaction = "User clicked on " + action;
-    logAction(action, reaction);
-  };
-
-  const getAuthHeader = () => {
-    const token = localStorage.getItem("token");
-    return { Authorization: `Bearer ${token}` };
-  };
-
-  const getUserDetailsFromToken = (token) => {
-    return {
-      firstName: "John",
-      lastName: "Doe",
-      role: "user",
-    };
-  };
-
-  if (loggedOut) {
-    return <Navigate to="/" />;
-  }
+  if (loggedOut) return <Navigate to="/" />;
 
   return (
     <div>
@@ -99,20 +51,6 @@ const Handler = () => {
         <Route path="/weddings" element={<Weddings />} />
         <Route path="/events" element={<Events />} />
         <Route path="/contact" element={<Contact />} />
-        
-        <Route
-          path="/logs"
-          element={
-            user && user.role === ROLE_ADMIN ? (
-              <div>
-                <h2>Logs</h2>
-                <pre>{JSON.stringify(logs, null, 2)}</pre>
-              </div>
-            ) : (
-              <Navigate to="/" />
-            )
-          }
-        />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login onLogin={handleLogin} />} />
       </Routes>

@@ -1,9 +1,6 @@
 import React from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import "./About.scss";
-import PortraitMe from "../images/Portrait_me.jpeg";
-import AshleyAndMe from "../images/Ashley_and_me.jpeg";
-import DJDecks from "../images/DJ_Decks.jpeg";
 
 const About = () => {
   return (
@@ -29,7 +26,7 @@ const About = () => {
             </p>
           </div>
           <img
-            src={PortraitMe}
+            src={"../../public/images/Portrait_me.jpg"}
             alt="Michael Wegter"
             className="about-header-image"
           />
@@ -48,7 +45,7 @@ const About = () => {
                     </li>
                     <li>
                       <strong>DJ Experience:</strong> Michael has over 9 years
-                      of combined experience in the industry.
+                      of experience in the industry.
                     </li>
                     <li>
                       <strong>Specialties:</strong> We specialize in Audio and
@@ -81,7 +78,7 @@ const About = () => {
                   perfect.
                 </Card.Text>
                 <img
-                  src={AshleyAndMe}
+                  src={"../../public/images/Ashley_and_me.jpeg"}
                   alt="Our Journey"
                   className="embedded-photo"
                 />
@@ -92,7 +89,7 @@ const About = () => {
         <Row className="justify-content-center">
           <Col md={8}>
             <Card className="about-card">
-              <Card.Img variant="top" src={DJDecks} alt="Our Events" />
+              <Card.Img variant="top" src={"../../public/images/DJ_Decks.jpeg"} alt="Our Events" />
               <Card.Body>
                 <Card.Title>What We Offer</Card.Title>
                 <Card.Text>

@@ -80,6 +80,19 @@
     }
   }
 
+  .book-now {
+    background: #f8e71c;
+    color: #000;
+    border-radius: 20px;
+    padding: 0.5rem 1.25rem 0.5rem 1.75rem; // ⬅ extra left padding
+    margin-left: -0.5rem; // ⬅ shift yellow background left
+
+    &:hover {
+      background: #fff;
+      color: #141e30;
+    }
+  }
+
   @media (min-width: 992px) {
     .navbar-collapse {
       background: transparent;

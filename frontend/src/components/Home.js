@@ -2,9 +2,6 @@ import { Link } from "react-router-dom";
 import React from "react";
 import { Card, Button, Container } from "react-bootstrap";
 import "./Home.scss";
-import PortraitMe from "../images/Portrait_me.jpeg";
-import WeddingDance from "../images/wedding_dance_bouqet_toss.jpg";
-import DJDecks from "../images/DJ_Decks.jpeg";
 
 const Home = () => {
   return (
@@ -20,7 +17,7 @@ const Home = () => {
       <Container className="cards-container">
         <Card className="info-card">
           <div className="card-photo portrait">
-            <img src={PortraitMe} alt="About Us" />
+            <img src={"../../public/images/Portrait_me.jpeg"} alt="About Us" />
           </div>
           <Card.Body>
             <Card.Title>About Us</Card.Title>
@@ -35,14 +32,14 @@ const Home = () => {
 
         <Card className="info-card">
           <div className="card-photo bouquet">
-            <img src={WeddingDance} alt="Weddings" />
+            <img src={"../../public/images/wedding_dance_bouqet_toss.jpg"} alt="Weddings" />
           </div>
           <Card.Body>
             <Card.Title>Weddings</Card.Title>
             <Card.Text>
               Make your special day unforgettable with our DJ services.
             </Card.Text>
-            <Button variant="primary" href="#weddings">
+            <Button variant="primary" href="weddings">
               Learn More
             </Button>
           </Card.Body>
@@ -50,14 +47,14 @@ const Home = () => {
 
         <Card className="info-card">
           <div className="card-photo dj-decks">
-            <img src={DJDecks} alt="Events" />
+            <img src={"../../images/public/DJ_Decks.jpeg"} alt="Events" />
           </div>
           <Card.Body>
             <Card.Title>Events</Card.Title>
             <Card.Text>
               We cater to all kinds of events, big or small.
             </Card.Text>
-            <Button variant="primary" href="#events">
+            <Button variant="primary" href="events">
               Learn More
             </Button>
           </Card.Body>

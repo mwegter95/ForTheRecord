@@ -21,11 +21,14 @@
     "sass-loader": "^14.2.1",
     "web-vitals": "^2.1.4"
   },
+  "homepage": "/",
   "scripts": {
     "start": "FAST_REFRESH=false react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -44,5 +47,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
   }
 }

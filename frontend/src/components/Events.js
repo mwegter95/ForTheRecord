@@ -11,14 +11,14 @@ const Events = () => {
           <div className="info-card">
             <div className="card-photo">
               <img
-                src="https://images.pexels.com/photos/1679825/pexels-photo-1679825.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                src="/images/corporate-event.jpg"
                 alt="Corporate Event"
               />
             </div>
             <div className="card-body">
               <h5 className="card-title">Corporate Event</h5>
               <p className="card-text">
-                Professional audio for keynotes, panels & brand activations.
+                Professional audio for keynotes, panels, and corporate parties.
               </p>
             </div>
           </div>
@@ -26,7 +26,7 @@ const Events = () => {
           <div className="info-card">
             <div className="card-photo">
               <img
-                src="https://images.pexels.com/photos/63320/pexels-photo-63320.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                src="/images/private-party.jpg"
                 alt="Birthday Party"
               />
             </div>
@@ -41,7 +41,7 @@ const Events = () => {
           <div className="info-card">
             <div className="card-photo">
               <img
-                src="https://images.pexels.com/photos/21067/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                src="/images/community-event.jpg"
                 alt="Community Event"
               />
             </div>

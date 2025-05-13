@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Card, Row, Col } from "react-bootstrap";
+import { Container, Card } from "react-bootstrap";
 import "./Weddings.scss";
 
 const Weddings = () => {
@@ -47,7 +47,7 @@ const Weddings = () => {
               <Card.Title>Custom Playlists</Card.Title>
               <Card.Text>
                 We work with you to build a personalized soundtrack you and your
-                guests will never forget.
+                guests will love.
               </Card.Text>
             </Card.Body>
           </Card>

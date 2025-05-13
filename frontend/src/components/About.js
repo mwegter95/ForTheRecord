@@ -1,3 +1,5 @@
+import DJ_Decks_ from '../images/DJ_Decks.jpeg';
+import Ashley_and_me_ from '../images/Ashley_and_me.jpeg';
 import React from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import "./About.scss";

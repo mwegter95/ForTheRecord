@@ -1,3 +1,6 @@
+import wedding_dance_bouqet_toss_ from '../images/wedding_dance_bouqet_toss.jpg';
+import Portrait_me_ from '../images/Portrait_me.jpeg';
+import DJ_Decks_ from '../images/DJ_Decks.jpeg';
 import { Link } from "react-router-dom";
 import React from "react";
 import { Card, Button, Container } from "react-bootstrap";

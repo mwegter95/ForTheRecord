@@ -1,3 +1,6 @@
+import private_party_ from '../images/private-party.jpg';
+import corporate_event_ from '../images/corporate-event.jpg';
+import community_event_ from '../images/community-event.jpg';
 import React from "react";
 import "./Events.scss";
 
@@ -11,7 +14,7 @@ const Events = () => {
           <div className="info-card">
             <div className="card-photo">
               <img
-                src="/images/corporate-event.jpg"
+                src={corporate_event_}
                 alt="Corporate Event"
               />
             </div>
@@ -26,7 +29,7 @@ const Events = () => {
           <div className="info-card">
             <div className="card-photo">
               <img
-                src="/images/private-party.jpg"
+                src={private_party_}
                 alt="Birthday Party"
               />
             </div>
@@ -41,7 +44,7 @@ const Events = () => {
           <div className="info-card">
             <div className="card-photo">
               <img
-                src="/images/community-event.jpg"
+                src={community_event_}
                 alt="Community Event"
               />
             </div>

@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.dd09574a.css",
-    "main.js": "/static/js/main.989f3d3c.js",
+    "main.js": "/static/js/main.c41a738c.js",
     "static/media/wedding_dance_bouqet_toss.jpg": "/static/media/wedding_dance_bouqet_toss.7cdaf84d7ea8ba5617e4.jpg",
     "static/media/Ashley_and_me.jpeg": "/static/media/Ashley_and_me.5ddeb4fba06e97bac140.jpeg",
     "static/media/djing_wedding_rings_image.jpeg": "/static/media/djing_wedding_rings_image.bfbc2b817aa7002075cc.jpeg",
@@ -15,10 +15,10 @@
     "static/media/Portrait_me.jpeg": "/static/media/Portrait_me.0ee2602ddace7479a465.jpeg",
     "index.html": "/index.html",
     "main.dd09574a.css.map": "/static/css/main.dd09574a.css.map",
-    "main.989f3d3c.js.map": "/static/js/main.989f3d3c.js.map"
+    "main.c41a738c.js.map": "/static/js/main.c41a738c.js.map"
   },
   "entrypoints": [
     "static/css/main.dd09574a.css",
-    "static/js/main.989f3d3c.js"
+    "static/js/main.c41a738c.js"
   ]
 }

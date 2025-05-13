@@ -87,7 +87,9 @@
 }
 
 @media (max-width: 992px) {
-  .card-grid {
-    grid-template-columns: 1fr;
+  .events-page {
+    .card-grid {
+      grid-template-columns: 1fr;
+    }
   }
 }

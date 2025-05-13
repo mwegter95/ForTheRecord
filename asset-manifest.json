@@ -1,18 +1,24 @@
 {
   "files": {
-    "main.css": "/ForTheRecord/static/css/main.4c4d5ef2.css",
-    "main.js": "/ForTheRecord/static/js/main.6333e5aa.js",
-    "static/media/wedding_dance_bouqet_toss.jpg": "/ForTheRecord/static/media/wedding_dance_bouqet_toss.7cdaf84d7ea8ba5617e4.jpg",
-    "static/media/Ashley_and_me.jpeg": "/ForTheRecord/static/media/Ashley_and_me.5ddeb4fba06e97bac140.jpeg",
-    "static/media/djing_wedding_rings_image.jpeg": "/ForTheRecord/static/media/djing_wedding_rings_image.bfbc2b817aa7002075cc.jpeg",
-    "static/media/DJ_Decks.jpeg": "/ForTheRecord/static/media/DJ_Decks.8b3a2fbaeeceb8be1ce4.jpeg",
-    "static/media/Portrait_me.jpeg": "/ForTheRecord/static/media/Portrait_me.0ee2602ddace7479a465.jpeg",
-    "index.html": "/ForTheRecord/index.html",
-    "main.4c4d5ef2.css.map": "/ForTheRecord/static/css/main.4c4d5ef2.css.map",
-    "main.6333e5aa.js.map": "/ForTheRecord/static/js/main.6333e5aa.js.map"
+    "main.css": "/static/css/main.dd09574a.css",
+    "main.js": "/static/js/main.989f3d3c.js",
+    "static/media/wedding_dance_bouqet_toss.jpg": "/static/media/wedding_dance_bouqet_toss.7cdaf84d7ea8ba5617e4.jpg",
+    "static/media/Ashley_and_me.jpeg": "/static/media/Ashley_and_me.5ddeb4fba06e97bac140.jpeg",
+    "static/media/djing_wedding_rings_image.jpeg": "/static/media/djing_wedding_rings_image.bfbc2b817aa7002075cc.jpeg",
+    "static/media/private-party.jpg": "/static/media/private-party.81dfc7129e8c5770ee51.jpg",
+    "static/media/DJ_Decks.jpeg": "/static/media/DJ_Decks.8b3a2fbaeeceb8be1ce4.jpeg",
+    "static/media/community-event.jpg": "/static/media/community-event.2bc123db5a9d0478670c.jpg",
+    "static/media/wedding2.jpg": "/static/media/wedding2.276ecbf40656a06b7644.jpg",
+    "static/media/corporate-event.jpg": "/static/media/corporate-event.b0ea48476cb2aae4d90b.jpg",
+    "static/media/wedding1.jpg": "/static/media/wedding1.e706a015b4d136035fdf.jpg",
+    "static/media/wedding3.jpg": "/static/media/wedding3.fef1af0ca9e31ba2c35b.jpg",
+    "static/media/Portrait_me.jpeg": "/static/media/Portrait_me.0ee2602ddace7479a465.jpeg",
+    "index.html": "/index.html",
+    "main.dd09574a.css.map": "/static/css/main.dd09574a.css.map",
+    "main.989f3d3c.js.map": "/static/js/main.989f3d3c.js.map"
   },
   "entrypoints": [
-    "static/css/main.4c4d5ef2.css",
-    "static/js/main.6333e5aa.js"
+    "static/css/main.dd09574a.css",
+    "static/js/main.989f3d3c.js"
   ]
 }

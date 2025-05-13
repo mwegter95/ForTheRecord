@@ -141,6 +141,15 @@
     }
   }
 
+  .about-header-image {
+  display: block;
+  max-width: 300px;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
   @media (max-width: 768px) {
     .about-header {
       flex-direction: column;

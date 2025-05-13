@@ -21,7 +21,7 @@
     "sass-loader": "^14.2.1",
     "web-vitals": "^2.1.4"
   },
-  "homepage": "/",
+  "homepage": ".",
   "scripts": {
     "start": "FAST_REFRESH=false react-scripts start",
     "build": "react-scripts build",

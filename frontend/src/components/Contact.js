@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Card, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import "./Contact.scss";
 
 const Contact = () => {
@@ -16,10 +17,10 @@ const Contact = () => {
                 <br />
                 <strong>Phone:</strong> 763-496-7006
                 <br />
-                Please call or text, leave a message with your event or wedding date.
-                I'll call back within 1-2 business days.
+                Please call or text, leave a message with your event or wedding
+                date. I'll call back within 1-2 business days.
               </Card.Text>
-              <Button variant="primary" href="/booknow">
+              <Button as={Link} to="/booknow" variant="primary">
                 Book Now!
               </Button>
             </Card.Body>

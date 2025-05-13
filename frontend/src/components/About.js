@@ -1,5 +1,6 @@
-import DJ_Decks_ from '../images/DJ_Decks.jpeg';
-import Ashley_and_me_ from '../images/Ashley_and_me.jpeg';
+import DJ_Decks from '../images/DJ_Decks.jpeg';
+import Ashley_and_me from '../images/Ashley_and_me.jpeg';
+import Portrait_me from '../images/Portrait_me.jpeg'
 import React from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import "./About.scss";
@@ -28,7 +29,7 @@ const About = () => {
             </p>
           </div>
           <img
-            src={"../../public/images/Portrait_me.jpg"}
+            src={Portrait_me}
             alt="Michael Wegter"
             className="about-header-image"
           />
@@ -47,7 +48,7 @@ const About = () => {
                     </li>
                     <li>
                       <strong>DJ Experience:</strong> Michael has over 9 years
-                      of experience in the industry.
+                      of experience in the industry, from the Chanhassen Dinner Theater to the College Club, outside ceremonies, and silent discos, Michael knows how to put together an audio experience and make sure it's sounding great.
                     </li>
                     <li>
                       <strong>Specialties:</strong> We specialize in Audio and
@@ -80,7 +81,7 @@ const About = () => {
                   perfect.
                 </Card.Text>
                 <img
-                  src={"../../public/images/Ashley_and_me.jpeg"}
+                  src={Ashley_and_me}
                   alt="Our Journey"
                   className="embedded-photo"
                 />
@@ -91,7 +92,7 @@ const About = () => {
         <Row className="justify-content-center">
           <Col md={8}>
             <Card className="about-card">
-              <Card.Img variant="top" src={"../../public/images/DJ_Decks.jpeg"} alt="Our Events" />
+              <Card.Img variant="top" src={DJ_Decks} alt="Our Events" />
               <Card.Body>
                 <Card.Title>What We Offer</Card.Title>
                 <Card.Text>

@@ -1,5 +1,9 @@
 #!/bin/bash
 
+set -e
+
+echo "🔍 Starting image import rewrite..."
+
 # List of images
 images=(
   "Ashley_and_me.jpeg"
@@ -15,25 +19,39 @@ images=(
   "wedding_dance_bouqet_toss.jpg"
 )
 
-# Replace image paths in SCSS/CSS files
-for file in $(find ./src -type f \( -name "*.scss" -o -name "*.css" \)); do
-  for img in "${images[@]}"; do
-    sed -i '' "s|url([\"']*/images/$img[\"'])|url('../images/$img')|g" "$file"
-  done
-done
+# Extensions to scan
+extensions=("js" "jsx" "scss" "css")
 
-# Replace src="" attributes and insert import statements in JS/JSX files
-for file in $(find ./src -type f \( -name "*.js" -o -name "*.jsx" \)); do
-  updated=0
-  for img in "${images[@]}"; do
-    varname=$(echo "$img" | sed -E 's/\.[^.]+$//' | tr -c 'a-zA-Z0-9' '_')
-    if grep -q "$img" "$file"; then
-      sed -i '' "s|[\"']/images/$img[\"']|{${varname}}|g" "$file"
-      grep -q "import ${varname} from '../images/$img'" "$file" || \
-        sed -i '' "1s|^|import ${varname} from '../images/$img';\n|" "$file"
-      updated=1
+# Track updates
+updates=0
+
+for ext in "${extensions[@]}"; do
+  for file in $(find ./src -type f -name "*.${ext}"); do
+    modified=0
+    for img in "${images[@]}"; do
+      varname=$(echo "$img" | sed -E 's/\.[^.]+$//' | tr -c 'a-zA-Z0-9' '_')
+
+      if grep -q "$img" "$file"; then
+        # For CSS/SCSS: update url(/images/...)
+        if [[ "$ext" == "scss" || "$ext" == "css" ]]; then
+          sed -i.bak "s|url([\"']\?/images/${img}[\"']\?)|url('../images/${img}')|g" "$file" && modified=1
+        fi
+
+        # For JS/JSX: update src="/images/... or require
+        if [[ "$ext" == "js" || "$ext" == "jsx" ]]; then
+          sed -i.bak "s|[\"']/images/${img}[\"']|{${varname}}|g" "$file" && modified=1
+          if ! grep -q "import ${varname} from '../images/${img}';" "$file"; then
+            sed -i.bak "1s|^|import ${varname} from '../images/${img}';\n|" "$file" && modified=1
+          fi
+        fi
+      fi
+    done
+    if [[ "$modified" -eq 1 ]]; then
+      echo "✅ Updated: $file"
+      rm "${file}.bak"
+      updates=$((updates + 1))
     fi
   done
 done
 
-echo "✅ Image references updated to import from src/images/"
+echo "✅ $updates files updated."

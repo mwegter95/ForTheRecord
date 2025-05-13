@@ -16,7 +16,7 @@ const Contact = () => {
                 <br />
                 <strong>Phone:</strong> 763-496-7006
                 <br />
-                Please call or text, leave a message with your wedding date.
+                Please call or text, leave a message with your event or wedding date.
                 I'll call back within 1-2 business days.
               </Card.Text>
               <Button variant="primary" href="/booknow">

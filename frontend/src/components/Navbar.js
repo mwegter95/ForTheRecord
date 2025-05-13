@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import "./Navbar.scss";
+// import DJIcon from "../images/dj-icon.svg";
 
 const TopNavbar = ({ user, handleLogout }) => {
   const [expanded, setExpanded] = useState(false);
@@ -17,7 +18,10 @@ const TopNavbar = ({ user, handleLogout }) => {
     >
       <Container>
         <LinkContainer to="/">
-          <Navbar.Brand onClick={closeMenu}>For The Record</Navbar.Brand>
+          <Navbar.Brand onClick={closeMenu} className="navbar-logo">
+            {/* <img src={DJIcon} alt="DJ icon" className="logo-icon" /> */}
+            For The Record
+          </Navbar.Brand>
         </LinkContainer>
         <Navbar.Toggle
           aria-controls="basic-navbar-nav"

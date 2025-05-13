@@ -6,7 +6,7 @@
   z-index: 10;
 
   .navbar-brand {
-    color: #fff;
+    color: #fff !important;
     font-size: 1.5rem;
     font-weight: bold;
     transition: color 0.3s ease;
@@ -23,18 +23,24 @@
     &:hover {
       color: #f8e71c;
     }
-  }
 
-  .nav-link.active {
-    color: #00c8ff !important;
-    font-weight: bold;
+    &.active {
+      color: #00c8ff !important;
+      font-weight: bold;
+    }
   }
 
   .book-now {
     background: #f8e71c;
-    color: #000;
+    color: #000 !important;
     border-radius: 20px;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 1.25rem 0.5rem 1.75rem;
+    margin-left: -0.5rem;
+
+    &.active {
+      color: #000 !important;
+      background: #f8e71c;
+    }
 
     &:hover {
       background: #fff;
@@ -80,18 +86,17 @@
     }
   }
 
-  .book-now {
-    background: #f8e71c;
-    color: #000;
-    border-radius: 20px;
-    padding: 0.5rem 1.25rem 0.5rem 1.75rem; // ⬅ extra left padding
-    margin-left: -0.5rem; // ⬅ shift yellow background left
+  .navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 
-    &:hover {
-      background: #fff;
-      color: #141e30;
-    }
+  img.logo-icon {
+    height: 50px;
+    width: 50px;
+    margin-right: 0.5rem;
   }
+}
 
   @media (min-width: 992px) {
     .navbar-collapse {
@@ -104,4 +109,3 @@
     }
   }
 }
-  

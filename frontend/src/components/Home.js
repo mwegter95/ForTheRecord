@@ -1,6 +1,6 @@
-import wedding_dance_bouqet_toss_ from '../images/wedding_dance_bouqet_toss.jpg';
-import Portrait_me_ from '../images/Portrait_me.jpeg';
-import DJ_Decks_ from '../images/DJ_Decks.jpeg';
+import wedding_dance_bouqet_toss from "../images/wedding_dance_bouqet_toss.jpg";
+import Portrait_me from "../images/Portrait_me.jpeg";
+import DJ_Decks from "../images/DJ_Decks.jpeg";
 import { Link } from "react-router-dom";
 import React from "react";
 import { Card, Button, Container } from "react-bootstrap";
@@ -20,14 +20,14 @@ const Home = () => {
       <Container className="cards-container">
         <Card className="info-card">
           <div className="card-photo portrait">
-            <img src={"../../public/images/Portrait_me.jpeg"} alt="About Us" />
+            <img src={Portrait_me} alt="About Us" />
           </div>
           <Card.Body>
             <Card.Title>About Us</Card.Title>
             <Card.Text>
               Learn more about For The Record and our journey.
             </Card.Text>
-            <Button variant="primary" href="/about">
+            <Button as={Link} to="/about" variant="primary">
               Learn More
             </Button>
           </Card.Body>
@@ -35,14 +35,14 @@ const Home = () => {
 
         <Card className="info-card">
           <div className="card-photo bouquet">
-            <img src={"../../public/images/wedding_dance_bouqet_toss.jpg"} alt="Weddings" />
+            <img src={wedding_dance_bouqet_toss} alt="Weddings" />
           </div>
           <Card.Body>
             <Card.Title>Weddings</Card.Title>
             <Card.Text>
               Make your special day unforgettable with our DJ services.
             </Card.Text>
-            <Button variant="primary" href="weddings">
+            <Button as={Link} to="/weddings" variant="primary">
               Learn More
             </Button>
           </Card.Body>
@@ -50,14 +50,14 @@ const Home = () => {
 
         <Card className="info-card">
           <div className="card-photo dj-decks">
-            <img src={"../../images/public/DJ_Decks.jpeg"} alt="Events" />
+            <img src={DJ_Decks} alt="Events" />
           </div>
           <Card.Body>
             <Card.Title>Events</Card.Title>
             <Card.Text>
               We cater to all kinds of events, big or small.
             </Card.Text>
-            <Button variant="primary" href="events">
+            <Button as={Link} to="/events" variant="primary">
               Learn More
             </Button>
           </Card.Body>

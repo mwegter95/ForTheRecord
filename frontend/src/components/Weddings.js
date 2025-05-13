@@ -1,6 +1,6 @@
-import wedding3_ from '../images/wedding3.jpg';
-import wedding2_ from '../images/wedding2.jpg';
-import wedding1_ from '../images/wedding1.jpg';
+import wedding3 from '../images/wedding3.jpg';
+import wedding2 from '../images/wedding2.jpg';
+import wedding1 from '../images/wedding1.jpg';
 import React from "react";
 import { Container, Card } from "react-bootstrap";
 import "./Weddings.scss";
@@ -18,7 +18,7 @@ const Weddings = () => {
         <div className="card-grid">
           <Card className="info-card">
             <div className="card-photo">
-              <img src={wedding1_} alt="Wedding DJ Setup" />
+              <img src={wedding1} alt="Wedding DJ Setup" />
             </div>
             <Card.Body>
               <Card.Title>Ceremony Audio</Card.Title>
@@ -31,7 +31,7 @@ const Weddings = () => {
 
           <Card className="info-card">
             <div className="card-photo">
-              <img src={wedding2_} alt="Wedding Reception Dancing" />
+              <img src={wedding2} alt="Wedding Reception Dancing" />
             </div>
             <Card.Body>
               <Card.Title>Reception Entertainment</Card.Title>
@@ -44,7 +44,7 @@ const Weddings = () => {
 
           <Card className="info-card">
             <div className="card-photo">
-              <img src={wedding3_} alt="Wedding Party" />
+              <img src={wedding3} alt="Wedding Party" />
             </div>
             <Card.Body>
               <Card.Title>Custom Playlists</Card.Title>

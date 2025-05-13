@@ -56,9 +56,16 @@ const Weddings = () => {
               </Card.Text>
             </Card.Body>
           </Card>
-          <Button as={Link} to="/booknow" variant="primary">
-            Book Now!
-          </Button>
+          <div className="cta full-width">
+            <Button
+              as={Link}
+              to="/booknow"
+              variant="primary"
+              className="full-width-btn"
+            >
+              Book Now!
+            </Button>
+          </div>
         </div>
       </Container>
     </div>

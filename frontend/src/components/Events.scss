@@ -84,6 +84,20 @@
       }
     }
   }
+  .cta.full-width {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+
+  .cta.full-width .full-width-btn {
+    width: 100%;
+    max-width: 100%;
+    font-size: 1.5rem;
+    padding: 0.75rem 1rem;
+  }
+
 }
 
 @media (max-width: 992px) {

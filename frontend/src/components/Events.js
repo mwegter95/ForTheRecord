@@ -1,6 +1,6 @@
-import private_party from '../images/private-party.jpg';
-import corporate_event from '../images/corporate-event.jpg';
-import community_event from '../images/community-event.jpg';
+import private_party from "../images/private-party.jpg";
+import corporate_event from "../images/corporate-event.jpg";
+import community_event from "../images/community-event.jpg";
 import React from "react";
 import "./Events.scss";
 import { Button } from "react-bootstrap";
@@ -48,12 +48,16 @@ const Events = () => {
               </p>
             </div>
           </div>
-        </div>
-
-        <div className="cta" style={{ textAlign: "center", marginTop: "2rem" }}>
-          <Button as={Link} to="/booknow" variant="primary">
-            Book Now!
-          </Button>
+          <div className="cta full-width">
+            <Button
+              as={Link}
+              to="/booknow"
+              variant="primary"
+              className="full-width-btn"
+            >
+              Book Now!
+            </Button>
+          </div>
         </div>
       </div>
     </div>

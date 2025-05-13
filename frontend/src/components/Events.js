@@ -3,6 +3,8 @@ import corporate_event from '../images/corporate-event.jpg';
 import community_event from '../images/community-event.jpg';
 import React from "react";
 import "./Events.scss";
+import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const Events = () => {
   return (
@@ -13,10 +15,7 @@ const Events = () => {
         <div className="card-grid">
           <div className="info-card">
             <div className="card-photo">
-              <img
-                src={corporate_event}
-                alt="Corporate Event"
-              />
+              <img src={corporate_event} alt="Corporate Event" />
             </div>
             <div className="card-body">
               <h5 className="card-title">Corporate Event</h5>
@@ -28,10 +27,7 @@ const Events = () => {
 
           <div className="info-card">
             <div className="card-photo">
-              <img
-                src={private_party}
-                alt="Birthday Party"
-              />
+              <img src={private_party} alt="Birthday Party" />
             </div>
             <div className="card-body">
               <h5 className="card-title">Private Party</h5>
@@ -43,10 +39,7 @@ const Events = () => {
 
           <div className="info-card">
             <div className="card-photo">
-              <img
-                src={community_event}
-                alt="Community Event"
-              />
+              <img src={community_event} alt="Community Event" />
             </div>
             <div className="card-body">
               <h5 className="card-title">Community Event</h5>
@@ -58,9 +51,9 @@ const Events = () => {
         </div>
 
         <div className="cta" style={{ textAlign: "center", marginTop: "2rem" }}>
-          <a href="/booknow" className="cta-button">
-            Book Your Event
-          </a>
+          <Button as={Link} to="/booknow" variant="primary">
+            Book Now!
+          </Button>
         </div>
       </div>
     </div>

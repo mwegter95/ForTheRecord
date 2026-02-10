@@ -58,15 +58,14 @@ const TopNavbar = ({ user, handleLogout }) => {
                 Contact
               </Nav.Link>
             </LinkContainer>
-            <LinkContainer to="/booknow">
-              <Nav.Link
-                onClick={closeMenu}
-                data-action="booknow"
-                className="book-now"
-              >
-                Book Now! / Inquire Dates
-              </Nav.Link>
-            </LinkContainer>
+            <Nav.Link
+              href="/book-now.html"
+              onClick={closeMenu}
+              data-action="booknow"
+              className="book-now"
+            >
+              Book Now! / Inquire Dates
+            </Nav.Link>
             {/* {!user ? (
               <>
                 <LinkContainer to="/signup">

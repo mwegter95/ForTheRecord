@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Thank You - For The Record MN DJ</title>
+  <meta name="description" content="Thank you for your inquiry. We'll be in touch within 1-2 business days." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/png" href="images/For-The-Record.png" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      color: white;
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body {
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-image: url('images/djing_wedding_rings_image.jpeg');
+      background-size: cover;
+      background-position: center 30%;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      z-index: -10;
+    }
+
+    a { 
+      color: #f8e71c; 
+      text-decoration: none; 
+    }
+
+    /* Navbar styles */
+    .navbar {
+      background: rgba(0, 0, 0, 0.9);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .navbar-brand {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #f8e71c;
+    }
+
+    .navbar-nav {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+      margin: 0;
+      padding: 0;
+      flex-wrap: wrap;
+    }
+
+    .navbar-nav a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .navbar-nav a:hover {
+      color: #f8e71c;
+    }
+
+    .navbar-nav .book-now {
+      color: #f8e71c;
+      font-weight: bold;
+    }
+
+    /* Thank you content */
+    .thank-you-container {
+      max-width: 800px;
+      margin: 4rem auto;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .thank-you-card {
+      background: rgba(0, 0, 0, 0.8);
+      padding: 3rem 2rem;
+      border-radius: 10px;
+    }
+
+    .thank-you-card h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #f8e71c;
+    }
+
+    .thank-you-card p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 1rem 2rem;
+      border-radius: 30px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+
+    .btn-primary {
+      background: #f8e71c;
+      color: black;
+    }
+
+    .btn-primary:hover {
+      background: #e6d419;
+    }
+
+    .btn-secondary {
+      border: 2px solid #f8e71c;
+      color: #f8e71c;
+    }
+
+    .btn-secondary:hover {
+      background: #f8e71c;
+      color: black;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      opacity: 0.8;
+      background: rgba(0,0,0,0.5);
+      margin-top: 4rem;
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 1rem;
+      }
+
+      .navbar-nav {
+        gap: 1rem;
+        font-size: 0.9rem;
+      }
+
+      .thank-you-card h1 {
+        font-size: 2rem;
+      }
+
+      .thank-you-card {
+        padding: 2rem 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="/" class="navbar-brand">For The Record</a>
+    <ul class="navbar-nav">
+      <li><a href="/">Home</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/weddings">Weddings</a></li>
+      <li><a href="/events">Events</a></li>
+      <li><a href="/contact">Contact</a></li>
+      <li><a href="/book-now.html" class="book-now">Book Now!</a></li>
+    </ul>
+  </nav>
+
+  <!-- Thank You Content -->
+  <div class="thank-you-container">
+    <div class="thank-you-card">
+      <h1>Thank You!</h1>
+      <p>
+        We will check on the date and give you a phone call within 1–2 business days 
+        to discuss event needs, desires, and pricing. This is all free and no obligation! 
+        Then you get time to decide and hopefully pick us for a great rate, great audio, 
+        and great times.
+      </p>
+      <p>
+        <strong>What happens next?</strong><br>
+        If you're the first to inquire for your date and it's available, you'll be added to our calendar!
+      </p>
+      <div class="cta-buttons">
+        <a href="/" class="btn btn-primary">Return Home</a>
+        <a href="mailto:michael@fortherecordmn.com" class="btn btn-secondary">Email Us</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <a href="/">Home</a> · <a href="/about">About</a> · <a href="/weddings">Weddings</a> · <a href="/events">Events</a> · <a href="/contact">Contact</a>
+  </footer>
+
+</body>
+</html>

@@ -5,10 +5,11 @@
   <title>Minnesota Wedding DJ | For The Record</title>
   <meta name="description" content="Professional Minnesota wedding DJ with exceptional audio expertise. Stress-free planning, flawless sound, and great rates. Check availability today." />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/png" href="images/For-The-Record.png" />
 
   <!-- EmailJS -->
-  <script src="https://cdn.emailjs.com/sdk/3.2/email.min.js"></script>
-  <script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script type="text/javascript">
     (function(){
       emailjs.init("LhsrdX3yXhmH9PHk7");
     })();
@@ -236,7 +237,7 @@
 <body>
 
   <section class="hero">
-    <h1>Minnesota Wedding & Event DJ</h1>
+    <h1>For The Record<br>Minnesota Wedding & Event DJ</h1>
     <p>Exceptional audio expertise for your perfect sounding day.</p>
     <a href="#form" class="cta-primary">Check Availability</a>
     <a href="mailto:michael@fortherecordmn.com" class="cta-secondary">Email Us</a>
@@ -297,14 +298,32 @@
   <script>
     document.getElementById("booking-form").addEventListener("submit", function(e) {
       e.preventDefault();
+      
+      const statusElement = document.getElementById("form-status");
+      const submitButton = this.querySelector('button[type="submit"]');
+      
+      // Disable button and show loading state
+      submitButton.disabled = true;
+      submitButton.textContent = "Submitting...";
+      statusElement.innerText = "Sending your inquiry...";
 
       emailjs.sendForm(
         "service_gg499mn",
         "template_rkyxp9c",
         this
       ).then(
-        () => document.getElementById("form-status").innerText = "Thanks! We'll be in touch shortly.",
-        () => document.getElementById("form-status").innerText = "Something went wrong. Please try again."
+        () => {
+          // Redirect to thank you page on success
+          window.location.href = "/thank-you.html";
+        },
+        (error) => {
+          // Show error message
+          statusElement.innerText = "Something went wrong. Please try again or email us directly.";
+          statusElement.style.color = "#ff6b6b";
+          submitButton.disabled = false;
+          submitButton.textContent = "Check Availability";
+          console.error("EmailJS error:", error);
+        }
       );
     });
   </script>

@@ -12,9 +12,9 @@ const Home = () => {
       <div className="hero-content">
         <h1>For The Record</h1>
         <p>Exceptional audio expertise for your perfect sounding day.</p>
-        <Link to="/booknow" className="hero-button">
+        <a href="/book-now.html" className="hero-button">
           Book Now!
-        </Link>
+        </a>
       </div>
 
       <Container className="cards-container">

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Minnesota Wedding DJ | For The Record</title>
+  <meta name="description" content="Professional Minnesota wedding DJ with exceptional audio expertise. Stress-free planning, flawless sound, and great rates. Check availability today." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- EmailJS -->
+  <script src="https://cdn.emailjs.com/sdk/3.2/email.min.js"></script>
+  <script>
+    (function(){
+      emailjs.init("LhsrdX3yXhmH9PHk7");
+    })();
+  </script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      color: white;
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body {
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-image: url('images/djing_wedding_rings_image.jpeg');
+      background-size: cover;
+      background-position: center 30%;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      z-index: -10;
+    }
+
+    a { 
+      color: #f8e71c; 
+      text-decoration: none; 
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 4rem 1rem;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 10px;
+      max-width: 1200px;
+      margin: 20px auto;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      margin-top: 0;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    .cta-primary {
+      display: inline-block;
+      background: #f8e71c;
+      color: black;
+      padding: 1rem 2rem;
+      border-radius: 30px;
+      font-weight: bold;
+      margin-right: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .cta-secondary {
+      display: inline-block;
+      border: 2px solid #f8e71c;
+      color: #f8e71c;
+      padding: 1rem 2rem;
+      border-radius: 30px;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin: 3rem auto;
+      max-width: 1100px;
+      padding: 0 1rem;
+    }
+
+    .feature {
+      background: rgba(0,0,0,0.7);
+      padding: 1.5rem;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .images {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin: 3rem auto;
+      max-width: 1100px;
+      padding: 0 1rem;
+      justify-items: center;
+    }
+
+    .images img {
+      width: 100%;
+      max-width: 500px;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .images img.bottom-focus {
+      object-position: center bottom;
+    }
+
+    .pricing {
+      background: rgba(0,0,0,0.7);
+      padding: 2rem;
+      border-radius: 10px;
+      text-align: center;
+      margin: 3rem auto;
+      max-width: 800px;
+    }
+
+    .reviews {
+      margin: 3rem auto;
+      max-width: 900px;
+      padding: 0 1rem;
+    }
+
+    .review {
+      background: rgba(0,0,0,0.7);
+      padding: 1.5rem;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    form {
+      background: rgba(0,0,0,0.75);
+      padding: 2rem;
+      border-radius: 10px;
+      margin-top: 3rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
+    }
+
+    form h2 {
+      text-align: center;
+    }
+
+    form p {
+      text-align: center;
+    }
+
+    input, button {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border-radius: 5px;
+      border: none;
+      font-size: 1rem;
+    }
+
+    button {
+      background: #f8e71c;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #e6d419;
+    }
+
+    #form-status {
+      text-align: center;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      opacity: 0.8;
+      background: rgba(0,0,0,0.5);
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .features {
+        grid-template-columns: 1fr;
+      }
+      
+      .images {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <section class="hero">
+    <h1>Minnesota Wedding & Event DJ</h1>
+    <p>Exceptional audio expertise for your perfect sounding day.</p>
+    <a href="#form" class="cta-primary">Check Availability</a>
+    <a href="mailto:michael@fortherecordmn.com" class="cta-secondary">Email Us</a>
+  </section>
+
+  <section class="features">
+    <div class="feature">🎵 Audio-first approach — no feedback, no hiccups</div>
+    <div class="feature">🎧 9+ years of DJ experience</div>
+    <div class="feature">💍 Stress-free planning & clear communication</div>
+  </section>
+
+  <section class="images">
+    <img src="images/wedding-dance-floor2.png" alt="Wedding DJ dance floor">
+    <img src="images/wedding-dance-floor3.png" alt="Wedding reception dancing">
+    <img src="images/wedding-ceremony-audio2.jpg" class="bottom-focus" alt="Wedding ceremony sound setup">
+    <img src="images/wedding-dance-floor4.jpg" alt="Wedding party celebration">
+    <img src="images/wedding-dance-floor.jpg" alt="Wedding DJ setup">
+    <img src="images/wedding-ceremony-audio.jpg" alt="Wedding ceremony audio">
+  </section>
+
+  <section class="pricing">
+    <h2>Wedding DJ Packages</h2>
+    <p>Packages starting at <strong>$X</strong></p>
+    <p>Final pricing depends on date, location, and event needs.</p>
+  </section>
+
+  <section class="reviews">
+    <h2>What Couples Are Saying</h2>
+    <div class="review">⭐⭐⭐⭐⭐ "Amazing sound and totally stress-free."</div>
+    <div class="review">⭐⭐⭐⭐⭐ "The best DJ decision we made."</div>
+    <div class="review">⭐⭐⭐⭐⭐ "Professional, responsive, and fun."</div>
+  </section>
+
+  <section id="form" class="container">
+    <form id="booking-form">
+      <h2>Check Date Availability</h2>
+      <p>
+        This form is only for inquiring about availability. You'll receive a call within 1–2 business days — free and no obligation.  
+        If you're the first inquiry and the date is open, you'll be added to the calendar.
+        
+      </p>
+
+      <input name="first_name" placeholder="First Name" required />
+      <input name="last_name" placeholder="Last Name" required />
+      <input name="email" type="email" placeholder="Email" required />
+      <input name="phone" placeholder="Phone Number" required />
+      <input name="date" type="date" required />
+
+      <button type="submit">Check Availability</button>
+      <p id="form-status"></p>
+    </form>
+  </section>
+
+  <footer>
+    <a href="/">Home</a> · <a href="/about">About</a> · <a href="/weddings">Weddings</a> · <a href="/events">Events</a>
+  </footer>
+
+  <script>
+    document.getElementById("booking-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      emailjs.sendForm(
+        "service_gg499mn",
+        "template_rkyxp9c",
+        this
+      ).then(
+        () => document.getElementById("form-status").innerText = "Thanks! We'll be in touch shortly.",
+        () => document.getElementById("form-status").innerText = "Something went wrong. Please try again."
+      );
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For the Record - Business Card Final</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    @page {
+      size: 3.5in 2in;
+      margin: 0;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f5f5f5;
+      padding: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      color: #0A1128;
+      text-align: center;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    
+    @media print {
+      body {
+        background: white;
+        padding: 0;
+      }
+      
+      h2 {
+        display: none;
+      }
+      
+      .business-card:first-of-type {
+        page-break-after: always;
+      }
+    }
+    
+    .business-card {
+      width: 3.5in;
+      height: 2in;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+      border-radius: 8px;
+    }
+    
+    .card-front, .card-back {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 30px;
+      position: relative;
+    }
+    
+    /* FRONT */
+    .card-front {
+      background: #F8F6F1;
+      padding: 10px 30px 15px;
+    }
+    
+    .logo {
+      width: 120px;
+      height: 120px;
+      margin-bottom: 4px;
+    }
+    
+    .brand-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #0A1128;
+      margin-bottom: 5px;
+      letter-spacing: 0.5px;
+    }
+    
+    .tagline {
+      font-size: 8px;
+      font-weight: 500;
+      color: #C9A86A;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+    
+    /* BACK - EXACT from Design 2 */
+    .card-back {
+      background: #0A1128;
+      color: white;
+      padding: 30px;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .card-back::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 200px;
+      height: 200px;
+      border: 3px solid #C9A86A;
+      border-radius: 50%;
+      opacity: 0.1;
+    }
+    
+    .contact-info {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+      font-size: 9px;
+    }
+    
+    .contact-item:last-child {
+      margin-bottom: 0;
+    }
+    
+    .contact-icon {
+      width: 14px;
+      height: 14px;
+      color: #C9A86A;
+      flex-shrink: 0;
+    }
+    
+    .contact-text {
+      font-size: 9px;
+      font-weight: 500;
+      color: white;
+    }
+    
+    .back-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: #C9A86A;
+      position: relative;
+      z-index: 1;
+      line-height: 1.4;
+      text-align: center;
+    }
+  </style>
+  
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <h2>Front</h2>
+  <h2>Back</h2>
+
+  <!-- FRONT -->
+  <div class="business-card">
+    <div class="card-front">
+      <svg class="logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <g transform="rotate(90 100 120)">
+          <circle cx="100" cy="120" r="50" fill="#1a1a1a"/>
+          <path d="M 75.2 95.2 A 35 35 0 0 1 100 85" fill="none" stroke="white" stroke-width="1.5"/>
+          <path d="M 71.7 91.7 A 40 40 0 0 1 100 80" fill="none" stroke="white" stroke-width="1.5"/>
+          <path d="M 68.2 88.2 A 45 45 0 0 1 100 75" fill="none" stroke="white" stroke-width="1.5"/>
+          <path d="M 124.8 95.2 A 35 35 0 0 0 100 85" fill="none" stroke="white" stroke-width="1.5"/>
+          <path d="M 128.3 91.7 A 40 40 0 0 0 100 80" fill="none" stroke="white" stroke-width="1.5"/>
+          <path d="M 131.8 88.2 A 45 45 0 0 0 100 75" fill="none" stroke="white" stroke-width="1.5"/>
+          <path d="M 75.2 144.8 A 35 35 0 0 0 100 155" fill="none" stroke="white" stroke-width="1.5"/>
+          <path d="M 71.7 148.3 A 40 40 0 0 0 100 160" fill="none" stroke="white" stroke-width="1.5"/>
+          <path d="M 68.2 151.8 A 45 45 0 0 0 100 165" fill="none" stroke="white" stroke-width="1.5"/>
+          <path d="M 124.8 144.8 A 35 35 0 0 1 100 155" fill="none" stroke="white" stroke-width="1.5"/>
+          <path d="M 128.3 148.3 A 40 40 0 0 1 100 160" fill="none" stroke="white" stroke-width="1.5"/>
+          <path d="M 131.8 151.8 A 45 45 0 0 1 100 165" fill="none" stroke="white" stroke-width="1.5"/>
+          <circle cx="100" cy="120" r="22" fill="white"/>
+          <circle cx="100" cy="120" r="4" fill="#1a1a1a"/>
+        </g>
+        <circle cx="100" cy="120" r="52" fill="none" stroke="#C9A86A" stroke-width="5"/>
+        <polygon points="92,50 108,50 112,62 100,78 88,62" fill="#C9A86A"/>
+        <polygon points="96,50 104,50 100,62" fill="white" opacity="0.4"/>
+      </svg>
+      <div class="brand-name">For the Record</div>
+      <div class="tagline">Minnesota Wedding DJ</div>
+    </div>
+  </div>
+  
+  <!-- BACK -->
+  <div class="business-card">
+    <div class="card-back">
+      <div class="contact-info">
+        <div class="contact-item">
+          <i data-lucide="user" class="contact-icon"></i>
+          <span class="contact-text">Michael Wegter</span>
+        </div>
+        <div class="contact-item">
+          <i data-lucide="phone" class="contact-icon"></i>
+          <span class="contact-text">(612) 389-7005</span>
+        </div>
+        <div class="contact-item">
+          <i data-lucide="mail" class="contact-icon"></i>
+          <span class="contact-text">michael@fortherecordmn.com</span>
+        </div>
+        <div class="contact-item">
+          <i data-lucide="globe" class="contact-icon"></i>
+          <span class="contact-text">fortherecordmn.com</span>
+        </div>
+      </div>
+      <div class="back-tagline">
+        Perfect sound.<br>
+        Packed dance floor.<br>
+        One for the books.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    lucide.createIcons();
+  </script>
+
+</body>
+</html>

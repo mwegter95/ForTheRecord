@@ -24,15 +24,33 @@
     </script>
 
     <meta charset="UTF-8" />
-    <title>Thank You - For The Record MN DJ</title>
+    <title>Thank You - For the Record</title>
     <meta
       name="description"
-      content="Thank you for your inquiry. We'll be in touch within 1-2 business days."
+      content="Thank you for your inquiry. We'll be in touch within 24 hours."
     />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/png" href="images/For-The-Record.png" />
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
+      :root {
+        --navy: #0A1128;
+        --gold: #C9A86A;
+        --cream: #F8F6F1;
+        --charcoal: #2D3142;
+        --sage: #8B9D83;
+      }
+
       * {
         box-sizing: border-box;
       }
@@ -41,56 +59,53 @@
       body {
         margin: 0;
         padding: 0;
-        font-family:
-          -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-          "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-          sans-serif;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-        color: white;
+        color: var(--charcoal);
         line-height: 1.6;
         min-height: 100vh;
-        overflow-x: hidden;
-      }
-
-      body {
-        position: relative;
-      }
-
-      body::before {
-        content: "";
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background-image: url("images/djing_wedding_rings_image.jpeg");
-        background-size: cover;
-        background-position: center 30%;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        z-index: -10;
-      }
-
-      a {
-        color: #f8e71c;
-        text-decoration: none;
+        background: var(--cream);
       }
 
       /* Navbar styles */
       .navbar {
-        background: rgba(0, 0, 0, 0.9);
-        padding: 1rem 2rem;
+        background-color: rgba(248, 246, 241, 0.98);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(201, 168, 106, 0.1);
+        padding: 1rem 0;
+        box-shadow: 0 2px 8px rgba(10, 17, 40, 0.08);
+      }
+
+      .navbar-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
         display: flex;
         justify-content: space-between;
         align-items: center;
         flex-wrap: wrap;
+        gap: 1rem;
       }
 
       .navbar-brand {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-decoration: none;
+      }
+
+      .navbar-logo {
+        height: 72px;
+        width: auto;
+      }
+
+      .brand-text {
+        font-family: 'Cormorant Garamond', serif;
         font-size: 1.5rem;
-        font-weight: bold;
-        color: #f8e71c;
+        font-weight: 700;
+        color: var(--navy);
+        letter-spacing: 0.5px;
       }
 
       .navbar-nav {
@@ -100,46 +115,95 @@
         margin: 0;
         padding: 0;
         flex-wrap: wrap;
+        align-items: center;
       }
 
       .navbar-nav a {
-        color: white;
+        color: var(--charcoal);
         text-decoration: none;
+        font-weight: 500;
         transition: color 0.3s;
+        font-size: 0.95rem;
       }
 
       .navbar-nav a:hover {
-        color: #f8e71c;
+        color: var(--gold);
       }
 
       .navbar-nav .book-now {
-        color: #f8e71c;
-        font-weight: bold;
+        background: var(--gold);
+        color: white;
+        padding: 0.625rem 1.5rem;
+        border-radius: 30px;
+        font-weight: 600;
+        transition: all 0.3s;
       }
 
+      .navbar-nav .book-now:hover {
+        background: var(--navy);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(10, 17, 40, 0.2);
+      }
       /* Thank you content */
       .thank-you-container {
-        max-width: 800px;
+        max-width: 900px;
         margin: 4rem auto;
         padding: 2rem;
-        text-align: center;
       }
 
       .thank-you-card {
-        background: rgba(0, 0, 0, 0.8);
-        padding: 3rem 2rem;
-        border-radius: 10px;
+        background: white;
+        padding: 4rem 3rem;
+        border-radius: 16px;
+        box-shadow: 0 8px 32px rgba(10, 17, 40, 0.1);
+        text-align: center;
+      }
+
+      .success-icon {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, var(--gold) 0%, #b8935a 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 2rem;
+        font-size: 3rem;
       }
 
       .thank-you-card h1 {
-        font-size: 2.5rem;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 3rem;
         margin-bottom: 1rem;
-        color: #f8e71c;
+        color: var(--navy);
+        font-weight: 700;
       }
 
       .thank-you-card p {
-        font-size: 1.2rem;
-        margin-bottom: 2rem;
+        font-size: 1.15rem;
+        margin-bottom: 1.5rem;
+        color: var(--charcoal);
+        line-height: 1.8;
+      }
+
+      .thank-you-card .highlight {
+        color: var(--gold);
+        font-weight: 600;
+      }
+
+      .next-steps {
+        background: rgba(201, 168, 106, 0.08);
+        padding: 2rem;
+        border-radius: 12px;
+        margin: 2rem 0;
+        border-left: 4px solid var(--gold);
+      }
+
+      .next-steps h2 {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 1.5rem;
+        color: var(--navy);
+        margin-bottom: 1rem;
       }
 
       .cta-buttons {
@@ -147,48 +211,91 @@
         gap: 1rem;
         justify-content: center;
         flex-wrap: wrap;
-        margin-top: 2rem;
+        margin-top: 2.5rem;
       }
 
       .btn {
         display: inline-block;
         padding: 1rem 2rem;
         border-radius: 30px;
-        font-weight: bold;
+        font-weight: 600;
         text-decoration: none;
         transition: all 0.3s;
+        font-size: 1rem;
       }
 
       .btn-primary {
-        background: #f8e71c;
-        color: black;
+        background: var(--gold);
+        color: white;
       }
 
       .btn-primary:hover {
-        background: #e6d419;
+        background: var(--navy);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(10, 17, 40, 0.2);
       }
 
       .btn-secondary {
-        border: 2px solid #f8e71c;
-        color: #f8e71c;
+        border: 2px solid var(--gold);
+        color: var(--gold);
+        background: transparent;
       }
 
       .btn-secondary:hover {
-        background: #f8e71c;
-        color: black;
+        background: var(--gold);
+        color: white;
+      }
+
+      .contact-info {
+        margin-top: 2rem;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(201, 168, 106, 0.2);
+      }
+
+      .contact-info p {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .contact-info a {
+        color: var(--gold);
+        font-weight: 600;
+        text-decoration: none;
+      }
+
+      .contact-info a:hover {
+        color: var(--navy);
       }
 
       footer {
         text-align: center;
-        padding: 2rem 1rem;
-        opacity: 0.8;
-        background: rgba(0, 0, 0, 0.5);
+        padding: 3rem 1rem;
+        color: var(--charcoal);
+        background: rgba(201, 168, 106, 0.05);
         margin-top: 4rem;
       }
 
+      footer a {
+        color: var(--charcoal);
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      footer a:hover {
+        color: var(--gold);
+      }
+
       @media (max-width: 768px) {
-        .navbar {
-          padding: 1rem;
+        .navbar-container {
+          padding: 0 1rem;
+        }
+
+        .navbar-logo {
+          height: 60px;
+        }
+
+        .brand-text {
+          font-size: 1.25rem;
         }
 
         .navbar-nav {
@@ -196,12 +303,27 @@
           font-size: 0.9rem;
         }
 
+        .thank-you-container {
+          margin: 2rem auto;
+          padding: 1rem;
+        }
+
+        .thank-you-card {
+          padding: 2.5rem 1.5rem;
+        }
+
         .thank-you-card h1 {
           font-size: 2rem;
         }
 
-        .thank-you-card {
-          padding: 2rem 1rem;
+        .success-icon {
+          width: 60px;
+          height: 60px;
+          font-size: 2rem;
+        }
+
+        .next-steps {
+          padding: 1.5rem;
         }
       }
     </style>
@@ -210,45 +332,65 @@
   <body>
     <!-- Navbar -->
     <nav class="navbar">
-      <a href="/" class="navbar-brand">For The Record</a>
-      <ul class="navbar-nav">
-        <li><a href="/">Home</a></li>
-        <li><a href="/about">About</a></li>
-        <li><a href="/weddings">Weddings</a></li>
-        <li><a href="/events">Events</a></li>
-        <li><a href="/contact">Contact</a></li>
-        <li><a href="/book-now.html" class="book-now">Book Now!</a></li>
-      </ul>
+      <div class="navbar-container">
+        <a href="/" class="navbar-brand">
+          <img src="images/for-the-record-logo.svg" alt="For the Record Logo" class="navbar-logo" />
+          <span class="brand-text">For the Record</span>
+        </a>
+        <ul class="navbar-nav">
+          <li><a href="/">Home</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/services">Services</a></li>
+          <li><a href="/gallery">Gallery</a></li>
+          <li><a href="/faq">FAQ</a></li>
+          <li><a href="/get-in-touch" class="book-now">Let's Chat</a></li>
+        </ul>
+      </div>
     </nav>
 
     <!-- Thank You Content -->
     <div class="thank-you-container">
       <div class="thank-you-card">
+        <div class="success-icon">✓</div>
         <h1>Thank You!</h1>
         <p>
-          We will check on the date and give you a phone call within 1–2
-          business days to discuss event needs, desires, and pricing. This is
-          all free and no obligation! Then you get time to decide and hopefully
-          pick us for a great rate, great audio, and great times.
+          We received your message and we're <span class="highlight">excited to connect with you</span>! 
+          You'll hear from us within 24 hours to discuss your event and how we can make it unforgettable.
         </p>
-        <p>
-          <strong>What happens next?</strong><br />
-          If you're the first to inquire for your date and it's available,
-          you'll be added to our calendar!
-        </p>
+        
+        <div class="next-steps">
+          <h2>What Happens Next?</h2>
+          <p>
+            We'll review your details and reach out to discuss your vision, 
+            answer any questions, and create a custom package that fits your needs and budget.
+          </p>
+          <p style="margin-bottom: 0;">
+            No pressure, no obligation—just a friendly conversation about making your day perfect.
+          </p>
+        </div>
+
         <div class="cta-buttons">
           <a href="/" class="btn btn-primary">Return Home</a>
-          <a href="mailto:michael@fortherecordmn.com" class="btn btn-secondary"
-            >Email Us</a
-          >
+          <a href="/services" class="btn btn-secondary">View Services</a>
+        </div>
+
+        <div class="contact-info">
+          <p>Need to reach us right away?</p>
+          <p>
+            <a href="tel:+16123897005">(612) 389-7005</a> · 
+            <a href="mailto:michael@fortherecordmn.com">michael@fortherecordmn.com</a>
+          </p>
         </div>
       </div>
     </div>
 
     <footer>
-      <a href="/">Home</a> · <a href="/about">About</a> ·
-      <a href="/weddings">Weddings</a> · <a href="/events">Events</a> ·
-      <a href="/contact">Contact</a>
+      <p>
+        <a href="/">Home</a> · <a href="/about">About</a> ·
+        <a href="/services">Services</a> · <a href="/gallery">Gallery</a> ·
+        <a href="/faq">FAQ</a> · <a href="/get-in-touch">Contact</a>
+      </p>
+      <p style="margin-top: 1rem; opacity: 0.7;">&copy; 2025 For the Record. All rights reserved.</p>
     </footer>
   </body>
 </html>

@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import emailjs from '@emailjs/browser';
 import './GetInTouch.scss';
+
+const SERVICE_ID = "service_gg499mn";
+const TEMPLATE_ID = "template_rkyxp9c";
+const PUBLIC_KEY = "LhsrdX3yXhmH9PHk7";
 
 const GetInTouch = () => {
   const [formData, setFormData] = useState({
-    name: '',
+    firstName: '',
+    lastName: '',
     email: '',
     phone: '',
     weddingDate: '',
@@ -26,32 +32,41 @@ const GetInTouch = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Placeholder for EmailJS integration
-    // In production, replace with actual EmailJS call
-    console.log('Form submitted:', formData);
+    const templateParams = {
+      first_name: formData.firstName,
+      last_name: formData.lastName,
+      email: formData.email,
+      phone: formData.phone,
+      date: formData.weddingDate,
+      source: formData.source || 'Not specified',
+      message: formData.message || 'No additional details provided'
+    };
 
-    // Simulate submission delay
-    setTimeout(() => {
-      setSubmitStatus('success');
+    try {
+      const result = await emailjs.send(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        templateParams,
+        PUBLIC_KEY
+      );
+      console.log('EmailJS success:', result.text);
+      
+      // Redirect to thank you page
+      window.location.href = '/thank-you.html';
+    } catch (error) {
+      console.error('EmailJS error:', error);
+      setSubmitStatus('error');
       setIsSubmitting(false);
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        weddingDate: '',
-        message: '',
-        source: ''
-      });
-
-      // Clear success message after 5 seconds
+      
+      // Clear error message after 5 seconds
       setTimeout(() => {
         setSubmitStatus(null);
       }, 5000);
-    }, 1000);
+    }
   };
 
   const trustBadges = [
@@ -90,25 +105,41 @@ const GetInTouch = () => {
             {/* Contact Form */}
             <div className="form-wrapper">
               <form className="contact-form" onSubmit={handleSubmit}>
-                {submitStatus === 'success' && (
-                  <div className="form-success-message">
-                    <i data-lucide="check-circle"></i>
-                    <p>Thanks for reaching out! We'll be in touch within 24 hours.</p>
+                {submitStatus === 'error' && (
+                  <div className="form-error-message">
+                    <i data-lucide="alert-circle"></i>
+                    <p>Oops! Something went wrong. Please try again or call us at (612) 389-7005.</p>
                   </div>
                 )}
 
-                <div className="form-group">
-                  <label htmlFor="name" className="form-label">Your Name</label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    className="form-input"
-                    placeholder="e.g., Sarah & Michael"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    required
-                  />
+                <div className="form-row">
+                  <div className="form-group">
+                    <label htmlFor="firstName" className="form-label">First Name</label>
+                    <input
+                      type="text"
+                      id="firstName"
+                      name="firstName"
+                      className="form-input"
+                      placeholder="Sarah"
+                      value={formData.firstName}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="lastName" className="form-label">Last Name</label>
+                    <input
+                      type="text"
+                      id="lastName"
+                      name="lastName"
+                      className="form-input"
+                      placeholder="Johnson"
+                      value={formData.lastName}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
                 </div>
 
                 <div className="form-group">

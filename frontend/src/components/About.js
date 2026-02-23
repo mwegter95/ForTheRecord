@@ -38,7 +38,7 @@ export default function About() {
             </div>
 
             <p>
-              The name "For The Record" captures this perfectly. It means creating moments worth remembering—moments that stick with your guests long after the last song plays. It means getting it on the record, in the books, done right the first time.
+              The name "For the Record" captures this perfectly. It means creating moments worth remembering—moments that stick with your guests long after the last song plays. It means getting it on the record, in the books, done right the first time.
             </p>
             <p>
               This obsession shows up in the small things too. I once ran over to politely ask a groundskeeper to pause mowing during a ceremony I was attending. Not because it was my event, but because good audio deserves respect. That's the mindset I bring to every wedding: relentless attention to the details that make the difference.
@@ -73,7 +73,7 @@ export default function About() {
           </div>
 
           <div className="timeline-card">
-            <h3>Founded For The Record</h3>
+            <h3>Founded For the Record</h3>
             <p>Brought my obsession with audio excellence and technical mastery to Minnesota weddings.</p>
           </div>
 
@@ -93,7 +93,7 @@ export default function About() {
               Audio isn't something I do. It's who I am. I'm the person who brings an equalizer for the car, tweaks home office speakers obsessively, and travels with audio gear just to test it in new environments. I'll spend a karaoke night analyzing mic placement instead of just singing.
             </p>
             <p>
-              This isn't some quirk I've learned to tolerate—it's the foundation of what makes me great at what I do. When you hire For The Record, you're not just getting a DJ with equipment. You're getting someone whose brain never stops thinking about how to make your audio experience better.
+              This isn't some quirk I've learned to tolerate—it's the foundation of what makes me great at what I do. When you hire For the Record, you're not just getting a DJ with equipment. You're getting someone whose brain never stops thinking about how to make your audio experience better.
             </p>
             <p className="drives-emphasis">
               <strong>Audio is never an afterthought.</strong> It's the invisible force that makes your wedding feel premium, polished, and perfectly executed. And I'll lose sleep making sure it's right.

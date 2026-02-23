@@ -18,8 +18,8 @@ const Footer = () => {
       <div className="footer-container">
         {/* Brand Section */}
         <div className="footer-brand">
-          <img src={LogoSvg} alt="For The Record Logo" className="footer-logo" />
-          <h3 className="footer-title">For The Record</h3>
+          <img src={LogoSvg} alt="For the Record Logo" className="footer-logo" />
+          <h3 className="footer-title">For the Record</h3>
           <p className="footer-tagline">Minnesota's Audio-Obsessed Wedding DJ</p>
         </div>
 
@@ -44,9 +44,9 @@ const Footer = () => {
 
         {/* Contact Section */}
         <div className="footer-contact">
-          <a href="tel:(763) 496-7006" className="footer-contact-link">
+          <a href="tel:(612)389-7005" className="footer-contact-link">
             <i data-lucide="phone"></i>
-            <span>(763) 496-7006</span>
+            <span>(612) 389-7005</span>
           </a>
           <a href="mailto:michael@fortherecordmn.com" className="footer-contact-link">
             <i data-lucide="mail"></i>
@@ -57,7 +57,7 @@ const Footer = () => {
 
       {/* Copyright Section */}
       <div className="footer-copyright">
-        <p>&copy; {currentYear} For The Record. All rights reserved.</p>
+        <p>&copy; {currentYear} For the Record. All rights reserved.</p>
       </div>
     </footer>
   );

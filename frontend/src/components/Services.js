@@ -67,7 +67,7 @@ export default function Services() {
       {/* The Difference Section */}
       <section className="difference-section">
         <h2 className="section-header" style={{ color: '#F8F6F1', textAlign: 'center', marginBottom: '3rem' }}>
-          The For The Record Difference
+          The For the Record Difference
         </h2>
 
         <div className="difference-grid">
@@ -130,54 +130,61 @@ export default function Services() {
       {/* Packages Section */}
       <section className="packages-section">
         <h2 className="section-header" style={{ textAlign: 'center', marginBottom: '1rem' }}>
-          Wedding Packages
+          What Can Be Included in Your Package
         </h2>
-        <p style={{ textAlign: 'center', marginBottom: '3rem', maxWidth: '700px', margin: '0 auto 3rem' }}>
-          Three thoughtfully designed options. No hidden costs, no surprises. Just honest, excellent service.
+        <p style={{ textAlign: 'center', marginBottom: '3rem', maxWidth: '800px', margin: '0 auto 3rem', fontSize: '1.1rem' }}>
+          We work with you to create a custom package that fits your vision and budget. Every wedding is unique, and we have options for any budget.
         </p>
 
-        <div className="packages-grid">
-          <div className="package-card">
-            <h3>Essential</h3>
-            <ul>
-              <li>Ceremony audio and microphones</li>
-              <li>4-hour reception DJ coverage</li>
-              <li>Basic playlist guidance</li>
-              <li>Professional, reliable audio</li>
-            </ul>
-            <p className="package-cta">Perfect for couples who want solid fundamentals</p>
+        <div className="service-list" style={{ maxWidth: '700px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr', gap: '1rem' }}>
+          <div className="service-item">
+            <i data-lucide="check-circle"></i>
+            <span>Ceremony Audio Setup & Management</span>
           </div>
-
-          <div className="package-card featured">
-            <div className="package-badge">Most Popular</div>
-            <h3>Complete</h3>
-            <ul>
-              <li>Full ceremony audio with wireless mics</li>
-              <li>Reception DJ (up to 6 hours)</li>
-              <li>Professional MCing & announcements</li>
-              <li>Custom playlist curation</li>
-              <li>Vendor coordination</li>
-              <li>Pre-wedding consultation</li>
-            </ul>
-            <p className="package-cta">The full For The Record experience</p>
+          <div className="service-item">
+            <i data-lucide="check-circle"></i>
+            <span>Reception Entertainment & DJing (4-8+ hours)</span>
           </div>
-
-          <div className="package-card">
-            <h3>Premium</h3>
-            <ul>
-              <li>Everything in Complete</li>
-              <li>Extended DJ coverage (6+ hours)</li>
-              <li>Multiple ceremony locations supported</li>
-              <li>Full ceremony rehearsal</li>
-              <li>Post-wedding music for cocktail hour</li>
-              <li>Premium sound and lighting</li>
-            </ul>
-            <p className="package-cta">For couples who want every detail elevated</p>
+          <div className="service-item">
+            <i data-lucide="check-circle"></i>
+            <span>Professional MCing & Announcements</span>
+          </div>
+          <div className="service-item">
+            <i data-lucide="check-circle"></i>
+            <span>Wireless Microphones (Multiple Units)</span>
+          </div>
+          <div className="service-item">
+            <i data-lucide="check-circle"></i>
+            <span>Custom Playlist Curation</span>
+          </div>
+          <div className="service-item">
+            <i data-lucide="check-circle"></i>
+            <span>Dance Floor Lighting</span>
+          </div>
+          <div className="service-item">
+            <i data-lucide="check-circle"></i>
+            <span>Ambient Uplighting</span>
+          </div>
+          <div className="service-item">
+            <i data-lucide="check-circle"></i>
+            <span>Premium Sound Equipment</span>
+          </div>
+          <div className="service-item">
+            <i data-lucide="check-circle"></i>
+            <span>Vendor Coordination</span>
+          </div>
+          <div className="service-item">
+            <i data-lucide="check-circle"></i>
+            <span>Pre-Wedding Consultation & Planning</span>
+          </div>
+          <div className="service-item">
+            <i data-lucide="check-circle"></i>
+            <span>Ceremony Rehearsal Support</span>
           </div>
         </div>
 
-        <p style={{ textAlign: 'center', margin: '3rem 0 0' }}>
-          All packages available for weddings in the Twin Cities area and beyond.
+        <p style={{ textAlign: 'center', margin: '3rem 0 0', fontSize: '1.1rem', fontWeight: '500' }}>
+          Let's chat about your needs and build the perfect package for your day. We have something for every budget.
         </p>
       </section>
 

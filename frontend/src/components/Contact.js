@@ -11,11 +11,11 @@ const Contact = () => {
         <div className="contact-card">
           <Card className="business-card">
             <Card.Body>
-              <Card.Title>For The Record</Card.Title>
+              <Card.Title>For the Record</Card.Title>
               <Card.Text>
                 <strong>Email:</strong> michael@fortherecordmn.com
                 <br />
-                <strong>Phone:</strong> 763-496-7006
+                <strong>Phone:</strong> (612) 389-7005
                 <br />
                 Please call or text, leave a message with your event or wedding
                 date. I'll call back within 1-2 business days.

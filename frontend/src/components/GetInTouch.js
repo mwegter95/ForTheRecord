@@ -226,7 +226,7 @@ const GetInTouch = () => {
                   <i data-lucide="phone"></i>
                   <div>
                     <p className="contact-label">Call us</p>
-                    <a href="tel:(763) 496-7006" className="contact-link">(763) 496-7006</a>
+                    <a href="tel:(612)389-7005" className="contact-link">(612) 389-7005</a>
                   </div>
                 </div>
                 <div className="contact-method">
@@ -246,7 +246,7 @@ const GetInTouch = () => {
               <div className="sidebar-card testimonial">
                 <i data-lucide="quote"></i>
                 <p className="testimonial-text">
-                  "Working with For The Record made our reception unforgettable. The music was perfect, the transitions were seamless, and we could tell how much they cared about our day."
+                  "Working with For the Record made our reception unforgettable. The music was perfect, the transitions were seamless, and we could tell how much they cared about our day."
                 </p>
                 <p className="testimonial-author">— Sarah & Michael, 2024</p>
               </div>
@@ -261,9 +261,9 @@ const GetInTouch = () => {
           <div className="bottom-cta-content">
             <h2>Prefer to call?</h2>
             <p>We'd love to hear from you.</p>
-            <a href="tel:(763) 496-7006" className="btn-primary">
+            <a href="tel:(612)389-7005" className="btn-primary">
               <i data-lucide="phone"></i>
-              (763) 496-7006
+              (612) 389-7005
             </a>
           </div>
         </div>

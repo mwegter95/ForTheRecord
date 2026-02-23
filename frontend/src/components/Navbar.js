@@ -40,8 +40,12 @@ const Navbar = () => {
       <div className="navbar-container">
         {/* Logo and Brand */}
         <Link to="/" className="navbar-brand" onClick={closeMenu}>
-          <img src={LogoSvg} alt="For The Record Logo" className="navbar-logo" />
-          <span className="brand-text">For The Record</span>
+          <img
+            src={LogoSvg}
+            alt="For the Record Logo"
+            className="navbar-logo"
+          />
+          <span className="brand-text">For the Record</span>
         </Link>
 
         {/* Hamburger Menu Toggle */}
@@ -90,7 +94,7 @@ const Navbar = () => {
           </Link>
           <Link
             to="/get-in-touch"
-            className="btn-primary nav-cta"
+            className={`btn-primary nav-cta ${isActive("/get-in-touch") ? "active" : ""}`}
             onClick={closeMenu}
           >
             Let's Chat

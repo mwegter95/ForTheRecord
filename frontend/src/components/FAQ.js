@@ -27,8 +27,8 @@ const FAQ = () => {
       answer: "Absolutely. We love working with couples to build the perfect soundtrack for their day. We have expertise across many genres and styles—not just traditional wedding hits. During our planning meetings, we'll discuss your musical vision, learn what matters to you, and curate a playlist that reflects your personalities. We're also attentive readers of the room, adjusting the vibe throughout the evening to keep the energy just right. Your music, your way."
     },
     {
-      question: "What's included in your DJ packages?",
-      answer: "Our packages are built to scale with your needs. The Essential, Complete, and Premium tiers each include professional audio equipment, wireless microphones for ceremony and MC duties, detailed planning meetings to understand your vision, and our full attention on your wedding day. Each package offers different hours of coverage and customization options. Since every wedding is unique, we'd love to chat about your specific needs, guest count, venue, and budget to put together a custom package that's perfect for you."
+      question: "What can be included in my custom package?",
+      answer: "Every wedding is unique, so we work with you to create a custom package that fits your vision and budget. Options include ceremony audio, reception DJing (4-8+ hours), professional MCing, wireless microphones, custom playlist curation, dance floor lighting, uplighting, and more. We have a package for any budget—let's chat about your needs and build something perfect for your day."
     },
     {
       question: "Do you also handle ceremony audio?",
@@ -39,7 +39,7 @@ const FAQ = () => {
       answer: "We work closely with you and your other vendors to build a detailed timeline that flows perfectly from ceremony through the last dance. Professional MC work, smooth transitions between events, and expert coordination of all audio elements mean you can relax and actually enjoy your day instead of worrying about logistics. We handle the technical side so you can be fully present for every moment with your partner and loved ones."
     },
     {
-      question: "What makes For The Record different from other DJs?",
+      question: "What makes For the Record different from other DJs?",
       answer: "We're obsessed with audio quality and believe that technique and knowledge matter far more than fancy gear. We bring a BA in Music and years of live event experience to every wedding. Most importantly, we see ourselves as genuine partners in your day, not just a vendor you hire. We care about your vision, your story, and making sure every detail—from ceremony clarity to dance floor energy—is absolutely perfect. That commitment to partnership and craft is what sets us apart."
     },
     {
@@ -48,7 +48,15 @@ const FAQ = () => {
     },
     {
       question: "What's the next step to book?",
-      answer: "Easy—just reach out! Fill out the contact form on our Get In Touch page or give us a call. We'll have a friendly, no-pressure conversation about your day, check our availability, and discuss what kind of custom package makes sense for you. We pride ourselves on quick responses; you'll hear back from us within 24 hours. Let's start making your day unforgettable."
+      answer: (
+        <span>
+          Easy—just reach out! Fill out the contact form on our{' '}
+          <Link to="/get-in-touch" style={{ color: '#C9A86A', fontWeight: '600', textDecoration: 'underline' }}>
+            Get In Touch
+          </Link>{' '}
+          page or give us a call. We'll have a friendly, no-pressure conversation about your day, check our availability, and discuss what kind of custom package makes sense for you. We pride ourselves on quick responses; you'll hear back from us within 24 hours. Let's start making your day unforgettable.
+        </span>
+      )
     }
   ];
 
@@ -122,14 +130,14 @@ const FAQ = () => {
               <Link to="/get-in-touch" className="btn-primary">
                 Get In Touch
               </Link>
-              <a href="tel:(763) 496-7006" className="btn-secondary">
+              <a href="tel:(612)389-7005" className="btn-secondary">
                 <i data-lucide="phone" className="icon"></i>
                 Call Us
               </a>
             </div>
             <p className="faq-cta-phone">
               <i data-lucide="phone" className="icon-small"></i>
-              (763) 496-7006
+              (612) 389-7005
             </p>
           </div>
         </div>

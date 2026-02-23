@@ -133,7 +133,7 @@ export default function Services() {
           What Can Be Included in Your Package
         </h2>
         <p style={{ textAlign: 'center', marginBottom: '3rem', maxWidth: '800px', margin: '0 auto 3rem', fontSize: '1.1rem' }}>
-          We work with you to create a custom package that fits your vision and budget. Every wedding is unique, and we have options for any budget.
+          We work with you to create a custom package that fits your vision. Every wedding is unique, and we have options for any budget.
         </p>
 
         <div className="service-list" style={{ maxWidth: '700px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr', gap: '1rem' }}>
@@ -184,7 +184,7 @@ export default function Services() {
         </div>
 
         <p style={{ textAlign: 'center', margin: '3rem 0 0', fontSize: '1.1rem', fontWeight: '500' }}>
-          Let's chat about your needs and build the perfect package for your day. We have something for every budget.
+          Let's chat about your needs and build the perfect package for your day.
         </p>
       </section>
 

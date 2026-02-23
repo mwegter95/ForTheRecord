@@ -367,6 +367,10 @@
 
 // Responsive Design
 @media (max-width: 968px) {
+  .get-in-touch-hero {
+    padding: 8.5rem 0 2rem;
+  }
+
   .hero-title {
     font-size: 3rem;
   }
@@ -410,7 +414,7 @@
 
 @media (max-width: 640px) {
   .get-in-touch-hero {
-    padding: 5rem 0 2rem;
+    padding: 7.25rem 0 2rem;
   }
 
   .hero-title {

@@ -717,7 +717,7 @@
 // Tablet: 968px and below
 @media (max-width: 968px) {
   .hero {
-    padding-top: var(--spacing-xl);
+    padding-top: 130px;
 
     .hero-content {
       grid-template-columns: 1fr;
@@ -794,7 +794,7 @@
 // Mobile: 640px and below
 @media (max-width: 640px) {
   .hero {
-    padding-top: var(--spacing-lg);
+    padding-top: 110px;
 
     .hero-text {
       h1 {

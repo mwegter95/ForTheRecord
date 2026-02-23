@@ -1,68 +1,326 @@
-import wedding_dance_bouqet_toss from "../images/wedding_dance_bouqet_toss.jpg";
-import Portrait_me from "../images/Portrait_me.jpeg";
-import DJ_Decks from "../images/DJ_Decks.jpeg";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import React from "react";
-import { Card, Button, Container } from "react-bootstrap";
+import weddingDanceFloor2 from "../images/wedding-dance-floor2.png";
+import weddingDanceFloor3 from "../images/wedding-dance-floor3.png";
+import weddingCeremonyAudio2 from "../images/wedding-ceremony-audio2.jpg";
+import weddingDanceFloor4 from "../images/wedding-dance-floor4.jpg";
+import weddingDanceFloor from "../images/wedding-dance-floor.jpg";
+import weddingCeremonyAudio from "../images/wedding-ceremony-audio.jpg";
+import portraitMe from "../images/Portrait_me.jpeg";
 import "./Home.scss";
 
 const Home = () => {
+  // Initialize Lucide icons after component mounts
+  useEffect(() => {
+    if (window.lucide) {
+      window.lucide.createIcons();
+    }
+  }, []);
+
   return (
-    <div id="home" className="hero">
-      <div className="hero-content">
-        <h1>For The Record</h1>
-        <p>Exceptional audio expertise for your perfect sounding day.</p>
-        <a href="/book-now.html" className="hero-button">
-          Book Now!
-        </a>
-      </div>
+    <div className="home-page">
+      {/* HERO SECTION */}
+      <section className="hero" id="hero">
+        <div className="container">
+          <div className="hero-content">
+            <div className="hero-text">
+              <div className="hero-eyebrow">
+                <i data-lucide="map-pin" style={{ width: "18px", height: "18px" }}></i>
+                Minnesota Wedding DJ
+              </div>
+              <h1>Audio-Obsessed DJ for Your Perfect Day</h1>
+              <p className="hero-subtitle">
+                Clear sound for precious moments. Unforgettable energy for your celebration.
+                Stress-free partnership from planning to last dance.
+              </p>
 
-      <Container className="cards-container">
-        <Card className="info-card">
-          <div className="card-photo portrait">
-            <img src={Portrait_me} alt="About Us" />
-          </div>
-          <Card.Body>
-            <Card.Title>About Us</Card.Title>
-            <Card.Text>
-              Learn more about For The Record and our journey.
-            </Card.Text>
-            <Button as={Link} to="/about" variant="primary">
-              Learn More
-            </Button>
-          </Card.Body>
-        </Card>
+              <div className="hero-badges">
+                <div className="badge">
+                  <i data-lucide="graduation-cap" style={{ width: "20px", height: "20px" }}></i>
+                  <span>BA in Music</span>
+                </div>
+                <div className="badge">
+                  <i data-lucide="music" style={{ width: "20px", height: "20px" }}></i>
+                  <span>9+ Years Experience</span>
+                </div>
+                <div className="badge">
+                  <i data-lucide="volume-2" style={{ width: "20px", height: "20px" }}></i>
+                  <span>Expert Audio Setup</span>
+                </div>
+              </div>
 
-        <Card className="info-card">
-          <div className="card-photo bouquet">
-            <img src={wedding_dance_bouqet_toss} alt="Weddings" />
-          </div>
-          <Card.Body>
-            <Card.Title>Weddings</Card.Title>
-            <Card.Text>
-              Make your special day unforgettable with our DJ services.
-            </Card.Text>
-            <Button as={Link} to="/weddings" variant="primary">
-              Learn More
-            </Button>
-          </Card.Body>
-        </Card>
+              <div className="hero-cta">
+                <Link to="/get-in-touch" className="btn-primary">
+                  Let's Chat About Your Day
+                </Link>
+                <a href="tel:(763)496-7006" className="btn-secondary">
+                  <i data-lucide="phone" style={{ width: "18px", height: "18px" }}></i>
+                  (763) 496-7006
+                </a>
+              </div>
+            </div>
 
-        <Card className="info-card">
-          <div className="card-photo dj-decks">
-            <img src={DJ_Decks} alt="Events" />
+            <div className="hero-image-wrapper">
+              <div className="hero-photo-accent"></div>
+              <img
+                src={weddingDanceFloor2}
+                alt="Wedding dance floor"
+                className="hero-photo"
+              />
+            </div>
           </div>
-          <Card.Body>
-            <Card.Title>Events</Card.Title>
-            <Card.Text>
-              We cater to all kinds of events, big or small.
-            </Card.Text>
-            <Button as={Link} to="/events" variant="primary">
-              Learn More
-            </Button>
-          </Card.Body>
-        </Card>
-      </Container>
+        </div>
+      </section>
+
+      {/* STORY SECTION */}
+      <section className="story" id="story">
+        <div className="container">
+          <div className="section-header">
+            <div className="section-eyebrow">The Story Behind For The Record</div>
+            <h2>When Bad Audio Ruins Perfect Moments</h2>
+          </div>
+
+          <div className="story-content">
+            <div className="story-text">
+              <p>
+                I've been to hundreds of weddings. I've heard the vows, the laughter, the dance requests.
+                And I've watched couples' faces fall when the DJ's speakers crackle or feedback screams
+                through the ceremony. It breaks my heart every time.
+              </p>
+
+              <div className="story-subsection">
+                <h3>The Moment I Knew</h3>
+                <p>
+                  At a wedding five years ago, the DJ's audio failed mid-ceremony. The bride's voice
+                  wasn't heard for her vows. The groom's laugh during toasts came out as distortion.
+                  Years of planning, and the audio didn't match the moment. That's when I decided:
+                  <strong> couples deserve a DJ who treats audio like the art form it is.</strong>
+                </p>
+
+                <div className="story-highlight">
+                  "The audio was flawless. Hearing every word of our vows, every laugh, every song
+                  choice come through crystal clear made our day feel even more special. That's the
+                  difference great audio makes."
+                </div>
+              </div>
+
+              <div className="story-subsection">
+                <h3>Why For The Record</h3>
+                <p>
+                  My college roommate asked me to DJ his wedding. As I was selecting songs for his
+                  first dance, he said something I'll never forget: "Make this moment one we'll play
+                  back forever. For the record, this is the best night of our lives."
+                </p>
+                <p>
+                  That's what "For The Record" means. Every moment. Every word. Every song. Captured
+                  and delivered with pristine clarity so your wedding becomes a perfect memory you can
+                  actually hear the way you lived it.
+                </p>
+              </div>
+            </div>
+
+            <div className="story-image">
+              <img src={portraitMe} alt="Michael - For The Record DJ" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* WHY CHOOSE SECTION */}
+      <section className="why-choose">
+        <div className="container">
+          <div className="section-header">
+            <div className="section-eyebrow">What Makes Us Different</div>
+            <h2>Quality Audio. Fun Energy. Stress-Free Partnership.</h2>
+          </div>
+
+          <div className="features-grid">
+            <div className="feature-card">
+              <div className="feature-icon">
+                <i data-lucide="volume-2" style={{ width: "32px", height: "32px" }}></i>
+              </div>
+              <h3>Perfect Audio, Every Time</h3>
+              <p>
+                No feedback. No crackling. No compromises. I obsess over audio the way you obsess
+                over your vows—because every word matters.
+              </p>
+            </div>
+
+            <div className="feature-card">
+              <div className="feature-icon">
+                <i data-lucide="music-2" style={{ width: "32px", height: "32px" }}></i>
+              </div>
+              <h3>Musical Expertise</h3>
+              <p>
+                A degree in music and 9+ years of wedding experience means I know how to build
+                an unforgettable night, song by song.
+              </p>
+            </div>
+
+            <div className="feature-card">
+              <div className="feature-icon">
+                <i data-lucide="handshake" style={{ width: "32px", height: "32px" }}></i>
+              </div>
+              <h3>Stress-Free Partnership</h3>
+              <p>
+                From your first consultation to the last song, I'm your ally. You focus on enjoying
+                your day. I handle the rest.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* TESTIMONIALS SECTION */}
+      <section className="testimonials" id="testimonials">
+        <div className="container">
+          <div className="section-header">
+            <div className="section-eyebrow">What Couples Say</div>
+            <h2>Real Stories From Real Days</h2>
+          </div>
+
+          <div className="testimonial-slide">
+            <div className="testimonial-stars">
+              {[...Array(5)].map((_, i) => (
+                <i key={i} data-lucide="star" style={{ width: "20px", height: "20px" }}></i>
+              ))}
+            </div>
+            <p className="testimonial-text">
+              "Michael's attention to detail with the audio was incredible. Every moment of our ceremony
+              came through perfectly. But what really stood out was his energy during the reception—he
+              read the room, played what people wanted to hear, and kept the dance floor packed all night.
+              This is what a real DJ should be."
+            </p>
+            <p className="testimonial-author">Sarah & Mike, Minneapolis, MN</p>
+          </div>
+        </div>
+      </section>
+
+      {/* GALLERY SECTION */}
+      <section className="gallery" id="gallery">
+        <div className="container">
+          <div className="section-header">
+            <div className="section-eyebrow">Recent Events</div>
+            <h2>See The Magic</h2>
+          </div>
+
+          <div className="gallery-grid">
+            <div className="gallery-item">
+              <img src={weddingDanceFloor2} alt="Wedding dance floor celebration" />
+            </div>
+            <div className="gallery-item">
+              <img src={weddingDanceFloor3} alt="Wedding reception dancing" />
+            </div>
+            <div className="gallery-item">
+              <img src={weddingCeremonyAudio2} alt="Wedding ceremony audio setup" />
+            </div>
+            <div className="gallery-item">
+              <img src={weddingDanceFloor4} alt="Dance floor energy" />
+            </div>
+            <div className="gallery-item">
+              <img src={weddingDanceFloor} alt="Wedding celebration" />
+            </div>
+            <div className="gallery-item">
+              <img src={weddingCeremonyAudio} alt="Ceremony audio and sound" />
+            </div>
+          </div>
+
+          <div className="gallery-cta">
+            <Link to="/gallery" className="view-link">
+              View Full Gallery
+              <i data-lucide="arrow-right" style={{ width: "18px", height: "18px" }}></i>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* SERVICES SECTION */}
+      <section className="services" id="services">
+        <div className="container">
+          <div className="services-content">
+            <div className="services-image">
+              <img src={weddingDanceFloor3} alt="DJ services and setup" />
+            </div>
+
+            <div className="services-list-wrapper">
+              <h2>Everything You Get</h2>
+              <ul className="services-list">
+                <li>
+                  <i data-lucide="check-circle" style={{ width: "24px", height: "24px" }}></i>
+                  <span>Personal consultation to understand your vision and music taste</span>
+                </li>
+                <li>
+                  <i data-lucide="check-circle" style={{ width: "24px", height: "24px" }}></i>
+                  <span>Professional audio setup with backup equipment for ceremony and reception</span>
+                </li>
+                <li>
+                  <i data-lucide="check-circle" style={{ width: "24px", height: "24px" }}></i>
+                  <span>Microphone support for speeches, toasts, and announcements</span>
+                </li>
+                <li>
+                  <i data-lucide="check-circle" style={{ width: "24px", height: "24px" }}></i>
+                  <span>10+ hours of carefully curated music for ceremony, cocktail hour, and reception</span>
+                </li>
+                <li>
+                  <i data-lucide="check-circle" style={{ width: "24px", height: "24px" }}></i>
+                  <span>Real-time energy management from first dance to last song</span>
+                </li>
+                <li>
+                  <i data-lucide="check-circle" style={{ width: "24px", height: "24px" }}></i>
+                  <span>Arrival 2 hours early for setup and sound check</span>
+                </li>
+                <li>
+                  <i data-lucide="check-circle" style={{ width: "24px", height: "24px" }}></i>
+                  <span>Teardown and equipment care the night of</span>
+                </li>
+              </ul>
+
+              <div className="services-cta">
+                <p><strong>Ready to hear the difference?</strong></p>
+                <p>Let's talk about your perfect day and how we can make it sound as amazing as it will be.</p>
+                <Link to="/get-in-touch" className="btn-primary">
+                  Get Started
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CONTACT CTA SECTION */}
+      <section className="contact-cta">
+        <div className="container">
+          <div className="contact-cta-content">
+            <h2>Let's Chat About Your Day</h2>
+            <p>
+              No pressure, no sales pitch. Just a conversation about your vision and how we can make
+              it happen with crystal-clear audio and unforgettable energy.
+            </p>
+
+            <div className="contact-methods">
+              <div className="contact-method">
+                <i data-lucide="phone" style={{ width: "32px", height: "32px" }}></i>
+                <div>
+                  <h3>Call Me</h3>
+                  <a href="tel:(763)496-7006">(763) 496-7006</a>
+                </div>
+              </div>
+
+              <div className="contact-method">
+                <i data-lucide="mail" style={{ width: "32px", height: "32px" }}></i>
+                <div>
+                  <h3>Email</h3>
+                  <a href="mailto:michael@fortherecordmn.com">michael@fortherecordmn.com</a>
+                </div>
+              </div>
+            </div>
+
+            <Link to="/get-in-touch" className="btn-primary">
+              Start Planning
+            </Link>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };

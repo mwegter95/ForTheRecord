@@ -1,0 +1,209 @@
+// ============================================================================
+// FOOTER COMPONENT
+// v2 Design System Footer
+// ============================================================================
+
+.footer {
+  background-color: var(--navy);
+  color: var(--white);
+  padding: 3rem 0 2rem;
+  margin-top: var(--spacing-2xl);
+}
+
+// Footer Container
+.footer-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+// Brand Section
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+
+  .footer-logo {
+    height: 48px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  .footer-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .footer-tagline {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+    letter-spacing: 0.5px;
+  }
+}
+
+// Navigation Links
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+
+  .footer-link {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-weight: 500;
+
+    &:hover {
+      color: var(--gold);
+    }
+  }
+}
+
+// Contact Section
+.footer-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+
+  .footer-contact-link {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.3s ease;
+
+    i {
+      width: 18px;
+      height: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &:hover {
+      color: var(--gold);
+    }
+  }
+}
+
+// Copyright Section
+.footer-copyright {
+  text-align: center;
+  border-top: 1px solid rgba(201, 168, 106, 0.2);
+  margin-top: 2rem;
+  padding-top: 2rem;
+
+  p {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0;
+  }
+}
+
+// ============================================================================
+// RESPONSIVE
+// ============================================================================
+
+@media (max-width: 968px) {
+  .footer {
+    padding: 2.5rem 0 1.5rem;
+  }
+
+  .footer-container {
+    gap: 1.5rem;
+  }
+
+  .footer-brand {
+    gap: 0.75rem;
+
+    .footer-logo {
+      height: 40px;
+    }
+
+    .footer-title {
+      font-size: 1.5rem;
+    }
+  }
+
+  .footer-nav {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer {
+    padding: 2rem 0 1.25rem;
+    margin-top: var(--spacing-xl);
+  }
+
+  .footer-container {
+    padding: 0 var(--spacing-md);
+    gap: 1.25rem;
+  }
+
+  .footer-brand {
+    gap: 0.5rem;
+
+    .footer-logo {
+      height: 36px;
+    }
+
+    .footer-title {
+      font-size: 1.25rem;
+    }
+
+    .footer-tagline {
+      font-size: 0.875rem;
+    }
+  }
+
+  .footer-nav {
+    gap: 1rem;
+    flex-direction: column;
+
+    .footer-link {
+      font-size: 0.9375rem;
+    }
+  }
+
+  .footer-contact {
+    gap: 0.75rem;
+
+    .footer-contact-link {
+      font-size: 0.875rem;
+
+      i {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+
+  .footer-copyright {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+
+    p {
+      font-size: 0.8125rem;
+    }
+  }
+}

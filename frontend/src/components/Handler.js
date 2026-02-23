@@ -1,59 +1,46 @@
-import React, { useState, useEffect } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
-import SignUp from "./SignUp";
-import Login from "./Login";
+import React, { useEffect } from "react";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Home from "./Home";
 import About from "./About";
-import Contact from "./Contact";
-import BookNow from "./BookNow";
+import Services from "./Services";
+import Gallery from "./Gallery";
+import FAQ from "./FAQ";
+import GetInTouch from "./GetInTouch";
 import TopNavbar from "./Navbar";
-import Weddings from "./Weddings";
-import Events from "./Events";
+import Footer from "./Footer";
+
+// Scroll to top on route change
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+};
 
 const Handler = () => {
-  const [user, setUser] = useState(null);
-  const [loggedOut, setLoggedOut] = useState(false);
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      const userDetails = getUserDetailsFromToken(token);
-      setUser(userDetails);
-    }
-  }, []);
-
-  const handleLogin = (token, firstName, lastName) => {
-    setUser({ token, firstName, lastName, role: "user" });
-    localStorage.setItem("token", token);
-  };
-
-  const handleLogout = () => {
-    setUser(null);
-    localStorage.removeItem("token");
-    setLoggedOut(true);
-  };
-
-  const getUserDetailsFromToken = () => ({
-    firstName: "John",
-    lastName: "Doe",
-    role: "user",
-  });
-
-  if (loggedOut) return <Navigate to="/" />;
-
   return (
-    <div>
-      <TopNavbar user={user} handleLogout={handleLogout} />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/booknow" element={<BookNow />} />
-        <Route path="/weddings" element={<Weddings />} />
-        <Route path="/events" element={<Events />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/login" element={<Login onLogin={handleLogin} />} />
-      </Routes>
+    <div className="app-wrapper">
+      <ScrollToTop />
+      <TopNavbar />
+      <main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/faq" element={<FAQ />} />
+          <Route path="/get-in-touch" element={<GetInTouch />} />
+          {/* Redirects for old routes */}
+          <Route path="/booknow" element={<Navigate to="/get-in-touch" replace />} />
+          <Route path="/book-now" element={<Navigate to="/get-in-touch" replace />} />
+          <Route path="/weddings" element={<Navigate to="/services" replace />} />
+          <Route path="/events" element={<Navigate to="/services" replace />} />
+          <Route path="/contact" element={<Navigate to="/get-in-touch" replace />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </main>
+      <Footer />
     </div>
   );
 };

@@ -1,111 +1,222 @@
-.navbar-custom {
-  background: linear-gradient(to right, #141e30, #243b55);
-  border-radius: 0 0 30px 30px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 1rem 2rem;
-  z-index: 10;
+// ============================================================================
+// NAVBAR COMPONENT
+// Fixed navbar with scroll effect and mobile menu
+// ============================================================================
 
-  .navbar-brand {
-    color: #fff !important;
-    font-size: 1.5rem;
-    font-weight: bold;
-    transition: color 0.3s ease;
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: rgba(248, 246, 241, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(201, 168, 106, 0.1);
+  transition: all 0.3s ease;
+  padding: 1.25rem 0;
+}
 
-    &:hover {
-      color: #f8e71c;
-    }
-  }
+.navbar.scrolled {
+  padding: 0.75rem 0;
+  background-color: rgba(248, 246, 241, 0.98);
+  box-shadow: var(--shadow-md);
+}
 
-  .nav-link {
-    color: #fff;
-    margin-right: 1rem;
+// Navbar Container
+.navbar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-    &:hover {
-      color: #f8e71c;
-    }
+// Brand / Logo Section
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
 
-    &.active {
-      color: #00c8ff !important;
-      font-weight: bold;
-    }
-  }
-
-  .book-now {
-    background: #f8e71c;
-    color: #000 !important;
-    border-radius: 20px;
-    padding: 0.5rem 1.25rem 0.5rem 1.75rem;
-    margin-left: -0.5rem;
-
-    &.active {
-      color: #000 !important;
-      background: #f8e71c;
-    }
-
-    &:hover {
-      background: #fff;
-      color: #141e30;
-    }
-  }
-
-  .custom-toggler {
-    border: none;
-    background: transparent;
-
-    .navbar-toggler-icon {
-      background: none;
-      width: 30px;
-      height: 22px;
-      position: relative;
-      display: inline-block;
-
-      &::before,
-      &::after,
-      span {
-        content: "";
-        position: absolute;
-        left: 0;
-        height: 4px;
-        width: 100%;
-        background-color: white;
-        border-radius: 2px;
-        transition: all 0.3s ease;
-      }
-
-      span {
-        top: 9px;
-      }
-
-      &::before {
-        top: 0;
-      }
-
-      &::after {
-        bottom: 0;
-      }
-    }
+  &:hover {
+    opacity: 0.8;
   }
 
   .navbar-logo {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+    height: 48px;
+    width: auto;
+    object-fit: contain;
+  }
 
-  img.logo-icon {
-    height: 50px;
-    width: 50px;
-    margin-right: 0.5rem;
+  .brand-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--navy);
+    letter-spacing: 0.5px;
   }
 }
 
-  @media (min-width: 992px) {
-    .navbar-collapse {
-      background: transparent;
-      padding: 1rem;
+// Navigation Links
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+
+  .nav-link {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--charcoal);
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s ease;
+
+    // Gold underline on hover
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--gold);
+      transition: width 0.3s ease;
     }
 
-    .custom-toggler {
-      display: none;
+    &:hover,
+    &.active {
+      color: var(--gold);
+
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+
+  .nav-cta {
+    padding: 0.75rem 1.75rem;
+    font-size: 0.9rem;
+    letter-spacing: 0.3px;
+    margin-left: 0.5rem;
+  }
+}
+
+// Hamburger Menu (Mobile)
+.hamburger {
+  display: none;
+  flex-direction: column;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  gap: 0.35rem;
+
+  .hamburger-line {
+    width: 24px;
+    height: 3px;
+    background-color: var(--navy);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+
+  &:hover .hamburger-line {
+    background-color: var(--gold);
+  }
+}
+
+// Mobile Menu
+@media (max-width: 968px) {
+  .navbar-container {
+    flex-wrap: wrap;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-menu {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background-color: var(--white);
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 2rem 0;
+    box-shadow: var(--shadow-md);
+    max-height: calc(100vh - 70px);
+    overflow-y: auto;
+    width: 100%;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+
+    &.open {
+      transform: translateX(0);
+    }
+
+    .nav-link {
+      padding: 0.75rem var(--spacing-lg);
+      width: 100%;
+      display: block;
+
+      &::after {
+        display: none;
+      }
+
+      &:hover,
+      &.active {
+        background-color: rgba(201, 168, 106, 0.1);
+        color: var(--gold);
+      }
+    }
+
+    .nav-cta {
+      margin: var(--spacing-lg);
+      text-align: center;
+    }
+  }
+
+  .navbar-brand {
+    .brand-text {
+      font-size: 1.25rem;
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .navbar {
+    padding: 1rem 0;
+  }
+
+  .navbar-container {
+    padding: 0 var(--spacing-md);
+  }
+
+  .navbar-brand {
+    gap: 0.5rem;
+
+    .navbar-logo {
+      height: 40px;
+    }
+
+    .brand-text {
+      font-size: 1.125rem;
+    }
+  }
+
+  .nav-menu {
+    top: 60px;
+    padding: 1.5rem 0;
+
+    .nav-link {
+      padding: 0.625rem var(--spacing-md);
+    }
+
+    .nav-cta {
+      margin: var(--spacing-md);
     }
   }
 }

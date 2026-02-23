@@ -269,7 +269,7 @@ const GetInTouch = () => {
                 </div>
                 <p className="availability-note">
                   <i data-lucide="calendar"></i>
-                  Available for 2025-2026 weddings
+                  Available for 2026-2027 weddings
                 </p>
               </div>
 

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Back Card 600DPI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: #0A1128;
+    }
+    body {
+      zoom: 6.25;
+      font-family: 'Inter', sans-serif;
+    }
+    .card {
+      width: 336px;
+      height: 192px;
+      background: #0A1128;
+      color: white;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 200px;
+      height: 200px;
+      border: 3px solid #C9A86A;
+      border-radius: 50%;
+      opacity: 0.1;
+    }
+    .contact-info {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .contact-item:last-child {
+      margin-bottom: 0;
+    }
+    .contact-icon {
+      width: 14px;
+      height: 14px;
+      color: #C9A86A;
+      flex-shrink: 0;
+    }
+    .contact-text {
+      font-size: 9px;
+      font-weight: 500;
+      color: white;
+    }
+    .back-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: #C9A86A;
+      position: relative;
+      z-index: 1;
+      line-height: 1.4;
+      text-align: center;
+    }
+  </style>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <div class="card">
+    <div class="contact-info">
+      <div class="contact-item">
+        <i data-lucide="user" class="contact-icon"></i>
+        <span class="contact-text">Michael Wegter</span>
+      </div>
+      <div class="contact-item">
+        <i data-lucide="phone" class="contact-icon"></i>
+        <span class="contact-text">(612) 389-7005</span>
+      </div>
+      <div class="contact-item">
+        <i data-lucide="mail" class="contact-icon"></i>
+        <span class="contact-text">michael@fortherecordmn.com</span>
+      </div>
+      <div class="contact-item">
+        <i data-lucide="globe" class="contact-icon"></i>
+        <span class="contact-text">fortherecordmn.com</span>
+      </div>
+    </div>
+    <div class="back-tagline">
+      Perfect sound. Packed dance floor. One for the books.
+    </div>
+  </div>
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

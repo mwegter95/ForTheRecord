@@ -48,6 +48,50 @@
           stroke="white" 
           stroke-width="1.5"/>
     
+    <!-- Vinyl Grooves - Bottom Left (from 6 o'clock to ~7:30) -->
+    <path d="M 82.3 137.7 A 25 25 0 0 0 100 145" 
+          fill="none" 
+          stroke="white" 
+          stroke-width="1.5"/>
+    <path d="M 78.8 141.2 A 30 30 0 0 0 100 150" 
+          fill="none" 
+          stroke="white" 
+          stroke-width="1.5"/>
+    <path d="M 75.2 144.8 A 35 35 0 0 0 100 155" 
+          fill="none" 
+          stroke="white" 
+          stroke-width="1.5"/>
+    <path d="M 71.7 148.3 A 40 40 0 0 0 100 160" 
+          fill="none" 
+          stroke="white" 
+          stroke-width="1.5"/>
+    <path d="M 68.2 151.8 A 45 45 0 0 0 100 165" 
+          fill="none" 
+          stroke="white" 
+          stroke-width="1.5"/>
+    
+    <!-- Vinyl Grooves - Bottom Right (from ~4:30 to 6 o'clock) -->
+    <path d="M 117.7 137.7 A 25 25 0 0 1 100 145" 
+          fill="none" 
+          stroke="white" 
+          stroke-width="1.5"/>
+    <path d="M 121.2 141.2 A 30 30 0 0 1 100 150" 
+          fill="none" 
+          stroke="white" 
+          stroke-width="1.5"/>
+    <path d="M 124.8 144.8 A 35 35 0 0 1 100 155" 
+          fill="none" 
+          stroke="white" 
+          stroke-width="1.5"/>
+    <path d="M 128.3 148.3 A 40 40 0 0 1 100 160" 
+          fill="none" 
+          stroke="white" 
+          stroke-width="1.5"/>
+    <path d="M 131.8 151.8 A 45 45 0 0 1 100 165" 
+          fill="none" 
+          stroke="white" 
+          stroke-width="1.5"/>
+    
     <!-- White Center Label -->
     <circle cx="100" cy="120" r="22" fill="white"/>
     

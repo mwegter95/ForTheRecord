@@ -102,8 +102,8 @@ const Home = () => {
             <div className="story-text">
               <p>
                 I've been to that wedding. You probably have too—where feedback
-                screeches through heartfelt speeches, or the back rows can't hear
-                the officiant at all.
+                screeches through heartfelt speeches, or the back rows can't
+                hear the officiant at all.
               </p>
 
               <div className="story-subsection">
@@ -111,9 +111,9 @@ const Home = () => {
                 <p>
                   I once attended a wedding where everything was beautiful—the
                   venue, the flowers, the couple's joy. But during the ceremony,
-                  feedback kept piercing through the words. The audio was distant
-                  and echoey. It was painful to watch something so precious
-                  marred by preventable technical issues.
+                  feedback kept piercing through the words. The audio was
+                  distant and echoey. It was painful to watch something so
+                  precious marred by preventable technical issues.
                 </p>
                 <p>
                   The DJ had all the right equipment. What they lacked was
@@ -134,9 +134,9 @@ const Home = () => {
                 <h3 style={{ textAlign: "center" }}>Why "For the Record"</h3>
                 <p>
                   The name means "one for the books"—a moment worth remembering.
-                  And the moment can be much better cherished if it's heard clearly. If
-                  speeches are muffled or music cuts out, it detracts from the
-                  entire experience.
+                  And the moment can be much better cherished if it's heard
+                  clearly. If speeches are muffled or music cuts out, it
+                  detracts from the entire experience.
                 </p>
                 <p>
                   <strong>

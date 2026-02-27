@@ -15,8 +15,7 @@ export default function About() {
       <section className="about-hero">
         <h1 className="section-title">The Story Behind the Sound</h1>
         <p className="section-description">
-          My audio obsession isn't just a career—it's who I am. Every wedding,
-          every event, every moment matters enough to get it right.
+          Every wedding, every event, every moment matters enough to get it right.
         </p>
       </section>
 
@@ -30,19 +29,18 @@ export default function About() {
               right gear but completely lacked the technique to use it. The
               audio was echoey, distant, and plagued by feedback. Guests would
               tilt their heads toward the speakers, confused. The emotional
-              moments were muddy. The dance floor felt flat.
+              moments were muddy.
             </p>
             <p>
               Walking out of that reception, something clicked: great equipment
-              means nothing without mastery. I realized then that my technical
+              means nothing without dedication to the sound. I realized then that my technical
               obsession—my endless tinkering, my ear for audio, my refusal to
               settle for "good enough"—was exactly what weddings needed.
             </p>
 
             <div className="story-highlight">
               <p className="highlight-quote">
-                "Perfect sound isn't about expensive gear. It's about knowing
-                exactly how to use it."
+                "Perfect sound is the difference between a moving moment and a disappointment."
               </p>
             </div>
 
@@ -55,8 +53,7 @@ export default function About() {
             <p>
               This obsession shows up in the small things too. I once ran over
               to politely ask a groundskeeper to pause mowing during a ceremony
-              I was attending. Not because it was my event, but because good
-              audio deserves respect. That's the mindset I bring to every
+              I was attending. Not because it was my event, but because everyone wants to hear clearly at a wedding. That's the mindset I bring to every
               wedding: relentless attention to the details that make the
               difference.
             </p>
@@ -85,7 +82,7 @@ export default function About() {
             <h3>Elementary School</h3>
             <p>
               Started playing saxophone and fell in love with music production
-              using FL Studio in 3rd grade.
+              using FL Studio in 5th grade.
             </p>
           </div>
 
@@ -100,8 +97,7 @@ export default function About() {
           <div className="timeline-card">
             <h3>Shanghai</h3>
             <p>
-              DJed club nights internationally, learning to read rooms and adapt
-              to any crowd.
+              Fell in love with DJing after seeing the clubbing scene DJs rock the dancefloors
             </p>
           </div>
 
@@ -130,13 +126,11 @@ export default function About() {
             <h2 className="section-header">More Than Just a DJ</h2>
             <p>
               Audio isn't something I do. It's who I am. I'm the person who
-              brings an equalizer for the car, tweaks home office speakers
-              obsessively, and travels with audio gear just to test it in new
-              environments. I'll spend a karaoke night analyzing mic placement
-              instead of just singing.
+              sets the equalizer for the car and those other weird audio options, tweaks home office speakers
+              obsessively, and travels with audio gear just to set up the party for my friends. I'll bring the karaoke equipment whether it's New Years Eve or any random night.
             </p>
             <p>
-              This isn't some quirk I've learned to tolerate—it's the foundation
+              While it is quirky, it's also the foundation
               of what makes me great at what I do. When you hire For the Record,
               you're not just getting a DJ with equipment. You're getting
               someone whose brain never stops thinking about how to make your
@@ -145,7 +139,7 @@ export default function About() {
             <p className="drives-emphasis">
               <strong>Audio is never an afterthought.</strong> It's the
               invisible force that makes your wedding feel premium, polished,
-              and perfectly executed. And I'll lose sleep making sure it's
+              and perfectly executed. And I'll stop at nothing to making sure it's
               right.
             </p>
           </div>
@@ -171,15 +165,6 @@ export default function About() {
             <p>
               Crystal clear ceremony audio, dynamic reception entertainment, and
               flawless technical execution. No compromise.
-            </p>
-          </div>
-
-          <div className="value-card">
-            <i data-lucide="eye-off"></i>
-            <h3>Invisible Professionalism</h3>
-            <p>
-              I'm the expert you'll barely notice—until you do, because
-              everything sounds incredible and runs smoothly.
             </p>
           </div>
 

@@ -55,8 +55,27 @@ const GetInTouch = () => {
       );
       console.log("EmailJS success:", result.text);
 
-      // Redirect to thank you page
-      window.location.href = "/thank-you.html";
+      // Fire Google Ads conversion tracking
+      if (typeof window.gtag === "function") {
+        window.gtag("event", "conversion", {
+          send_to: "AW-17945236375/IOV8CIy21_cbEJen-uxC",
+        });
+      }
+
+      // Show inline success state
+      setSubmitStatus("success");
+      setIsSubmitting(false);
+
+      // Reset form data
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        weddingDate: "",
+        message: "",
+        source: "",
+      });
     } catch (error) {
       console.error("EmailJS error:", error);
       setSubmitStatus("error");
@@ -105,6 +124,33 @@ const GetInTouch = () => {
           <div className="contact-layout">
             {/* Contact Form */}
             <div className="form-wrapper">
+              {submitStatus === "success" ? (
+                <div className="form-success-message">
+                  <div className="success-icon">✓</div>
+                  <h2>Thank You!</h2>
+                  <p>
+                    We received your message and we're <strong>excited to connect with you</strong>!
+                    You'll hear from us within 24 hours to discuss your event and how we can make it unforgettable.
+                  </p>
+                  <div className="success-next-steps">
+                    <h3>What Happens Next?</h3>
+                    <p>
+                      We'll review your details and reach out to discuss your vision,
+                      answer any questions, and create a custom package that fits your needs and budget.
+                    </p>
+                    <p>No pressure, no obligation—just a friendly conversation about making your day perfect.</p>
+                  </div>
+                  <div className="success-contact">
+                    <p>Need to reach us right away?</p>
+                    <p>
+                      <a href="tel:+16123897005">(612) 389-7005</a> · <a href="mailto:michael@fortherecordmn.com">michael@fortherecordmn.com</a>
+                    </p>
+                  </div>
+                  <button className="btn-primary" onClick={() => setSubmitStatus(null)}>
+                    Send Another Message
+                  </button>
+                </div>
+              ) : (
               <form className="contact-form" onSubmit={handleSubmit}>
                 {submitStatus === "error" && (
                   <div className="form-error-message">
@@ -243,6 +289,7 @@ const GetInTouch = () => {
                   {isSubmitting ? "Sending..." : "Send Message"}
                 </button>
               </form>
+              )}
             </div>
 
             {/* Sidebar Content */}

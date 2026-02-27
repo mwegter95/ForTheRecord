@@ -80,7 +80,82 @@
   box-shadow: 0 8px 32px rgba(10, 17, 40, 0.08);
 }
 
-.form-success-message,
+// Full-page success state (replaces form after submission)
+.form-success-message {
+  background: white;
+  padding: 3rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(10, 17, 40, 0.08);
+  text-align: center;
+
+  .success-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--gold) 0%, #b8935a 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 2rem;
+    font-size: 2.5rem;
+    color: white;
+  }
+
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    color: var(--navy);
+    margin-bottom: 1rem;
+  }
+
+  > p {
+    font-size: 1.1rem;
+    color: var(--charcoal);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+
+  .success-next-steps {
+    background: rgba(201, 168, 106, 0.08);
+    padding: 2rem;
+    border-radius: 12px;
+    margin: 2rem 0;
+    border-left: 4px solid var(--gold);
+    text-align: left;
+
+    h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      color: var(--navy);
+      margin-bottom: 1rem;
+    }
+
+    p {
+      margin-bottom: 0.75rem;
+      &:last-child { margin-bottom: 0; }
+    }
+  }
+
+  .success-contact {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(201, 168, 106, 0.2);
+
+    a {
+      color: var(--gold);
+      font-weight: 600;
+      text-decoration: none;
+      &:hover { color: var(--navy); }
+    }
+  }
+
+  .btn-primary {
+    margin-top: 2rem;
+  }
+}
+
+// Inline error message (shown inside form)
+.form-inline-message,
 .form-error-message {
   display: flex;
   align-items: center;
@@ -100,15 +175,6 @@
     margin: 0;
     font-size: 0.95rem;
     font-weight: 500;
-  }
-}
-
-.form-success-message {
-  background: rgba(139, 157, 131, 0.1);
-  border: 1px solid rgba(139, 157, 131, 0.3);
-
-  i {
-    color: var(--sage);
   }
 }
 

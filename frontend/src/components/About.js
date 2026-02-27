@@ -26,7 +26,7 @@ export default function About() {
             <h2 className="section-header">The Moment Everything Changed</h2>
             <p>
               I'll never forget attending a wedding where the DJ had all the
-              right gear but completely lacked the technique to use it. The
+              right gear but completely lacked the technique to use it. The ceremony 
               audio was echoey, distant, and plagued by feedback. Guests would
               tilt their heads toward the speakers, confused. The emotional
               moments were muddy.
@@ -201,12 +201,12 @@ export default function About() {
       <section className="about-cta">
         <h2
           className="section-header"
-          style={{ color: "#F8F6F1", marginBottom: "1rem" }}
+          style={{ color: "#0A1128", marginBottom: "1rem" }}
         >
           Ready to Chat?
         </h2>
         <p
-          style={{ color: "#F8F6F1", marginBottom: "2rem", fontSize: "1.1rem" }}
+          style={{ color: "#2D3142", marginBottom: "2rem", fontSize: "1.1rem" }}
         >
           Let's talk about your wedding and what perfect sound means for your
           day.

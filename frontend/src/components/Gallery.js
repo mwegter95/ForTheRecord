@@ -18,10 +18,33 @@ import djDecks from '../images/DJ_Decks.jpeg';
 
 const Gallery = () => {
   const [activeFilter, setActiveFilter] = useState('All');
+  const [expandedId, setExpandedId] = useState(null);
 
   useEffect(() => {
     window.lucide?.createIcons();
   }, []);
+
+  // Re-initialize icons when lightbox opens or filter changes
+  useEffect(() => {
+    setTimeout(() => window.lucide?.createIcons(), 50);
+  }, [expandedId, activeFilter]);
+
+  // Close expanded photo on Escape key
+  useEffect(() => {
+    const handleEsc = (e) => {
+      if (e.key === 'Escape') setExpandedId(null);
+    };
+    if (expandedId) {
+      document.addEventListener('keydown', handleEsc);
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.removeEventListener('keydown', handleEsc);
+      document.body.style.overflow = '';
+    };
+  }, [expandedId]);
 
   // Gallery items organized by category
   const galleryItems = [
@@ -79,18 +102,42 @@ const Gallery = () => {
         <div className="container">
           <div className="gallery-grid">
             {filteredItems.map(item => (
-              <div key={item.id} className="gallery-item">
+              <div
+                key={item.id}
+                className={`gallery-item ${item.id === 7 ? 'shift-down' : ''} ${item.id === 12 ? 'zoom-in' : ''}`}
+                onClick={() => setExpandedId(item.id)}
+              >
                 <img
                   src={item.image}
                   alt={item.alt}
                   className="gallery-image"
                 />
-                <div className="gallery-overlay"></div>
+                <div className="gallery-overlay">
+                  <span className="expand-icon">
+                    <i data-lucide="maximize-2"></i>
+                  </span>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
+
+      {/* Lightbox Overlay */}
+      {expandedId && (
+        <div className="lightbox-overlay" onClick={() => setExpandedId(null)}>
+          <button className="lightbox-close" onClick={() => setExpandedId(null)}>
+            <i data-lucide="x"></i>
+          </button>
+          <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
+            <img
+              src={galleryItems.find(item => item.id === expandedId)?.image}
+              alt={galleryItems.find(item => item.id === expandedId)?.alt}
+              className="lightbox-image"
+            />
+          </div>
+        </div>
+      )}
 
       {/* CTA Section */}
       <section className="gallery-cta-section">

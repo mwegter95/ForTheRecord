@@ -62,7 +62,7 @@ export default function Services() {
               </div>
               <div className="service-item">
                 <i data-lucide="check-circle"></i>
-                <span>Wireless Microphones (Multiple Units)</span>
+                <span>Wireless Microphones</span>
               </div>
               <div className="service-item">
                 <i data-lucide="check-circle"></i>
@@ -268,12 +268,12 @@ export default function Services() {
       <section className="services-cta">
         <h2
           className="section-header"
-          style={{ color: "#F8F6F1", marginBottom: "1rem" }}
+          style={{ color: "#0A1128", marginBottom: "1rem" }}
         >
           Let's Talk About Your Day
         </h2>
         <p
-          style={{ color: "#F8F6F1", marginBottom: "2rem", fontSize: "1.1rem" }}
+          style={{ color: "#2D3142", marginBottom: "2rem", fontSize: "1.1rem" }}
         >
           Ready to book amazing sound for your wedding or event? Get in touch
           and let's make it happen.

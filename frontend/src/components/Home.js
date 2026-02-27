@@ -261,6 +261,7 @@ const Home = () => {
               <img
                 src={weddingCeremonyAudio2}
                 alt="Wedding ceremony audio setup"
+                style={{ objectPosition: 'center 100%' }}
               />
             </div>
             <div className="gallery-item">

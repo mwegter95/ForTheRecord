@@ -118,6 +118,16 @@
         gap: 0.5rem;
         white-space: nowrap;
       }
+
+      .btn-secondary {
+        color: var(--white);
+        border-color: var(--white);
+
+        &:hover {
+          background-color: var(--white);
+          color: var(--navy);
+        }
+      }
     }
   }
 

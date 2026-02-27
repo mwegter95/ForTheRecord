@@ -51,7 +51,7 @@ const Home = () => {
                     data-lucide="music"
                     style={{ width: "20px", height: "20px" }}
                   ></i>
-                  <span>9+ Years Experience</span>
+                  <span>10+ Years Experience</span>
                 </div>
                 <div className="badge">
                   <i
@@ -95,14 +95,14 @@ const Home = () => {
             <div className="section-eyebrow">
               The Story Behind For the Record
             </div>
-            <h2>When Bad Audio Ruins Perfect Moments</h2>
+            <h2>Good Audio Makes for Perfect Moments</h2>
           </div>
 
           <div className="story-content">
             <div className="story-text">
               <p>
                 I've been to that wedding. You probably have too—where feedback
-                screeches through heartfelt vows, or the back rows can't hear
+                screeches through heartfelt speeches, or the back rows can't hear
                 the officiant at all.
               </p>
 
@@ -111,7 +111,7 @@ const Home = () => {
                 <p>
                   I once attended a wedding where everything was beautiful—the
                   venue, the flowers, the couple's joy. But during the ceremony,
-                  feedback kept piercing through the vows. The audio was distant
+                  feedback kept piercing through the words. The audio was distant
                   and echoey. It was painful to watch something so precious
                   marred by preventable technical issues.
                 </p>
@@ -123,8 +123,7 @@ const Home = () => {
 
                 <div className="story-highlight">
                   "That's when I realized: audio obsession isn't just my
-                  hobby—it's what sets me apart. Perfect sound isn't about
-                  expensive gear. It's about knowing exactly how to use it."
+                  hobby—it's what sets me apart."
                 </div>
               </div>
 
@@ -135,7 +134,7 @@ const Home = () => {
                 <h3 style={{ textAlign: "center" }}>Why "For the Record"</h3>
                 <p>
                   The name means "one for the books"—a moment worth remembering.
-                  But it can only be truly cherished if it's heard clearly. If
+                  And the moment can be much better cherished if it's heard clearly. If
                   speeches are muffled or music cuts out, it detracts from the
                   entire experience.
                 </p>
@@ -144,8 +143,7 @@ const Home = () => {
                     At For the Record, we're committed to delivering flawless
                     audio so your memories stay perfect.
                   </strong>{" "}
-                  Every word, every laugh, every song—crystal clear. Because the
-                  best moments deserve to be heard the way they were lived.
+                  Every word, every laugh, every song—crystal clear.
                 </p>
               </div>
             </div>
@@ -189,7 +187,7 @@ const Home = () => {
               </div>
               <h3>Musical Expertise</h3>
               <p>
-                A degree in music and 9+ years of wedding experience means I
+                A degree in music and 10+ years of wedding experience means I
                 know how to build an unforgettable night, song by song.
               </p>
             </div>
@@ -212,7 +210,7 @@ const Home = () => {
       </section>
 
       {/* TESTIMONIALS SECTION */}
-      <section className="testimonials" id="testimonials">
+      {/* <section className="testimonials" id="testimonials">
         <div className="container">
           <div className="section-header">
             <div className="section-eyebrow">What Couples Say</div>
@@ -239,7 +237,7 @@ const Home = () => {
             <p className="testimonial-author">Sarah & Mike, Minneapolis, MN</p>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* GALLERY SECTION */}
       <section className="gallery" id="gallery">

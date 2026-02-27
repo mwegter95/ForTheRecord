@@ -116,7 +116,7 @@ export default function About() {
           <div className="timeline-card">
             <h3>Today</h3>
             <p>
-              9+ years of DJ experience, countless happy couples, and an
+              10+ years of DJ experience, countless happy couples, and an
               unrelenting commitment to perfect sound.
             </p>
           </div>

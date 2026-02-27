@@ -18,9 +18,15 @@ const Footer = () => {
       <div className="footer-container">
         {/* Brand Section */}
         <div className="footer-brand">
-          <img src={LogoSvg} alt="For the Record Logo" className="footer-logo" />
+          <img
+            src={LogoSvg}
+            alt="For the Record Logo"
+            className="footer-logo"
+          />
           <h3 className="footer-title">For the Record</h3>
-          <p className="footer-tagline">Minnesota's Audio-Obsessed Wedding DJ</p>
+          <p className="footer-tagline">
+            Minnesota's Audio-Obsessed Wedding DJ
+          </p>
         </div>
 
         {/* Links Section */}
@@ -48,7 +54,10 @@ const Footer = () => {
             <i data-lucide="phone"></i>
             <span>(612) 389-7005</span>
           </a>
-          <a href="mailto:michael@fortherecordmn.com" className="footer-contact-link">
+          <a
+            href="mailto:michael@fortherecordmn.com"
+            className="footer-contact-link"
+          >
             <i data-lucide="mail"></i>
             <span>michael@fortherecordmn.com</span>
           </a>

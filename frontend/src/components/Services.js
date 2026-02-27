@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import WeddingCeremonyAudio from '../images/wedding-ceremony-audio.jpg';
-import './Services.scss';
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
+import WeddingCeremonyAudio from "../images/wedding-ceremony-audio.jpg";
+import "./Services.scss";
 
 export default function Services() {
   useEffect(() => {
@@ -12,9 +12,12 @@ export default function Services() {
     <div className="services-page">
       {/* Hero Banner */}
       <section className="services-hero">
-        <h1 className="section-title">Complete Wedding & Event Entertainment</h1>
+        <h1 className="section-title">
+          Complete Wedding & Event Entertainment
+        </h1>
         <p className="section-description">
-          Whatever your budget, we have a package for you. Expert audio, unforgettable energy, stress-free partnership.
+          Whatever your budget, we have a package for you. Expert audio,
+          unforgettable energy, stress-free partnership.
         </p>
       </section>
 
@@ -22,16 +25,26 @@ export default function Services() {
       <section className="wedding-services">
         <div className="wedding-grid">
           <div className="wedding-image">
-            <img src={WeddingCeremonyAudio} alt="Professional wedding audio setup" />
+            <img
+              src={WeddingCeremonyAudio}
+              alt="Professional wedding audio setup"
+            />
           </div>
 
           <div className="wedding-content">
             <h2 className="section-header">Wedding Entertainment</h2>
             <p>
-              Your wedding deserves sound that matches the importance of the moment. From crystal-clear ceremony audio to a reception that keeps your guests dancing all night, I handle every technical detail so you can focus on enjoying your day.
+              Your wedding deserves sound that matches the importance of the
+              moment. From crystal-clear ceremony audio to a reception that
+              keeps your guests dancing all night, I handle every technical
+              detail so you can focus on enjoying your day.
             </p>
             <p>
-              I work closely with you to understand your vision and your music preferences. Whether your friends are Beyonce fans, classic rock devotees, or an eclectic mix, I'll craft a setlist that keeps energy high and moments meaningful. No cookie-cutter DJ playlists—just the songs that matter to you.
+              I work closely with you to understand your vision and your music
+              preferences. Whether your friends are Beyonce fans, classic rock
+              devotees, or an eclectic mix, I'll craft a setlist that keeps
+              energy high and moments meaningful. No cookie-cutter DJ
+              playlists—just the songs that matter to you.
             </p>
 
             <div className="service-list">
@@ -66,7 +79,14 @@ export default function Services() {
 
       {/* The Difference Section */}
       <section className="difference-section">
-        <h2 className="section-header" style={{ color: '#F8F6F1', textAlign: 'center', marginBottom: '3rem' }}>
+        <h2
+          className="section-header"
+          style={{
+            color: "#F8F6F1",
+            textAlign: "center",
+            marginBottom: "3rem",
+          }}
+        >
           The For the Record Difference
         </h2>
 
@@ -75,7 +95,10 @@ export default function Services() {
             <i data-lucide="radio"></i>
             <h3>Perfect Ceremony Audio</h3>
             <p>
-              I arrive early to test audio in your actual space, position microphones for clarity, and monitor every moment. No feedback, no dead spots, no surprises. Just clear, beautiful sound for your vows.
+              I arrive early to test audio in your actual space, position
+              microphones for clarity, and monitor every moment. No feedback, no
+              dead spots, no surprises. Just clear, beautiful sound for your
+              vows.
             </p>
           </div>
 
@@ -83,7 +106,9 @@ export default function Services() {
             <i data-lucide="music"></i>
             <h3>Your Music, Your Way</h3>
             <p>
-              I'm not bound to wedding DJ clichés. Tell me your taste, your story, your energy level and I'll read the room in real time. Want indie rock? 90s nostalgia? A mix of everything? I adapt.
+              I'm not bound to wedding DJ clichés. Tell me your taste, your
+              story, your energy level and I'll read the room in real time. Want
+              indie rock? 90s nostalgia? A mix of everything? I adapt.
             </p>
           </div>
 
@@ -91,7 +116,9 @@ export default function Services() {
             <i data-lucide="smile"></i>
             <h3>Easeful Partnership</h3>
             <p>
-              Quick responses, clear communication, and someone who actually cares about your day. I handle all audio logistics so you have zero stress. That's what partnership looks like.
+              Quick responses, clear communication, and someone who actually
+              cares about your day. I handle all audio logistics so you have
+              zero stress. That's what partnership looks like.
             </p>
           </div>
         </div>
@@ -99,10 +126,20 @@ export default function Services() {
 
       {/* Event Services Section */}
       <section className="event-services">
-        <h2 className="section-header" style={{ textAlign: 'center', marginBottom: '3rem' }}>
+        <h2
+          className="section-header"
+          style={{ textAlign: "center", marginBottom: "3rem" }}
+        >
           Beyond Weddings
         </h2>
-        <p style={{ textAlign: 'center', marginBottom: '2rem', maxWidth: '700px', margin: '0 auto 2rem' }}>
+        <p
+          style={{
+            textAlign: "center",
+            marginBottom: "2rem",
+            maxWidth: "700px",
+            margin: "0 auto 2rem",
+          }}
+        >
           I DJ all kinds of celebrations. Here's what else I can help with.
         </p>
 
@@ -110,33 +147,64 @@ export default function Services() {
           <div className="event-card">
             <i data-lucide="briefcase"></i>
             <h3>Corporate Events</h3>
-            <p>Professional audio for conferences, galas, holiday parties, and team celebrations. Polished, reliable, and perfectly sound.</p>
+            <p>
+              Professional audio for conferences, galas, holiday parties, and
+              team celebrations. Polished, reliable, and perfectly sound.
+            </p>
           </div>
 
           <div className="event-card">
             <i data-lucide="cake"></i>
             <h3>Private Parties</h3>
-            <p>Birthdays, anniversaries, graduation parties—whatever the occasion, I'll create the perfect soundtrack and energy for your guests.</p>
+            <p>
+              Birthdays, anniversaries, graduation parties—whatever the
+              occasion, I'll create the perfect soundtrack and energy for your
+              guests.
+            </p>
           </div>
 
           <div className="event-card">
             <i data-lucide="users"></i>
             <h3>Community Events</h3>
-            <p>Block parties, fundraisers, festivals, and community celebrations with audio that reaches and energizes everyone.</p>
+            <p>
+              Block parties, fundraisers, festivals, and community celebrations
+              with audio that reaches and energizes everyone.
+            </p>
           </div>
         </div>
       </section>
 
       {/* Packages Section */}
       <section className="packages-section">
-        <h2 className="section-header" style={{ textAlign: 'center', marginBottom: '1rem' }}>
+        <h2
+          className="section-header"
+          style={{ textAlign: "center", marginBottom: "1rem" }}
+        >
           What Can Be Included in Your Package
         </h2>
-        <p style={{ textAlign: 'center', marginBottom: '3rem', maxWidth: '800px', margin: '0 auto 3rem', fontSize: '1.1rem' }}>
-          We work with you to create a custom package that fits your vision. Every wedding is unique, and we have options for any budget.
+        <p
+          style={{
+            textAlign: "center",
+            marginBottom: "3rem",
+            maxWidth: "800px",
+            margin: "0 auto 3rem",
+            fontSize: "1.1rem",
+          }}
+        >
+          We work with you to create a custom package that fits your vision.
+          Every wedding is unique, and we have options for any budget.
         </p>
 
-        <div className="service-list" style={{ maxWidth: '700px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr', gap: '1rem' }}>
+        <div
+          className="service-list"
+          style={{
+            maxWidth: "700px",
+            margin: "0 auto",
+            display: "grid",
+            gridTemplateColumns: "1fr",
+            gap: "1rem",
+          }}
+        >
           <div className="service-item">
             <i data-lucide="check-circle"></i>
             <span>Ceremony Audio Setup & Management</span>
@@ -183,18 +251,32 @@ export default function Services() {
           </div>
         </div>
 
-        <p style={{ textAlign: 'center', margin: '3rem 0 0', fontSize: '1.1rem', fontWeight: '500' }}>
-          Let's chat about your needs and build the perfect package for your day.
+        <p
+          style={{
+            textAlign: "center",
+            margin: "3rem 0 0",
+            fontSize: "1.1rem",
+            fontWeight: "500",
+          }}
+        >
+          Let's chat about your needs and build the perfect package for your
+          day.
         </p>
       </section>
 
       {/* CTA Section */}
       <section className="services-cta">
-        <h2 className="section-header" style={{ color: '#F8F6F1', marginBottom: '1rem' }}>
+        <h2
+          className="section-header"
+          style={{ color: "#F8F6F1", marginBottom: "1rem" }}
+        >
           Let's Talk About Your Day
         </h2>
-        <p style={{ color: '#F8F6F1', marginBottom: '2rem', fontSize: '1.1rem' }}>
-          Ready to book amazing sound for your wedding or event? Get in touch and let's make it happen.
+        <p
+          style={{ color: "#F8F6F1", marginBottom: "2rem", fontSize: "1.1rem" }}
+        >
+          Ready to book amazing sound for your wedding or event? Get in touch
+          and let's make it happen.
         </p>
         <Link to="/get-in-touch" className="cta-button">
           Get In Touch

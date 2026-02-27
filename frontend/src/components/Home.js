@@ -101,30 +101,51 @@ const Home = () => {
           <div className="story-content">
             <div className="story-text">
               <p>
-                I've been to that wedding. You probably have too—where feedback screeches through heartfelt vows, or the back rows can't hear the officiant at all.
+                I've been to that wedding. You probably have too—where feedback
+                screeches through heartfelt vows, or the back rows can't hear
+                the officiant at all.
               </p>
 
               <div className="story-subsection">
                 <h3>The Moment I Knew</h3>
                 <p>
-                  I once attended a wedding where everything was beautiful—the venue, the flowers, the couple's joy. But during the ceremony, feedback kept piercing through the vows. The audio was distant and echoey. It was painful to watch something so precious marred by preventable technical issues.
+                  I once attended a wedding where everything was beautiful—the
+                  venue, the flowers, the couple's joy. But during the ceremony,
+                  feedback kept piercing through the vows. The audio was distant
+                  and echoey. It was painful to watch something so precious
+                  marred by preventable technical issues.
                 </p>
                 <p>
-                  The DJ had all the right equipment. What they lacked was proper technique—knowing how to test in the space, position microphones correctly, and prevent feedback before it happens.
+                  The DJ had all the right equipment. What they lacked was
+                  proper technique—knowing how to test in the space, position
+                  microphones correctly, and prevent feedback before it happens.
                 </p>
 
                 <div className="story-highlight">
-                  "That's when I realized: audio obsession isn't just my hobby—it's what sets me apart. Perfect sound isn't about expensive gear. It's about knowing exactly how to use it."
+                  "That's when I realized: audio obsession isn't just my
+                  hobby—it's what sets me apart. Perfect sound isn't about
+                  expensive gear. It's about knowing exactly how to use it."
                 </div>
               </div>
 
-              <div className="story-subsection" style={{ maxWidth: '800px', margin: '0 auto' }}>
-                <h3 style={{ textAlign: 'center' }}>Why "For the Record"</h3>
+              <div
+                className="story-subsection"
+                style={{ maxWidth: "800px", margin: "0 auto" }}
+              >
+                <h3 style={{ textAlign: "center" }}>Why "For the Record"</h3>
                 <p>
-                  The name means "one for the books"—a moment worth remembering. But it can only be truly cherished if it's heard clearly. If speeches are muffled or music cuts out, it detracts from the entire experience.
+                  The name means "one for the books"—a moment worth remembering.
+                  But it can only be truly cherished if it's heard clearly. If
+                  speeches are muffled or music cuts out, it detracts from the
+                  entire experience.
                 </p>
                 <p>
-                  <strong>At For the Record, we're committed to delivering flawless audio so your memories stay perfect.</strong> Every word, every laugh, every song—crystal clear. Because the best moments deserve to be heard the way they were lived.
+                  <strong>
+                    At For the Record, we're committed to delivering flawless
+                    audio so your memories stay perfect.
+                  </strong>{" "}
+                  Every word, every laugh, every song—crystal clear. Because the
+                  best moments deserve to be heard the way they were lived.
                 </p>
               </div>
             </div>

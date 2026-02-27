@@ -36,7 +36,7 @@
   .filter-btn {
     background: none;
     border: none;
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
     font-size: 1rem;
     font-weight: 500;
     color: var(--charcoal);
@@ -46,7 +46,7 @@
     transition: color 0.3s ease;
 
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       bottom: -8px;
       left: 0;
@@ -107,7 +107,11 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(201, 168, 106, 0.15) 0%, rgba(139, 157, 131, 0.15) 100%);
+    background: linear-gradient(
+      135deg,
+      rgba(201, 168, 106, 0.15) 0%,
+      rgba(139, 157, 131, 0.15) 100%
+    );
     opacity: 0;
     transition: opacity 0.4s ease;
   }
@@ -134,7 +138,7 @@
   margin: 0 auto;
 
   h2 {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: "Cormorant Garamond", serif;
     font-size: 3rem;
     color: var(--navy);
     margin-bottom: 1rem;

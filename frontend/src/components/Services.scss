@@ -1,16 +1,20 @@
 .services-page {
   background-color: var(--cream);
   color: var(--charcoal);
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 
   // Hero Banner
   .services-hero {
-    background: linear-gradient(135deg, var(--cream) 0%, rgba(201, 168, 106, 0.1) 100%);
+    background: linear-gradient(
+      135deg,
+      var(--cream) 0%,
+      rgba(201, 168, 106, 0.1) 100%
+    );
     padding: 9.75rem 2rem 4rem;
     text-align: center;
 
     .section-title {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: "Cormorant Garamond", serif;
       font-size: 3.5rem;
       color: var(--navy);
       margin-bottom: 1rem;
@@ -51,7 +55,7 @@
         padding: 1rem;
 
         .section-header {
-          font-family: 'Cormorant Garamond', serif;
+          font-family: "Cormorant Garamond", serif;
           font-size: 2.5rem;
           color: var(--navy);
           margin-bottom: 1.5rem;
@@ -100,7 +104,7 @@
     margin: 3rem 0;
 
     .section-header {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: "Cormorant Garamond", serif;
       font-size: 2.5rem;
     }
 
@@ -132,7 +136,7 @@
         }
 
         h3 {
-          font-family: 'Cormorant Garamond', serif;
+          font-family: "Cormorant Garamond", serif;
           font-size: 1.5rem;
           color: var(--cream);
           margin-bottom: 1rem;
@@ -156,7 +160,7 @@
     margin: 0 auto;
 
     .section-header {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: "Cormorant Garamond", serif;
       font-size: 2.5rem;
       color: var(--navy);
     }
@@ -188,7 +192,7 @@
         }
 
         h3 {
-          font-family: 'Cormorant Garamond', serif;
+          font-family: "Cormorant Garamond", serif;
           font-size: 1.5rem;
           color: var(--navy);
           margin-bottom: 1rem;
@@ -212,7 +216,7 @@
     margin: 0 auto;
 
     .section-header {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: "Cormorant Garamond", serif;
       font-size: 2.5rem;
       color: var(--navy);
     }
@@ -240,7 +244,11 @@
 
         &.featured {
           border: 3px solid var(--gold);
-          background: linear-gradient(135deg, var(--cream) 0%, rgba(201, 168, 106, 0.08) 100%);
+          background: linear-gradient(
+            135deg,
+            var(--cream) 0%,
+            rgba(201, 168, 106, 0.08) 100%
+          );
 
           .package-badge {
             position: absolute;
@@ -262,7 +270,7 @@
         }
 
         h3 {
-          font-family: 'Cormorant Garamond', serif;
+          font-family: "Cormorant Garamond", serif;
           font-size: 1.8rem;
           color: var(--navy);
           margin-bottom: 1.5rem;
@@ -285,7 +293,7 @@
             padding-left: 1.5rem;
 
             &::before {
-              content: '•';
+              content: "•";
               position: absolute;
               left: 0;
               color: var(--gold);
@@ -320,7 +328,7 @@
     margin-top: 3rem;
 
     .section-header {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: "Cormorant Garamond", serif;
       font-size: 2.5rem;
       color: var(--gold);
     }

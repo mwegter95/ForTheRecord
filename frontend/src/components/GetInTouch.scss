@@ -10,7 +10,7 @@
 }
 
 .hero-title {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: "Cormorant Garamond", serif;
   font-size: 4rem;
   color: white;
   margin-bottom: 1rem;
@@ -148,7 +148,7 @@
   border: 1px solid rgba(201, 168, 106, 0.2);
   border-radius: 10px;
   padding: 0.875rem 1rem;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 1rem;
   color: var(--navy);
   transition: all 0.3s ease;
@@ -168,7 +168,7 @@
 .form-textarea {
   resize: vertical;
   min-height: 120px;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 .form-select {
@@ -225,7 +225,7 @@
   border: 1px solid rgba(201, 168, 106, 0.1);
 
   h3 {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: "Cormorant Garamond", serif;
     font-size: 1.5rem;
     color: var(--navy);
     margin-bottom: 1.5rem;
@@ -324,7 +324,11 @@
 
 .testimonial {
   position: relative;
-  background: linear-gradient(135deg, rgba(139, 157, 131, 0.05) 0%, rgba(201, 168, 106, 0.05) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(139, 157, 131, 0.05) 0%,
+    rgba(201, 168, 106, 0.05) 100%
+  );
   border: 1px solid rgba(139, 157, 131, 0.15);
 
   i {
@@ -363,7 +367,7 @@
   margin: 0 auto;
 
   h2 {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: "Cormorant Garamond", serif;
     font-size: 2.5rem;
     color: white;
     margin-bottom: 0.5rem;

@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import emailjs from '@emailjs/browser';
-import './GetInTouch.scss';
+import React, { useState, useEffect } from "react";
+import emailjs from "@emailjs/browser";
+import "./GetInTouch.scss";
 
 const SERVICE_ID = "service_gg499mn";
 const TEMPLATE_ID = "template_rkyxp9c";
@@ -8,13 +8,13 @@ const PUBLIC_KEY = "LhsrdX3yXhmH9PHk7";
 
 const GetInTouch = () => {
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    weddingDate: '',
-    message: '',
-    source: ''
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    weddingDate: "",
+    message: "",
+    source: "",
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -26,9 +26,9 @@ const GetInTouch = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -42,8 +42,8 @@ const GetInTouch = () => {
       email: formData.email,
       phone: formData.phone,
       date: formData.weddingDate,
-      source: formData.source || 'Not specified',
-      message: formData.message || 'No additional details provided'
+      source: formData.source || "Not specified",
+      message: formData.message || "No additional details provided",
     };
 
     try {
@@ -51,17 +51,17 @@ const GetInTouch = () => {
         SERVICE_ID,
         TEMPLATE_ID,
         templateParams,
-        PUBLIC_KEY
+        PUBLIC_KEY,
       );
-      console.log('EmailJS success:', result.text);
-      
+      console.log("EmailJS success:", result.text);
+
       // Redirect to thank you page
-      window.location.href = '/thank-you.html';
+      window.location.href = "/thank-you.html";
     } catch (error) {
-      console.error('EmailJS error:', error);
-      setSubmitStatus('error');
+      console.error("EmailJS error:", error);
+      setSubmitStatus("error");
       setIsSubmitting(false);
-      
+
       // Clear error message after 5 seconds
       setTimeout(() => {
         setSubmitStatus(null);
@@ -70,9 +70,9 @@ const GetInTouch = () => {
   };
 
   const trustBadges = [
-    { icon: 'clock', text: '24-Hour Response' },
-    { icon: 'shield-check', text: 'No Obligation' },
-    { icon: 'sparkles', text: 'Custom Packages' }
+    { icon: "clock", text: "24-Hour Response" },
+    { icon: "shield-check", text: "No Obligation" },
+    { icon: "sparkles", text: "Custom Packages" },
   ];
 
   return (
@@ -82,8 +82,9 @@ const GetInTouch = () => {
         <div className="container">
           <h1 className="hero-title">Let's Make Your Day Unforgettable</h1>
           <p className="hero-subtitle">
-            Fill out the form below and we'll respond within 24 hours—no pressure,
-            just a friendly conversation about making your day perfect.
+            Fill out the form below and we'll respond within 24 hours—no
+            pressure, just a friendly conversation about making your day
+            perfect.
           </p>
 
           {/* Trust Badges */}
@@ -105,16 +106,21 @@ const GetInTouch = () => {
             {/* Contact Form */}
             <div className="form-wrapper">
               <form className="contact-form" onSubmit={handleSubmit}>
-                {submitStatus === 'error' && (
+                {submitStatus === "error" && (
                   <div className="form-error-message">
                     <i data-lucide="alert-circle"></i>
-                    <p>Oops! Something went wrong. Please try again or call us at (612) 389-7005.</p>
+                    <p>
+                      Oops! Something went wrong. Please try again or call us at
+                      (612) 389-7005.
+                    </p>
                   </div>
                 )}
 
                 <div className="form-row">
                   <div className="form-group">
-                    <label htmlFor="firstName" className="form-label">First Name</label>
+                    <label htmlFor="firstName" className="form-label">
+                      First Name
+                    </label>
                     <input
                       type="text"
                       id="firstName"
@@ -128,7 +134,9 @@ const GetInTouch = () => {
                   </div>
 
                   <div className="form-group">
-                    <label htmlFor="lastName" className="form-label">Last Name</label>
+                    <label htmlFor="lastName" className="form-label">
+                      Last Name
+                    </label>
                     <input
                       type="text"
                       id="lastName"
@@ -143,7 +151,9 @@ const GetInTouch = () => {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="email" className="form-label">Email Address</label>
+                  <label htmlFor="email" className="form-label">
+                    Email Address
+                  </label>
                   <input
                     type="email"
                     id="email"
@@ -157,7 +167,9 @@ const GetInTouch = () => {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="phone" className="form-label">Phone Number</label>
+                  <label htmlFor="phone" className="form-label">
+                    Phone Number
+                  </label>
                   <input
                     type="tel"
                     id="phone"
@@ -171,7 +183,9 @@ const GetInTouch = () => {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="weddingDate" className="form-label">Wedding Date</label>
+                  <label htmlFor="weddingDate" className="form-label">
+                    Wedding Date
+                  </label>
                   <input
                     type="date"
                     id="weddingDate"
@@ -184,7 +198,9 @@ const GetInTouch = () => {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="source" className="form-label">How did you hear about us? (Optional)</label>
+                  <label htmlFor="source" className="form-label">
+                    How did you hear about us? (Optional)
+                  </label>
                   <select
                     id="source"
                     name="source"
@@ -193,7 +209,9 @@ const GetInTouch = () => {
                     onChange={handleInputChange}
                   >
                     <option value="">Select an option</option>
-                    <option value="friend-referral">Friend or Family Referral</option>
+                    <option value="friend-referral">
+                      Friend or Family Referral
+                    </option>
                     <option value="google">Google Search</option>
                     <option value="instagram">Instagram</option>
                     <option value="wedding-planner">Wedding Planner</option>
@@ -203,7 +221,9 @@ const GetInTouch = () => {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="message" className="form-label">Tell us about your day (Optional)</label>
+                  <label htmlFor="message" className="form-label">
+                    Tell us about your day (Optional)
+                  </label>
                   <textarea
                     id="message"
                     name="message"
@@ -220,7 +240,7 @@ const GetInTouch = () => {
                   className="form-submit"
                   disabled={isSubmitting}
                 >
-                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                  {isSubmitting ? "Sending..." : "Send Message"}
                 </button>
               </form>
             </div>
@@ -241,7 +261,9 @@ const GetInTouch = () => {
                   </li>
                   <li>
                     <i data-lucide="check"></i>
-                    <span>A custom package tailored to your needs and budget</span>
+                    <span>
+                      A custom package tailored to your needs and budget
+                    </span>
                   </li>
                   <li>
                     <i data-lucide="check"></i>
@@ -257,14 +279,21 @@ const GetInTouch = () => {
                   <i data-lucide="phone"></i>
                   <div>
                     <p className="contact-label">Call us</p>
-                    <a href="tel:(612)389-7005" className="contact-link">(612) 389-7005</a>
+                    <a href="tel:(612)389-7005" className="contact-link">
+                      (612) 389-7005
+                    </a>
                   </div>
                 </div>
                 <div className="contact-method">
                   <i data-lucide="mail"></i>
                   <div>
                     <p className="contact-label">Email us</p>
-                    <a href="mailto:michael@fortherecordmn.com" className="contact-link">michael@fortherecordmn.com</a>
+                    <a
+                      href="mailto:michael@fortherecordmn.com"
+                      className="contact-link"
+                    >
+                      michael@fortherecordmn.com
+                    </a>
                   </div>
                 </div>
                 <p className="availability-note">
@@ -277,7 +306,9 @@ const GetInTouch = () => {
               <div className="sidebar-card testimonial">
                 <i data-lucide="quote"></i>
                 <p className="testimonial-text">
-                  "Working with For the Record made our reception unforgettable. The music was perfect, the transitions were seamless, and we could tell how much they cared about our day."
+                  "Working with For the Record made our reception unforgettable.
+                  The music was perfect, the transitions were seamless, and we
+                  could tell how much they cared about our day."
                 </p>
                 <p className="testimonial-author">— Sarah & Michael, 2024</p>
               </div>

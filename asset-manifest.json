@@ -1,11 +1,14 @@
 {
   "files": {
-    "main.css": "/static/css/main.c6818169.css",
-    "main.js": "/static/js/main.b25ffc8e.js",
+    "main.css": "/static/css/main.1b42c13d.css",
+    "main.js": "/static/js/main.c5cefbde.js",
     "static/media/wedding_dance_bouqet_toss.jpg": "/static/media/wedding_dance_bouqet_toss.7cdaf84d7ea8ba5617e4.jpg",
+    "static/media/wedding-dance-floor-guys.png": "/static/media/wedding-dance-floor-guys.4a6427ba8344b3f7331f.png",
     "static/media/wedding-dance-floor2.png": "/static/media/wedding-dance-floor2.ba71a2252771d9ccee5a.png",
+    "static/media/wedding-dance-floor-laugh.png": "/static/media/wedding-dance-floor-laugh.4a02d8bf92db28a29f17.png",
     "static/media/wedding-dance-floor3.png": "/static/media/wedding-dance-floor3.df69ca392052426c0b9a.png",
     "static/media/Ashley_and_me.jpeg": "/static/media/Ashley_and_me.5ddeb4fba06e97bac140.jpeg",
+    "static/media/dj-setup-dancefloor.png": "/static/media/dj-setup-dancefloor.96d8f672f5134cf9f197.png",
     "static/media/wedding-dance-floor4.jpg": "/static/media/wedding-dance-floor4.c982cc8a7910f21d4f64.jpg",
     "static/media/DJ_Decks.jpeg": "/static/media/DJ_Decks.8b3a2fbaeeceb8be1ce4.jpeg",
     "static/media/wedding2.jpg": "/static/media/wedding2.276ecbf40656a06b7644.jpg",
@@ -17,11 +20,11 @@
     "static/media/wedding-ceremony-audio.jpg": "/static/media/wedding-ceremony-audio.abb7a17782b867daba6b.jpg",
     "static/media/for-the-record-logo.svg": "/static/media/for-the-record-logo.a9cfcca81bf3fdc81932f5f7eec04cfd.svg",
     "index.html": "/index.html",
-    "main.c6818169.css.map": "/static/css/main.c6818169.css.map",
-    "main.b25ffc8e.js.map": "/static/js/main.b25ffc8e.js.map"
+    "main.1b42c13d.css.map": "/static/css/main.1b42c13d.css.map",
+    "main.c5cefbde.js.map": "/static/js/main.c5cefbde.js.map"
   },
   "entrypoints": [
-    "static/css/main.c6818169.css",
-    "static/js/main.b25ffc8e.js"
+    "static/css/main.1b42c13d.css",
+    "static/js/main.c5cefbde.js"
   ]
 }

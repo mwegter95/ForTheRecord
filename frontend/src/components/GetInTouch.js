@@ -350,7 +350,7 @@ const GetInTouch = () => {
               </div>
 
               {/* Testimonial Card */}
-              <div className="sidebar-card testimonial">
+              {/* <div className="sidebar-card testimonial">
                 <i data-lucide="quote"></i>
                 <p className="testimonial-text">
                   "Working with For the Record made our reception unforgettable.
@@ -358,7 +358,7 @@ const GetInTouch = () => {
                   could tell how much they cared about our day."
                 </p>
                 <p className="testimonial-author">— Sarah & Michael, 2024</p>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

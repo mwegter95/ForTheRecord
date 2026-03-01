@@ -9,11 +9,25 @@ import GetInTouch from "./GetInTouch";
 import TopNavbar from "./Navbar";
 import Footer from "./Footer";
 
-// Scroll to top on route change
+// Scroll to top on route change & track pageviews
 const ScrollToTop = () => {
   const { pathname } = useLocation();
   useEffect(() => {
     window.scrollTo(0, 0);
+    
+    // Send pageview to Google Analytics for SPA route changes
+    if (window.gtag) {
+      window.gtag('event', 'page_view', {
+        page_path: pathname,
+        page_title: document.title,
+        send_to: 'AW-17945236375'
+      });
+    }
+    
+    // Send pageview to Meta Pixel for SPA route changes
+    if (window.fbq) {
+      window.fbq('track', 'PageView');
+    }
   }, [pathname]);
   return null;
 };

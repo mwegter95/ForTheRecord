@@ -146,7 +146,7 @@ export default function About() {
             <p className="drives-emphasis">
               <strong>Audio is never an afterthought.</strong> It's the
               invisible force that makes your wedding feel premium, polished,
-              and perfectly executed. And I'll stop at nothing to making sure
+              and perfectly executed. And I'll stop at nothing to make sure
               it's right.
             </p>
           </div>

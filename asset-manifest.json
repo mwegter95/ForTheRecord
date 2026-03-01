@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.1b42c13d.css",
-    "main.js": "/static/js/main.09f7aa9a.js",
+    "main.js": "/static/js/main.062453e1.js",
     "static/media/wedding_dance_bouqet_toss.jpg": "/static/media/wedding_dance_bouqet_toss.7cdaf84d7ea8ba5617e4.jpg",
     "static/media/wedding-dance-floor-guys.png": "/static/media/wedding-dance-floor-guys.4a6427ba8344b3f7331f.png",
     "static/media/wedding-dance-floor2.png": "/static/media/wedding-dance-floor2.ba71a2252771d9ccee5a.png",
@@ -21,10 +21,10 @@
     "index.html": "/index.html",
     "static/media/for-the-record-logo.svg": "/static/media/for-the-record-logo.a9cfcca81bf3fdc81932f5f7eec04cfd.svg",
     "main.1b42c13d.css.map": "/static/css/main.1b42c13d.css.map",
-    "main.09f7aa9a.js.map": "/static/js/main.09f7aa9a.js.map"
+    "main.062453e1.js.map": "/static/js/main.062453e1.js.map"
   },
   "entrypoints": [
     "static/css/main.1b42c13d.css",
-    "static/js/main.09f7aa9a.js"
+    "static/js/main.062453e1.js"
   ]
 }

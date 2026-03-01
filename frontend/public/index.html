@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Google tag (gtag.js) -->
+    <!-- Google tag (gtag.js) - GA4 + Google Ads -->
     <script
       async
       src="https://www.googletagmanager.com/gtag/js?id=AW-17945236375"
@@ -13,11 +13,11 @@
       }
       gtag("js", new Date());
       
-      // Google Ads Conversion Tracking
+      // Google Ads Conversion Tracking + Remarketing
       gtag("config", "AW-17945236375");
       
-      // Google Ads Remarketing - tracks all page views for audience building
-      gtag("config", "AW-17945236375", {
+      // GA4 Analytics
+      gtag("config", "G-552SW892QV", {
         send_page_view: true,
       });
     </script>
@@ -122,18 +122,6 @@
 
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    
-    <!-- GitHub Pages SPA redirect handler -->
-    <script>
-      // Check if we were redirected from 404.html
-      (function() {
-        var redirect = sessionStorage.getItem('redirect');
-        sessionStorage.removeItem('redirect');
-        if (redirect && redirect !== location.pathname) {
-          history.replaceState(null, null, redirect);
-        }
-      })();
-    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>

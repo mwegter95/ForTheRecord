@@ -15,12 +15,11 @@ const ScrollToTop = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     
-    // Send pageview to Google Analytics for SPA route changes
+    // Send pageview to Google Analytics (GA4) + Google Ads for SPA route changes
     if (window.gtag) {
       window.gtag('event', 'page_view', {
         page_path: pathname,
         page_title: document.title,
-        send_to: 'AW-17945236375'
       });
     }
     

@@ -48,5 +48,5 @@ fs.writeFileSync(path.join(buildDir, "404.html"), indexHtml);
 console.log("  ✓ Created 404.html (catch-all fallback)");
 
 console.log(
-  `\nDone! Created index.html for ${routes.length} routes + 404.html fallback.`
+  `\nDone! Created index.html for ${routes.length} routes + 404.html fallback.`,
 );

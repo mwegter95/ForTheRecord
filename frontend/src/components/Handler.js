@@ -14,18 +14,18 @@ const ScrollToTop = () => {
   const { pathname } = useLocation();
   useEffect(() => {
     window.scrollTo(0, 0);
-    
+
     // Send pageview to Google Analytics (GA4) + Google Ads for SPA route changes
     if (window.gtag) {
-      window.gtag('event', 'page_view', {
+      window.gtag("event", "page_view", {
         page_path: pathname,
         page_title: document.title,
       });
     }
-    
+
     // Send pageview to Meta Pixel for SPA route changes
     if (window.fbq) {
-      window.fbq('track', 'PageView');
+      window.fbq("track", "PageView");
     }
   }, [pathname]);
   return null;
@@ -45,11 +45,23 @@ const Handler = () => {
           <Route path="/faq" element={<FAQ />} />
           <Route path="/get-in-touch" element={<GetInTouch />} />
           {/* Redirects for old routes */}
-          <Route path="/booknow" element={<Navigate to="/get-in-touch" replace />} />
-          <Route path="/book-now" element={<Navigate to="/get-in-touch" replace />} />
-          <Route path="/weddings" element={<Navigate to="/services" replace />} />
+          <Route
+            path="/booknow"
+            element={<Navigate to="/get-in-touch" replace />}
+          />
+          <Route
+            path="/book-now"
+            element={<Navigate to="/get-in-touch" replace />}
+          />
+          <Route
+            path="/weddings"
+            element={<Navigate to="/services" replace />}
+          />
           <Route path="/events" element={<Navigate to="/services" replace />} />
-          <Route path="/contact" element={<Navigate to="/get-in-touch" replace />} />
+          <Route
+            path="/contact"
+            element={<Navigate to="/get-in-touch" replace />}
+          />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>

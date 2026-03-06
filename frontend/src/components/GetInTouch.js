@@ -129,166 +129,178 @@ const GetInTouch = () => {
                   <div className="success-icon">✓</div>
                   <h2>Thank You!</h2>
                   <p>
-                    We received your message and we're <strong>excited to connect with you</strong>!
-                    You'll hear from us within 24 hours to discuss your event and how we can make it unforgettable.
+                    We received your message and we're{" "}
+                    <strong>excited to connect with you</strong>! You'll hear
+                    from us within 24 hours to discuss your event and how we can
+                    make it unforgettable.
                   </p>
                   <div className="success-next-steps">
                     <h3>What Happens Next?</h3>
                     <p>
-                      We'll review your details and reach out to discuss your vision,
-                      answer any questions, and create a custom package that fits your needs and budget.
+                      We'll review your details and reach out to discuss your
+                      vision, answer any questions, and create a custom package
+                      that fits your needs and budget.
                     </p>
-                    <p>No pressure, no obligation—just a friendly conversation about making your day perfect.</p>
+                    <p>
+                      No pressure, no obligation—just a friendly conversation
+                      about making your day perfect.
+                    </p>
                   </div>
                   <div className="success-contact">
                     <p>Need to reach us right away?</p>
                     <p>
-                      <a href="tel:+16123897005">(612) 389-7005</a> · <a href="mailto:michael@fortherecordmn.com">michael@fortherecordmn.com</a>
+                      <a href="tel:+16123897005">(612) 389-7005</a> ·{" "}
+                      <a href="mailto:michael@fortherecordmn.com">
+                        michael@fortherecordmn.com
+                      </a>
                     </p>
                   </div>
-                  <button className="btn-primary" onClick={() => setSubmitStatus(null)}>
+                  <button
+                    className="btn-primary"
+                    onClick={() => setSubmitStatus(null)}
+                  >
                     Send Another Message
                   </button>
                 </div>
               ) : (
-              <form className="contact-form" onSubmit={handleSubmit}>
-                {submitStatus === "error" && (
-                  <div className="form-error-message">
-                    <i data-lucide="alert-circle"></i>
-                    <p>
-                      Oops! Something went wrong. Please try again or call us at
-                      (612) 389-7005.
-                    </p>
-                  </div>
-                )}
+                <form className="contact-form" onSubmit={handleSubmit}>
+                  {submitStatus === "error" && (
+                    <div className="form-error-message">
+                      <i data-lucide="alert-circle"></i>
+                      <p>
+                        Oops! Something went wrong. Please try again or call us
+                        at (612) 389-7005.
+                      </p>
+                    </div>
+                  )}
 
-                <div className="form-row">
+                  <div className="form-row">
+                    <div className="form-group">
+                      <label htmlFor="firstName" className="form-label">
+                        First Name
+                      </label>
+                      <input
+                        type="text"
+                        id="firstName"
+                        name="firstName"
+                        className="form-input"
+                        placeholder="Sarah"
+                        value={formData.firstName}
+                        onChange={handleInputChange}
+                        required
+                      />
+                    </div>
+
+                    <div className="form-group">
+                      <label htmlFor="lastName" className="form-label">
+                        Last Name
+                      </label>
+                      <input
+                        type="text"
+                        id="lastName"
+                        name="lastName"
+                        className="form-input"
+                        placeholder="Johnson"
+                        value={formData.lastName}
+                        onChange={handleInputChange}
+                        required
+                      />
+                    </div>
+                  </div>
+
                   <div className="form-group">
-                    <label htmlFor="firstName" className="form-label">
-                      First Name
+                    <label htmlFor="email" className="form-label">
+                      Email Address
                     </label>
                     <input
-                      type="text"
-                      id="firstName"
-                      name="firstName"
+                      type="email"
+                      id="email"
+                      name="email"
                       className="form-input"
-                      placeholder="Sarah"
-                      value={formData.firstName}
+                      placeholder="your@email.com"
+                      value={formData.email}
                       onChange={handleInputChange}
                       required
                     />
                   </div>
 
                   <div className="form-group">
-                    <label htmlFor="lastName" className="form-label">
-                      Last Name
+                    <label htmlFor="phone" className="form-label">
+                      Phone Number
                     </label>
                     <input
-                      type="text"
-                      id="lastName"
-                      name="lastName"
+                      type="tel"
+                      id="phone"
+                      name="phone"
                       className="form-input"
-                      placeholder="Johnson"
-                      value={formData.lastName}
+                      placeholder="(763) 555-1234"
+                      value={formData.phone}
                       onChange={handleInputChange}
                       required
                     />
                   </div>
-                </div>
 
-                <div className="form-group">
-                  <label htmlFor="email" className="form-label">
-                    Email Address
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    className="form-input"
-                    placeholder="your@email.com"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    required
-                  />
-                </div>
+                  <div className="form-group">
+                    <label htmlFor="weddingDate" className="form-label">
+                      Wedding Date
+                    </label>
+                    <input
+                      type="date"
+                      id="weddingDate"
+                      name="weddingDate"
+                      className="form-input"
+                      value={formData.weddingDate}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
 
-                <div className="form-group">
-                  <label htmlFor="phone" className="form-label">
-                    Phone Number
-                  </label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    className="form-input"
-                    placeholder="(763) 555-1234"
-                    value={formData.phone}
-                    onChange={handleInputChange}
-                    required
-                  />
-                </div>
+                  <div className="form-group">
+                    <label htmlFor="source" className="form-label">
+                      How did you hear about us? (Optional)
+                    </label>
+                    <select
+                      id="source"
+                      name="source"
+                      className="form-select"
+                      value={formData.source}
+                      onChange={handleInputChange}
+                    >
+                      <option value="">Select an option</option>
+                      <option value="friend-referral">
+                        Friend or Family Referral
+                      </option>
+                      <option value="google">Google Search</option>
+                      <option value="instagram">Instagram</option>
+                      <option value="wedding-planner">Wedding Planner</option>
+                      <option value="wedding-vendor">Wedding Vendor</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
 
-                <div className="form-group">
-                  <label htmlFor="weddingDate" className="form-label">
-                    Wedding Date
-                  </label>
-                  <input
-                    type="date"
-                    id="weddingDate"
-                    name="weddingDate"
-                    className="form-input"
-                    value={formData.weddingDate}
-                    onChange={handleInputChange}
-                    required
-                  />
-                </div>
+                  <div className="form-group">
+                    <label htmlFor="message" className="form-label">
+                      Tell us about your day (Optional)
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      className="form-textarea"
+                      placeholder="Your venue, music style, vision... anything you'd like us to know!"
+                      rows="5"
+                      value={formData.message}
+                      onChange={handleInputChange}
+                    ></textarea>
+                  </div>
 
-                <div className="form-group">
-                  <label htmlFor="source" className="form-label">
-                    How did you hear about us? (Optional)
-                  </label>
-                  <select
-                    id="source"
-                    name="source"
-                    className="form-select"
-                    value={formData.source}
-                    onChange={handleInputChange}
+                  <button
+                    type="submit"
+                    className="form-submit"
+                    disabled={isSubmitting}
                   >
-                    <option value="">Select an option</option>
-                    <option value="friend-referral">
-                      Friend or Family Referral
-                    </option>
-                    <option value="google">Google Search</option>
-                    <option value="instagram">Instagram</option>
-                    <option value="wedding-planner">Wedding Planner</option>
-                    <option value="wedding-vendor">Wedding Vendor</option>
-                    <option value="other">Other</option>
-                  </select>
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="message" className="form-label">
-                    Tell us about your day (Optional)
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    className="form-textarea"
-                    placeholder="Your venue, music style, vision... anything you'd like us to know!"
-                    rows="5"
-                    value={formData.message}
-                    onChange={handleInputChange}
-                  ></textarea>
-                </div>
-
-                <button
-                  type="submit"
-                  className="form-submit"
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? "Sending..." : "Send Message"}
-                </button>
-              </form>
+                    {isSubmitting ? "Sending..." : "Send Message"}
+                  </button>
+                </form>
               )}
             </div>
 

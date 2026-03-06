@@ -32,7 +32,7 @@
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
   @page {
-    size: letter;
+    size: letter portrait;
     margin: 0;
   }
 
@@ -41,6 +41,9 @@
     color: var(--charcoal);
     background: #e8e6e1;
     -webkit-font-smoothing: antialiased;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    color-adjust: exact;
   }
 
   /* ============================================
@@ -48,27 +51,45 @@
      ============================================ */
   .page {
     width: 8.5in;
-    min-height: 11in;
+    height: 11in;
     margin: 0 auto;
     background: var(--cream);
     position: relative;
     overflow: hidden;
+    page-break-after: always;
+    page-break-inside: avoid;
+    display: flex;
+    flex-direction: column;
   }
 
-  .page + .page {
-    break-before: page;
+  .page:last-child {
+    page-break-after: auto;
   }
 
   @media screen {
     .page {
       margin: 20px auto;
       box-shadow: 0 8px 40px rgba(0,0,0,0.15);
+      min-height: 11in;
+      height: auto;
     }
   }
 
   @media print {
-    body { background: white; }
-    .page { margin: 0; box-shadow: none; }
+    body { 
+      background: white;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .page { 
+      margin: 0;
+      box-shadow: none;
+      height: 11in;
+      page-break-after: always;
+    }
+    .page:last-child {
+      page-break-after: auto;
+    }
   }
 
   /* ============================================
@@ -78,9 +99,11 @@
   /* Hero */
   .hero {
     background: var(--navy);
-    padding: 0.35in 0.65in 0.35in;
+    padding: 0.25in 0.65in 0.2in;
     position: relative;
     overflow: hidden;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
 
   .hero::before {
@@ -118,7 +141,7 @@
     gap: 16px;
     margin-top: -0.15in;
     margin-left: -0.3in;
-    margin-bottom: 10px;
+    margin-bottom: 6px;
   }
 
   .hero-logo svg {
@@ -167,14 +190,14 @@
   .hero-desc {
     font-size: 13px;
     color: rgba(255,255,255,0.8);
-    line-height: 1.65;
+    line-height: 1.5;
     max-width: 5.5in;
   }
 
   .hero-badges {
     display: flex;
     gap: 24px;
-    margin-top: 20px;
+    margin-top: 14px;
   }
 
   .badge {
@@ -203,7 +226,7 @@
 
   /* Why Section */
   .why-section {
-    padding: 0.45in 0.65in;
+    padding: 0.25in 0.65in;
     background: var(--cream);
   }
 
@@ -213,7 +236,7 @@
     color: var(--gold);
     text-transform: uppercase;
     letter-spacing: 2.5px;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
   }
 
   .section-heading {
@@ -221,20 +244,20 @@
     font-size: 26px;
     font-weight: 600;
     color: var(--navy);
-    margin-bottom: 18px;
+    margin-bottom: 12px;
     line-height: 1.2;
   }
 
   .why-grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 20px;
+    gap: 14px;
   }
 
   .why-card {
     background: var(--white);
     border-radius: 8px;
-    padding: 20px 16px;
+    padding: 14px 14px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     border-top: 3px solid var(--gold);
   }
@@ -243,7 +266,7 @@
     color: var(--gold);
     width: 22px;
     height: 22px;
-    margin-bottom: 10px;
+    margin-bottom: 6px;
   }
 
   .why-card h3 {
@@ -262,14 +285,14 @@
 
   /* Story / Quote section */
   .story-section {
-    padding: 0.4in 0.65in 0.5in;
+    padding: 0.2in 0.65in 0.25in;
     background: var(--white);
   }
 
   .story-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 30px;
+    gap: 20px;
     align-items: start;
   }
 
@@ -283,8 +306,10 @@
   .story-quote {
     background: var(--navy);
     border-radius: 8px;
-    padding: 28px 24px;
+    padding: 20px 20px;
     position: relative;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
 
   .story-quote blockquote::before {
@@ -331,20 +356,20 @@
     color: var(--gold);
     text-transform: uppercase;
     letter-spacing: 1.5px;
-    margin-top: 14px;
+    margin-top: 10px;
     display: block;
   }
 
   .values-row {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 12px;
-    margin-top: 18px;
+    gap: 10px;
+    margin-top: 12px;
   }
 
   .value-pill {
     text-align: center;
-    padding: 10px 8px;
+    padding: 7px 6px;
     background: var(--cream);
     border-radius: 6px;
     border: 1px solid var(--gold-line);
@@ -373,9 +398,11 @@
   /* Services header */
   .services-header {
     background: var(--navy);
-    padding: 0.4in 0.65in 0.35in;
+    padding: 0.25in 0.65in 0.2in;
     position: relative;
     overflow: hidden;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
 
   .services-header::before {
@@ -401,7 +428,7 @@
 
   /* Services checklist */
   .services-list-section {
-    padding: 0.35in 0.65in 0.25in;
+    padding: 0.2in 0.65in 0.15in;
     background: var(--cream);
   }
 
@@ -415,7 +442,7 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 5px 0;
+    padding: 3px 0;
   }
 
   .service-check i {
@@ -433,7 +460,7 @@
 
   /* Packages */
   .packages-section {
-    padding: 0.3in 0.65in 0.25in;
+    padding: 0.2in 0.65in 0.15in;
     background: var(--white);
   }
 
@@ -441,13 +468,13 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 16px;
-    margin-top: 16px;
+    margin-top: 10px;
   }
 
   .package-card {
     border: 1.5px solid #e0dcd5;
     border-radius: 8px;
-    padding: 18px 16px;
+    padding: 14px 14px;
     position: relative;
     background: var(--cream);
   }
@@ -486,7 +513,7 @@
     font-size: 20px;
     font-weight: 700;
     color: var(--gold);
-    margin-bottom: 10px;
+    margin-bottom: 6px;
     line-height: 1.2;
   }
 
@@ -521,7 +548,7 @@
 
   /* Extras */
   .extras-section {
-    padding: 0.2in 0.65in 0.2in;
+    padding: 0.12in 0.65in 0.12in;
     background: var(--cream);
   }
 
@@ -537,7 +564,7 @@
     align-items: flex-start;
     gap: 8px;
     background: var(--white);
-    padding: 12px 14px;
+    padding: 10px 12px;
     border-radius: 6px;
     border-left: 3px solid var(--gold);
   }
@@ -566,12 +593,15 @@
   /* Contact footer */
   .contact-footer {
     background: var(--navy);
-    padding: 0.35in 0.65in;
+    padding: 0.2in 0.65in;
+    flex-grow: 1;
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: relative;
     overflow: hidden;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
 
   .contact-footer::before {
@@ -613,7 +643,7 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    margin-bottom: 8px;
+    margin-bottom: 5px;
     justify-content: flex-end;
   }
 
@@ -634,18 +664,20 @@
     font-size: 12px;
     font-weight: 600;
     color: var(--gold);
-    margin-top: 12px;
+    margin-top: 8px;
     font-style: italic;
   }
 
   .note {
     text-align: center;
-    padding: 8px 0.65in;
+    padding: 5px 0.65in;
     font-size: 8.5px;
     color: rgba(255,255,255,0.45);
     background: var(--navy);
     border-top: 1px solid rgba(201,168,106,0.15);
     font-style: italic;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
 
   /* ============================================
@@ -654,9 +686,11 @@
 
   .planning-hero {
     background: var(--navy);
-    padding: 0.4in 0.65in 0.35in;
+    padding: 0.2in 0.65in 0.15in;
     position: relative;
     overflow: hidden;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
 
   .planning-hero::before {
@@ -681,21 +715,21 @@
 
   /* Ceremony music section */
   .ceremony-music {
-    padding: 0.3in 0.65in 0.25in;
+    padding: 0.15in 0.65in 0.12in;
     background: var(--cream);
   }
 
   .ceremony-timeline {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 12px;
-    margin-top: 14px;
+    gap: 8px;
+    margin-top: 10px;
   }
 
   .ceremony-moment {
     background: var(--white);
     border-radius: 6px;
-    padding: 14px;
+    padding: 10px;
     border-left: 3px solid var(--gold);
   }
 
@@ -724,15 +758,15 @@
 
   /* Planning questions */
   .planning-questions {
-    padding: 0.25in 0.65in 0.2in;
+    padding: 0.12in 0.65in 0.1in;
     background: var(--white);
   }
 
   .questions-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 14px 28px;
-    margin-top: 14px;
+    gap: 8px 24px;
+    margin-top: 10px;
   }
 
   .question-group h4 {
@@ -760,7 +794,7 @@
     font-size: 9.5px;
     line-height: 1.4;
     color: var(--charcoal);
-    padding: 3px 0;
+    padding: 2px 0;
     padding-left: 14px;
     position: relative;
   }
@@ -775,14 +809,14 @@
 
   /* Reception timeline */
   .reception-timeline {
-    padding: 0.2in 0.65in 0.2in;
+    padding: 0.12in 0.65in 0.12in;
     background: var(--cream);
   }
 
   .timeline-flow {
     display: flex;
     gap: 0;
-    margin-top: 12px;
+    margin-top: 8px;
     position: relative;
   }
 
@@ -830,21 +864,21 @@
 
   /* Pro tips */
   .pro-tips {
-    padding: 0.2in 0.65in 0.2in;
+    padding: 0.12in 0.65in 0.12in;
     background: var(--white);
   }
 
   .tips-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-top: 12px;
+    gap: 8px;
+    margin-top: 8px;
   }
 
   .tip-card {
     display: flex;
     gap: 10px;
-    padding: 12px;
+    padding: 10px;
     background: var(--cream);
     border-radius: 6px;
     align-items: flex-start;
@@ -874,10 +908,16 @@
   /* Page 3 footer */
   .planning-footer {
     background: var(--navy);
-    padding: 0.3in 0.65in;
-    text-align: center;
+    padding: 0.15in 0.65in;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr;
+    align-items: center;
+    gap: 24px;
     position: relative;
     overflow: hidden;
+    flex-grow: 1;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
 
   .planning-footer::before {
@@ -893,41 +933,40 @@
     opacity: 0.05;
   }
 
-  .planning-footer .section-heading {
+  .planning-footer-left {
+    position: relative;
+    z-index: 1;
+  }
+
+  .planning-footer-left .section-heading {
     color: var(--white);
-    font-size: 22px;
+    font-size: 20px;
+    margin-bottom: 4px;
+  }
+
+  .planning-footer-left p {
+    font-size: 10px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.5;
+  }
+
+  .planning-footer-col {
+    position: relative;
+    z-index: 1;
+  }
+
+  .planning-footer-col .contact-line {
+    justify-content: flex-start;
     margin-bottom: 6px;
   }
 
-  .planning-footer p {
-    font-size: 11px;
-    color: rgba(255,255,255,0.7);
-    line-height: 1.5;
-    margin-bottom: 14px;
-  }
-
-  .planning-footer .footer-contact {
-    display: flex;
-    justify-content: center;
-    gap: 28px;
-    position: relative;
-    z-index: 1;
-  }
-
-  .planning-footer .footer-contact .contact-line {
-    justify-content: center;
-    margin-bottom: 0;
-  }
-
-  .planning-footer .contact-tagline {
+  .planning-footer-col .contact-tagline {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 13px;
+    font-size: 11px;
     font-weight: 600;
     color: var(--gold);
     font-style: italic;
-    margin-top: 16px;
-    position: relative;
-    z-index: 1;
+    margin-top: 4px;
   }
 
 </style>
@@ -1208,7 +1247,7 @@
   <div class="planning-hero">
     <div class="section-eyebrow">Planning Workshop</div>
     <div class="section-heading">Your Wedding Audio, Thought Through</div>
-    <p>Great wedding audio doesn't happen by accident. These are the questions and moments worth thinking about early—so nothing gets missed on the day that matters most. Use this as a guide as you plan, and we'll work through the details together.</p>
+    <p>These are the questions and moments worth thinking about early—so nothing gets missed on your big day. Use this as a guide as you plan, and we'll work through the details together.</p>
   </div>
 
   <div class="gold-divider"></div>
@@ -1304,55 +1343,6 @@
     </div>
   </div>
 
-  <!-- Typical Reception Flow -->
-  <div class="reception-timeline">
-    <div class="section-eyebrow">Typical Reception Flow</div>
-    <div class="section-heading" style="font-size: 18px;">What a Great Reception Looks Like</div>
-
-    <div class="timeline-flow">
-      <div class="flow-step">
-        <div class="flow-dot"></div>
-        <div class="flow-label">Cocktail<br/>Hour</div>
-        <div class="flow-time">30–60 min</div>
-      </div>
-      <div class="flow-step">
-        <div class="flow-dot"></div>
-        <div class="flow-label">Grand<br/>Entrance</div>
-        <div class="flow-time">5 min</div>
-      </div>
-      <div class="flow-step">
-        <div class="flow-dot"></div>
-        <div class="flow-label">First<br/>Dance</div>
-        <div class="flow-time">3–5 min</div>
-      </div>
-      <div class="flow-step">
-        <div class="flow-dot"></div>
-        <div class="flow-label">Dinner &<br/>Speeches</div>
-        <div class="flow-time">1–2 hours</div>
-      </div>
-      <div class="flow-step">
-        <div class="flow-dot"></div>
-        <div class="flow-label">Parent<br/>Dances</div>
-        <div class="flow-time">5–10 min</div>
-      </div>
-      <div class="flow-step">
-        <div class="flow-dot"></div>
-        <div class="flow-label">Open<br/>Dancing</div>
-        <div class="flow-time">2–3 hours</div>
-      </div>
-      <div class="flow-step">
-        <div class="flow-dot"></div>
-        <div class="flow-label">Cake<br/>Cutting</div>
-        <div class="flow-time">10 min</div>
-      </div>
-      <div class="flow-step">
-        <div class="flow-dot"></div>
-        <div class="flow-label">Last Dance<br/>& Send-Off</div>
-        <div class="flow-time">10 min</div>
-      </div>
-    </div>
-  </div>
-
   <!-- Pro Tips -->
   <div class="pro-tips">
     <div class="section-eyebrow">Pro Tips</div>
@@ -1392,9 +1382,11 @@
 
   <!-- Page 3 Footer -->
   <div class="planning-footer">
-    <div class="section-heading">Let's Plan Your Perfect Day</div>
-    <p>Have questions about any of this? That's exactly what I'm here for.<br/>Let's walk through your vision together—no pressure, just planning.</p>
-    <div class="footer-contact">
+    <div class="planning-footer-left">
+      <div class="section-heading">Let's Plan Your Perfect Day</div>
+      <p>Have questions? That's exactly what I'm here for. Let's walk through your vision together.</p>
+    </div>
+    <div class="planning-footer-col">
       <div class="contact-line">
         <i data-lucide="phone"></i>
         <span>(612) 389-7005</span>
@@ -1403,12 +1395,14 @@
         <i data-lucide="mail"></i>
         <span>michael@fortherecordmn.com</span>
       </div>
+    </div>
+    <div class="planning-footer-col">
       <div class="contact-line">
         <i data-lucide="globe"></i>
         <span>fortherecordmn.com</span>
       </div>
+      <div class="contact-tagline">Perfect sound. Packed dance floor.<br/>One for the books.</div>
     </div>
-    <div class="contact-tagline">Perfect sound. Packed dance floor. One for the books.</div>
   </div>
 
 </div>

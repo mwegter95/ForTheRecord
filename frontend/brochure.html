@@ -287,16 +287,30 @@
     position: relative;
   }
 
-  .story-quote::before {
+  .story-quote blockquote::before {
     content: '\201C';
     font-family: 'Playfair Display', serif;
     font-size: 72px;
+    font-weight: 400;
     color: var(--gold);
     opacity: 0.3;
-    position: absolute;
-    top: -4px;
-    left: 16px;
-    line-height: 1;
+    line-height: 0;
+    vertical-align: -0.35em;
+    display: inline;
+    margin-right: 4px;
+  }
+
+  .story-quote blockquote::after {
+    content: '\201D';
+    font-family: 'Playfair Display', serif;
+    font-size: 72px;
+    font-weight: 400;
+    color: var(--gold);
+    opacity: 0.3;
+    line-height: 0;
+    vertical-align: -0.45em;
+    display: inline;
+    margin-left: 2px;
   }
 
   .story-quote blockquote {

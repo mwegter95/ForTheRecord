@@ -1,30 +1,30 @@
 {
   "files": {
-    "main.css": "/static/css/main.1b42c13d.css",
-    "main.js": "/static/js/main.f66010e2.js",
-    "static/media/wedding_dance_bouqet_toss.jpg": "/static/media/wedding_dance_bouqet_toss.7cdaf84d7ea8ba5617e4.jpg",
-    "static/media/wedding-dance-floor-guys.png": "/static/media/wedding-dance-floor-guys.4a6427ba8344b3f7331f.png",
-    "static/media/wedding-dance-floor2.png": "/static/media/wedding-dance-floor2.ba71a2252771d9ccee5a.png",
-    "static/media/wedding-dance-floor-laugh.png": "/static/media/wedding-dance-floor-laugh.4a02d8bf92db28a29f17.png",
-    "static/media/wedding-dance-floor3.png": "/static/media/wedding-dance-floor3.df69ca392052426c0b9a.png",
-    "static/media/Ashley_and_me.jpeg": "/static/media/Ashley_and_me.5ddeb4fba06e97bac140.jpeg",
-    "static/media/dj-setup-dancefloor.png": "/static/media/dj-setup-dancefloor.96d8f672f5134cf9f197.png",
-    "static/media/wedding-dance-floor4.jpg": "/static/media/wedding-dance-floor4.c982cc8a7910f21d4f64.jpg",
-    "static/media/DJ_Decks.jpeg": "/static/media/DJ_Decks.8b3a2fbaeeceb8be1ce4.jpeg",
-    "static/media/wedding2.jpg": "/static/media/wedding2.276ecbf40656a06b7644.jpg",
-    "static/media/wedding1.jpg": "/static/media/wedding1.e706a015b4d136035fdf.jpg",
-    "static/media/wedding3.jpg": "/static/media/wedding3.fef1af0ca9e31ba2c35b.jpg",
-    "static/media/wedding-dance-floor.jpg": "/static/media/wedding-dance-floor.b46cbd7cac7c80c3e615.jpg",
-    "static/media/Portrait_me.jpeg": "/static/media/Portrait_me.0ee2602ddace7479a465.jpeg",
-    "static/media/wedding-ceremony-audio2.jpg": "/static/media/wedding-ceremony-audio2.0a42612c65cfb4bd0740.jpg",
-    "static/media/wedding-ceremony-audio.jpg": "/static/media/wedding-ceremony-audio.abb7a17782b867daba6b.jpg",
+    "main.css": "/static/css/main.ac75252d.css",
+    "main.js": "/static/js/main.4c9305ff.js",
+    "static/media/wedding-ceremony-audio2.webp": "/static/media/wedding-ceremony-audio2.de04cab2504485f5558d.webp",
+    "static/media/wedding-dance-floor.webp": "/static/media/wedding-dance-floor.1edf6266f837c9076681.webp",
+    "static/media/wedding-dance-floor2.webp": "/static/media/wedding-dance-floor2.5f0b57430c93c13f647e.webp",
+    "static/media/DJ_Decks.webp": "/static/media/DJ_Decks.0483b4be38a557e4db32.webp",
+    "static/media/wedding-dance-floor4.webp": "/static/media/wedding-dance-floor4.b249388432be0870c94c.webp",
+    "static/media/Ashley_and_me.webp": "/static/media/Ashley_and_me.db3e4ff549b9942ef593.webp",
+    "static/media/wedding-ceremony-audio.webp": "/static/media/wedding-ceremony-audio.8705f224a0db79aa31de.webp",
+    "static/media/wedding2.webp": "/static/media/wedding2.d4b5390f861515061df5.webp",
+    "static/media/wedding-dance-floor-guys.webp": "/static/media/wedding-dance-floor-guys.e03a3db51b26910a0024.webp",
+    "static/media/wedding-dance-floor3.webp": "/static/media/wedding-dance-floor3.b2e92f6e09ec506fb974.webp",
+    "static/media/Portrait_me.webp": "/static/media/Portrait_me.2debc80b4f031abec1fa.webp",
+    "static/media/wedding-dance-floor-laugh.webp": "/static/media/wedding-dance-floor-laugh.422f68cb58d69b0cc47c.webp",
+    "static/media/wedding1.webp": "/static/media/wedding1.b41d0f75ffbb360a450f.webp",
+    "static/media/dj-setup-dancefloor.webp": "/static/media/dj-setup-dancefloor.bb62471e1ba61bac7ba0.webp",
+    "static/media/wedding_dance_bouqet_toss.webp": "/static/media/wedding_dance_bouqet_toss.2c1f88f788f7d348cbe6.webp",
+    "static/media/wedding3.webp": "/static/media/wedding3.94b2f60b16b6fda7d62c.webp",
     "static/media/for-the-record-logo.svg": "/static/media/for-the-record-logo.a9cfcca81bf3fdc81932f5f7eec04cfd.svg",
     "index.html": "/index.html",
-    "main.1b42c13d.css.map": "/static/css/main.1b42c13d.css.map",
-    "main.f66010e2.js.map": "/static/js/main.f66010e2.js.map"
+    "main.ac75252d.css.map": "/static/css/main.ac75252d.css.map",
+    "main.4c9305ff.js.map": "/static/js/main.4c9305ff.js.map"
   },
   "entrypoints": [
-    "static/css/main.1b42c13d.css",
-    "static/js/main.f66010e2.js"
+    "static/css/main.ac75252d.css",
+    "static/js/main.4c9305ff.js"
   ]
 }

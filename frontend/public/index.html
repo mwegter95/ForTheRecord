@@ -75,6 +75,22 @@
       href="%PUBLIC_URL%/images/favicon.svg"
     />
 
+    <!-- Preload hero image for fast LCP (mobile + desktop variants) -->
+    <link
+      rel="preload"
+      as="image"
+      type="image/webp"
+      href="%PUBLIC_URL%/images/hero-mobile.webp"
+      media="(max-width: 768px)"
+    />
+    <link
+      rel="preload"
+      as="image"
+      type="image/webp"
+      href="%PUBLIC_URL%/images/hero-desktop.webp"
+      media="(min-width: 769px)"
+    />
+
     <!-- Google Fonts - Deferred to avoid render-blocking -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -97,7 +113,7 @@
     </noscript>
 
     <!-- Lucide Icons - Deferred to avoid render-blocking -->
-    <script defer src="https://unpkg.com/lucide@latest"></script>
+    <script defer src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>

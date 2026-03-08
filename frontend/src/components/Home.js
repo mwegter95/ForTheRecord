@@ -78,14 +78,26 @@ const Home = () => {
 
             <div className="hero-image-wrapper">
               <div className="hero-photo-accent"></div>
-              <img
-                src={weddingDanceFloor2}
-                alt="Wedding dance floor"
-                className="hero-photo"
-                width="1200"
-                height="800"
-                fetchpriority="high"
-              />
+              <picture>
+                <source
+                  media="(max-width: 768px)"
+                  srcSet="/images/hero-mobile.webp"
+                  type="image/webp"
+                />
+                <source
+                  media="(min-width: 769px)"
+                  srcSet="/images/hero-desktop.webp"
+                  type="image/webp"
+                />
+                <img
+                  src="/images/hero-desktop.webp"
+                  alt="Wedding dance floor"
+                  className="hero-photo"
+                  width="1200"
+                  height="800"
+                  fetchPriority="high"
+                />
+              </picture>
             </div>
           </div>
         </div>

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import WeddingCeremonyAudio from "../images/wedding-ceremony-audio.jpg";
+import WeddingCeremonyAudio from "../images/wedding-ceremony-audio.webp";
 import "./Services.scss";
 
 export default function Services() {
@@ -28,6 +28,9 @@ export default function Services() {
             <img
               src={WeddingCeremonyAudio}
               alt="Professional wedding audio setup"
+              loading="lazy"
+              width="800"
+              height="532"
             />
           </div>
 

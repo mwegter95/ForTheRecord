@@ -2,22 +2,22 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Gallery.scss";
 
-// Import gallery images
-import weddingDanceFloor from "../images/wedding-dance-floor.jpg";
-import weddingDanceFloor2 from "../images/wedding-dance-floor2.png";
-import weddingDanceFloor3 from "../images/wedding-dance-floor3.png";
-import weddingDanceFloor4 from "../images/wedding-dance-floor4.jpg";
-import weddingCeremonyAudio from "../images/wedding-ceremony-audio.jpg";
-import weddingCeremonyAudio2 from "../images/wedding-ceremony-audio2.jpg";
-import wedding1 from "../images/wedding1.jpg";
-import wedding2 from "../images/wedding2.jpg";
-import wedding3 from "../images/wedding3.jpg";
-import weddingDanceBouquetToss from "../images/wedding_dance_bouqet_toss.jpg";
-import ashleyAndMe from "../images/Ashley_and_me.jpeg";
-import djDecks from "../images/DJ_Decks.jpeg";
-import djSetupDancefloor from "../images/dj-setup-dancefloor.png";
-import weddingDanceFloorGuys from "../images/wedding-dance-floor-guys.png";
-import weddingDanceFloorLaugh from "../images/wedding-dance-floor-laugh.png";
+// Import gallery images (WebP)
+import weddingDanceFloor from "../images/wedding-dance-floor.webp";
+import weddingDanceFloor2 from "../images/wedding-dance-floor2.webp";
+import weddingDanceFloor3 from "../images/wedding-dance-floor3.webp";
+import weddingDanceFloor4 from "../images/wedding-dance-floor4.webp";
+import weddingCeremonyAudio from "../images/wedding-ceremony-audio.webp";
+import weddingCeremonyAudio2 from "../images/wedding-ceremony-audio2.webp";
+import wedding1 from "../images/wedding1.webp";
+import wedding2 from "../images/wedding2.webp";
+import wedding3 from "../images/wedding3.webp";
+import weddingDanceBouquetToss from "../images/wedding_dance_bouqet_toss.webp";
+import ashleyAndMe from "../images/Ashley_and_me.webp";
+import djDecks from "../images/DJ_Decks.webp";
+import djSetupDancefloor from "../images/dj-setup-dancefloor.webp";
+import weddingDanceFloorGuys from "../images/wedding-dance-floor-guys.webp";
+import weddingDanceFloorLaugh from "../images/wedding-dance-floor-laugh.webp";
 
 const Gallery = () => {
   const [activeFilter, setActiveFilter] = useState("All");
@@ -56,75 +56,120 @@ const Gallery = () => {
       image: weddingDanceFloor,
       category: "Dance Floor",
       alt: "Couple dancing on wedding dance floor",
+      width: 800,
+      height: 533,
     },
     {
       id: 2,
       image: weddingDanceFloor2,
       category: "Dance Floor",
       alt: "Wedding dance floor with energy and movement",
+      width: 1200,
+      height: 800,
     },
     {
       id: 3,
       image: weddingDanceFloor3,
       category: "Dance Floor",
       alt: "Wedding guests dancing",
+      width: 1000,
+      height: 666,
     },
     {
       id: 4,
       image: weddingDanceFloor4,
       category: "Dance Floor",
       alt: "Dance floor celebration",
+      width: 800,
+      height: 600,
     },
     {
       id: 5,
       image: weddingDanceBouquetToss,
       category: "Dance Floor",
       alt: "Wedding bouquet toss moment",
+      width: 800,
+      height: 499,
     },
     {
       id: 6,
       image: weddingCeremonyAudio,
       category: "Ceremony",
       alt: "Wedding ceremony setup",
+      width: 800,
+      height: 532,
     },
     {
       id: 7,
       image: weddingCeremonyAudio2,
       category: "Ceremony",
       alt: "Ceremony audio equipment",
+      width: 800,
+      height: 1000,
     },
     {
       id: 8,
       image: wedding1,
       category: "Ceremony",
       alt: "Wedding ceremony moment",
+      width: 800,
+      height: 533,
     },
-    { id: 9, image: ashleyAndMe, category: "Couples", alt: "Couple portrait" },
-    { id: 10, image: wedding2, category: "Couples", alt: "Newlyweds" },
-    { id: 11, image: wedding3, category: "Couples", alt: "Wedding couple" },
+    {
+      id: 9,
+      image: ashleyAndMe,
+      category: "Couples",
+      alt: "Couple portrait",
+      width: 800,
+      height: 600,
+    },
+    {
+      id: 10,
+      image: wedding2,
+      category: "Couples",
+      alt: "Newlyweds",
+      width: 800,
+      height: 532,
+    },
+    {
+      id: 11,
+      image: wedding3,
+      category: "Couples",
+      alt: "Wedding couple",
+      width: 800,
+      height: 533,
+    },
     {
       id: 12,
       image: djDecks,
       category: "Dance Floor",
       alt: "DJ equipment and turntables",
+      width: 800,
+      height: 328,
     },
     {
       id: 13,
       image: djSetupDancefloor,
       category: "Dance Floor",
       alt: "DJ setup at dance floor",
+      width: 800,
+      height: 533,
     },
     {
       id: 14,
       image: weddingDanceFloorGuys,
       category: "Dance Floor",
       alt: "Grooms dancing at wedding reception",
+      width: 800,
+      height: 669,
     },
     {
       id: 15,
       image: weddingDanceFloorLaugh,
       category: "Dance Floor",
       alt: "Guests laughing and dancing at wedding",
+      width: 800,
+      height: 533,
     },
   ];
 
@@ -179,12 +224,10 @@ const Gallery = () => {
                   src={item.image}
                   alt={item.alt}
                   className="gallery-image"
+                  loading="lazy"
+                  width={item.width}
+                  height={item.height}
                 />
-                <div className="gallery-overlay">
-                  <span className="expand-icon">
-                    <i data-lucide="maximize-2"></i>
-                  </span>
-                </div>
               </div>
             ))}
           </div>

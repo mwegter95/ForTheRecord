@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import weddingDanceFloor2 from "../images/wedding-dance-floor2.png";
-import weddingDanceFloor3 from "../images/wedding-dance-floor3.png";
-import weddingCeremonyAudio2 from "../images/wedding-ceremony-audio2.jpg";
-import weddingDanceFloor4 from "../images/wedding-dance-floor4.jpg";
-import weddingDanceFloor from "../images/wedding-dance-floor.jpg";
-import weddingCeremonyAudio from "../images/wedding-ceremony-audio.jpg";
-import wedding1 from "../images/wedding1.jpg";
+import weddingDanceFloor2 from "../images/wedding-dance-floor2.webp";
+import weddingDanceFloor3 from "../images/wedding-dance-floor3.webp";
+import weddingCeremonyAudio2 from "../images/wedding-ceremony-audio2.webp";
+import weddingDanceFloor4 from "../images/wedding-dance-floor4.webp";
+import weddingDanceFloor from "../images/wedding-dance-floor.webp";
+import weddingCeremonyAudio from "../images/wedding-ceremony-audio.webp";
+import wedding1 from "../images/wedding1.webp";
 import "./Home.scss";
 
 const Home = () => {
@@ -82,6 +82,9 @@ const Home = () => {
                 src={weddingDanceFloor2}
                 alt="Wedding dance floor"
                 className="hero-photo"
+                width="1200"
+                height="800"
+                fetchpriority="high"
               />
             </div>
           </div>
@@ -149,7 +152,13 @@ const Home = () => {
             </div>
 
             <div className="story-image">
-              <img src={wedding1} alt="Wedding celebration" />
+              <img
+                src={wedding1}
+                alt="Wedding celebration"
+                loading="lazy"
+                width="800"
+                height="533"
+              />
             </div>
           </div>
         </div>
@@ -209,36 +218,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* TESTIMONIALS SECTION */}
-      {/* <section className="testimonials" id="testimonials">
-        <div className="container">
-          <div className="section-header">
-            <div className="section-eyebrow">What Couples Say</div>
-            <h2>Real Stories From Real Days</h2>
-          </div>
-
-          <div className="testimonial-slide">
-            <div className="testimonial-stars">
-              {[...Array(5)].map((_, i) => (
-                <i
-                  key={i}
-                  data-lucide="star"
-                  style={{ width: "20px", height: "20px" }}
-                ></i>
-              ))}
-            </div>
-            <p className="testimonial-text">
-              "Michael's attention to detail with the audio was incredible.
-              Every moment of our ceremony came through perfectly. But what
-              really stood out was his energy during the reception—he read the
-              room, played what people wanted to hear, and kept the dance floor
-              packed all night. This is what a real DJ should be."
-            </p>
-            <p className="testimonial-author">Sarah & Mike, Minneapolis, MN</p>
-          </div>
-        </div>
-      </section> */}
-
       {/* GALLERY SECTION */}
       <section className="gallery" id="gallery">
         <div className="container">
@@ -252,26 +231,56 @@ const Home = () => {
               <img
                 src={weddingDanceFloor2}
                 alt="Wedding dance floor celebration"
+                loading="lazy"
+                width="1200"
+                height="800"
               />
             </div>
             <div className="gallery-item">
-              <img src={weddingDanceFloor3} alt="Wedding reception dancing" />
+              <img
+                src={weddingDanceFloor3}
+                alt="Wedding reception dancing"
+                loading="lazy"
+                width="1000"
+                height="666"
+              />
             </div>
             <div className="gallery-item">
               <img
                 src={weddingCeremonyAudio2}
                 alt="Wedding ceremony audio setup"
                 style={{ objectPosition: "center 100%" }}
+                loading="lazy"
+                width="800"
+                height="1000"
               />
             </div>
             <div className="gallery-item">
-              <img src={weddingDanceFloor4} alt="Dance floor energy" />
+              <img
+                src={weddingDanceFloor4}
+                alt="Dance floor energy"
+                loading="lazy"
+                width="800"
+                height="600"
+              />
             </div>
             <div className="gallery-item">
-              <img src={weddingDanceFloor} alt="Wedding celebration" />
+              <img
+                src={weddingDanceFloor}
+                alt="Wedding celebration"
+                loading="lazy"
+                width="800"
+                height="533"
+              />
             </div>
             <div className="gallery-item">
-              <img src={weddingCeremonyAudio} alt="Ceremony audio and sound" />
+              <img
+                src={weddingCeremonyAudio}
+                alt="Ceremony audio and sound"
+                loading="lazy"
+                width="800"
+                height="532"
+              />
             </div>
           </div>
 
@@ -292,7 +301,13 @@ const Home = () => {
         <div className="container">
           <div className="services-content">
             <div className="services-image">
-              <img src={weddingDanceFloor3} alt="DJ services and setup" />
+              <img
+                src={weddingDanceFloor3}
+                alt="DJ services and setup"
+                loading="lazy"
+                width="1000"
+                height="666"
+              />
             </div>
 
             <div className="services-list-wrapper">

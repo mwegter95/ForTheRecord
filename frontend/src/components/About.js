@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import PortraitMe from "../images/Portrait_me.jpeg";
-import AshleyAndMe from "../images/Ashley_and_me.jpeg";
+import PortraitMe from "../images/Portrait_me.webp";
+import AshleyAndMe from "../images/Ashley_and_me.webp";
 import "./About.scss";
 
 export default function About() {
@@ -64,7 +64,13 @@ export default function About() {
           </div>
 
           <div className="origin-image">
-            <img src={PortraitMe} alt="Michael Wegter, DJ Synfinity" />
+            <img
+              src={PortraitMe}
+              alt="Michael Wegter, DJ Synfinity"
+              loading="lazy"
+              width="600"
+              height="902"
+            />
           </div>
         </div>
       </section>
@@ -152,7 +158,13 @@ export default function About() {
           </div>
 
           <div className="drives-image">
-            <img src={AshleyAndMe} alt="Michael and Ashley" />
+            <img
+              src={AshleyAndMe}
+              alt="Michael and Ashley"
+              loading="lazy"
+              width="800"
+              height="600"
+            />
           </div>
         </div>
       </section>

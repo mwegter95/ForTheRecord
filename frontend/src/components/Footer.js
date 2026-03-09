@@ -22,6 +22,8 @@ const Footer = () => {
             src={LogoSvg}
             alt="For the Record Logo"
             className="footer-logo"
+            width="60"
+            height="60"
           />
           <h3 className="footer-title">For the Record</h3>
           <p className="footer-tagline">

@@ -44,6 +44,8 @@ const Navbar = () => {
             src={LogoSvg}
             alt="For the Record Logo"
             className="navbar-logo"
+            width="40"
+            height="40"
           />
           <span className="brand-text">For the Record</span>
         </Link>

@@ -23,7 +23,7 @@ const Home = () => {
       <section className="hero" id="hero">
         <div className="container">
           <div className="hero-content">
-            <div className="hero-text">
+            <div className="hero-intro">
               <div className="hero-eyebrow">
                 <i
                   data-lucide="map-pin"
@@ -37,7 +37,33 @@ const Home = () => {
                 celebration. Stress-free partnership from planning to last
                 dance.
               </p>
+            </div>
 
+            <div className="hero-image-wrapper">
+              <div className="hero-photo-accent"></div>
+              <picture>
+                <source
+                  media="(max-width: 768px)"
+                  srcSet="/images/hero-mobile.webp"
+                  type="image/webp"
+                />
+                <source
+                  media="(min-width: 769px)"
+                  srcSet="/images/hero-desktop.webp"
+                  type="image/webp"
+                />
+                <img
+                  src="/images/hero-desktop.webp"
+                  alt="Wedding dance floor"
+                  className="hero-photo"
+                  width="1200"
+                  height="800"
+                  fetchPriority="high"
+                />
+              </picture>
+            </div>
+
+            <div className="hero-actions">
               <div className="hero-badges">
                 <div className="badge">
                   <i
@@ -74,30 +100,6 @@ const Home = () => {
                   (612) 389-7005
                 </a>
               </div>
-            </div>
-
-            <div className="hero-image-wrapper">
-              <div className="hero-photo-accent"></div>
-              <picture>
-                <source
-                  media="(max-width: 768px)"
-                  srcSet="/images/hero-mobile.webp"
-                  type="image/webp"
-                />
-                <source
-                  media="(min-width: 769px)"
-                  srcSet="/images/hero-desktop.webp"
-                  type="image/webp"
-                />
-                <img
-                  src="/images/hero-desktop.webp"
-                  alt="Wedding dance floor"
-                  className="hero-photo"
-                  width="1200"
-                  height="800"
-                  fetchPriority="high"
-                />
-              </picture>
             </div>
           </div>
         </div>
@@ -168,8 +170,8 @@ const Home = () => {
                 src={wedding1}
                 alt="Wedding celebration"
                 loading="lazy"
-                width="800"
-                height="533"
+                width="600"
+                height="400"
               />
             </div>
           </div>
@@ -244,8 +246,8 @@ const Home = () => {
                 src={weddingDanceFloor2}
                 alt="Wedding dance floor celebration"
                 loading="lazy"
-                width="1200"
-                height="800"
+                width="600"
+                height="400"
               />
             </div>
             <div className="gallery-item">
@@ -253,8 +255,8 @@ const Home = () => {
                 src={weddingDanceFloor3}
                 alt="Wedding reception dancing"
                 loading="lazy"
-                width="1000"
-                height="666"
+                width="600"
+                height="400"
               />
             </div>
             <div className="gallery-item">
@@ -317,8 +319,8 @@ const Home = () => {
                 src={weddingDanceFloor3}
                 alt="DJ services and setup"
                 loading="lazy"
-                width="1000"
-                height="666"
+                width="600"
+                height="400"
               />
             </div>
 

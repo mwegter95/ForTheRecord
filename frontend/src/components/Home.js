@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import useSEO from "../hooks/useSEO";
 import weddingDanceFloor2 from "../images/wedding-dance-floor2.webp";
 import weddingDanceFloor3 from "../images/wedding-dance-floor3.webp";
+import weddingDanceFloor3HQ from "../images/wedding-dance-floor3-hq.webp";
 import weddingCeremonyAudio2 from "../images/wedding-ceremony-audio2.webp";
 import weddingDanceFloor4 from "../images/wedding-dance-floor4.webp";
 import weddingDanceFloor from "../images/wedding-dance-floor.webp";
@@ -12,10 +13,9 @@ import "./Home.scss";
 
 const Home = () => {
   useSEO({
-    title:
-      "For the Record | Minnesota Wedding DJ | Minneapolis, Twin Cities & Beyond",
+    title: "For the Record | MN Wedding DJ | Twin Cities",
     description:
-      "Minnesota's audio-obsessed wedding DJ serving Minneapolis, St. Paul, Twin Cities & beyond. Expert ceremony audio, unforgettable reception energy, stress-free planning. BA in Music, 10+ years experience.",
+      "Audio-obsessed wedding DJ serving Minneapolis, St. Paul & the Twin Cities. Expert ceremony sound, unforgettable energy, stress-free planning.",
     canonical: "https://fortherecordmn.com/",
   });
 
@@ -53,20 +53,20 @@ const Home = () => {
               <picture>
                 <source
                   media="(max-width: 768px)"
-                  srcSet="/images/hero-mobile.webp"
+                  srcSet="/images/hero-mobile-hq.webp"
                   type="image/webp"
                 />
                 <source
                   media="(min-width: 769px)"
-                  srcSet="/images/hero-desktop.webp"
+                  srcSet="/images/hero-desktop-hq.webp"
                   type="image/webp"
                 />
                 <img
-                  src="/images/hero-desktop.webp"
+                  src="/images/hero-desktop-hq.webp"
                   alt="Wedding dance floor"
                   className="hero-photo"
-                  width="1200"
-                  height="800"
+                  width="2400"
+                  height="1600"
                   fetchPriority="high"
                 />
               </picture>
@@ -326,11 +326,11 @@ const Home = () => {
           <div className="services-content">
             <div className="services-image">
               <img
-                src={weddingDanceFloor3}
+                src={weddingDanceFloor3HQ}
                 alt="DJ services and setup"
                 loading="lazy"
-                width="600"
-                height="400"
+                width="1688"
+                height="1125"
               />
             </div>
 

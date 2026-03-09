@@ -22,10 +22,9 @@ import weddingDanceFloorLaugh from "../images/wedding-dance-floor-laugh.webp";
 
 const Gallery = () => {
   useSEO({
-    title:
-      "Wedding DJ Gallery | For the Record | Minnesota Wedding Photos",
+    title: "Wedding Gallery | For the Record MN DJ",
     description:
-      "See real Minnesota weddings by For the Record. Dance floor energy, ceremony audio setups & celebrations across Minneapolis, St. Paul & the Twin Cities.",
+      "Real MN weddings by For the Record. Dance floor energy, ceremony setups & celebrations across Minneapolis, St. Paul & the Twin Cities.",
     canonical: "https://fortherecordmn.com/gallery",
   });
 
@@ -264,6 +263,28 @@ const Gallery = () => {
           </div>
         </div>
       )}
+
+      {/* About Our Work */}
+      <section className="gallery-about-section">
+        <div className="container">
+          <div className="gallery-about-content">
+            <h2>Wedding DJ Moments Across Minnesota</h2>
+            <p>
+              Every photo here represents a real couple and a real celebration.
+              From intimate lakeside ceremonies near St. Cloud to packed dance
+              floors at Minneapolis venue halls, we've had the privilege of
+              providing expert audio and high-energy entertainment for weddings
+              across the Twin Cities and beyond. Our approach is simple: arrive
+              early, test everything in your actual space, and deliver flawless
+              sound from your first dance to the last song of the night. Whether
+              it's a 50-person gathering in a St. Paul garden or a 300-guest
+              reception in a Duluth ballroom, we bring the same obsessive
+              attention to audio quality and the same commitment to reading the
+              room and keeping your guests on the dance floor.
+            </p>
+          </div>
+        </div>
+      </section>
 
       {/* CTA Section */}
       <section className="gallery-cta-section">

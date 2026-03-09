@@ -199,6 +199,31 @@
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
 }
 
+.gallery-about-section {
+  padding: 3rem 0;
+  background-color: var(--cream);
+}
+
+.gallery-about-content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+
+  h2 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 2rem;
+    color: var(--navy);
+    margin-bottom: 1rem;
+    font-weight: 400;
+  }
+
+  p {
+    font-size: 1.05rem;
+    color: var(--charcoal);
+    line-height: 1.7;
+  }
+}
+
 .gallery-cta-section {
   padding: 1.5rem 0;
   background-color: var(--cream);

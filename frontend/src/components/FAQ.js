@@ -5,10 +5,9 @@ import "./FAQ.scss";
 
 const FAQ = () => {
   useSEO({
-    title:
-      "Wedding DJ FAQ | For the Record | Minnesota Wedding Questions",
+    title: "Wedding DJ FAQ | For the Record MN",
     description:
-      "Common questions about booking a wedding DJ in Minnesota. Learn about packages, ceremony audio, booking timeline, and what makes For the Record different. Twin Cities & beyond.",
+      "Common questions about booking a wedding DJ in Minnesota. Packages, ceremony audio, timeline & what makes For the Record different.",
     canonical: "https://fortherecordmn.com/faq",
   });
 
@@ -98,7 +97,7 @@ const FAQ = () => {
       {/* Hero Section */}
       <section className="faq-hero">
         <div className="container">
-          <h1 className="section-title">Frequently Asked Questions</h1>
+          <h1 className="section-title">Wedding DJ FAQ</h1>
           <p className="section-description">
             Everything you need to know about booking your Twin Cities
             wedding DJ. Can't find your answer? Reach out and let's chat.

@@ -22,10 +22,9 @@ const GetInTouch = () => {
   const [submitStatus, setSubmitStatus] = useState(null);
 
   useSEO({
-    title:
-      "Contact For the Record | Book Your Minnesota Wedding DJ",
+    title: "Contact | Book Your MN Wedding DJ",
     description:
-      "Book your Minnesota wedding DJ today. Contact For the Record for a free, no-pressure consultation. Serving Minneapolis, St. Paul, St. Cloud & the Twin Cities. (612) 389-7005.",
+      "Book your MN wedding DJ. Contact For the Record for a free consultation. Serving Minneapolis, St. Paul, St. Cloud & the Twin Cities.",
     canonical: "https://fortherecordmn.com/get-in-touch",
   });
 
@@ -108,7 +107,7 @@ const GetInTouch = () => {
       {/* Hero Section */}
       <section className="get-in-touch-hero">
         <div className="container">
-          <h1 className="hero-title">Let's Make Your Day Unforgettable</h1>
+          <h1 className="hero-title">Book Your Wedding DJ</h1>
           <p className="hero-subtitle">
             Planning a wedding in Minneapolis, St. Paul, or anywhere in MN?
             Fill out the form below and we'll respond within 24 hours—no
@@ -382,6 +381,28 @@ const GetInTouch = () => {
                 <p className="testimonial-author">— Sarah & Michael, 2024</p>
               </div> */}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Why For the Record */}
+      <section className="why-ftr-section">
+        <div className="container">
+          <div className="why-ftr-content">
+            <h2>Why Couples Choose For the Record</h2>
+            <p>
+              We're not your average wedding DJ. With a BA in Music and over 10
+              years of live event experience across Minneapolis, St. Paul, and
+              the greater Twin Cities area, we bring a level of audio expertise
+              that most DJs simply can't match. We obsess over ceremony clarity
+              so every guest hears your vows, and we read the room in real time
+              to keep the dance floor packed all night. From the first
+              consultation to the last song, we treat your wedding like the
+              once-in-a-lifetime event it is—with custom playlists, professional
+              MCing, backup equipment on hand, and the kind of stress-free
+              partnership that lets you actually enjoy your day. That's the For
+              the Record difference.
+            </p>
           </div>
         </div>
       </section>

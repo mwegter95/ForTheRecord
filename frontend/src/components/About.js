@@ -7,10 +7,9 @@ import "./About.scss";
 
 export default function About() {
   useSEO({
-    title:
-      "About For the Record | Minnesota Wedding DJ | Minneapolis & Twin Cities",
+    title: "About | For the Record MN Wedding DJ",
     description:
-      "Meet the audio-obsessed DJ behind For the Record. BA in Music, 10+ years of wedding DJ experience serving Minneapolis, St. Paul, Twin Cities & all of Minnesota.",
+      "Meet the DJ behind For the Record. BA in Music, 10+ years spinning weddings across Minneapolis, St. Paul & all of Minnesota.",
     canonical: "https://fortherecordmn.com/about",
   });
 

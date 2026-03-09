@@ -425,6 +425,31 @@
   }
 }
 
+.why-ftr-section {
+  padding: 3rem 0;
+  background-color: var(--navy);
+}
+
+.why-ftr-content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+
+  h2 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 2rem;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    font-weight: 400;
+  }
+
+  p {
+    font-size: 1.05rem;
+    color: var(--cream);
+    line-height: 1.7;
+  }
+}
+
 .bottom-cta-section {
   padding: 1.5rem 0;
   background-color: var(--cream);

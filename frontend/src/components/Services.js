@@ -6,10 +6,9 @@ import "./Services.scss";
 
 export default function Services() {
   useSEO({
-    title:
-      "Wedding DJ Services & Packages | For the Record | Minneapolis, MN",
+    title: "Wedding DJ Packages | For the Record | MN",
     description:
-      "Custom wedding DJ packages for Minnesota weddings. Ceremony audio, reception entertainment, MCing, lighting & more. Serving Minneapolis, St. Paul, St. Cloud & Twin Cities.",
+      "Custom wedding DJ packages for MN weddings. Ceremony audio, reception entertainment, MCing, lighting & more. Minneapolis, St. Paul & beyond.",
     canonical: "https://fortherecordmn.com/services",
   });
 

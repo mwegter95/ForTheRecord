@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import useSEO from "../hooks/useSEO";
 import weddingDanceFloor2 from "../images/wedding-dance-floor2.webp";
 import weddingDanceFloor3 from "../images/wedding-dance-floor3.webp";
 import weddingCeremonyAudio2 from "../images/wedding-ceremony-audio2.webp";
@@ -10,6 +11,14 @@ import wedding1 from "../images/wedding1.webp";
 import "./Home.scss";
 
 const Home = () => {
+  useSEO({
+    title:
+      "For the Record | Minnesota Wedding DJ | Minneapolis, Twin Cities & Beyond",
+    description:
+      "Minnesota's audio-obsessed wedding DJ serving Minneapolis, St. Paul, Twin Cities & beyond. Expert ceremony audio, unforgettable reception energy, stress-free planning. BA in Music, 10+ years experience.",
+    canonical: "https://fortherecordmn.com/",
+  });
+
   // Initialize Lucide icons after component mounts
   useEffect(() => {
     if (window.lucide) {
@@ -210,8 +219,9 @@ const Home = () => {
               </div>
               <h3>Musical Expertise</h3>
               <p>
-                A degree in music and 10+ years of wedding experience means I
-                know how to build an unforgettable night, song by song.
+                A degree in music and 10+ years of wedding DJ experience across
+                the Twin Cities means I know how to build an unforgettable
+                night, song by song.
               </p>
             </div>
 
@@ -414,9 +424,9 @@ const Home = () => {
           <div className="contact-cta-content">
             <h2>Let's Chat About Your Day</h2>
             <p>
-              No pressure, no sales pitch. Just a conversation about your vision
-              and how we can make it happen with crystal-clear audio and
-              unforgettable energy.
+              No pressure, no sales pitch. Just a conversation about your
+              vision and how we can make it happen—anywhere in MN—with
+              crystal-clear audio and unforgettable energy.
             </p>
 
             <div className="contact-methods">

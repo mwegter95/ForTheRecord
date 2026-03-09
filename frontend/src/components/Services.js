@@ -1,9 +1,18 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import useSEO from "../hooks/useSEO";
 import WeddingCeremonyAudio from "../images/wedding-ceremony-audio.webp";
 import "./Services.scss";
 
 export default function Services() {
+  useSEO({
+    title:
+      "Wedding DJ Services & Packages | For the Record | Minneapolis, MN",
+    description:
+      "Custom wedding DJ packages for Minnesota weddings. Ceremony audio, reception entertainment, MCing, lighting & more. Serving Minneapolis, St. Paul, St. Cloud & Twin Cities.",
+    canonical: "https://fortherecordmn.com/services",
+  });
+
   useEffect(() => {
     window.lucide?.createIcons();
   }, []);
@@ -13,7 +22,7 @@ export default function Services() {
       {/* Hero Banner */}
       <section className="services-hero">
         <h1 className="section-title">
-          Complete Wedding & Event Entertainment
+          For the Record MN Wedding DJ Services & Packages
         </h1>
         <p className="section-description">
           Whatever your budget, we have a package for you. Expert audio,
@@ -38,9 +47,9 @@ export default function Services() {
             <h2 className="section-header">Wedding Entertainment</h2>
             <p>
               Your wedding deserves sound that matches the importance of the
-              moment. From crystal-clear ceremony audio to a reception that
-              keeps your guests dancing all night, I handle every technical
-              detail so you can focus on enjoying your day.
+              moment. Whether you're celebrating in Minneapolis, St. Paul, St.
+              Cloud, or anywhere across Minnesota or Western Wisconsin, I handle every
+              technical detail so you can focus on enjoying your day.
             </p>
             <p>
               I work closely with you to understand your vision and your music

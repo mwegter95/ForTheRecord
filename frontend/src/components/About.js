@@ -1,10 +1,19 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import useSEO from "../hooks/useSEO";
 import PortraitMe from "../images/Portrait_me.webp";
 import AshleyAndMe from "../images/Ashley_and_me.webp";
 import "./About.scss";
 
 export default function About() {
+  useSEO({
+    title:
+      "About For the Record | Minnesota Wedding DJ | Minneapolis & Twin Cities",
+    description:
+      "Meet the audio-obsessed DJ behind For the Record. BA in Music, 10+ years of wedding DJ experience serving Minneapolis, St. Paul, Twin Cities & all of Minnesota.",
+    canonical: "https://fortherecordmn.com/about",
+  });
+
   useEffect(() => {
     window.lucide?.createIcons();
   }, []);
@@ -24,7 +33,7 @@ export default function About() {
       <section className="origin-story">
         <div className="origin-grid">
           <div className="origin-content">
-            <h2 className="section-header">The Moment Everything Changed</h2>
+            <h2 className="section-header">How a Twin Cities Wedding Changed Everything</h2>
             <p>
               I'll never forget attending a wedding where the DJ had all the
               right gear but completely lacked the technique to use it. The
@@ -116,15 +125,15 @@ export default function About() {
             <h3>Founded For the Record</h3>
             <p>
               Brought my obsession with audio excellence and technical mastery
-              to Minnesota weddings.
+              to MN weddings.
             </p>
           </div>
 
           <div className="timeline-card">
             <h3>Today</h3>
             <p>
-              10+ years of DJ experience, countless happy couples, and an
-              unrelenting commitment to perfect sound.
+              10+ years of DJ experience across Minneapolis, St. Paul, and
+              beyond—and an unrelenting commitment to perfect sound.
             </p>
           </div>
         </div>
@@ -228,7 +237,7 @@ export default function About() {
           style={{ color: "#2D3142", marginBottom: "2rem", fontSize: "1.1rem" }}
         >
           Let's talk about your wedding and what perfect sound means for your
-          day.
+          day—anywhere in Minnesota.
         </p>
         <Link to="/get-in-touch" className="cta-button">
           Get In Touch

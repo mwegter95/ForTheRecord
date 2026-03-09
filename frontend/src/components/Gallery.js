@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import useSEO from "../hooks/useSEO";
 import "./Gallery.scss";
 
 // Import gallery images (WebP)
@@ -20,6 +21,14 @@ import weddingDanceFloorGuys from "../images/wedding-dance-floor-guys.webp";
 import weddingDanceFloorLaugh from "../images/wedding-dance-floor-laugh.webp";
 
 const Gallery = () => {
+  useSEO({
+    title:
+      "Wedding DJ Gallery | For the Record | Minnesota Wedding Photos",
+    description:
+      "See real Minnesota weddings by For the Record. Dance floor energy, ceremony audio setups & celebrations across Minneapolis, St. Paul & the Twin Cities.",
+    canonical: "https://fortherecordmn.com/gallery",
+  });
+
   const [activeFilter, setActiveFilter] = useState("All");
   const [expandedId, setExpandedId] = useState(null);
 
@@ -184,11 +193,11 @@ const Gallery = () => {
       {/* Hero Section */}
       <section className="gallery-hero">
         <div className="container">
-          <h1 className="section-title">Real Minnesota Weddings</h1>
+          <h1 className="section-title">Real Weddings Across the Twin Cities & MN</h1>
           <p className="section-description">
-            Every wedding tells a unique story. From intimate ceremonies to
-            dance floor celebrations, here's a glimpse into the moments we've
-            helped create.
+            Every wedding tells a unique story. From intimate Minneapolis
+            ceremonies to packed dance floors in St. Paul, here's a glimpse
+            into the moments we've helped create across Minnesota.
           </p>
         </div>
       </section>

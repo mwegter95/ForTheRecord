@@ -1,8 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import useSEO from "../hooks/useSEO";
 import "./FAQ.scss";
 
 const FAQ = () => {
+  useSEO({
+    title:
+      "Wedding DJ FAQ | For the Record | Minnesota Wedding Questions",
+    description:
+      "Common questions about booking a wedding DJ in Minnesota. Learn about packages, ceremony audio, booking timeline, and what makes For the Record different. Twin Cities & beyond.",
+    canonical: "https://fortherecordmn.com/faq",
+  });
+
   const [openIndex, setOpenIndex] = useState(null);
 
   useEffect(() => {
@@ -11,9 +20,9 @@ const FAQ = () => {
 
   const faqItems = [
     {
-      question: "What areas do you serve?",
+      question: "What areas in Minnesota do you serve?",
       answer:
-        "We primarily serve the Twin Cities metro area and surrounding Minnesota regions. However, we also love traveling for destination weddings, so don't hesitate to reach out even if your wedding is further away. We've worked with couples planning events across the country and would be honored to discuss your specific location and travel logistics.",
+        "We primarily serve Minneapolis, St. Paul, the Twin Cities metro, and surrounding Minnesota regions including St. Cloud, Duluth, and Rochester. However, we also love traveling for destination weddings, so don't hesitate to reach out even if your wedding is further away. We'll happily plan events across the country and would be honored to discuss your specific location and travel logistics.",
     },
     {
       question: "How far in advance should I book my wedding DJ?",
@@ -91,8 +100,8 @@ const FAQ = () => {
         <div className="container">
           <h1 className="section-title">Frequently Asked Questions</h1>
           <p className="section-description">
-            Everything you need to know about booking your wedding DJ. Can't
-            find your answer? Reach out and let's chat.
+            Everything you need to know about booking your Twin Cities
+            wedding DJ. Can't find your answer? Reach out and let's chat.
           </p>
         </div>
       </section>

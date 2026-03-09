@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import emailjs from "@emailjs/browser";
+import useSEO from "../hooks/useSEO";
 import "./GetInTouch.scss";
 
 const SERVICE_ID = "service_gg499mn";
@@ -19,6 +20,14 @@ const GetInTouch = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
+
+  useSEO({
+    title:
+      "Contact For the Record | Book Your Minnesota Wedding DJ",
+    description:
+      "Book your Minnesota wedding DJ today. Contact For the Record for a free, no-pressure consultation. Serving Minneapolis, St. Paul, St. Cloud & the Twin Cities. (612) 389-7005.",
+    canonical: "https://fortherecordmn.com/get-in-touch",
+  });
 
   useEffect(() => {
     window.lucide?.createIcons();
@@ -101,6 +110,7 @@ const GetInTouch = () => {
         <div className="container">
           <h1 className="hero-title">Let's Make Your Day Unforgettable</h1>
           <p className="hero-subtitle">
+            Planning a wedding in Minneapolis, St. Paul, or anywhere in MN?
             Fill out the form below and we'll respond within 24 hours—no
             pressure, just a friendly conversation about making your day
             perfect.

@@ -95,6 +95,13 @@ const Navbar = () => {
             FAQ
           </Link>
           <Link
+            to="/request-a-song"
+            className={`nav-link ${isActive("/request-a-song") ? "active" : ""}`}
+            onClick={closeMenu}
+          >
+            Request a Song
+          </Link>
+          <Link
             to="/get-in-touch"
             className={`btn-primary nav-cta ${isActive("/get-in-touch") ? "active" : ""}`}
             onClick={closeMenu}

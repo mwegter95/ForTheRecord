@@ -72,9 +72,9 @@ const SongRequest = () => {
   const [submitStatus, setSubmitStatus] = useState(null);
 
   useSEO({
-    title: "Request a Song | For the Record – MN Wedding DJ",
+    title: "Wedding Song Requests | For the Record – MN Wedding DJ",
     description:
-      "Submit your song requests for your wedding! Enter the password from your wedding couple and request your favorite songs.",
+      "Submit your wedding song requests for your big day! At For the Record, we build your perfect playlist around the songs you and your guests actually want to hear. Enter your event password and request your favorites.",
     canonical: "https://fortherecordmn.com/request-a-song",
   });
 
@@ -129,10 +129,12 @@ const SongRequest = () => {
           <div className="hero-icon-wrap">
             <IconMusic className="hero-icon" />
           </div>
+          <p className="hero-eyebrow">Wedding &amp; Event Song Requests</p>
           <h1 className="hero-title">Request a Song</h1>
           <p className="hero-subtitle">
-            Got a song that'll get you on the dance floor? Drop your request
-            below and we'll do our best to work it in!
+            At For the Record, we play the tracks <em>you</em> and your guests
+            actually want to hear. Submit your requests below and we'll build
+            the perfect playlist around your day.
           </p>
         </div>
       </section>
@@ -304,6 +306,38 @@ const SongRequest = () => {
               )}
             </div>
 
+          </div>
+        </div>
+      </section>
+
+      {/* SEO blurb */}
+      <section className="song-request-about">
+        <div className="container">
+          <div className="about-content">
+            <h2>Your Music. Your Day.</h2>
+            <p>
+              At For the Record, we believe the best wedding playlists are built
+              around the people in the room — not a generic template. That's why
+              we offer guest song requests for every wedding and event we DJ.
+              Whether it's your all-time favorite banger, a throwback that'll
+              get grandma on the dance floor, or a slow song with meaning, we
+              want to hear it.
+            </p>
+            <p>
+              Every couple we work with receives a unique event password to
+              share with their guests ahead of time — through their wedding
+              website, invitations, or a QR code at the reception. Guests submit
+              their picks here, and we review every single request before the
+              event to put together a playlist that truly reflects your crowd.
+              From ceremony to last dance, the music is yours.
+            </p>
+            <p>
+              Serving Minneapolis, St. Paul, and the greater Twin Cities area,
+              For the Record brings over 10 years of live event experience and
+              a genuine love of music to every event. Ready to make it
+              official?{" "}
+              <a href="/get-in-touch">Get in touch</a> to check your date.
+            </p>
           </div>
         </div>
       </section>

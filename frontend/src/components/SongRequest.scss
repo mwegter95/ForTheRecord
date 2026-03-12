@@ -33,6 +33,16 @@
   }
 }
 
+.hero-eyebrow {
+  font-family: "Inter", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+}
+
 .song-request-hero .hero-title {
   font-family: "Cormorant Garamond", serif;
   font-size: 4rem;
@@ -48,6 +58,56 @@
   max-width: 600px;
   margin: 0 auto;
   line-height: 1.6;
+
+  em {
+    font-style: italic;
+    color: var(--gold);
+  }
+}
+
+// ── SEO blurb section ────────────────────────────────────────────────
+.song-request-about {
+  padding: 1rem 0 1.25rem;
+  background-color: var(--cream);
+}
+
+.about-content {
+  max-width: 780px;
+  margin: 0 auto;
+  text-align: center;
+  background-color: var(--navy);
+  border-radius: 20px;
+  padding: 3rem 3.5rem;
+
+  h2 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    font-weight: 400;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+
+  p {
+    font-size: 1.05rem;
+    color: rgba(248, 246, 241, 0.85);
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    a {
+      color: var(--gold);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: white;
+      }
+    }
+  }
 }
 
 // ── Form section ────────────────────────────────────────────────────
@@ -358,6 +418,10 @@
     }
   }
 
+  .about-content {
+    padding: 2.5rem 2rem;
+  }
+
   .request-layout {
     grid-template-columns: 1fr;
     gap: 2rem;
@@ -393,6 +457,11 @@
     .hero-subtitle {
       font-size: 0.95rem;
     }
+  }
+
+  .about-content {
+    padding: 2rem 1.5rem;
+    border-radius: 16px;
   }
 
   .hero-icon-wrap {

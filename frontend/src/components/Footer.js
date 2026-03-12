@@ -18,14 +18,16 @@ const Footer = () => {
       <div className="footer-container">
         {/* Brand Section */}
         <div className="footer-brand">
-          <img
-            src={LogoSvg}
-            alt="For the Record Logo"
-            className="footer-logo"
-            width="60"
-            height="60"
-          />
-          <h3 className="footer-title">For the Record</h3>
+          <Link to="/" className="footer-brand-link">
+            <img
+              src={LogoSvg}
+              alt="For the Record Logo"
+              className="footer-logo"
+              width="60"
+              height="60"
+            />
+            <h3 className="footer-title">For the Record</h3>
+          </Link>
           <p className="footer-tagline">
             Minnesota's Audio-Obsessed Wedding DJ
           </p>
@@ -33,6 +35,9 @@ const Footer = () => {
 
         {/* Links Section */}
         <nav className="footer-nav">
+          <Link to="/" className="footer-link">
+            Home
+          </Link>
           <Link to="/about" className="footer-link">
             About
           </Link>
@@ -47,6 +52,9 @@ const Footer = () => {
           </Link>
           <Link to="/get-in-touch" className="footer-link">
             Get In Touch
+          </Link>
+          <Link to="/request-a-song" className="footer-link">
+            Request a Song
           </Link>
         </nav>
 

@@ -1,0 +1,1735 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>For the Record – Wedding DJ Services</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@400;500;600;700&family=Playfair+Display:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+      /* ============================================
+     BRAND TOKENS
+     ============================================ */
+      :root {
+        --navy: #0a1128;
+        --cream: #f8f6f1;
+        --charcoal: #2d3142;
+        --gold: #c9a86a;
+        --sage: #8b9d83;
+        --white: #ffffff;
+        --navy-light: #131d3a;
+        --gold-faded: rgba(201, 168, 106, 0.15);
+        --gold-line: rgba(201, 168, 106, 0.3);
+      }
+
+      /* ============================================
+     RESET & BASE
+     ============================================ */
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      @page {
+        size: letter portrait;
+        margin: 0;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        color: var(--charcoal);
+        background: #e8e6e1;
+        -webkit-font-smoothing: antialiased;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        color-adjust: exact;
+      }
+
+      /* ============================================
+     PAGE STRUCTURE (2 pages, letter size)
+     ============================================ */
+      .page {
+        width: 8.5in;
+        height: 11in;
+        margin: 0 auto;
+        background: var(--cream);
+        position: relative;
+        overflow: hidden;
+        page-break-after: always;
+        page-break-inside: avoid;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .page:last-child {
+        page-break-after: auto;
+      }
+
+      @media screen {
+        .page {
+          margin: 20px auto;
+          box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+          min-height: 11in;
+          height: auto;
+        }
+      }
+
+      @media print {
+        body {
+          background: white;
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+        .page {
+          margin: 0;
+          box-shadow: none;
+          height: 11in;
+          page-break-after: always;
+        }
+        .page:last-child {
+          page-break-after: auto;
+        }
+        .why-card, .package-card, .tip-card, .value-card,
+        .pro-tip, .check-item, .addon-item, [class*="-card"] {
+          box-shadow: none !important;
+        }
+      }
+
+      /* ============================================
+     PAGE 1 — HERO + WHY US + STORY
+     ============================================ */
+
+      /* Hero */
+      .hero {
+        background: var(--navy);
+        padding: 0.25in 0.65in 0.2in;
+        position: relative;
+        overflow: hidden;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: -120px;
+        right: -120px;
+        width: 400px;
+        height: 400px;
+        border: 3px solid var(--gold);
+        border-radius: 50%;
+        opacity: 0.08;
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        bottom: -80px;
+        left: -80px;
+        width: 250px;
+        height: 250px;
+        border: 2px solid var(--gold);
+        border-radius: 50%;
+        opacity: 0.06;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero-logo {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-top: -0.15in;
+        margin-left: -0.3in;
+        text-decoration: none;
+        cursor: pointer;
+        margin-bottom: 6px;
+      }
+
+      .hero-logo svg {
+        width: 144px;
+        height: 144px;
+        flex-shrink: 0;
+      }
+
+      .hero-logo-text {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .hero-brand {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--white);
+        letter-spacing: 0.5px;
+        line-height: 1.1;
+      }
+
+      .hero-sub {
+        font-size: 9px;
+        font-weight: 500;
+        color: var(--gold);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-top: 4px;
+      }
+
+      .hero h1 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 38px;
+        font-weight: 700;
+        color: var(--white);
+        line-height: 1.15;
+        margin-bottom: 10px;
+      }
+
+      .hero h1 em {
+        color: var(--gold);
+        font-style: italic;
+      }
+
+      .hero-desc {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.8);
+        line-height: 1.5;
+        max-width: 5.5in;
+      }
+
+      .hero-badges {
+        display: flex;
+        gap: 24px;
+        margin-top: 14px;
+      }
+
+      .badge {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 10px;
+        font-weight: 600;
+        color: var(--gold);
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+      }
+
+      .badge i {
+        width: 14px;
+        height: 14px;
+        color: var(--gold);
+      }
+
+      /* Gold divider */
+      .gold-divider {
+        height: 2px;
+        background: linear-gradient(90deg, var(--gold), transparent);
+        margin: 0;
+      }
+
+      /* Why Section */
+      .why-section {
+        padding: 0.25in 0.65in;
+        background: var(--cream);
+      }
+
+      .section-eyebrow {
+        font-size: 9px;
+        font-weight: 600;
+        color: var(--gold);
+        text-transform: uppercase;
+        letter-spacing: 2.5px;
+        margin-bottom: 4px;
+      }
+
+      .section-heading {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 26px;
+        font-weight: 600;
+        color: var(--navy);
+        margin-bottom: 12px;
+        line-height: 1.2;
+      }
+
+      .why-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 14px;
+      }
+
+      .why-card {
+        background: var(--white);
+        border-radius: 8px;
+        padding: 14px 14px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        border-top: 3px solid var(--gold);
+      }
+
+      .why-card i {
+        color: var(--gold);
+        width: 22px;
+        height: 22px;
+        margin-bottom: 6px;
+      }
+
+      .why-card h3 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--navy);
+        margin-bottom: 6px;
+      }
+
+      .why-card p {
+        font-size: 10.5px;
+        line-height: 1.55;
+        color: var(--charcoal);
+      }
+
+      /* Story / Quote section */
+      .story-section {
+        padding: 0.2in 0.65in 0.25in;
+        background: var(--white);
+      }
+
+      .story-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        align-items: start;
+      }
+
+      .story-text p {
+        font-size: 11px;
+        line-height: 1.65;
+        color: var(--charcoal);
+        margin-bottom: 10px;
+      }
+
+      .story-quote {
+        background: var(--navy);
+        border-radius: 8px;
+        padding: 20px 20px;
+        position: relative;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .story-quote blockquote::before {
+        content: "\201C";
+        font-family: "Playfair Display", serif;
+        font-size: 72px;
+        font-weight: 400;
+        color: var(--gold);
+        opacity: 0.3;
+        line-height: 0;
+        vertical-align: -0.35em;
+        display: inline;
+        margin-right: 4px;
+      }
+
+      .story-quote blockquote::after {
+        content: "\201D";
+        font-family: "Playfair Display", serif;
+        font-size: 72px;
+        font-weight: 400;
+        color: var(--gold);
+        opacity: 0.3;
+        line-height: 0;
+        vertical-align: -0.45em;
+        display: inline;
+        margin-left: 2px;
+      }
+
+      .story-quote blockquote {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 18px;
+        font-weight: 600;
+        font-style: italic;
+        color: var(--white);
+        line-height: 1.45;
+        position: relative;
+        z-index: 1;
+      }
+
+      .story-quote .attribution {
+        font-family: "Inter", sans-serif;
+        font-size: 9px;
+        font-weight: 500;
+        color: var(--gold);
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        margin-top: 10px;
+        display: block;
+      }
+
+      .values-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 10px;
+        margin-top: 12px;
+      }
+
+      .value-pill {
+        text-align: center;
+        padding: 7px 6px;
+        background: var(--cream);
+        border-radius: 6px;
+        border: 1px solid var(--gold-line);
+      }
+
+      .value-pill i {
+        color: var(--gold);
+        width: 18px;
+        height: 18px;
+        margin-bottom: 4px;
+      }
+
+      .value-pill span {
+        display: block;
+        font-size: 9px;
+        font-weight: 600;
+        color: var(--navy);
+        line-height: 1.3;
+      }
+
+      /* ============================================
+     PAGE 2 — SERVICES + PACKAGES + CONTACT
+     ============================================ */
+
+      /* Services header */
+      .services-header {
+        background: var(--navy);
+        padding: 0.25in 0.65in 0.2in;
+        position: relative;
+        overflow: hidden;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .services-header::before {
+        content: "";
+        position: absolute;
+        top: -60px;
+        right: -60px;
+        width: 200px;
+        height: 200px;
+        border: 2px solid var(--gold);
+        border-radius: 50%;
+        opacity: 0.08;
+      }
+
+      .services-header .section-eyebrow {
+        color: var(--gold);
+      }
+      .services-header .section-heading {
+        color: var(--white);
+        margin-bottom: 8px;
+      }
+      .services-header p {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.75);
+        line-height: 1.6;
+        max-width: 5.5in;
+      }
+
+      /* Services checklist */
+      .services-list-section {
+        padding: 0.2in 0.65in 0.15in;
+        background: var(--cream);
+      }
+
+      .services-columns {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px 32px;
+      }
+
+      .service-check {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 3px 0;
+      }
+
+      .service-check i {
+        color: var(--sage);
+        width: 15px;
+        height: 15px;
+        flex-shrink: 0;
+      }
+
+      .service-check span {
+        font-size: 11px;
+        font-weight: 500;
+        color: var(--charcoal);
+      }
+
+      /* Packages */
+      .packages-section {
+        padding: 0.2in 0.65in 0.15in;
+        background: var(--white);
+      }
+
+      .packages-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 16px;
+        margin-top: 10px;
+      }
+
+      .package-card {
+        border: 1.5px solid #e0dcd5;
+        border-radius: 8px;
+        padding: 14px 14px;
+        position: relative;
+        background: var(--cream);
+      }
+
+      .package-card.featured {
+        border-color: var(--gold);
+        background: var(--white);
+        box-shadow: 0 4px 16px rgba(201, 168, 106, 0.15);
+      }
+
+      .package-card.featured::before {
+        content: "Most Popular";
+        position: absolute;
+        top: -9px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--gold);
+        color: var(--white);
+        font-size: 7.5px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        padding: 2px 10px;
+        border-radius: 10px;
+      }
+
+      .package-name {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--navy);
+        margin-bottom: 2px;
+      }
+
+      .package-price {
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--gold);
+        margin-bottom: 6px;
+        line-height: 1.2;
+      }
+
+      .package-price .range {
+        font-size: 11px;
+        font-weight: 500;
+        color: var(--charcoal);
+        opacity: 0.7;
+      }
+
+      .package-features {
+        list-style: none;
+      }
+
+      .package-features li {
+        font-size: 9.5px;
+        line-height: 1.4;
+        color: var(--charcoal);
+        padding: 3px 0;
+        padding-left: 14px;
+        position: relative;
+      }
+
+      .package-features li::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: var(--sage);
+        font-weight: 700;
+        font-size: 10px;
+      }
+
+      /* Extras */
+      .extras-section {
+        padding: 0.12in 0.65in 0.12in;
+        background: var(--cream);
+      }
+
+      .extras-row {
+        display: flex;
+        gap: 20px;
+        align-items: flex-start;
+      }
+
+      .extra-item {
+        flex: 1;
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        background: var(--white);
+        padding: 10px 12px;
+        border-radius: 6px;
+        border-left: 3px solid var(--gold);
+      }
+
+      .extra-item i {
+        color: var(--gold);
+        width: 16px;
+        height: 16px;
+        flex-shrink: 0;
+        margin-top: 1px;
+      }
+
+      .extra-item .extra-title {
+        font-size: 10.5px;
+        font-weight: 600;
+        color: var(--navy);
+        margin-bottom: 2px;
+      }
+
+      .extra-item .extra-desc {
+        font-size: 9px;
+        color: var(--charcoal);
+        line-height: 1.45;
+      }
+
+      /* Contact footer */
+      .contact-footer {
+        background: var(--navy);
+        padding: 0.2in 0.65in;
+        flex-grow: 1;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .contact-footer::before {
+        content: "";
+        position: absolute;
+        bottom: -100px;
+        right: -100px;
+        width: 300px;
+        height: 300px;
+        border: 2px solid var(--gold);
+        border-radius: 50%;
+        opacity: 0.06;
+      }
+
+      .contact-left {
+        position: relative;
+        z-index: 1;
+      }
+
+      .contact-left .section-heading {
+        color: var(--white);
+        font-size: 22px;
+        margin-bottom: 6px;
+      }
+
+      .contact-left p {
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.7);
+        line-height: 1.5;
+      }
+
+      .contact-right {
+        position: relative;
+        z-index: 1;
+        text-align: right;
+      }
+
+      .contact-line {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 5px;
+        justify-content: flex-end;
+      }
+
+      .contact-line i {
+        width: 14px;
+        height: 14px;
+        color: var(--gold);
+      }
+
+      .contact-line span {
+        font-size: 11px;
+        font-weight: 500;
+        color: var(--white);
+      }
+
+      .contact-tagline {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--gold);
+        margin-top: 8px;
+        font-style: italic;
+      }
+
+      .contact-line a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .contact-line a:hover {
+        text-decoration: underline;
+      }
+
+      .note {
+        text-align: center;
+        padding: 5px 0.65in;
+        font-size: 8.5px;
+        color: rgba(255, 255, 255, 0.45);
+        background: var(--navy);
+        border-top: 1px solid rgba(201, 168, 106, 0.15);
+        font-style: italic;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      /* ============================================
+     PAGE 3 — PLANNING WORKSHOP
+     ============================================ */
+
+      .planning-hero {
+        background: var(--navy);
+        padding: 0.2in 0.65in 0.15in;
+        position: relative;
+        overflow: hidden;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .planning-hero::before {
+        content: "";
+        position: absolute;
+        top: -80px;
+        right: -80px;
+        width: 280px;
+        height: 280px;
+        border: 2px solid var(--gold);
+        border-radius: 50%;
+        opacity: 0.08;
+      }
+
+      .planning-hero .section-heading {
+        color: var(--white);
+        margin-bottom: 6px;
+      }
+      .planning-hero p {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.75);
+        line-height: 1.6;
+        max-width: 6in;
+      }
+
+      /* Ceremony music section */
+      .ceremony-music {
+        padding: 0.15in 0.65in 0.12in;
+        background: var(--cream);
+      }
+
+      .ceremony-timeline {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 8px;
+        margin-top: 10px;
+      }
+
+      .ceremony-moment {
+        background: var(--white);
+        border-radius: 6px;
+        padding: 10px;
+        border-left: 3px solid var(--gold);
+      }
+
+      .ceremony-moment h4 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--navy);
+        margin-bottom: 3px;
+      }
+
+      .ceremony-moment .timing {
+        font-size: 8.5px;
+        font-weight: 600;
+        color: var(--gold);
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        margin-bottom: 5px;
+      }
+
+      .ceremony-moment p {
+        font-size: 9.5px;
+        line-height: 1.5;
+        color: var(--charcoal);
+      }
+
+      /* Planning questions */
+      .planning-questions {
+        padding: 0.12in 0.65in 0.1in;
+        background: var(--white);
+      }
+
+      .questions-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px 24px;
+        margin-top: 10px;
+      }
+
+      .question-group h4 {
+        font-family: "Inter", sans-serif;
+        font-size: 10px;
+        font-weight: 700;
+        color: var(--navy);
+        margin-bottom: 6px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .question-group h4 i {
+        color: var(--gold);
+        width: 14px;
+        height: 14px;
+      }
+
+      .question-group ul {
+        list-style: none;
+      }
+
+      .question-group ul li {
+        font-size: 9.5px;
+        line-height: 1.4;
+        color: var(--charcoal);
+        padding: 2px 0;
+        padding-left: 14px;
+        position: relative;
+      }
+
+      .question-group ul li::before {
+        content: "□";
+        position: absolute;
+        left: 0;
+        color: var(--gold);
+        font-size: 10px;
+      }
+
+      /* Reception timeline */
+      .reception-timeline {
+        padding: 0.12in 0.65in 0.12in;
+        background: var(--cream);
+      }
+
+      .timeline-flow {
+        display: flex;
+        gap: 0;
+        margin-top: 8px;
+        position: relative;
+      }
+
+      .timeline-flow::before {
+        content: "";
+        position: absolute;
+        top: 14px;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--gold-line);
+        z-index: 0;
+      }
+
+      .flow-step {
+        flex: 1;
+        text-align: center;
+        position: relative;
+        z-index: 1;
+      }
+
+      .flow-dot {
+        width: 10px;
+        height: 10px;
+        background: var(--gold);
+        border-radius: 50%;
+        margin: 9px auto 8px;
+      }
+
+      .flow-step .flow-label {
+        font-size: 8px;
+        font-weight: 700;
+        color: var(--navy);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        line-height: 1.3;
+      }
+
+      .flow-step .flow-time {
+        font-size: 7.5px;
+        color: var(--gold);
+        font-weight: 600;
+        margin-top: 2px;
+      }
+
+      /* Pro tips */
+      .pro-tips {
+        padding: 0.12in 0.65in 0.12in;
+        background: var(--white);
+      }
+
+      .tips-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        margin-top: 8px;
+      }
+
+      .tip-card {
+        display: flex;
+        gap: 10px;
+        padding: 10px;
+        background: var(--cream);
+        border-radius: 6px;
+        align-items: flex-start;
+      }
+
+      .tip-card i {
+        color: var(--gold);
+        width: 16px;
+        height: 16px;
+        flex-shrink: 0;
+        margin-top: 1px;
+      }
+
+      .tip-card h4 {
+        font-size: 10px;
+        font-weight: 600;
+        color: var(--navy);
+        margin-bottom: 2px;
+      }
+
+      .tip-card p {
+        font-size: 9px;
+        line-height: 1.5;
+        color: var(--charcoal);
+      }
+
+      /* Page 3 footer */
+      .planning-footer {
+        background: var(--navy);
+        padding: 0.15in 0.65in;
+        display: grid;
+        grid-template-columns: 1.2fr 1fr 1fr;
+        align-items: center;
+        gap: 24px;
+        position: relative;
+        overflow: hidden;
+        flex-grow: 1;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .planning-footer::before {
+        content: "";
+        position: absolute;
+        bottom: -80px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 400px;
+        height: 400px;
+        border: 2px solid var(--gold);
+        border-radius: 50%;
+        opacity: 0.05;
+      }
+
+      .planning-footer-left {
+        position: relative;
+        z-index: 1;
+      }
+
+      .planning-footer-left .section-heading {
+        color: var(--white);
+        font-size: 20px;
+        margin-bottom: 4px;
+      }
+
+      .planning-footer-left p {
+        font-size: 10px;
+        color: rgba(255, 255, 255, 0.7);
+        line-height: 1.5;
+      }
+
+      .planning-footer-col {
+        position: relative;
+        z-index: 1;
+      }
+
+      .planning-footer-col .contact-line {
+        justify-content: flex-start;
+        margin-bottom: 6px;
+      }
+
+      .planning-footer-col .contact-tagline {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--gold);
+        font-style: italic;
+        margin-top: 4px;
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- Version switcher — hidden when printing -->
+    <style>
+      @media print { .version-btn, .home-btn { display: none !important; } }
+      .version-btn {
+        position: fixed;
+        top: 18px;
+        right: 18px;
+        z-index: 9999;
+        background: #0a1128;
+        color: #c9a86a;
+        font-family: "Inter", sans-serif;
+        font-size: 0.78rem;
+        font-weight: 600;
+        letter-spacing: 0.4px;
+        text-decoration: none;
+        border: 1px solid rgba(201,168,106,0.4);
+        border-radius: 50px;
+        padding: 0.45rem 1rem;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.35);
+        transition: background 0.2s, color 0.2s;
+        white-space: nowrap;
+      }
+      .version-btn:hover { background: #c9a86a; color: #0a1128; }
+      .home-btn {
+        position: fixed;
+        top: 54px;
+        right: 18px;
+        z-index: 9999;
+        background: rgba(201,168,106,0.12);
+        color: rgba(255,255,255,0.75);
+        font-family: "Inter", sans-serif;
+        font-size: 0.78rem;
+        font-weight: 600;
+        letter-spacing: 0.4px;
+        text-decoration: none;
+        border: 1px solid rgba(201,168,106,0.25);
+        border-radius: 50px;
+        padding: 0.45rem 1rem;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+        transition: background 0.2s, color 0.2s;
+        white-space: nowrap;
+      }
+      .home-btn:hover { background: rgba(201,168,106,0.25); color: #ffffff; }
+    </style>
+    <a class="version-btn" href="/brochure-mobile.html">View Mobile Version</a>
+    <a class="home-btn" href="https://fortherecordmn.com">Return Home</a>
+
+    <!-- ==================== PAGE 1 ==================== -->
+    <div class="page">
+      <!-- Hero -->
+      <div class="hero">
+        <div class="hero-content">
+          <a class="hero-logo" href="https://fortherecordmn.com" target="_blank" rel="noopener">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+              <g transform="rotate(90 100 120)">
+                <circle cx="100" cy="120" r="50" fill="#1a1a1a" />
+                <path
+                  d="M 75.2 95.2 A 35 35 0 0 1 100 85"
+                  fill="none"
+                  stroke="white"
+                  stroke-width="1.5"
+                />
+                <path
+                  d="M 71.7 91.7 A 40 40 0 0 1 100 80"
+                  fill="none"
+                  stroke="white"
+                  stroke-width="1.5"
+                />
+                <path
+                  d="M 68.2 88.2 A 45 45 0 0 1 100 75"
+                  fill="none"
+                  stroke="white"
+                  stroke-width="1.5"
+                />
+                <path
+                  d="M 124.8 95.2 A 35 35 0 0 0 100 85"
+                  fill="none"
+                  stroke="white"
+                  stroke-width="1.5"
+                />
+                <path
+                  d="M 128.3 91.7 A 40 40 0 0 0 100 80"
+                  fill="none"
+                  stroke="white"
+                  stroke-width="1.5"
+                />
+                <path
+                  d="M 131.8 88.2 A 45 45 0 0 0 100 75"
+                  fill="none"
+                  stroke="white"
+                  stroke-width="1.5"
+                />
+                <path
+                  d="M 75.2 144.8 A 35 35 0 0 0 100 155"
+                  fill="none"
+                  stroke="white"
+                  stroke-width="1.5"
+                />
+                <path
+                  d="M 71.7 148.3 A 40 40 0 0 0 100 160"
+                  fill="none"
+                  stroke="white"
+                  stroke-width="1.5"
+                />
+                <path
+                  d="M 68.2 151.8 A 45 45 0 0 0 100 165"
+                  fill="none"
+                  stroke="white"
+                  stroke-width="1.5"
+                />
+                <path
+                  d="M 124.8 144.8 A 35 35 0 0 1 100 155"
+                  fill="none"
+                  stroke="white"
+                  stroke-width="1.5"
+                />
+                <path
+                  d="M 128.3 148.3 A 40 40 0 0 1 100 160"
+                  fill="none"
+                  stroke="white"
+                  stroke-width="1.5"
+                />
+                <path
+                  d="M 131.8 151.8 A 45 45 0 0 1 100 165"
+                  fill="none"
+                  stroke="white"
+                  stroke-width="1.5"
+                />
+                <circle cx="100" cy="120" r="22" fill="white" />
+                <circle cx="100" cy="120" r="4" fill="#1a1a1a" />
+              </g>
+              <circle
+                cx="100"
+                cy="120"
+                r="52"
+                fill="none"
+                stroke="#C9A86A"
+                stroke-width="5"
+              />
+              <polygon
+                points="92,50 108,50 112,62 100,78 88,62"
+                fill="#C9A86A"
+              />
+              <polygon
+                points="96,50 104,50 100,62"
+                fill="white"
+                opacity="0.4"
+              />
+            </svg>
+            <div class="hero-logo-text">
+              <div class="hero-brand">For the Record</div>
+              <div class="hero-sub">Minnesota Wedding DJ & Audio</div>
+            </div>
+          </a>
+
+          <h1>
+            Expert Audio. Unforgettable<br />Entertainment.
+            <em>Stress-Free.</em>
+          </h1>
+
+          <p class="hero-desc">
+            Your wedding deserves sound that matches the importance of the
+            moment. From crystal-clear ceremony audio to a reception that keeps
+            your guests dancing all night, For the Record handles every
+            technical detail so you can focus on enjoying your day.
+          </p>
+
+          <div class="hero-badges">
+            <div class="badge">
+              <i data-lucide="graduation-cap"></i> BA in Music
+            </div>
+            <div class="badge">
+              <i data-lucide="clock"></i> 10+ Years Experience
+            </div>
+            <div class="badge">
+              <i data-lucide="volume-2"></i> Audio-Obsessed
+            </div>
+            <div class="badge">
+              <i data-lucide="heart"></i> Easeful Partnership
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="gold-divider"></div>
+
+      <!-- Why For the Record -->
+      <div class="why-section">
+        <div class="section-eyebrow">The Difference</div>
+        <div class="section-heading">Why For the Record</div>
+
+        <div class="why-grid">
+          <div class="why-card">
+            <i data-lucide="radio"></i>
+            <h3>Perfect Ceremony Audio</h3>
+            <p>
+              I arrive early to test audio in your actual space, position
+              microphones for clarity, and monitor every moment. No feedback, no
+              dead spots—just clear, beautiful sound for your vows.
+            </p>
+          </div>
+          <div class="why-card">
+            <i data-lucide="music"></i>
+            <h3>Your Music, Your Way</h3>
+            <p>
+              I'm not bound to wedding DJ clichés. Unless you want that, which
+              is great! Tell me your taste, your energy level, and I'll read the
+              room in real time. Want indie rock? 90s nostalgia? A mix of
+              everything? I adapt.
+            </p>
+          </div>
+          <div class="why-card">
+            <i data-lucide="smile"></i>
+            <h3>Easeful Partnership</h3>
+            <p>
+              Quick responses, clear communication, and someone who actually
+              cares about your day. I handle all audio logistics so you have
+              zero stress. That's what partnership looks like.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Story + Quote -->
+      <div class="story-section">
+        <div class="story-grid">
+          <div class="story-text">
+            <div class="section-eyebrow">The Story</div>
+            <div class="section-heading" style="font-size: 22px">
+              More Than Just a DJ
+            </div>
+            <p>
+              Audio isn't something I do. It's who I am. I'm the person who sets
+              the equalizer in the car, tweaks home office speakers obsessively,
+              and travels with audio gear just to set up the party wherever I
+              go.
+            </p>
+            <p>
+              When you hire For the Record, you're not just getting a DJ with
+              equipment. You're getting someone whose brain never stops thinking
+              about how to make your audio experience better. I work closely
+              with you to understand your vision and your music preferences—no
+              cookie-cutter playlists, just the songs that matter to you.
+            </p>
+            <p>
+              The name "For the Record" means creating moments worth
+              remembering—moments that stick with your guests long after the
+              last song plays. Getting it on the record, in the books, done
+              right the first time.
+            </p>
+          </div>
+          <div>
+            <div class="story-quote">
+              <blockquote>
+                Perfect sound is the difference between a moving moment and a
+                disappointment. Go with For the Record for perfect wedding and
+                reception audio.
+              </blockquote>
+              <span class="attribution">— Michael, For the Record</span>
+            </div>
+
+            <div class="values-row">
+              <div class="value-pill">
+                <i data-lucide="volume-2"></i>
+                <span>Audio Excellence</span>
+              </div>
+              <div class="value-pill">
+                <i data-lucide="handshake"></i>
+                <span>Partnership & Ease</span>
+              </div>
+              <div class="value-pill">
+                <i data-lucide="music"></i>
+                <span>Fun & Energy</span>
+              </div>
+              <div class="value-pill">
+                <i data-lucide="shield-check"></i>
+                <span>Integrity</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== PAGE 2 ==================== -->
+    <div class="page">
+      <!-- Services Header -->
+      <div class="services-header">
+        <div class="section-eyebrow">Services</div>
+        <div class="section-heading">Complete Wedding Entertainment</div>
+        <p>
+          Whatever your budget, we have a package for you. Every wedding is
+          unique, and we work with you to create the perfect combination of
+          services for your day.
+        </p>
+      </div>
+
+      <div class="gold-divider"></div>
+
+      <!-- What's Included Checklist -->
+      <div class="services-list-section">
+        <div class="section-eyebrow">What Can Be Included</div>
+        <div class="services-columns">
+          <div class="service-check">
+            <i data-lucide="check-circle"></i
+            ><span>Ceremony Audio Setup & Management</span>
+          </div>
+          <div class="service-check">
+            <i data-lucide="check-circle"></i
+            ><span>Custom Playlist Curation</span>
+          </div>
+          <div class="service-check">
+            <i data-lucide="check-circle"></i
+            ><span>Reception Entertainment & DJing</span>
+          </div>
+          <div class="service-check">
+            <i data-lucide="check-circle"></i><span>Dance Floor Lighting</span>
+          </div>
+          <div class="service-check">
+            <i data-lucide="check-circle"></i
+            ><span>Professional MCing & Announcements</span>
+          </div>
+          <div class="service-check">
+            <i data-lucide="check-circle"></i
+            ><span>Premium Sound Equipment</span>
+          </div>
+          <div class="service-check">
+            <i data-lucide="check-circle"></i><span>Wireless Microphones</span>
+          </div>
+          <div class="service-check">
+            <i data-lucide="check-circle"></i
+            ><span>Pre-Wedding Consultation & Planning</span>
+          </div>
+          <div class="service-check">
+            <i data-lucide="check-circle"></i><span>Vendor Coordination</span>
+          </div>
+          <div class="service-check">
+            <i data-lucide="check-circle"></i
+            ><span>Ceremony Rehearsal Support</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Packages -->
+      <div class="packages-section">
+        <div class="section-eyebrow">Packages</div>
+        <div class="section-heading">Transparent, Flexible Pricing</div>
+
+        <div class="packages-grid">
+          <!-- Essential -->
+          <div class="package-card">
+            <div class="package-name">Essential</div>
+            <div class="package-price">
+              $550–$750 <span class="range">reception only</span>
+            </div>
+            <ul class="package-features">
+              <li>3–5 hours of reception DJing</li>
+              <li>Professional MCing</li>
+              <li>Wireless microphones</li>
+              <li>DJ dance floor lighting</li>
+              <li>Custom playlist curation</li>
+              <li>Setup & sound check</li>
+              <li>Pre-wedding consultation</li>
+            </ul>
+          </div>
+
+          <!-- Complete -->
+          <div class="package-card featured">
+            <div class="package-name">Complete</div>
+            <div class="package-price">
+              $800–$1,100 <span class="range">ceremony + reception</span>
+            </div>
+            <ul class="package-features">
+              <li>Everything in Essential</li>
+              <li>Ceremony audio setup & management</li>
+              <li>Ceremony wireless mics</li>
+              <li>Early arrival for sound testing</li>
+              <li>4–6 hours of reception DJing</li>
+              <li>Vendor coordination</li>
+              <li>Rehearsal support</li>
+            </ul>
+          </div>
+
+          <!-- Premium -->
+          <div class="package-card">
+            <div class="package-name">Premium</div>
+            <div class="package-price">
+              $1,200–$1,600+ <span class="range">full day + extras</span>
+            </div>
+            <ul class="package-features">
+              <li>Everything in Complete</li>
+              <li>6–8+ hours of reception DJing</li>
+              <li>Ambient uplighting included</li>
+              <li>Extended ceremony coverage</li>
+              <li>Cocktail hour music</li>
+              <li>Priority booking & planning</li>
+              <li>Day-of timeline coordination</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Extras -->
+      <div class="extras-section">
+        <div class="section-eyebrow" style="margin-bottom: 10px">
+          Optional Add-Ons
+        </div>
+        <div class="extras-row">
+          <div class="extra-item">
+            <i data-lucide="lightbulb"></i>
+            <div>
+              <div class="extra-title">Ambient Uplighting — $200–$400</div>
+              <div class="extra-desc">
+                Transform your venue with color-matched uplighting. Set the mood
+                for dinner, change for the dance—fully customizable.
+              </div>
+            </div>
+          </div>
+          <div class="extra-item">
+            <i data-lucide="clock"></i>
+            <div>
+              <div class="extra-title">Extended Hours — $100/hr</div>
+              <div class="extra-desc">
+                Keep the party going! Add extra dance time to any package at a
+                flat hourly rate.
+              </div>
+            </div>
+          </div>
+          <div class="extra-item">
+            <i data-lucide="mic"></i>
+            <div>
+              <div class="extra-title">Ceremony Only — Starting at $250</div>
+              <div class="extra-desc">
+                Already have reception entertainment? Add crystal-clear ceremony
+                audio with dedicated setup and wireless mics.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Footer -->
+      <div class="contact-footer">
+        <div class="contact-left">
+          <div class="section-heading">Let's Talk About Your Day</div>
+          <p>
+            Ready to book amazing sound for your wedding?<br />Get in touch and
+            let's make it happen.
+          </p>
+        </div>
+        <div class="contact-right">
+          <div class="contact-line">
+            <i data-lucide="user"></i>
+            <span>Michael Wegter</span>
+          </div>
+          <div class="contact-line">
+            <i data-lucide="phone"></i>
+            <a href="tel:+16123897005"><span>(612) 389-7005</span></a>
+          </div>
+          <div class="contact-line">
+            <i data-lucide="mail"></i>
+            <a href="mailto:michael@fortherecordmn.com"
+              ><span>michael@fortherecordmn.com</span></a
+            >
+          </div>
+          <div class="contact-line">
+            <i data-lucide="globe"></i>
+            <a href="https://fortherecordmn.com"
+              ><span>fortherecordmn.com</span></a
+            >
+          </div>
+          <div class="contact-tagline">
+            Perfect sound. Packed dance floor. One for the books.
+          </div>
+        </div>
+      </div>
+
+      <div class="note">
+        Pricing is approximate and varies based on event details, location, and
+        customization. Let's chat to build the perfect package for your day.
+      </div>
+    </div>
+
+    <!-- ==================== PAGE 3 ==================== -->
+    <div class="page">
+      <!-- Planning Hero -->
+      <div class="planning-hero">
+        <div class="section-eyebrow">Planning Workshop</div>
+        <div class="section-heading">Your Wedding Audio, Thought Through</div>
+        <p>
+          These are the questions and moments worth thinking about early—so
+          nothing gets missed on your big day. Use this as a guide as you plan,
+          and we'll work through the details together.
+        </p>
+      </div>
+
+      <div class="gold-divider"></div>
+
+      <!-- Ceremony Music Moments -->
+      <div class="ceremony-music">
+        <div class="section-eyebrow">Ceremony Audio</div>
+        <div class="section-heading" style="font-size: 22px">
+          Every Moment Has a Soundtrack
+        </div>
+
+        <div class="ceremony-timeline">
+          <div class="ceremony-moment">
+            <h4>Prelude</h4>
+            <div class="timing">20–30 min before ceremony</div>
+            <p>
+              Music as guests arrive and settle in. Sets the tone—romantic,
+              relaxed, upbeat. Plan 5–10 songs that reflect you as a couple.
+            </p>
+          </div>
+          <div class="ceremony-moment">
+            <h4>Processional</h4>
+            <div class="timing">3–10 minutes</div>
+            <p>
+              The walk down the aisle. Traditionally 2–3 pieces: one for family
+              seating, one for the wedding party, and one for the couple's
+              entrance.
+            </p>
+          </div>
+          <div class="ceremony-moment">
+            <h4>Ceremony</h4>
+            <div class="timing">During the service</div>
+            <p>
+              Unity ceremony music, readings with background audio, or featured
+              songs during special moments. Crystal-clear microphones for vows
+              and readings.
+            </p>
+          </div>
+          <div class="ceremony-moment">
+            <h4>Recessional</h4>
+            <div class="timing">3–4 minutes</div>
+            <p>
+              The celebratory walk back! Upbeat, joyful, energy-filled. This is
+              the first song you hear as a married couple—make it count.
+            </p>
+          </div>
+          <div class="ceremony-moment">
+            <h4>Postlude</h4>
+            <div class="timing">10–15 minutes</div>
+            <p>
+              Music as guests exit and transition. Keeps the celebratory energy
+              going as everyone moves to cocktail hour or the reception space.
+            </p>
+          </div>
+          <div class="ceremony-moment">
+            <h4>Live vs. DJ</h4>
+            <div class="timing">Consider both</div>
+            <p>
+              Will any parts feature a live musician? Combining live ceremony
+              music with DJ reception is a popular option. I coordinate
+              seamlessly with live musicians.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Planning Questions -->
+      <div class="planning-questions">
+        <div class="section-eyebrow">Think It Through</div>
+        <div class="section-heading" style="font-size: 22px">
+          Questions Worth Asking Yourselves
+        </div>
+
+        <div class="questions-grid">
+          <div class="question-group">
+            <h4><i data-lucide="map-pin"></i> Venue & Setup</h4>
+            <ul>
+              <li>
+                Is our ceremony indoors or outdoors? (outdoor = extra audio
+                care)
+              </li>
+              <li>
+                Are the ceremony and reception in the same space or different?
+              </li>
+              <li>
+                How large is the venue? Will guests in the back row hear
+                clearly?
+              </li>
+              <li>
+                Are there noise concerns nearby? (roads, other events, nature)
+              </li>
+              <li>Is there a separate cocktail hour space that needs music?</li>
+            </ul>
+          </div>
+
+          <div class="question-group">
+            <h4><i data-lucide="clock"></i> Timeline & Flow</h4>
+            <ul>
+              <li>How long will our reception be? (typical: 4–5 hours)</li>
+              <li>
+                Will there be a cocktail hour, and would we like music there?
+              </li>
+              <li>When do we want speeches/toasts? During dinner or after?</li>
+              <li>How many speeches, and how long? (budget ~5 min each)</li>
+              <li>Do we want a grand entrance announcement?</li>
+            </ul>
+          </div>
+
+          <div class="question-group">
+            <h4><i data-lucide="music"></i> Music & Vibe</h4>
+            <ul>
+              <li>
+                What genres do we love? What should absolutely NOT be played?
+              </li>
+              <li>Do we have a first dance song picked out?</li>
+              <li>Parent dances? Father-daughter, mother-son, or both?</li>
+              <li>
+                Any special songs for cake cutting, bouquet toss, or last dance?
+              </li>
+              <li>
+                What energy do we want? Non-stop party or relaxed with peaks?
+              </li>
+            </ul>
+          </div>
+
+          <div class="question-group">
+            <h4><i data-lucide="mic"></i> Audio Needs</h4>
+            <ul>
+              <li>Do we need wireless mics for vows and officiant?</li>
+              <li>Will there be a mic for toasts and speeches?</li>
+              <li>Do we want background music during dinner?</li>
+              <li>
+                Any readings, poems, or live performances that need a mic?
+              </li>
+              <li>Do we want ambient uplighting to set the mood?</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pro Tips -->
+      <div class="pro-tips">
+        <div class="section-eyebrow">Pro Tips</div>
+        <div class="section-heading" style="font-size: 18px">
+          Things Most Couples Don't Think About
+        </div>
+
+        <div class="tips-grid">
+          <div class="tip-card">
+            <i data-lucide="sun"></i>
+            <div>
+              <h4>Outdoor Ceremony? Plan for Sound.</h4>
+              <p>
+                Wind, open air, and ambient noise can swallow audio.
+                Professional wireless mics and speakers positioned for your
+                specific space are essential—not optional—outdoors.
+              </p>
+            </div>
+          </div>
+          <div class="tip-card">
+            <i data-lucide="message-circle"></i>
+            <div>
+              <h4>Speeches Need Mics. Always.</h4>
+              <p>
+                Even in small venues. A wireless mic ensures Grandma in the back
+                hears every word of the best man's toast—and prevents the "can
+                you speak up?" interruptions.
+              </p>
+            </div>
+          </div>
+          <div class="tip-card">
+            <i data-lucide="zap"></i>
+            <div>
+              <h4>Energy Has a Shape</h4>
+              <p>
+                The best receptions build energy gradually—ambient during
+                dinner, rising through speeches, peaking on the dance floor.
+                Your DJ should read the room, not just press play.
+              </p>
+            </div>
+          </div>
+          <div class="tip-card">
+            <i data-lucide="calendar"></i>
+            <div>
+              <h4>Finalize Details 2+ Weeks Out</h4>
+              <p>
+                Song choices, timeline, special announcements—lock these in at
+                least two weeks before so your DJ can prepare, download, and
+                rehearse transitions perfectly.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Page 3 Footer -->
+      <div class="planning-footer">
+        <div class="planning-footer-left">
+          <div class="section-heading">Let's Plan Your Perfect Day</div>
+          <p>
+            Have questions? That's exactly what I'm here for. Let's walk through
+            your vision together.
+          </p>
+        </div>
+        <div class="planning-footer-col">
+          <div class="contact-line">
+            <i data-lucide="phone"></i>
+            <a href="tel:+16123897005"><span>(612) 389-7005</span></a>
+          </div>
+          <div class="contact-line">
+            <i data-lucide="mail"></i>
+            <a href="mailto:michael@fortherecordmn.com"
+              ><span>michael@fortherecordmn.com</span></a
+            >
+          </div>
+        </div>
+        <div class="planning-footer-col">
+          <div class="contact-line">
+            <i data-lucide="globe"></i>
+            <a href="https://fortherecordmn.com"
+              ><span>fortherecordmn.com</span></a
+            >
+          </div>
+          <div class="contact-tagline">
+            Perfect sound. Packed dance floor.<br />One for the books.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      lucide.createIcons();
+    </script>
+  </body>
+</html>

@@ -16,12 +16,11 @@
 
     <style>
       :root {
-        --navy:       #0a1128;
-        --cream:      #f8f6f1;
-        --gold:       #c9a86a;
-        --gold-light: rgba(201,168,106,0.14);
-        --gold-line:  rgba(201,168,106,0.3);
-        --white:      #ffffff;
+        --navy:      #0a1128;
+        --cream:     #f8f6f1;
+        --gold:      #c9a86a;
+        --gold-line: rgba(201,168,106,0.3);
+        --white:     #ffffff;
       }
 
       *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -39,7 +38,6 @@
       @media screen {
         body { padding: 40px; display: flex; justify-content: center; }
       }
-
       @media print {
         body { background: none; padding: 0; display: block; }
         .page { margin: 0; }
@@ -59,7 +57,7 @@
       /* ── Navy header band ── */
       .header-band {
         background: var(--navy);
-        padding: 0.3in 0.6in 0.32in;
+        padding: 0.22in 0.6in;
         display: flex;
         align-items: center;
         gap: 0.18in;
@@ -75,26 +73,26 @@
       }
 
       .header-logo {
-        width: 56px;
-        height: 56px;
+        width: 64px;
+        height: 64px;
         flex-shrink: 0;
       }
 
       .header-text { flex: 1; }
       .header-brand {
         font-family: "Cormorant Garamond", serif;
-        font-size: 1.5rem;
+        font-size: 1.75rem;
         font-weight: 700;
         color: var(--white);
         line-height: 1;
-        margin-bottom: 3px;
+        margin-bottom: 4px;
       }
       .header-tagline {
         font-family: "Inter", sans-serif;
-        font-size: 0.65rem;
+        font-size: 0.7rem;
         font-weight: 500;
         text-transform: uppercase;
-        letter-spacing: 2px;
+        letter-spacing: 2.5px;
         color: var(--gold);
       }
 
@@ -105,61 +103,63 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding: 0.35in 0.65in;
-        gap: 0.3in;
+        padding: 0.22in 0.6in;
+        gap: 0.18in;
       }
 
-      /* Title block */
-      .title-block {
-        text-align: center;
-      }
+      /* ── Title block ── */
+      .title-block { text-align: center; }
+
       .eyebrow {
         font-family: "Inter", sans-serif;
-        font-size: 0.65rem;
+        font-size: 0.75rem;
         font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 3px;
         color: var(--gold);
-        margin-bottom: 0.1in;
+        margin-bottom: 0.08in;
       }
+
       h1 {
         font-family: "Cormorant Garamond", serif;
-        font-size: 2.4rem;
+        font-size: 3rem;
         font-weight: 400;
         color: var(--navy);
-        line-height: 1.1;
-        margin-bottom: 0.1in;
+        line-height: 1.05;
+        margin-bottom: 0.08in;
       }
+
       .subtitle {
         font-family: "Inter", sans-serif;
-        font-size: 0.85rem;
+        font-size: 0.9rem;
         color: #5a6175;
-        line-height: 1.6;
-        max-width: 5in;
+        line-height: 1.55;
+        max-width: 5.2in;
         margin: 0 auto;
       }
 
       /* ── Gold divider ── */
       .divider {
-        width: 3in;
+        width: 3.5in;
         height: 1px;
         background: linear-gradient(90deg, transparent, var(--gold), transparent);
       }
 
-      /* ── Primary QR card (mobile brochure) ── */
-      .primary-card {
+      /* ── QR card — centered, full width ── */
+      .qr-card {
         background: var(--navy);
         border-radius: 20px;
-        padding: 0.3in 0.45in;
+        padding: 0.3in 0.5in;
         display: flex;
+        flex-direction: column;
         align-items: center;
-        gap: 0.4in;
+        gap: 0.16in;
         width: 100%;
-        box-shadow: 0 8px 32px rgba(10,17,40,0.15);
+        box-shadow: 0 12px 40px rgba(10,17,40,0.18);
         position: relative;
         overflow: hidden;
       }
-      .primary-card::before {
+      .qr-card::before {
         content: "";
         position: absolute;
         top: 0; left: 0; right: 0;
@@ -167,106 +167,53 @@
         background: linear-gradient(90deg, transparent, var(--gold), transparent);
       }
 
-      .primary-qr-wrap {
-        background: var(--white);
-        border-radius: 14px;
-        padding: 0.15in;
-        flex-shrink: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .primary-text { flex: 1; }
-      .primary-badge {
+      .qr-badge {
         display: inline-block;
         font-family: "Inter", sans-serif;
-        font-size: 0.58rem;
+        font-size: 0.68rem;
         font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 2px;
         color: var(--navy);
         background: var(--gold);
         border-radius: 50px;
-        padding: 3px 10px;
-        margin-bottom: 0.1in;
-      }
-      .primary-heading {
-        font-family: "Cormorant Garamond", serif;
-        font-size: 1.6rem;
-        font-weight: 400;
-        color: var(--white);
-        line-height: 1.15;
-        margin-bottom: 0.1in;
-      }
-      .primary-desc {
-        font-family: "Inter", sans-serif;
-        font-size: 0.78rem;
-        color: rgba(255,255,255,0.72);
-        line-height: 1.55;
-        margin-bottom: 0.12in;
-      }
-      .primary-url {
-        font-family: "Inter", sans-serif;
-        font-size: 0.72rem;
-        font-weight: 600;
-        color: var(--gold);
-        letter-spacing: 0.3px;
+        padding: 4px 14px;
       }
 
-      /* ── Secondary row (desktop brochure) ── */
-      .secondary-row {
-        display: flex;
-        align-items: center;
-        gap: 0.3in;
+      .qr-wrap {
         background: var(--white);
-        border: 1px solid var(--gold-line);
-        border-radius: 14px;
-        padding: 0.2in 0.3in;
-        width: 100%;
-        box-shadow: 0 2px 12px rgba(10,17,40,0.06);
-      }
-
-      .secondary-qr-wrap {
-        background: var(--cream);
-        border-radius: 10px;
-        padding: 0.1in;
-        flex-shrink: 0;
-        border: 1px solid var(--gold-line);
+        border-radius: 16px;
+        padding: 0.15in;
         display: flex;
         align-items: center;
         justify-content: center;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.2);
       }
 
-      .secondary-text { flex: 1; }
-      .secondary-label {
-        font-family: "Inter", sans-serif;
-        font-size: 0.6rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        color: var(--gold);
-        margin-bottom: 4px;
-      }
-      .secondary-heading {
+      .qr-heading {
         font-family: "Cormorant Garamond", serif;
-        font-size: 1.15rem;
-        font-weight: 600;
-        color: var(--navy);
-        margin-bottom: 4px;
+        font-size: 2rem;
+        font-weight: 400;
+        color: var(--white);
+        line-height: 1.1;
+        text-align: center;
       }
-      .secondary-desc {
+
+      .qr-desc {
         font-family: "Inter", sans-serif;
-        font-size: 0.72rem;
-        color: #5a6175;
-        line-height: 1.5;
+        font-size: 0.88rem;
+        color: rgba(255,255,255,0.72);
+        line-height: 1.55;
+        text-align: center;
+        max-width: 5in;
       }
-      .secondary-url {
+
+      .qr-url {
         font-family: "Inter", sans-serif;
-        font-size: 0.68rem;
+        font-size: 0.82rem;
         font-weight: 600;
-        color: var(--navy);
-        opacity: 0.6;
+        color: var(--gold);
+        letter-spacing: 0.3px;
       }
 
       /* ── Footer band ── */
@@ -288,12 +235,12 @@
       }
       .footer-copy {
         font-family: "Inter", sans-serif;
-        font-size: 0.62rem;
+        font-size: 0.65rem;
         color: rgba(255,255,255,0.5);
       }
       .footer-contact {
         font-family: "Inter", sans-serif;
-        font-size: 0.62rem;
+        font-size: 0.65rem;
         color: var(--gold);
         font-weight: 500;
       }
@@ -302,7 +249,7 @@
   <body>
     <div class="page">
 
-      <!-- Navy header -->
+      <!-- Header -->
       <div class="header-band">
         <img
           src="https://fortherecordmn.com/images/for-the-record-logo.svg"
@@ -318,49 +265,33 @@
       <!-- Body -->
       <div class="body">
 
-        <!-- Title -->
         <div class="title-block">
-          <p class="eyebrow">Digital Resources</p>
+          <p class="eyebrow">Digital Brochure</p>
           <h1>View &amp; Download Our Brochure</h1>
           <p class="subtitle">
             Scan the code below with your phone camera to view our
-            mobile-friendly wedding brochure — or grab the full-page
-            print version below.
+            full wedding brochure — packages, services, and more.
           </p>
         </div>
 
         <div class="divider"></div>
 
-        <!-- Primary: mobile brochure -->
-        <div class="primary-card">
-          <div class="primary-qr-wrap">
+        <!-- Single QR card -->
+        <div class="qr-card">
+          <span class="qr-badge">Scan with your phone camera</span>
+
+          <div class="qr-wrap">
             <div id="qr-mobile"></div>
           </div>
-          <div class="primary-text">
-            <span class="primary-badge">Recommended</span>
-            <div class="primary-heading">Wedding Brochure<br/>— Mobile Version</div>
-            <p class="primary-desc">
-              Optimized for your phone. Browse our packages, services,
-              and frequently asked questions anywhere, anytime.
-            </p>
-            <span class="primary-url">fortherecordmn.com/brochure-mobile.html</span>
-          </div>
-        </div>
 
-        <!-- Secondary: desktop / print brochure -->
-        <div class="secondary-row">
-          <div class="secondary-qr-wrap">
-            <div id="qr-desktop"></div>
-          </div>
-          <div class="secondary-text">
-            <div class="secondary-label">Also available</div>
-            <div class="secondary-heading">Full-Page Print Brochure</div>
-            <p class="secondary-desc">
-              Letter-sized, print-ready version — great for saving to PDF
-              or printing at home.
-            </p>
-          </div>
-          <span class="secondary-url">fortherecordmn.com/brochure.html</span>
+          <div class="qr-heading">Wedding Brochure</div>
+
+          <p class="qr-desc">
+            Browse our packages, services, planning resources, and
+            frequently asked questions — optimized for any device.
+          </p>
+
+          <span class="qr-url">fortherecordmn.com/brochure-mobile.html</span>
         </div>
 
       </div>
@@ -374,23 +305,12 @@
     </div>
 
     <script>
-      // Primary QR — mobile brochure (larger)
       new QRCode(document.getElementById("qr-mobile"), {
         text: "https://fortherecordmn.com/brochure-mobile.html",
-        width: 200,
-        height: 200,
+        width: 260,
+        height: 260,
         colorDark: "#0a1128",
         colorLight: "#ffffff",
-        correctLevel: QRCode.CorrectLevel.H,
-      });
-
-      // Secondary QR — desktop/print brochure (smaller)
-      new QRCode(document.getElementById("qr-desktop"), {
-        text: "https://fortherecordmn.com/brochure.html",
-        width: 110,
-        height: 110,
-        colorDark: "#0a1128",
-        colorLight: "#f8f6f1",
         correctLevel: QRCode.CorrectLevel.H,
       });
     </script>

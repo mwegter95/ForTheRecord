@@ -16,12 +16,11 @@
 
     <style>
       :root {
-        --navy:   #0a1128;
-        --cream:  #f8f6f1;
-        --gold:   #c9a86a;
-        --gold-light: rgba(201,168,106,0.18);
-        --gold-line:  rgba(201,168,106,0.35);
-        --white:  #ffffff;
+        --navy:      #0a1128;
+        --cream:     #f8f6f1;
+        --gold:      #c9a86a;
+        --gold-line: rgba(201,168,106,0.35);
+        --white:     #ffffff;
       }
 
       *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -39,6 +38,10 @@
       @media screen {
         body { padding: 40px; display: flex; justify-content: center; }
       }
+      @media print {
+        body { background: none; padding: 0; display: block; }
+        .page { margin: 0; }
+      }
 
       /* ── Page ── */
       .page {
@@ -53,11 +56,6 @@
         overflow: hidden;
       }
 
-      @media print {
-        body { background: none; padding: 0; display: block; }
-        .page { margin: 0; }
-      }
-
       /* ── Decorative rings ── */
       .ring {
         position: absolute;
@@ -65,22 +63,22 @@
         border: 1px solid var(--gold-line);
         pointer-events: none;
       }
-      .ring-1 { width: 520px; height: 520px; top: -160px; left: -160px; }
-      .ring-2 { width: 340px; height: 340px; top: -60px;  left: -60px; opacity: .5; }
-      .ring-3 { width: 480px; height: 480px; bottom: -150px; right: -150px; }
-      .ring-4 { width: 280px; height: 280px; bottom: -50px;  right: -50px; opacity: .5; }
+      .ring-1 { width: 680px; height: 680px; top: -220px; left: -220px; }
+      .ring-2 { width: 440px; height: 440px; top: -90px;  left: -90px; opacity: .5; }
+      .ring-3 { width: 620px; height: 620px; bottom: -200px; right: -200px; }
+      .ring-4 { width: 380px; height: 380px; bottom: -80px;  right: -80px; opacity: .5; }
 
-      /* ── Gold bar top ── */
+      /* ── Gold accent bars ── */
       .gold-bar-top {
         position: absolute;
         top: 0; left: 0; right: 0;
-        height: 5px;
+        height: 6px;
         background: linear-gradient(90deg, transparent, var(--gold), transparent);
       }
       .gold-bar-bottom {
         position: absolute;
         bottom: 0; left: 0; right: 0;
-        height: 5px;
+        height: 6px;
         background: linear-gradient(90deg, transparent, var(--gold), transparent);
       }
 
@@ -96,141 +94,126 @@
         gap: 0;
       }
 
-      /* Logo */
       .logo {
-        width: 90px;
-        height: 90px;
-        margin-bottom: 0.2in;
+        width: 130px;
+        height: 130px;
+        margin-bottom: 0.22in;
       }
 
-      /* Eyebrow */
       .eyebrow {
         font-family: "Inter", sans-serif;
-        font-size: 0.7rem;
+        font-size: 0.95rem;
         font-weight: 600;
         text-transform: uppercase;
-        letter-spacing: 3px;
+        letter-spacing: 3.5px;
         color: var(--gold);
-        margin-bottom: 0.12in;
+        margin-bottom: 0.14in;
       }
 
-      /* Heading */
       h1 {
         font-family: "Cormorant Garamond", serif;
-        font-size: 3rem;
+        font-size: 4.5rem;
         font-weight: 400;
         color: var(--white);
-        line-height: 1.1;
-        margin-bottom: 0.15in;
+        line-height: 1.05;
+        margin-bottom: 0.18in;
       }
 
-      /* Subheading */
       .subhead {
         font-family: "Inter", sans-serif;
-        font-size: 0.9rem;
+        font-size: 1.1rem;
         font-weight: 400;
-        color: rgba(255,255,255,0.7);
+        color: rgba(255,255,255,0.72);
         line-height: 1.6;
-        max-width: 4.5in;
-        margin-bottom: 0.35in;
+        max-width: 4.8in;
+        margin-bottom: 0.38in;
       }
 
-      /* Divider */
       .divider {
-        width: 2.5in;
+        width: 3in;
         height: 1px;
         background: linear-gradient(90deg, transparent, var(--gold), transparent);
-        margin-bottom: 0.35in;
+        margin-bottom: 0.38in;
       }
 
-      /* QR code card */
+      /* ── QR card ── */
       .qr-card {
         background: var(--white);
-        border-radius: 20px;
-        padding: 0.3in;
+        border-radius: 24px;
+        padding: 0.35in 0.4in;
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 0.18in;
-        box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-        margin-bottom: 0.3in;
+        gap: 0.2in;
+        box-shadow: 0 24px 70px rgba(0,0,0,0.45);
+        margin-bottom: 0.35in;
       }
 
       .qr-label {
         font-family: "Inter", sans-serif;
-        font-size: 0.65rem;
+        font-size: 0.82rem;
         font-weight: 700;
         text-transform: uppercase;
-        letter-spacing: 2px;
+        letter-spacing: 2.5px;
         color: var(--gold);
-      }
-
-      #qr-website {
-        /* qrcodejs renders a canvas or img — size set in JS */
       }
 
       .qr-url {
         font-family: "Inter", sans-serif;
-        font-size: 0.85rem;
+        font-size: 1.1rem;
         font-weight: 600;
         color: var(--navy);
         letter-spacing: 0.3px;
       }
 
-      /* Tagline block */
+      /* ── Tagline ── */
       .tagline-block {
         display: flex;
         align-items: center;
-        gap: 0.18in;
-        margin-bottom: 0.35in;
+        gap: 0.2in;
+        margin-bottom: 0.38in;
       }
       .tagline-line {
-        flex: 1;
         height: 1px;
         background: var(--gold-line);
-        width: 0.8in;
+        width: 0.9in;
       }
       .tagline {
         font-family: "Cormorant Garamond", serif;
-        font-size: 1.05rem;
+        font-size: 1.25rem;
         font-style: italic;
         color: rgba(255,255,255,0.65);
         white-space: nowrap;
       }
 
-      /* Services row */
+      /* ── Service pills ── */
       .services {
         display: flex;
-        gap: 0.25in;
+        gap: 0.28in;
       }
       .service-pill {
         font-family: "Inter", sans-serif;
-        font-size: 0.65rem;
+        font-size: 0.8rem;
         font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 1.5px;
         color: var(--gold);
         border: 1px solid var(--gold-line);
         border-radius: 50px;
-        padding: 0.07in 0.2in;
+        padding: 0.09in 0.24in;
       }
     </style>
   </head>
   <body>
     <div class="page">
-      <!-- Decorative rings -->
       <div class="ring ring-1"></div>
       <div class="ring ring-2"></div>
       <div class="ring ring-3"></div>
       <div class="ring ring-4"></div>
-
-      <!-- Gold accent bars -->
       <div class="gold-bar-top"></div>
       <div class="gold-bar-bottom"></div>
 
-      <!-- Main content -->
       <div class="content">
-        <!-- Logo -->
         <img
           src="https://fortherecordmn.com/images/for-the-record-logo.svg"
           alt="For the Record Logo"
@@ -242,27 +225,24 @@
         <h1>Visit Our Website</h1>
 
         <p class="subhead">
-          Explore our services, packages, and galleries — or request
-          a song for the big day.
+          Explore our services, packages, and galleries —
+          or request a song for the big day.
         </p>
 
         <div class="divider"></div>
 
-        <!-- QR Code -->
         <div class="qr-card">
           <span class="qr-label">Scan with your camera</span>
           <div id="qr-website"></div>
           <span class="qr-url">fortherecordmn.com</span>
         </div>
 
-        <!-- Tagline -->
         <div class="tagline-block">
           <div class="tagline-line"></div>
           <span class="tagline">Expert Audio. Unforgettable Entertainment. Stress-Free.</span>
           <div class="tagline-line"></div>
         </div>
 
-        <!-- Service pills -->
         <div class="services">
           <span class="service-pill">Weddings</span>
           <span class="service-pill">Corporate Events</span>
@@ -274,8 +254,8 @@
     <script>
       new QRCode(document.getElementById("qr-website"), {
         text: "https://fortherecordmn.com",
-        width: 220,
-        height: 220,
+        width: 300,
+        height: 300,
         colorDark: "#0a1128",
         colorLight: "#ffffff",
         correctLevel: QRCode.CorrectLevel.H,

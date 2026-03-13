@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poster Preview - For the Record</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #333;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: white;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .info {
+            background: #444;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .info h1 {
+            margin: 0 0 10px 0;
+            color: #C9A86A;
+        }
+        .info p {
+            margin: 5px 0;
+        }
+        .preview {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+        .preview img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .specs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .spec {
+            background: #555;
+            padding: 15px;
+            border-radius: 6px;
+        }
+        .spec strong {
+            color: #C9A86A;
+            display: block;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="info">
+            <h1>Poster Preview - For the Record</h1>
+            <p><strong>Dimensions:</strong> 30" × 18" (2.5 ft × 1.5 ft) - HORIZONTAL</p>
+            <p><strong>Resolution:</strong> 300 DPI (print quality)</p>
+            <p><strong>File Size:</strong> 0.46 MB</p>
+            
+            <div class="specs">
+                <div class="spec">
+                    <strong>SVG File</strong>
+                    poster-18x30.svg<br>
+                    (Vector, scalable to any size)
+                </div>
+                <div class="spec">
+                    <strong>PNG File</strong>
+                    poster-18x30-print.png<br>
+                    (9000 × 5400 pixels)
+                </div>
+                <div class="spec">
+                    <strong>Print Settings</strong>
+                    Use "Actual Size" or "100%" scale<br>
+                    No borders/margins
+                </div>
+                <div class="spec">
+                    <strong>Recommended</strong>
+                    Professional print shop<br>
+                    Poster board or foam core
+                </div>
+            </div>
+        </div>
+        
+        <div class="preview">
+            <img src="poster-18x30.svg" alt="For the Record Poster">
+        </div>
+    </div>
+</body>
+</html>

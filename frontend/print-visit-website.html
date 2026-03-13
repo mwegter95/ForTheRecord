@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>For the Record – Visit Our Website</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <style>
+      :root {
+        --navy:   #0a1128;
+        --cream:  #f8f6f1;
+        --gold:   #c9a86a;
+        --gold-light: rgba(201,168,106,0.18);
+        --gold-line:  rgba(201,168,106,0.35);
+        --white:  #ffffff;
+      }
+
+      *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+      @page { size: letter portrait; margin: 0; }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background: #e8e4dc;
+        -webkit-font-smoothing: antialiased;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      @media screen {
+        body { padding: 40px; display: flex; justify-content: center; }
+      }
+
+      /* ── Page ── */
+      .page {
+        width: 8.5in;
+        height: 11in;
+        background: var(--navy);
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+
+      @media print {
+        body { background: none; padding: 0; display: block; }
+        .page { margin: 0; }
+      }
+
+      /* ── Decorative rings ── */
+      .ring {
+        position: absolute;
+        border-radius: 50%;
+        border: 1px solid var(--gold-line);
+        pointer-events: none;
+      }
+      .ring-1 { width: 520px; height: 520px; top: -160px; left: -160px; }
+      .ring-2 { width: 340px; height: 340px; top: -60px;  left: -60px; opacity: .5; }
+      .ring-3 { width: 480px; height: 480px; bottom: -150px; right: -150px; }
+      .ring-4 { width: 280px; height: 280px; bottom: -50px;  right: -50px; opacity: .5; }
+
+      /* ── Gold bar top ── */
+      .gold-bar-top {
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 5px;
+        background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      }
+      .gold-bar-bottom {
+        position: absolute;
+        bottom: 0; left: 0; right: 0;
+        height: 5px;
+        background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      }
+
+      /* ── Content ── */
+      .content {
+        position: relative;
+        z-index: 10;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 0 0.75in;
+        gap: 0;
+      }
+
+      /* Logo */
+      .logo {
+        width: 90px;
+        height: 90px;
+        margin-bottom: 0.2in;
+      }
+
+      /* Eyebrow */
+      .eyebrow {
+        font-family: "Inter", sans-serif;
+        font-size: 0.7rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        color: var(--gold);
+        margin-bottom: 0.12in;
+      }
+
+      /* Heading */
+      h1 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 3rem;
+        font-weight: 400;
+        color: var(--white);
+        line-height: 1.1;
+        margin-bottom: 0.15in;
+      }
+
+      /* Subheading */
+      .subhead {
+        font-family: "Inter", sans-serif;
+        font-size: 0.9rem;
+        font-weight: 400;
+        color: rgba(255,255,255,0.7);
+        line-height: 1.6;
+        max-width: 4.5in;
+        margin-bottom: 0.35in;
+      }
+
+      /* Divider */
+      .divider {
+        width: 2.5in;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        margin-bottom: 0.35in;
+      }
+
+      /* QR code card */
+      .qr-card {
+        background: var(--white);
+        border-radius: 20px;
+        padding: 0.3in;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.18in;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+        margin-bottom: 0.3in;
+      }
+
+      .qr-label {
+        font-family: "Inter", sans-serif;
+        font-size: 0.65rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: var(--gold);
+      }
+
+      #qr-website {
+        /* qrcodejs renders a canvas or img — size set in JS */
+      }
+
+      .qr-url {
+        font-family: "Inter", sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--navy);
+        letter-spacing: 0.3px;
+      }
+
+      /* Tagline block */
+      .tagline-block {
+        display: flex;
+        align-items: center;
+        gap: 0.18in;
+        margin-bottom: 0.35in;
+      }
+      .tagline-line {
+        flex: 1;
+        height: 1px;
+        background: var(--gold-line);
+        width: 0.8in;
+      }
+      .tagline {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.05rem;
+        font-style: italic;
+        color: rgba(255,255,255,0.65);
+        white-space: nowrap;
+      }
+
+      /* Services row */
+      .services {
+        display: flex;
+        gap: 0.25in;
+      }
+      .service-pill {
+        font-family: "Inter", sans-serif;
+        font-size: 0.65rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        color: var(--gold);
+        border: 1px solid var(--gold-line);
+        border-radius: 50px;
+        padding: 0.07in 0.2in;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <!-- Decorative rings -->
+      <div class="ring ring-1"></div>
+      <div class="ring ring-2"></div>
+      <div class="ring ring-3"></div>
+      <div class="ring ring-4"></div>
+
+      <!-- Gold accent bars -->
+      <div class="gold-bar-top"></div>
+      <div class="gold-bar-bottom"></div>
+
+      <!-- Main content -->
+      <div class="content">
+        <!-- Logo -->
+        <img
+          src="https://fortherecordmn.com/images/for-the-record-logo.svg"
+          alt="For the Record Logo"
+          class="logo"
+        />
+
+        <p class="eyebrow">Minnesota Wedding DJ &amp; Audio</p>
+
+        <h1>Visit Our Website</h1>
+
+        <p class="subhead">
+          Explore our services, packages, and galleries — or request
+          a song for the big day.
+        </p>
+
+        <div class="divider"></div>
+
+        <!-- QR Code -->
+        <div class="qr-card">
+          <span class="qr-label">Scan with your camera</span>
+          <div id="qr-website"></div>
+          <span class="qr-url">fortherecordmn.com</span>
+        </div>
+
+        <!-- Tagline -->
+        <div class="tagline-block">
+          <div class="tagline-line"></div>
+          <span class="tagline">Expert Audio. Unforgettable Entertainment. Stress-Free.</span>
+          <div class="tagline-line"></div>
+        </div>
+
+        <!-- Service pills -->
+        <div class="services">
+          <span class="service-pill">Weddings</span>
+          <span class="service-pill">Corporate Events</span>
+          <span class="service-pill">Private Parties</span>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      new QRCode(document.getElementById("qr-website"), {
+        text: "https://fortherecordmn.com",
+        width: 220,
+        height: 220,
+        colorDark: "#0a1128",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H,
+      });
+    </script>
+  </body>
+</html>

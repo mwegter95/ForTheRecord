@@ -5,7 +5,7 @@
 .contract-page {
   background: #e8e6e1;
   min-height: 100vh;
-  padding: 5.5rem 1rem 4rem;
+  padding: 7rem 1rem 4rem;
   display: flex;
   justify-content: center;
 }
@@ -415,7 +415,7 @@
 // ── Responsive ───────────────────────────────────────────────
 @media (max-width: 700px) {
   .contract-page {
-    padding: 1rem 0.5rem 3rem;
+    padding: 6.5rem 0.5rem 3rem;
   }
 
   .contract-doc {

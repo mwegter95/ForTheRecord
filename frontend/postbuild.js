@@ -27,6 +27,7 @@ const routes = [
   "faq",
   "get-in-touch",
   "request-a-song",
+  "contract",
   // Redirect routes (these redirect in React, but need a 200 to load the app)
   "weddings",
   "events",

@@ -1,0 +1,456 @@
+// ============================================================================
+// CONTRACT PAGE — professional document styling
+// ============================================================================
+
+.contract-page {
+  background: #e8e6e1;
+  min-height: 100vh;
+  padding: 5.5rem 1rem 4rem;
+  display: flex;
+  justify-content: center;
+}
+
+// ── Document wrapper ─────────────────────────────────────────
+.contract-doc {
+  background: #ffffff;
+  max-width: 780px;
+  width: 100%;
+  padding: 3rem 3.5rem;
+  border-radius: 4px;
+  box-shadow: 0 2px 24px rgba(0, 0, 0, 0.12);
+  font-family: "Inter", -apple-system, sans-serif;
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: #2d3142;
+
+  p {
+    margin: 0 0 0.8rem;
+  }
+}
+
+// ── Header ───────────────────────────────────────────────────
+.contract-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid #0a1128;
+
+  &__logo {
+    width: 64px;
+    height: 64px;
+    border-radius: 12px;
+    margin-bottom: 0.75rem;
+  }
+
+  h1 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.65rem;
+    font-weight: 700;
+    color: #0a1128;
+    margin: 0 0 0.25rem;
+    letter-spacing: 0.3px;
+  }
+
+  &__sub {
+    font-size: 0.85rem;
+    color: #6b7280;
+    margin: 0;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+}
+
+// ── Intro paragraph ──────────────────────────────────────────
+.contract-intro {
+  font-size: 0.9rem;
+  color: #4b5563;
+  margin-bottom: 1.75rem;
+}
+
+// ── Section titles ───────────────────────────────────────────
+.contract-section-title {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #0a1128;
+  margin: 2rem 0 0.6rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(201, 168, 106, 0.3);
+
+  &:first-of-type {
+    border-top: none;
+    padding-top: 0;
+  }
+}
+
+// ── Form field grid ──────────────────────────────────────────
+.contract-field-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.contract-field {
+  display: flex;
+  flex-direction: column;
+
+  &--full {
+    grid-column: 1 / -1;
+  }
+
+  &--sm {
+    max-width: 120px;
+  }
+
+  label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #4b5563;
+    margin-bottom: 0.2rem;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+  }
+
+  .req {
+    color: #c9a86a;
+  }
+
+  input,
+  textarea {
+    border: 1.5px solid #d1d5db;
+    border-radius: 8px;
+    padding: 0.55rem 0.75rem;
+    font-size: 0.9rem;
+    font-family: inherit;
+    color: #0a1128;
+    transition: border-color 0.2s;
+    background: #fafafa;
+
+    &:focus {
+      outline: none;
+      border-color: #c9a86a;
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(201, 168, 106, 0.12);
+    }
+
+    &::placeholder {
+      color: #9ca3af;
+    }
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 70px;
+  }
+
+  &--readonly,
+  input[readonly] {
+    background: #f3f4f6;
+    color: #6b7280;
+    cursor: default;
+  }
+
+  // Adjusted total — slightly highlighted so it stands out
+  &--highlight input[readonly] {
+    background: #eef3f0;
+    color: #0a1128;
+    font-weight: 600;
+    border-color: #c9a86a;
+  }
+}
+
+// ── List items ───────────────────────────────────────────────
+.contract-list {
+  margin: 0.25rem 0 1rem;
+  padding-left: 1.4rem;
+
+  li {
+    margin-bottom: 0.35rem;
+    line-height: 1.6;
+  }
+}
+
+// ── Notes ────────────────────────────────────────────────────
+.contract-note {
+  font-size: 0.85rem;
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+// ── Signatures area ──────────────────────────────────────────
+.contract-signatures {
+  margin-top: 1.5rem;
+}
+
+.contract-sig-block {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 1.25rem;
+
+  h3 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #0a1128;
+    margin: 0 0 0.75rem;
+  }
+}
+
+.contract-sig-date {
+  font-size: 0.82rem;
+  color: #6b7280;
+  margin: 0.5rem 0 0;
+
+  &--pending {
+    font-style: italic;
+    color: #9ca3af;
+  }
+}
+
+.contract-sig-dj-name {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.5rem;
+  font-style: italic;
+  color: #0a1128;
+  margin: 0 0 0.25rem;
+}
+
+.contract-sig-dj-info {
+  font-size: 0.82rem;
+  margin: 0;
+  line-height: 1.6;
+
+  a {
+    color: #c9a86a;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+// ── Signature pad (canvas) ───────────────────────────────────
+.signature-pad {
+  position: relative;
+  border: 1.5px solid #d1d5db;
+  border-radius: 10px;
+  background: #fafafa;
+  overflow: hidden;
+
+  canvas {
+    display: block;
+    width: 100%;
+    height: 120px;
+    cursor: crosshair;
+    touch-action: none;
+  }
+
+  &__line {
+    position: absolute;
+    bottom: 30px;
+    left: 16px;
+    right: 16px;
+    height: 1px;
+    background: #d1d5db;
+    pointer-events: none;
+  }
+
+  &__clear {
+    position: absolute;
+    bottom: 6px;
+    right: 8px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #9ca3af;
+    font-size: 0.72rem;
+    font-family: inherit;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    transition: color 0.15s, background 0.15s;
+
+    &:hover {
+      color: #ef4444;
+      background: rgba(239, 68, 68, 0.08);
+    }
+  }
+}
+
+// ── Submit area ──────────────────────────────────────────────
+.contract-submit-area {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid #0a1128;
+  text-align: center;
+}
+
+.contract-agree {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  text-align: left;
+  cursor: pointer;
+  margin-bottom: 1.25rem;
+
+  input[type="checkbox"] {
+    margin-top: 0.2rem;
+    width: 18px;
+    height: 18px;
+    accent-color: #0a1128;
+    flex-shrink: 0;
+  }
+
+  span {
+    font-size: 0.88rem;
+    color: #4b5563;
+    line-height: 1.5;
+  }
+}
+
+.contract-error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: #fef2f2;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.contract-submit-btn {
+  background: #0a1128;
+  color: #c9a86a;
+  border: none;
+  border-radius: 50px;
+  padding: 0.85rem 2.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-family: inherit;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background 0.2s;
+
+  &:hover:not(:disabled) {
+    background: #1a2444;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.contract-submit-note {
+  font-size: 0.78rem;
+  color: #9ca3af;
+  margin-top: 0.75rem;
+}
+
+// ── Success state ────────────────────────────────────────────
+.contract-success {
+  background: #ffffff;
+  max-width: 580px;
+  width: 100%;
+  margin: 4rem auto;
+  padding: 3rem 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 2px 24px rgba(0, 0, 0, 0.12);
+  text-align: center;
+
+  &__icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #ecfdf5;
+    color: #059669;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.25rem;
+  }
+
+  h2 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.5rem;
+    color: #0a1128;
+    margin: 0 0 0.75rem;
+  }
+
+  p {
+    color: #4b5563;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+  }
+
+  &__note {
+    font-size: 0.85rem;
+    color: #6b7280;
+
+    a {
+      color: #c9a86a;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+// ── Responsive ───────────────────────────────────────────────
+@media (max-width: 700px) {
+  .contract-page {
+    padding: 1rem 0.5rem 3rem;
+  }
+
+  .contract-doc {
+    padding: 2rem 1.5rem;
+  }
+
+  .contract-field-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contract-field--sm {
+    max-width: none;
+  }
+
+  .contract-sig-block {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .contract-header h1 {
+    font-size: 1.35rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contract-doc {
+    padding: 1.5rem 1rem;
+    font-size: 0.88rem;
+  }
+
+  .contract-header h1 {
+    font-size: 1.2rem;
+  }
+
+  .contract-section-title {
+    font-size: 1.05rem;
+  }
+}

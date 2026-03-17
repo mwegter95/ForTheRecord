@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import useSEO from "../hooks/useSEO";
+import BookmarkButton from "./BookmarkButton";
 import weddingDanceFloor2 from "../images/wedding-dance-floor2.webp";
 import weddingDanceFloor3 from "../images/wedding-dance-floor3.webp";
 import weddingDanceFloor3HQ from "../images/wedding-dance-floor3-hq.webp";
@@ -458,6 +459,19 @@ const Home = () => {
             <Link to="/get-in-touch" className="btn-primary">
               Start Planning
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* BOOKMARK NUDGE */}
+      <section className="bookmark-nudge">
+        <div className="container">
+          <div className="bookmark-nudge-inner">
+            <BookmarkButton
+              variant="nudge"
+              prefix="Not quite ready? Come back when you are"
+              label="Bookmark Us for Later"
+            />
           </div>
         </div>
       </section>

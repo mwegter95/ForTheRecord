@@ -8,6 +8,8 @@
     <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16.png" />
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.json" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -919,13 +921,13 @@
 
   <body>
 
-    <!-- Version switcher — hidden when printing -->
+    <!-- Overlay buttons — hidden when printing -->
     <style>
-      @media print { .version-btn, .home-btn { display: none !important; } }
-      .version-btn {
+      @media print { .version-btn, .home-btn, .download-btn, .bookmark-left-btn { display: none !important; } }
+
+      /* ── Shared pill button base ── */
+      .version-btn, .home-btn, .download-btn, .bookmark-left-btn {
         position: fixed;
-        top: 18px;
-        right: 18px;
         z-index: 9999;
         background: #0a1128;
         color: #c9a86a;
@@ -940,31 +942,192 @@
         box-shadow: 0 2px 12px rgba(0,0,0,0.35);
         transition: background 0.2s, color 0.2s;
         white-space: nowrap;
+        cursor: pointer;
+        line-height: 1.4;
       }
-      .version-btn:hover { background: #c9a86a; color: #0a1128; }
-      .home-btn {
+      .version-btn:hover, .home-btn:hover,
+      .download-btn:hover, .bookmark-left-btn:hover { background: #c9a86a; color: #0a1128; }
+
+      /* ── Right-side positions ── */
+      .version-btn { top: 18px; right: 18px; }
+      .home-btn    { top: 54px; right: 18px; }
+
+      /* ── Left-side positions ── */
+      .download-btn       { top: 18px; left: 18px; }
+      .bookmark-left-btn  { top: 54px; left: 18px; }
+
+      /* ── Bookmark modal ── */
+      #bm-overlay {
+        display: none;
         position: fixed;
-        top: 54px;
-        right: 18px;
-        z-index: 9999;
-        background: #0a1128;
-        color: #c9a86a;
-        font-family: "Inter", sans-serif;
-        font-size: 0.78rem;
-        font-weight: 600;
-        letter-spacing: 0.4px;
-        text-decoration: none;
-        border: 1px solid rgba(201,168,106,0.4);
-        border-radius: 50px;
-        padding: 0.45rem 1rem;
-        box-shadow: 0 2px 12px rgba(0,0,0,0.35);
-        transition: background 0.2s, color 0.2s;
-        white-space: nowrap;
+        inset: 0;
+        background: rgba(10,17,40,0.72);
+        backdrop-filter: blur(5px);
+        z-index: 10000;
+        align-items: center;
+        justify-content: center;
+        padding: 1.5rem;
       }
-      .home-btn:hover { background: #c9a86a; color: #0a1128; }
+      #bm-modal {
+        background: #f8f6f1;
+        border-radius: 22px;
+        padding: 2.25rem 2rem 1.75rem;
+        max-width: 360px;
+        width: 100%;
+        text-align: center;
+        position: relative;
+        box-shadow: 0 24px 64px rgba(10,17,40,0.38);
+        font-family: "Inter", sans-serif;
+      }
+      #bm-close {
+        position: absolute; top: 0.9rem; right: 0.9rem;
+        background: none; border: none; cursor: pointer;
+        color: #6b7280; font-size: 1.4rem; line-height: 1;
+        padding: 0.25rem 0.5rem; border-radius: 50%;
+        transition: background 0.15s;
+      }
+      #bm-close:hover { background: rgba(10,17,40,0.08); color: #0a1128; }
+      #bm-icon { width: 72px; height: 72px; border-radius: 16px; margin: 0 auto 1rem; display: block; box-shadow: 0 4px 18px rgba(10,17,40,0.18); }
+      #bm-title { font-family: "Cormorant Garamond", serif; font-size: 1.35rem; color: #0a1128; margin: 0 0 0.3rem; }
+      #bm-subtitle { color: #6b7280; font-size: 0.85rem; margin: 0 0 1.4rem; }
+      #bm-steps { list-style: none; padding: 0; margin: 0 0 1.4rem; text-align: left; display: flex; flex-direction: column; gap: 0.7rem; }
+      .bm-step { display: flex; align-items: flex-start; gap: 0.7rem; }
+      .bm-step-num { min-width: 24px; height: 24px; border-radius: 50%; background: #0a1128; color: #c9a86a; font-size: 0.75rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+      .bm-step-text { font-size: 0.88rem; color: #2d3142; line-height: 1.5; }
+      .bm-step-text strong { color: #0a1128; }
+      #bm-keyboard { display: none; align-items: center; justify-content: center; gap: 0.35rem; margin: 0 0 1.3rem; }
+      .bm-key { background: #0a1128; color: #c9a86a; border-radius: 8px; padding: 0.3rem 0.65rem; font-size: 1rem; font-weight: 700; box-shadow: 0 3px 0 rgba(0,0,0,0.35); border: 1px solid rgba(201,168,106,0.3); min-width: 2rem; text-align: center; }
+      .bm-plus { font-size: 1rem; color: #6b7280; font-weight: 600; }
+      #bm-install-btn { background: #0a1128; color: #c9a86a; border: none; border-radius: 50px; padding: 0.75rem 2rem; font-size: 0.95rem; font-weight: 600; font-family: "Inter",sans-serif; cursor: pointer; width: 100%; margin-bottom: 1.3rem; display: none; }
+      #bm-install-btn:hover { background: #1a2444; }
+      #bm-tagline { font-size: 0.8rem; color: #6b7280; font-style: italic; margin: 0; border-top: 1px solid rgba(201,168,106,0.28); padding-top: 0.9rem; }
     </style>
+
+    <!-- Right-side buttons -->
     <a class="version-btn" href="/brochure.html">View Desktop Version</a>
     <a class="home-btn" href="https://fortherecordmn.com">Return Home</a>
+
+    <!-- Left-side buttons -->
+    <a class="download-btn" onclick="window.print(); return false;" href="#">⬇ Download PDF</a>
+    <button class="bookmark-left-btn" onclick="openBmModal()">🔖 Bookmark Us</button>
+
+    <!-- Bookmark modal -->
+    <div id="bm-overlay" onclick="if(event.target===this)closeBmModal()">
+      <div id="bm-modal">
+        <button id="bm-close" onclick="closeBmModal()">✕</button>
+        <img id="bm-icon" src="/images/favicon-192.png" alt="For the Record" />
+        <h3 id="bm-title"></h3>
+        <p id="bm-subtitle"></p>
+        <ol id="bm-steps"></ol>
+        <div id="bm-keyboard">
+          <span class="bm-key" id="bm-mod-key"></span>
+          <span class="bm-plus">+</span>
+          <span class="bm-key">D</span>
+        </div>
+        <button id="bm-install-btn" onclick="triggerBmInstall()">Add to Home Screen</button>
+        <p id="bm-tagline">We'll be here when you're ready to make your day unforgettable.</p>
+      </div>
+    </div>
+
+    <script>
+      var _bmPrompt = null;
+      window.addEventListener('beforeinstallprompt', function(e) {
+        e.preventDefault(); _bmPrompt = e;
+      });
+      window.addEventListener('appinstalled', function() { _bmPrompt = null; });
+
+      function bmDetect() {
+        var ua = navigator.userAgent;
+        if (/iPad|iPhone|iPod/.test(ua) && !window.MSStream) return 'ios';
+        if (/Android/.test(ua)) return 'android';
+        if (/Macintosh|MacIntel/.test(ua)) return 'mac';
+        return 'windows';
+      }
+
+      function openBmModal() {
+        var dev = bmDetect();
+        var steps = document.getElementById('bm-steps');
+        var kb = document.getElementById('bm-keyboard');
+        var btn = document.getElementById('bm-install-btn');
+        steps.innerHTML = ''; kb.style.display = 'none'; btn.style.display = 'none';
+
+        var data = {
+          ios: {
+            title: 'Add to Your Home Screen',
+            subtitle: 'Quick access on iPhone or iPad',
+            steps: [
+              'Tap the <strong>Share</strong> button at the bottom of Safari — the box with an arrow pointing up',
+              'Scroll down and tap <strong>"Add to Home Screen"</strong>',
+              'Tap <strong>"Add"</strong> in the top right — done!'
+            ]
+          },
+          android: {
+            title: _bmPrompt ? 'Add to Home Screen' : 'Save to Home Screen',
+            subtitle: 'Quick access on Android',
+            steps: _bmPrompt ? [] : [
+              'Tap the <strong>menu (⋮)</strong> in the top right of Chrome',
+              'Tap <strong>"Add to Home Screen"</strong>',
+              'Tap <strong>"Add"</strong> — done!'
+            ]
+          },
+          mac: {
+            title: 'Bookmark This Page',
+            subtitle: 'Save for later on Mac',
+            steps: [
+              'Press <strong>⌘ + D</strong> to instantly bookmark this page',
+              'Or click the <strong>star ☆</strong> in your browser\'s address bar'
+            ]
+          },
+          windows: {
+            title: 'Bookmark This Page',
+            subtitle: 'Save for later on Windows',
+            steps: [
+              'Press <strong>Ctrl + D</strong> to instantly bookmark this page',
+              'Or click the <strong>star ☆</strong> in your browser\'s address bar'
+            ]
+          }
+        };
+
+        var info = data[dev];
+        document.getElementById('bm-title').textContent = info.title;
+        document.getElementById('bm-subtitle').textContent = info.subtitle;
+
+        if (dev === 'android' && _bmPrompt) {
+          btn.style.display = 'block';
+        } else {
+          info.steps.forEach(function(s, i) {
+            var li = document.createElement('li');
+            li.className = 'bm-step';
+            li.innerHTML = '<span class="bm-step-num">' + (i+1) + '</span><span class="bm-step-text">' + s + '</span>';
+            steps.appendChild(li);
+          });
+        }
+        if (dev === 'mac' || dev === 'windows') {
+          kb.style.display = 'flex';
+          document.getElementById('bm-mod-key').textContent = dev === 'mac' ? '⌘' : 'Ctrl';
+        }
+
+        var overlay = document.getElementById('bm-overlay');
+        overlay.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeBmModal() {
+        document.getElementById('bm-overlay').style.display = 'none';
+        document.body.style.overflow = '';
+      }
+
+      async function triggerBmInstall() {
+        if (!_bmPrompt) return;
+        _bmPrompt.prompt();
+        var result = await _bmPrompt.userChoice;
+        if (result.outcome === 'accepted') { _bmPrompt = null; closeBmModal(); }
+      }
+
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeBmModal();
+      });
+    </script>
 
     <!-- ==============================================
          PAGE 1 — HERO

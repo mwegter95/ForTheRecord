@@ -1077,3 +1077,17 @@
     }
   }
 }
+
+// ============================================================================
+// BOOKMARK NUDGE — centered auto-width pill, sits on cream background
+// ============================================================================
+
+.bookmark-nudge {
+  background: var(--cream);
+  padding: 0.5rem 0 2.5rem;
+
+  .bookmark-nudge-inner {
+    display: flex;
+    justify-content: center;
+  }
+}

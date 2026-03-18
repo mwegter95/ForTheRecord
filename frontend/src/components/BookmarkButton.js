@@ -96,24 +96,6 @@ const BookmarkButton = ({ variant = "outline-navy", label = "Bookmark Us!", pref
   };
 
   const getContent = () => {
-    if (device === "ios") return {
-      title: "Add to Your Home Screen",
-      subtitle: "Quick access on iPhone or iPad",
-      steps: [
-        <>Tap the <strong>Share</strong> button at the bottom of Safari — the box with an arrow pointing up</>,
-        <>Scroll down and tap <strong>"Add to Home Screen"</strong></>,
-        <>Tap <strong>"Add"</strong> in the top right — done!</>,
-      ],
-    };
-    if (device === "android") return {
-      title: deferredPrompt ? "Add to Home Screen" : "Save to Home Screen",
-      subtitle: "Quick access on Android",
-      steps: deferredPrompt ? [] : [
-        <>Tap the <strong>menu (⋮)</strong> in the top right of Chrome</>,
-        <>Tap <strong>"Add to Home Screen"</strong></>,
-        <>Tap <strong>"Add"</strong> — done!</>,
-      ],
-    };
     if (device === "mac") return {
       title: "Bookmark This Page",
       subtitle: "Save for later on Mac",
@@ -133,7 +115,8 @@ const BookmarkButton = ({ variant = "outline-navy", label = "Bookmark Us!", pref
   };
 
   const content = getContent();
-  const isDesktop = device === "mac" || device === "windows";
+  const isMobile = device === "ios" || device === "android";
+  const isDesktop = !isMobile;
 
   return (
     <>
@@ -175,40 +158,87 @@ const BookmarkButton = ({ variant = "outline-navy", label = "Bookmark Us!", pref
               className="bm-modal__icon"
             />
 
-            <h3 className="bm-modal__title">{content.title}</h3>
-            <p className="bm-modal__subtitle">{content.subtitle}</p>
+            <h3 className="bm-modal__title">Save For the Record</h3>
+            <p className="bm-modal__subtitle">Come back when you're ready to book</p>
 
-            {/* Android with native install prompt */}
-            {device === "android" && deferredPrompt && !installed && (
-              <button className="bm-modal__install-btn" onClick={handleInstall}>
-                Add to Home Screen
-              </button>
+            {/* ── Mobile: Chrome + Safari for bookmark and home screen ── */}
+            {isMobile && !installed && (
+              <div className="bm-mobile-sections">
+
+                {/* Section 1: Bookmark */}
+                <div className="bm-section">
+                  <h4 className="bm-section__title">📌 Bookmark in your browser</h4>
+                  <div className="bm-browser-block">
+                    <span className="bm-browser-label bm-browser-label--chrome">Chrome</span>
+                    <ol className="bm-mini-steps">
+                      <li>Tap the <strong>⋮ menu</strong> (three dots)</li>
+                      <li>Tap <strong>"Add to bookmarks"</strong></li>
+                    </ol>
+                  </div>
+                  <div className="bm-browser-block">
+                    <span className="bm-browser-label bm-browser-label--safari">Safari</span>
+                    <ol className="bm-mini-steps">
+                      <li>Tap the <strong>Share button</strong> (□↑) at the bottom</li>
+                      <li>Tap <strong>"Add Bookmark"</strong></li>
+                    </ol>
+                  </div>
+                </div>
+
+                <div className="bm-or-divider">— or —</div>
+
+                {/* Section 2: Add to Home Screen */}
+                <div className="bm-section">
+                  <h4 className="bm-section__title">📱 Add to your home screen</h4>
+
+                  {/* Android native install prompt */}
+                  {device === "android" && deferredPrompt && (
+                    <button className="bm-modal__install-btn" onClick={handleInstall}>
+                      Add to Home Screen
+                    </button>
+                  )}
+
+                  <div className="bm-browser-block">
+                    <span className="bm-browser-label bm-browser-label--chrome">Chrome</span>
+                    <ol className="bm-mini-steps">
+                      <li>Tap the <strong>Share button</strong> (□↑)</li>
+                      <li>Tap <strong>"Add to Home Screen"</strong> — tap <strong>"More"</strong> if you don't see it</li>
+                      <li>Tap <strong>"Add"</strong> to confirm</li>
+                    </ol>
+                  </div>
+                  <div className="bm-browser-block">
+                    <span className="bm-browser-label bm-browser-label--safari">Safari</span>
+                    <ol className="bm-mini-steps">
+                      <li>Tap the <strong>Share button</strong> (□↑) at the bottom</li>
+                      <li>Tap <strong>"Add to Home Screen"</strong></li>
+                      <li>Tap <strong>"Add"</strong> — done!</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
             )}
 
-            {/* Success state */}
+            {/* ── Installed success state ── */}
             {installed && (
               <p className="bm-modal__success">✓ Added to your home screen!</p>
             )}
 
-            {/* Step-by-step instructions */}
-            {content.steps.length > 0 && !installed && (
-              <ol className="bm-modal__steps">
-                {content.steps.map((step, i) => (
-                  <li key={i} className="bm-modal__step">
-                    <span className="bm-modal__step-num">{i + 1}</span>
-                    <span className="bm-modal__step-text">{step}</span>
-                  </li>
-                ))}
-              </ol>
-            )}
-
-            {/* Keyboard shortcut visual for desktop */}
+            {/* ── Desktop: simple steps + keyboard shortcut ── */}
             {isDesktop && (
-              <div className="bm-modal__keyboard">
-                <span className="bm-key">{device === "mac" ? "⌘" : "Ctrl"}</span>
-                <span className="bm-plus">+</span>
-                <span className="bm-key">D</span>
-              </div>
+              <>
+                <ol className="bm-modal__steps">
+                  {content.steps.map((step, i) => (
+                    <li key={i} className="bm-modal__step">
+                      <span className="bm-modal__step-num">{i + 1}</span>
+                      <span className="bm-modal__step-text">{step}</span>
+                    </li>
+                  ))}
+                </ol>
+                <div className="bm-modal__keyboard">
+                  <span className="bm-key">{device === "mac" ? "⌘" : "Ctrl"}</span>
+                  <span className="bm-plus">+</span>
+                  <span className="bm-key">D</span>
+                </div>
+              </>
             )}
 
             <p className="bm-modal__tagline">

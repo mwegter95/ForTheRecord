@@ -1,0 +1,26 @@
+{
+  "short_name": "FTR Brochure",
+  "name": "For the Record – Wedding DJ Services",
+  "icons": [
+    {
+      "src": "images/favicon-32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "images/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "images/favicon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/brochure-mobile.html",
+  "display": "standalone",
+  "theme_color": "#0A1128",
+  "background_color": "#F8F6F1",
+  "description": "For the Record Wedding DJ Services brochure."
+}

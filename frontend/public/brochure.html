@@ -9,7 +9,10 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16.png" />
     <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
-    <link rel="manifest" href="/manifest.json" />
+    <link rel="manifest" href="/manifest-brochure.json" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="FTR Brochure" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -1086,9 +1089,18 @@
       #bm-keyboard { display: none; align-items: center; justify-content: center; gap: 0.35rem; margin: 0 0 1.3rem; }
       .bm-key { background: #0a1128; color: #c9a86a; border-radius: 8px; padding: 0.3rem 0.65rem; font-size: 1rem; font-weight: 700; box-shadow: 0 3px 0 rgba(0,0,0,0.35); border: 1px solid rgba(201,168,106,0.3); min-width: 2rem; text-align: center; }
       .bm-plus { font-size: 1rem; color: #6b7280; font-weight: 600; }
-      #bm-install-btn { background: #0a1128; color: #c9a86a; border: none; border-radius: 50px; padding: 0.75rem 2rem; font-size: 0.95rem; font-weight: 600; font-family: "Inter",sans-serif; cursor: pointer; width: 100%; margin-bottom: 1.3rem; display: none; }
+      #bm-install-btn { background: #0a1128; color: #c9a86a; border: none; border-radius: 50px; padding: 0.65rem 1.5rem; font-size: 0.9rem; font-weight: 600; font-family: "Inter",sans-serif; cursor: pointer; width: 100%; margin-bottom: 1rem; display: none; }
       #bm-install-btn:hover { background: #1a2444; }
       #bm-tagline { font-size: 0.8rem; color: #6b7280; font-style: italic; margin: 0; border-top: 1px solid rgba(201,168,106,0.28); padding-top: 0.9rem; }
+      /* Mobile two-section styles */
+      .bm-sec-title { font-size: 0.72rem; font-weight: 700; color: #0a1128; letter-spacing: 0.04em; text-transform: uppercase; margin: 0 0 0.5rem; }
+      .bm-or { text-align: center; font-size: 0.74rem; color: #6b7280; font-style: italic; margin: 0.6rem 0; }
+      .bm-brow { display: flex; align-items: flex-start; gap: 0.55rem; margin-bottom: 0.6rem; }
+      .bm-btag { flex-shrink: 0; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.04em; padding: 0.15rem 0.38rem; border-radius: 4px; margin-top: 0.13rem; }
+      .bm-btag--chrome { background: #e8f0fe; color: #1a73e8; }
+      .bm-btag--safari { background: #e8f5e9; color: #1e7e34; }
+      .bm-mini { margin: 0; padding-left: 1.1rem; font-size: 0.8rem; color: #2d3142; line-height: 1.55; }
+      .bm-mini li { margin-bottom: 0.08rem; }
     </style>
 
     <!-- Right-side buttons -->
@@ -1096,7 +1108,7 @@
     <a class="home-btn" href="https://fortherecordmn.com">Return Home</a>
 
     <!-- Left-side buttons -->
-    <a class="download-btn" onclick="window.print(); return false;" href="#">⬇ Download PDF</a>
+    <a class="download-btn" href="/ForTheRecord-Wedding-DJ-Services-Desktop.pdf" download="For the Record - Wedding DJ Services.pdf">⬇ Download PDF</a>
     <button class="bookmark-left-btn" onclick="openBmModal()">🔖 Bookmark Us</button>
 
     <!-- Bookmark modal -->
@@ -1106,13 +1118,50 @@
         <img id="bm-icon" src="/images/favicon-192.png" alt="For the Record" />
         <h3 id="bm-title"></h3>
         <p id="bm-subtitle"></p>
+        <!-- Mobile: two-section Chrome + Safari layout -->
+        <div id="bm-mobile" style="display:none;text-align:left;width:100%;margin-bottom:1rem">
+          <p class="bm-sec-title">📌 Bookmark in your browser</p>
+          <div class="bm-brow">
+            <span class="bm-btag bm-btag--chrome">Chrome</span>
+            <ol class="bm-mini">
+              <li>Tap the <strong>⋮ menu</strong> (three dots)</li>
+              <li>Tap <strong>"Add to bookmarks"</strong></li>
+            </ol>
+          </div>
+          <div class="bm-brow">
+            <span class="bm-btag bm-btag--safari">Safari</span>
+            <ol class="bm-mini">
+              <li>Tap the <strong>Share button</strong> (□↑) at the bottom</li>
+              <li>Tap <strong>"Add Bookmark"</strong></li>
+            </ol>
+          </div>
+          <p class="bm-or">— or —</p>
+          <p class="bm-sec-title">📱 Add to your home screen</p>
+          <button id="bm-install-btn" onclick="triggerBmInstall()">Add to Home Screen</button>
+          <div class="bm-brow">
+            <span class="bm-btag bm-btag--chrome">Chrome</span>
+            <ol class="bm-mini">
+              <li>Tap the <strong>Share button</strong> (□↑)</li>
+              <li>Tap <strong>"Add to Home Screen"</strong> — tap <strong>"More"</strong> if you don't see it</li>
+              <li>Tap <strong>"Add"</strong> to confirm</li>
+            </ol>
+          </div>
+          <div class="bm-brow">
+            <span class="bm-btag bm-btag--safari">Safari</span>
+            <ol class="bm-mini">
+              <li>Tap the <strong>Share button</strong> (□↑) at the bottom</li>
+              <li>Tap <strong>"Add to Home Screen"</strong></li>
+              <li>Tap <strong>"Add"</strong> — done!</li>
+            </ol>
+          </div>
+        </div>
+        <!-- Desktop: numbered steps + keyboard shortcut -->
         <ol id="bm-steps"></ol>
         <div id="bm-keyboard">
           <span class="bm-key" id="bm-mod-key"></span>
           <span class="bm-plus">+</span>
           <span class="bm-key">D</span>
         </div>
-        <button id="bm-install-btn" onclick="triggerBmInstall()">Add to Home Screen</button>
         <p id="bm-tagline">We'll be here when you're ready to make your day unforgettable.</p>
       </div>
     </div>
@@ -1134,69 +1183,40 @@
 
       function openBmModal() {
         var dev = bmDetect();
-        var steps = document.getElementById('bm-steps');
-        var kb = document.getElementById('bm-keyboard');
-        var btn = document.getElementById('bm-install-btn');
-        steps.innerHTML = ''; kb.style.display = 'none'; btn.style.display = 'none';
+        var mobile = document.getElementById('bm-mobile');
+        var steps  = document.getElementById('bm-steps');
+        var kb     = document.getElementById('bm-keyboard');
+        var btn    = document.getElementById('bm-install-btn');
 
-        var data = {
-          ios: {
-            title: 'Add to Your Home Screen',
-            subtitle: 'Quick access on iPhone or iPad',
-            steps: [
-              'Tap the <strong>Share</strong> button at the bottom of Safari — the box with an arrow pointing up',
-              'Scroll down and tap <strong>"Add to Home Screen"</strong>',
-              'Tap <strong>"Add"</strong> in the top right — done!'
-            ]
-          },
-          android: {
-            title: _bmPrompt ? 'Add to Home Screen' : 'Save to Home Screen',
-            subtitle: 'Quick access on Android',
-            steps: _bmPrompt ? [] : [
-              'Tap the <strong>menu (⋮)</strong> in the top right of Chrome',
-              'Tap <strong>"Add to Home Screen"</strong>',
-              'Tap <strong>"Add"</strong> — done!'
-            ]
-          },
-          mac: {
-            title: 'Bookmark This Page',
-            subtitle: 'Save for later on Mac',
-            steps: [
-              'Press <strong>⌘ + D</strong> to instantly bookmark this page',
-              'Or click the <strong>star ☆</strong> in your browser\'s address bar'
-            ]
-          },
-          windows: {
-            title: 'Bookmark This Page',
-            subtitle: 'Save for later on Windows',
-            steps: [
-              'Press <strong>Ctrl + D</strong> to instantly bookmark this page',
-              'Or click the <strong>star ☆</strong> in your browser\'s address bar'
-            ]
-          }
-        };
+        // Reset
+        mobile.style.display = 'none';
+        steps.innerHTML = '';
+        kb.style.display = 'none';
+        if (btn) btn.style.display = 'none';
 
-        var info = data[dev];
-        document.getElementById('bm-title').textContent = info.title;
-        document.getElementById('bm-subtitle').textContent = info.subtitle;
-
-        if (dev === 'android' && _bmPrompt) {
-          btn.style.display = 'block';
+        if (dev === 'ios' || dev === 'android') {
+          document.getElementById('bm-title').textContent = 'Save For the Record';
+          document.getElementById('bm-subtitle').textContent = 'Come back when you\'re ready to book';
+          mobile.style.display = 'block';
+          // Show native Android install button if Chrome fired the prompt
+          if (dev === 'android' && _bmPrompt && btn) btn.style.display = 'block';
         } else {
-          info.steps.forEach(function(s, i) {
+          document.getElementById('bm-title').textContent = 'Bookmark This Page';
+          document.getElementById('bm-subtitle').textContent = dev === 'mac' ? 'Save for later on Mac' : 'Save for later on Windows';
+          var dSteps = dev === 'mac'
+            ? ['Press <strong>⌘ + D</strong> to instantly bookmark this page', 'Or click the <strong>star ☆</strong> in your browser\'s address bar']
+            : ['Press <strong>Ctrl + D</strong> to instantly bookmark this page', 'Or click the <strong>star ☆</strong> in your browser\'s address bar'];
+          dSteps.forEach(function(s, i) {
             var li = document.createElement('li');
             li.className = 'bm-step';
             li.innerHTML = '<span class="bm-step-num">' + (i+1) + '</span><span class="bm-step-text">' + s + '</span>';
             steps.appendChild(li);
           });
-        }
-        if (dev === 'mac' || dev === 'windows') {
           kb.style.display = 'flex';
           document.getElementById('bm-mod-key').textContent = dev === 'mac' ? '⌘' : 'Ctrl';
         }
 
-        var overlay = document.getElementById('bm-overlay');
-        overlay.style.display = 'flex';
+        document.getElementById('bm-overlay').style.display = 'flex';
         document.body.style.overflow = 'hidden';
       }
 

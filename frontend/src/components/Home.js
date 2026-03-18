@@ -469,7 +469,7 @@ const Home = () => {
           <div className="bookmark-nudge-inner">
             <BookmarkButton
               variant="nudge"
-              prefix="Not quite ready? Come back when you are"
+              prefix="Not quite ready? We'd love to help you plan your perfect wedding any time"
               label="Bookmark Us for Later"
             />
           </div>

@@ -41,6 +41,16 @@
     border-radius: 50px;
     flex-wrap: wrap;
     justify-content: center;
+    white-space: normal;
+    text-align: center;
+
+    @media (max-width: 600px) {
+      padding: 0.85rem 1.25rem;
+      border-radius: 16px;
+      font-size: 0.85rem;
+      width: 100%;
+      box-sizing: border-box;
+    }
 
     &:hover {
       background: #141d3b;

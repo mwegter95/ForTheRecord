@@ -159,7 +159,6 @@ const BookmarkButton = ({ variant = "outline-navy", label = "Bookmark Us!", pref
             />
 
             <h3 className="bm-modal__title">Save For the Record</h3>
-            <p className="bm-modal__subtitle">Come back when you're ready to book</p>
 
             {/* ── Mobile: Chrome + Safari for bookmark and home screen ── */}
             {isMobile && !installed && (

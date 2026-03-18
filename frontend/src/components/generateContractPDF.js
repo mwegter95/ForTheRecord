@@ -67,7 +67,7 @@ async function generateContractPDF(form, signature, signedDate) {
     doc.setFontSize(7.5);
     doc.setFont("helvetica", "normal");
     doc.setTextColor(...MUTED);
-    doc.text("For the Record DJ Services  •  fortherecordmn.com", M, PH - 27);
+    doc.text("For the Record  •  fortherecordmn.com", M, PH - 27);
     doc.text(`Signed: ${signedDate}`, PW - M, PH - 27, { align: "right" });
 
     const n = doc.internal.getNumberOfPages();
@@ -169,7 +169,7 @@ async function generateContractPDF(form, signature, signedDate) {
   y += 14;
 
   body(
-    'This Agreement ("Agreement") is entered into between For the Record DJ Services operated by Michael Wegter ("DJ") and the undersigned client(s) ("Client") for professional disc jockey and sound services at the wedding event described below. By signing, both parties agree to all terms herein.',
+    'This Agreement ("Agreement") is entered into between For the Record operated by Michael Wegter ("DJ") and the undersigned client(s) ("Client") for professional disc jockey and sound services at the wedding event described below. By signing, both parties agree to all terms herein.',
     0,
     [75, 85, 99]
   );
@@ -398,10 +398,7 @@ async function generateContractPDF(form, signature, signedDate) {
   const dateStr = (form.eventDate || "").replace(/-/g, "");
   const filename = `ForTheRecord_Contract_${safeName}_${dateStr}.pdf`;
 
-  // Auto-download to client's device
-  doc.save(filename);
-
-  // Return base64 string (no data URI prefix) for EmailJS attachment
+  // Return base64 string (no data URI prefix) for email attachment
   const base64 = doc.output("datauristring").split(",")[1];
   return { filename, base64 };
 }

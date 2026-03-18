@@ -1,0 +1,417 @@
+// ============================================================================
+// COUNTERSIGN PAGE — DJ portal for countersigning contracts
+// ============================================================================
+
+.cs-page {
+  background: #e8e6e1;
+  min-height: 100vh;
+  padding: 7rem 1rem 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  &--gate {
+    align-items: center;
+    padding-top: 0;
+  }
+}
+
+// ── Password gate ─────────────────────────────────────────────
+.cs-gate {
+  background: #fff;
+  padding: 2.5rem 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 24px rgba(0, 0, 0, 0.12);
+  max-width: 360px;
+  width: 100%;
+  text-align: center;
+  font-family: "Inter", sans-serif;
+
+  &__logo {
+    img {
+      width: 56px;
+      height: 56px;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+    }
+  }
+
+  h2 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #0a1128;
+    margin: 0 0 0.4rem;
+  }
+
+  p {
+    font-size: 0.88rem;
+    color: #6b7280;
+    margin: 0 0 1.25rem;
+  }
+
+  input[type="password"] {
+    width: 100%;
+    padding: 0.65rem 0.85rem;
+    border: 1.5px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 1rem;
+    outline: none;
+    margin-bottom: 0.75rem;
+    box-sizing: border-box;
+    text-align: center;
+    letter-spacing: 0.2em;
+    font-family: "Inter", sans-serif;
+
+    &:focus { border-color: #0a1128; }
+  }
+
+  button {
+    width: 100%;
+    padding: 0.7rem;
+    background: #0a1128;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: "Inter", sans-serif;
+
+    &:hover { background: #131d3a; }
+  }
+
+  &__error {
+    font-size: 0.82rem;
+    color: #dc2626;
+    margin: -0.25rem 0 0.75rem;
+  }
+}
+
+// ── Main card ─────────────────────────────────────────────────
+.cs-card {
+  background: #fff;
+  max-width: 780px;
+  width: 100%;
+  padding: 3rem 3.5rem;
+  border-radius: 4px;
+  box-shadow: 0 2px 24px rgba(0, 0, 0, 0.12);
+  font-family: "Inter", sans-serif;
+  font-size: 0.92rem;
+  color: #2d3142;
+}
+
+// ── Header ────────────────────────────────────────────────────
+.cs-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid #0a1128;
+
+  &__logo {
+    width: 56px;
+    height: 56px;
+    border-radius: 10px;
+    margin-bottom: 0.75rem;
+  }
+
+  h1 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.65rem;
+    font-weight: 700;
+    color: #0a1128;
+    margin: 0 0 0.25rem;
+  }
+
+  &__sub {
+    font-size: 0.82rem;
+    color: #6b7280;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+  }
+}
+
+// ── Section ───────────────────────────────────────────────────
+.cs-section {
+  margin-bottom: 2.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(201, 168, 106, 0.3);
+
+  &__title {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #0a1128;
+    margin: 0 0 0.3rem;
+  }
+
+  &__desc {
+    font-size: 0.85rem;
+    color: #6b7280;
+    margin: 0 0 1rem;
+  }
+}
+
+// ── Upload area ───────────────────────────────────────────────
+.cs-upload {
+  border: 2px dashed #d1d5db;
+  border-radius: 8px;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  text-align: center;
+
+  &:hover {
+    border-color: #c9a86a;
+    background: rgba(201, 168, 106, 0.05);
+  }
+
+  &--loaded {
+    border-color: #0a1128;
+    border-style: solid;
+    background: rgba(10, 17, 40, 0.03);
+  }
+
+  &__prompt {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: #6b7280;
+    font-size: 0.9rem;
+
+    svg { opacity: 0.5; }
+  }
+
+  &__loaded {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  &__filename {
+    font-weight: 600;
+    color: #0a1128;
+    font-size: 0.9rem;
+    word-break: break-all;
+  }
+
+  &__change {
+    font-size: 0.78rem;
+    color: #9ca3af;
+  }
+}
+
+// ── PDF preview ───────────────────────────────────────────────
+.cs-preview {
+  margin-top: 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  overflow: hidden;
+
+  &__iframe {
+    width: 100%;
+    height: 480px;
+    display: block;
+    border: none;
+  }
+}
+
+// ── Field ─────────────────────────────────────────────────────
+.cs-field {
+  label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 0.35rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+
+    .req { color: #c9a86a; }
+  }
+
+  input[type="email"],
+  input[type="text"] {
+    width: 100%;
+    padding: 0.6rem 0.85rem;
+    border: 1.5px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 0.92rem;
+    outline: none;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+    color: #111827;
+
+    &:focus { border-color: #0a1128; }
+    &::placeholder { color: #9ca3af; }
+  }
+}
+
+// ── Signature pad (reuse contract styles) ─────────────────────
+// These are defined in Contract.scss but we mirror them here
+// in case CounterSign is used standalone
+.signature-pad {
+  border: 1.5px solid #d1d5db;
+  border-radius: 8px;
+  background: #fff;
+  position: relative;
+  overflow: hidden;
+
+  canvas {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 160px;
+    cursor: crosshair;
+    touch-action: none;
+  }
+
+  &__line {
+    position: absolute;
+    bottom: 36px;
+    left: 16px;
+    right: 16px;
+    height: 1px;
+    background: #e5e7eb;
+    pointer-events: none;
+  }
+
+  &__clear {
+    position: absolute;
+    bottom: 8px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: none;
+    border: 1px solid #e5e7eb;
+    border-radius: 5px;
+    font-size: 0.75rem;
+    color: #9ca3af;
+    padding: 3px 8px;
+    cursor: pointer;
+
+    &:hover {
+      border-color: #dc2626;
+      color: #dc2626;
+    }
+  }
+}
+
+// ── Submit area ───────────────────────────────────────────────
+.cs-submit-area {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.cs-error-msg {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 6px;
+  padding: 0.65rem 1rem;
+  font-size: 0.88rem;
+  color: #dc2626;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.cs-submit-note {
+  font-size: 0.8rem;
+  color: #9ca3af;
+  text-align: center;
+  margin: 0;
+}
+
+// ── Buttons ───────────────────────────────────────────────────
+.cs-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 2.5rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: "Inter", sans-serif;
+  cursor: pointer;
+  border: none;
+  transition: background 0.2s, opacity 0.2s;
+  text-decoration: none;
+
+  &--primary {
+    background: #0a1128;
+    color: #fff;
+    width: 100%;
+
+    &:hover { background: #131d3a; }
+    &:disabled { opacity: 0.6; cursor: not-allowed; }
+  }
+
+  &--outline {
+    background: transparent;
+    border: 2px solid #0a1128;
+    color: #0a1128;
+
+    &:hover { background: rgba(10, 17, 40, 0.06); }
+  }
+}
+
+// ── Success state ─────────────────────────────────────────────
+.cs-success {
+  text-align: center;
+  padding: 3rem 2rem;
+
+  &__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: rgba(201, 168, 106, 0.15);
+    color: #c9a86a;
+    margin-bottom: 1.25rem;
+
+    svg { width: 28px; height: 28px; }
+  }
+
+  h2 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.75rem;
+    color: #0a1128;
+    margin: 0 0 0.75rem;
+  }
+
+  p {
+    font-size: 0.95rem;
+    color: #6b7280;
+    margin: 0 0 1.5rem;
+  }
+}
+
+// ── Mobile adjustments ────────────────────────────────────────
+@media (max-width: 700px) {
+  .cs-page {
+    padding: 6.5rem 0.5rem 3rem;
+  }
+
+  .cs-card {
+    padding: 1.75rem 1.25rem;
+  }
+
+  .cs-preview__iframe {
+    height: 320px;
+  }
+}

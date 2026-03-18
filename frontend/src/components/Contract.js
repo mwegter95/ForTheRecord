@@ -6,7 +6,7 @@ import "./Contract.scss";
 // ─── Google Apps Script web app URL ─────────────────────────
 // Paste your deployed Apps Script URL here after setup
 const APPS_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbxC-4DOVjRkxwYyr60qy-8DjDk9FogUM5vtKAsaXQMiEPqqK_JmDXXUIJXII7CwP3EJ/exec";
+  "https://script.google.com/macros/s/AKfycbwN0Tu9wjKtVCrN1_FlHodvujf3_Z-jSNIJvtahR6In2Y-hf7zFvZa7QstoeFi-H21U/exec";
 
 // ─── Inline SVG icons (avoids Lucide DOM conflict) ──────────
 const IconCheck = () => (
@@ -223,7 +223,7 @@ const Contract = () => {
     });
 
     try {
-      // 1. Generate and auto-download the signed PDF, capture base64 for email attachment
+      // 1. Generate signed PDF and capture base64 for email attachment
       const { filename: pdfFilename, base64: pdfBase64 } = await generateContractPDF(form, signature, signedDate);
 
       // 2. Send email with PDF attached via Google Apps Script
@@ -285,12 +285,11 @@ const Contract = () => {
           <div className="contract-success__icon"><IconCheck /></div>
           <h2>Agreement Signed Successfully</h2>
           <p>
-            Thank you, {form.clientNames}! Your signed PDF has been downloaded to your device
-            and a confirmation has been sent to <strong>{form.clientEmail}</strong>.
+            Thank you, {form.clientNames}! Your signed contract has been emailed to{" "}
+            <strong>{form.clientEmail}</strong> — please save it for your records.
           </p>
           <p className="contract-success__note">
-            Please save the downloaded PDF for your records. Michael will countersign and
-            return a fully executed copy to you shortly. Questions?{" "}
+            Michael will countersign and send you a fully executed copy shortly. Questions?{" "}
             <a href="mailto:michael@fortherecordmn.com">michael@fortherecordmn.com</a>{" "}
             or <a href="tel:6123897005">(612) 389-7005</a>.
           </p>
@@ -310,7 +309,7 @@ const Contract = () => {
         </div>
 
         <p className="contract-intro">
-          This Agreement ("Agreement") is entered into between <strong>For the Record DJ Services</strong> operated
+          This Agreement ("Agreement") is entered into between <strong>For the Record</strong> operated
           by Michael Wegter ("DJ") and the undersigned client(s) ("Client") for professional disc jockey
           and sound services at the wedding event described below. By signing this Agreement, both parties
           agree to the terms and conditions set forth herein.
@@ -561,7 +560,7 @@ const Contract = () => {
           </button>
 
           <p className="contract-submit-note">
-            A copy of this signed agreement will be emailed to both you and For the Record DJ Services.
+            A copy of this signed agreement will be emailed to both you and For the Record.
           </p>
         </div>
       </form>

@@ -12,6 +12,7 @@ const FAQ = lazy(() => import("./FAQ"));
 const GetInTouch = lazy(() => import("./GetInTouch"));
 const SongRequest = lazy(() => import("./SongRequest"));
 const Contract = lazy(() => import("./Contract"));
+const CounterSign = lazy(() => import("./CounterSign"));
 
 // Scroll to top on route change & track pageviews
 const ScrollToTop = () => {
@@ -51,6 +52,7 @@ const Handler = () => {
             <Route path="/get-in-touch" element={<GetInTouch />} />
             <Route path="/request-a-song" element={<SongRequest />} />
             <Route path="/contract" element={<Contract />} />
+            <Route path="/countersign" element={<CounterSign />} />
             {/* Redirects for old routes */}
             <Route
               path="/booknow"

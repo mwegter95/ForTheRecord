@@ -7,7 +7,7 @@ import "./CounterSign.scss";
 const COUNTERSIGN_SCRIPT_URL =
   "https://script.google.com/macros/s/AKfycbyBXpiURkxoACyvYO78txDC8bR5hgp_6MDlK3qZMn7jLg-iGaZfPhvf2l0Ie15NDTNFzA/exec";
 
-// ─── pdf-lib CDN ─────────────────────────────────────────────
+// ─── pdf-lib CDN (for modifying PDFs) ────────────────────────
 const PDFLIB_CDN = "https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js";
 
 function loadPdfLib() {
@@ -17,6 +17,24 @@ function loadPdfLib() {
     script.src = PDFLIB_CDN;
     script.onload = () => resolve(window.PDFLib);
     script.onerror = () => reject(new Error("Failed to load pdf-lib"));
+    document.head.appendChild(script);
+  });
+}
+
+// ─── PDF.js CDN (for rendering preview pages) ────────────────
+const PDFJS_CDN        = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js";
+const PDFJS_WORKER_CDN = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
+function loadPdfJs() {
+  return new Promise((resolve, reject) => {
+    if (window.pdfjsLib) { resolve(window.pdfjsLib); return; }
+    const script = document.createElement("script");
+    script.src = PDFJS_CDN;
+    script.onload = () => {
+      window.pdfjsLib.GlobalWorkerOptions.workerSrc = PDFJS_WORKER_CDN;
+      resolve(window.pdfjsLib);
+    };
+    script.onerror = () => reject(new Error("Failed to load PDF.js"));
     document.head.appendChild(script);
   });
 }
@@ -170,14 +188,40 @@ const PasswordGate = ({ onAuth }) => {
 
 // ─── CounterSign Form ────────────────────────────────────────
 const CounterSignForm = () => {
-  const [pdfFile, setPdfFile]         = useState(null);
-  const [pdfPreviewUrl, setPdfPreviewUrl] = useState("");
-  const [clientEmail, setClientEmail] = useState("");
-  const [djName, setDjName]           = useState("Michael Wegter");
-  const [signature, setSignature]     = useState("");
+  const [pdfFile, setPdfFile]           = useState(null);
+  const [pdfPages, setPdfPages]         = useState([]); // rendered page image URLs
+  const [pdfRendering, setPdfRendering] = useState(false);
+  const [clientEmail, setClientEmail]   = useState("");
+  const [djName, setDjName]             = useState("Michael Wegter");
+  const [signature, setSignature]       = useState("");
   const [submitStatus, setSubmitStatus] = useState("idle");
-  const [errorMsg, setErrorMsg]       = useState("");
+  const [errorMsg, setErrorMsg]         = useState("");
   const fileInputRef = useRef(null);
+
+  const renderPdfPages = useCallback(async (file) => {
+    setPdfRendering(true);
+    setPdfPages([]);
+    try {
+      const pdfjsLib   = await loadPdfJs();
+      const arrayBuffer = await file.arrayBuffer();
+      const pdf        = await pdfjsLib.getDocument({ data: new Uint8Array(arrayBuffer) }).promise;
+      const pages      = [];
+      for (let i = 1; i <= pdf.numPages; i++) {
+        const page     = await pdf.getPage(i);
+        const viewport = page.getViewport({ scale: 1.5 });
+        const canvas   = document.createElement("canvas");
+        canvas.width   = viewport.width;
+        canvas.height  = viewport.height;
+        await page.render({ canvasContext: canvas.getContext("2d"), viewport }).promise;
+        pages.push(canvas.toDataURL("image/jpeg", 0.88));
+      }
+      setPdfPages(pages);
+    } catch (err) {
+      console.error("PDF preview failed:", err);
+    } finally {
+      setPdfRendering(false);
+    }
+  }, []);
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -188,15 +232,8 @@ const CounterSignForm = () => {
     }
     setErrorMsg("");
     setPdfFile(file);
-    // Create a preview URL
-    if (pdfPreviewUrl) URL.revokeObjectURL(pdfPreviewUrl);
-    setPdfPreviewUrl(URL.createObjectURL(file));
+    renderPdfPages(file);
   };
-
-  // Cleanup blob URL on unmount
-  useEffect(() => {
-    return () => { if (pdfPreviewUrl) URL.revokeObjectURL(pdfPreviewUrl); };
-  }, [pdfPreviewUrl]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -442,7 +479,7 @@ const CounterSignForm = () => {
           <h2>Countersigned & Sent</h2>
           <p>The fully executed contract has been emailed to <strong>{clientEmail}</strong>.</p>
           <button className="cs-btn cs-btn--outline" onClick={() => {
-            setPdfFile(null); setPdfPreviewUrl(""); setClientEmail("");
+            setPdfFile(null); setPdfPages([]); setClientEmail("");
             setSignature(""); setSubmitStatus("idle"); setErrorMsg("");
           }}>
             Countersign Another
@@ -492,13 +529,19 @@ const CounterSignForm = () => {
             )}
           </div>
 
-          {pdfPreviewUrl && (
+          {(pdfRendering || pdfPages.length > 0) && (
             <div className="cs-preview">
-              <iframe
-                src={pdfPreviewUrl}
-                title="Signed contract preview"
-                className="cs-preview__iframe"
-              />
+              {pdfRendering && (
+                <p className="cs-preview__loading">Rendering pages…</p>
+              )}
+              {pdfPages.map((src, i) => (
+                <img
+                  key={i}
+                  src={src}
+                  alt={`Page ${i + 1}`}
+                  className="cs-preview__page"
+                />
+              ))}
             </div>
           )}
         </div>

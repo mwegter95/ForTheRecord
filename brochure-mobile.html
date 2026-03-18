@@ -1108,7 +1108,7 @@
 
         if (dev === 'ios' || dev === 'android') {
           document.getElementById('bm-title').textContent = 'Save For the Record';
-          document.getElementById('bm-subtitle').textContent = 'Come back when you\'re ready to book';
+          document.getElementById('bm-subtitle').textContent = '';
           mobile.style.display = 'block';
           // Show native Android install button if Chrome fired the prompt
           if (dev === 'android' && _bmPrompt && btn) btn.style.display = 'block';

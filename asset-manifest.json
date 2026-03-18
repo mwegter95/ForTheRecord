@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.669b8615.css",
-    "main.js": "/static/js/main.5c0bd145.js",
+    "main.css": "/static/css/main.85af0774.css",
+    "main.js": "/static/js/main.66109828.js",
     "static/css/233.72c4c5a6.chunk.css": "/static/css/233.72c4c5a6.chunk.css",
     "static/js/233.1f872ad5.chunk.js": "/static/js/233.1f872ad5.chunk.js",
     "static/css/524.5d66dc31.chunk.css": "/static/css/524.5d66dc31.chunk.css",
@@ -15,7 +15,9 @@
     "static/css/995.c6763f70.chunk.css": "/static/css/995.c6763f70.chunk.css",
     "static/js/995.85eb2d5c.chunk.js": "/static/js/995.85eb2d5c.chunk.js",
     "static/css/931.0d242137.chunk.css": "/static/css/931.0d242137.chunk.css",
-    "static/js/931.0a5f4034.chunk.js": "/static/js/931.0a5f4034.chunk.js",
+    "static/js/931.29a4357e.chunk.js": "/static/js/931.29a4357e.chunk.js",
+    "static/css/182.5ed433ad.chunk.css": "/static/css/182.5ed433ad.chunk.css",
+    "static/js/182.7723369b.chunk.js": "/static/js/182.7723369b.chunk.js",
     "static/media/wedding-dance-floor3-hq.webp": "/static/media/wedding-dance-floor3-hq.c64f064e5d476000a570.webp",
     "static/media/wedding-ceremony-audio2.webp": "/static/media/wedding-ceremony-audio2.de04cab2504485f5558d.webp",
     "static/media/wedding-dance-floor.webp": "/static/media/wedding-dance-floor.1edf6266f837c9076681.webp",
@@ -35,8 +37,8 @@
     "static/media/wedding3.webp": "/static/media/wedding3.94b2f60b16b6fda7d62c.webp",
     "index.html": "/index.html",
     "static/media/for-the-record-logo.svg": "/static/media/for-the-record-logo.a9cfcca81bf3fdc81932f5f7eec04cfd.svg",
-    "main.669b8615.css.map": "/static/css/main.669b8615.css.map",
-    "main.5c0bd145.js.map": "/static/js/main.5c0bd145.js.map",
+    "main.85af0774.css.map": "/static/css/main.85af0774.css.map",
+    "main.66109828.js.map": "/static/js/main.66109828.js.map",
     "233.72c4c5a6.chunk.css.map": "/static/css/233.72c4c5a6.chunk.css.map",
     "233.1f872ad5.chunk.js.map": "/static/js/233.1f872ad5.chunk.js.map",
     "524.5d66dc31.chunk.css.map": "/static/css/524.5d66dc31.chunk.css.map",
@@ -50,10 +52,12 @@
     "995.c6763f70.chunk.css.map": "/static/css/995.c6763f70.chunk.css.map",
     "995.85eb2d5c.chunk.js.map": "/static/js/995.85eb2d5c.chunk.js.map",
     "931.0d242137.chunk.css.map": "/static/css/931.0d242137.chunk.css.map",
-    "931.0a5f4034.chunk.js.map": "/static/js/931.0a5f4034.chunk.js.map"
+    "931.29a4357e.chunk.js.map": "/static/js/931.29a4357e.chunk.js.map",
+    "182.5ed433ad.chunk.css.map": "/static/css/182.5ed433ad.chunk.css.map",
+    "182.7723369b.chunk.js.map": "/static/js/182.7723369b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.669b8615.css",
-    "static/js/main.5c0bd145.js"
+    "static/css/main.85af0774.css",
+    "static/js/main.66109828.js"
   ]
 }

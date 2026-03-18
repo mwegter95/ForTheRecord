@@ -1574,5 +1574,33 @@
     </div>
 
     <script>lucide.createIcons();</script>
+
+    <script>
+      // ── Blob-based download: works in standalone PWA mode ────
+      // The <a download> attribute is silently ignored when running
+      // as an installed web app. Fetching as a blob and triggering
+      // a temporary anchor works in all contexts including standalone.
+      document.querySelector('.download-btn').addEventListener('click', function(e) {
+        e.preventDefault();
+        var url      = this.getAttribute('href');
+        var filename = this.getAttribute('download') || 'For the Record - Wedding DJ Services.pdf';
+        fetch(url)
+          .then(function(r) { return r.blob(); })
+          .then(function(blob) {
+            var blobUrl = URL.createObjectURL(blob);
+            var a = document.createElement('a');
+            a.href = blobUrl;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(blobUrl);
+          })
+          .catch(function() {
+            // Fallback: open PDF directly if fetch fails
+            window.open(url, '_blank');
+          });
+      });
+    </script>
   </body>
 </html>

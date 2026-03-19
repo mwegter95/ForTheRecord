@@ -4,11 +4,39 @@ import generateContractPDF from "./generateContractPDF";
 import "./Contract.scss";
 
 // ─── Google Apps Script web app URL ─────────────────────────
-// Paste your deployed Apps Script URL here after setup
 const APPS_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbwN0Tu9wjKtVCrN1_FlHodvujf3_Z-jSNIJvtahR6In2Y-hf7zFvZa7QstoeFi-H21U/exec";
+  "https://script.google.com/macros/s/AKfycbzzcpYcIITq-AqaFnaCn_oJ70Irgnc39PmQG7GDLXlqXHnh7liZQ_twOE-U6-FgEsTT/exec";
 
-// ─── Inline SVG icons (avoids Lucide DOM conflict) ──────────
+// ─── Service rates ───────────────────────────────────────────
+export const RATES = {
+  setupTeardown: 200, // flat
+  reception:     100, // $/hr
+  cocktail:       75, // $/hr
+  dinner:         75, // $/hr
+  ceremony:      100, // $/hr
+  ceremonyMic:   150, // flat
+  dancefloor:    150, // flat
+  uplighting6:   250, // 6 units
+  uplighting12:  500, // 12 units
+  mileage:      0.50, // $/mi (round trip)
+};
+
+export const calcSubtotal = (f) => {
+  let t = 0;
+  if (f.setupTeardown)       t += RATES.setupTeardown;
+  t += (parseFloat(f.receptionHours) || 0) * RATES.reception;
+  t += (parseFloat(f.cocktailHours)  || 0) * RATES.cocktail;
+  t += (parseFloat(f.dinnerHours)    || 0) * RATES.dinner;
+  t += (parseFloat(f.ceremonyHours)  || 0) * RATES.ceremony;
+  if (f.ceremonyMic)         t += RATES.ceremonyMic;
+  if (f.dancefloor)          t += RATES.dancefloor;
+  if (f.uplighting === "6")  t += RATES.uplighting6;
+  if (f.uplighting === "12") t += RATES.uplighting12;
+  t += (parseFloat(f.mileageMiles) || 0) * RATES.mileage;
+  return t;
+};
+
+// ─── Inline SVG icons ────────────────────────────────────────
 const IconCheck = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
     <polyline points="20 6 9 17 4 12" />
@@ -29,8 +57,13 @@ const IconAlertCircle = () => (
     <circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" />
   </svg>
 );
+const IconLock = () => (
+  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="3" y="11" width="18" height="11" rx="2" ry="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" />
+  </svg>
+);
 
-// ─── Signature Pad ──────────────────────────────────────────
+// ─── Signature Pad ───────────────────────────────────────────
 const SignaturePad = ({ onSignatureChange }) => {
   const canvasRef = useRef(null);
   const isDrawing = useRef(false);
@@ -74,9 +107,7 @@ const SignaturePad = ({ onSignatureChange }) => {
     if (isDrawing.current) {
       isDrawing.current = false;
       lastPoint.current = null;
-      if (onSignatureChange) {
-        onSignatureChange(canvasRef.current.toDataURL("image/png"));
-      }
+      if (onSignatureChange) onSignatureChange(canvasRef.current.toDataURL("image/png"));
     }
   }, [onSignatureChange]);
 
@@ -89,7 +120,6 @@ const SignaturePad = ({ onSignatureChange }) => {
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    // Prevent scrolling while signing on mobile
     const preventScroll = (e) => { if (isDrawing.current) e.preventDefault(); };
     canvas.addEventListener("touchmove", preventScroll, { passive: false });
     return () => canvas.removeEventListener("touchmove", preventScroll);
@@ -117,7 +147,17 @@ const SignaturePad = ({ onSignatureChange }) => {
   );
 };
 
-// ─── Main Contract Component ────────────────────────────────
+// ─── Service row helper ──────────────────────────────────────
+const SvcRow = ({ label, rate, locked, children, total }) => (
+  <div className="csvc-row">
+    <span className="csvc-name">{label}</span>
+    <span className="csvc-rate">{rate}</span>
+    <span className="csvc-qty">{children}</span>
+    <span className="csvc-total">{total > 0 ? `$${total.toFixed(2)}` : <span className="csvc-zero">—</span>}</span>
+  </div>
+);
+
+// ─── Main Contract Component ─────────────────────────────────
 const Contract = () => {
   useSEO({
     title: "Wedding DJ Services Agreement | For the Record",
@@ -125,82 +165,133 @@ const Contract = () => {
     canonical: "https://fortherecordmn.com/contract",
   });
 
+  const [isPreFilled, setIsPreFilled] = useState(false);
+
   const [form, setForm] = useState({
-    clientNames: "",
-    clientEmail: "",
-    clientPhone: "",
-    eventDate: "",
-    venueName: "",
-    venueAddress: "",
-    venueCity: "",
-    venueState: "MN",
-    venueZip: "",
-    startTime: "",
-    endTime: "",
-    guestCount: "",
-    totalFee: "",
-    discountPercent: "",
-    discountDollar: "",
-    depositAmount: "",
-    specialNotes: "",
+    // Client info — always editable
+    clientNames:      "",
+    clientEmail:      "",
+    clientPhone:      "",
     clientPrintedName: "",
+    // Event details — lockable when pre-filled
+    eventDate:    "",
+    venueName:    "",
+    venueAddress: "",
+    venueCity:    "",
+    venueState:   "MN",
+    venueZip:     "",
+    startTime:    "",
+    endTime:      "",
+    guestCount:   "",
+    // Services — lockable when pre-filled
+    setupTeardown:  true,
+    receptionHours: "",
+    cocktailHours:  "",
+    dinnerHours:    "",
+    ceremonyHours:  "",
+    ceremonyMic:    false,
+    dancefloor:     false,
+    uplighting:     "none", // "none" | "6" | "12"
+    mileageMiles:   "",     // round-trip miles at $0.50/mi
+    // Discount — lockable when pre-filled
+    discountPercent: "",
+    discountDollar:  "",
+    // Notes — lockable when pre-filled
+    specialNotes: "",
   });
 
-  const [signature, setSignature] = useState("");
-  const [agreed, setAgreed] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState("idle"); // idle | sending | success | error
-  const [errorMsg, setErrorMsg] = useState("");
+  const [signature,    setSignature]    = useState("");
+  const [agreed,       setAgreed]       = useState(false);
+  const [submitStatus, setSubmitStatus] = useState("idle");
+  const [errorMsg,     setErrorMsg]     = useState("");
 
+  // ── Parse pre-fill URL param on mount ─────────────────────
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const pre = params.get("pre");
+    if (!pre) return;
+    try {
+      const data = JSON.parse(decodeURIComponent(atob(pre)));
+      setForm((prev) => ({
+        ...prev,
+        eventDate:       data.eventDate       || "",
+        venueName:       data.venueName       || "",
+        venueAddress:    data.venueAddress    || "",
+        venueCity:       data.venueCity       || "",
+        venueState:      data.venueState      || "MN",
+        venueZip:        data.venueZip        || "",
+        startTime:       data.startTime       || "",
+        endTime:         data.endTime         || "",
+        guestCount:      data.guestCount      || "",
+        setupTeardown:   data.setupTeardown !== undefined ? !!data.setupTeardown : true,
+        receptionHours:  data.receptionHours  || "",
+        cocktailHours:   data.cocktailHours   || "",
+        dinnerHours:     data.dinnerHours     || "",
+        ceremonyHours:   data.ceremonyHours   || "",
+        ceremonyMic:     !!data.ceremonyMic,
+        dancefloor:      !!data.dancefloor,
+        uplighting:      data.uplighting      || "none",
+        mileageMiles:    data.mileageMiles    || "",
+        discountPercent: data.discountPercent || "",
+        discountDollar:  data.discountDollar  || "",
+        specialNotes:    data.specialNotes    || "",
+      }));
+      setIsPreFilled(true);
+    } catch (e) {
+      console.warn("Invalid pre-fill data in URL:", e);
+    }
+  }, []);
+
+  // ── handleChange ─────────────────────────────────────────
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, type, checked } = e.target;
+    const v = type === "checkbox" ? checked : value;
+
     setForm((prev) => {
-      const updated = { ...prev, [name]: value };
+      const updated = { ...prev, [name]: v };
+      const sub  = calcSubtotal(updated);
+      const discP = parseFloat(name === "discountPercent" ? v : updated.discountPercent) || 0;
+      const discD = parseFloat(name === "discountDollar"  ? v : updated.discountDollar)  || 0;
 
-      const total   = parseFloat(name === "totalFee"       ? value : updated.totalFee)       || 0;
-      const discP   = parseFloat(name === "discountPercent" ? value : updated.discountPercent) || 0;
-      const discD   = parseFloat(name === "discountDollar"  ? value : updated.discountDollar)  || 0;
-
-      // Cross-calculate percent ↔ dollar
-      if (name === "totalFee") {
-        // Re-derive dollar from existing percent when base fee changes
-        if (discP > 0) updated.discountDollar = total > 0 ? (total * discP / 100).toFixed(2) : "";
-      }
+      // Cross-calculate discount percent ↔ dollar
       if (name === "discountPercent") {
-        updated.discountDollar = total > 0 && discP > 0 ? (total * discP / 100).toFixed(2) : "";
+        updated.discountDollar = sub > 0 && discP > 0 ? (sub * discP / 100).toFixed(2) : "";
       }
       if (name === "discountDollar") {
-        updated.discountPercent = total > 0 && discD > 0
-          ? ((discD / total) * 100).toFixed(1)
-          : "";
+        updated.discountPercent = sub > 0 && discD > 0 ? ((discD / sub) * 100).toFixed(1) : "";
       }
 
-      // Recalculate deposit from adjusted total whenever any of these change
-      if (["totalFee", "discountPercent", "discountDollar"].includes(name)) {
-        const effectiveDiscD = name === "discountPercent"
-          ? (total * discP / 100)
-          : name === "discountDollar"
-          ? discD
-          : (parseFloat(updated.discountDollar) || 0);
-        const adjusted = Math.max(0, total - effectiveDiscD);
-        updated.depositAmount = adjusted > 0 ? (adjusted / 2).toFixed(2) : "";
+      // When a service field changes, re-derive dollar from existing percent
+      const svcFields = ["setupTeardown","receptionHours","cocktailHours","dinnerHours","ceremonyHours","ceremonyMic","dancefloor","uplighting","mileageMiles"];
+      if (svcFields.includes(name) && parseFloat(updated.discountPercent) > 0) {
+        const newSub = calcSubtotal(updated);
+        updated.discountDollar = newSub > 0
+          ? (newSub * parseFloat(updated.discountPercent) / 100).toFixed(2)
+          : "";
       }
 
       return updated;
     });
   };
 
+  // ── Derived price helpers ─────────────────────────────────
   const discountedTotal = () => {
-    const total = parseFloat(form.totalFee) || 0;
+    const sub  = calcSubtotal(form);
     const discD = parseFloat(form.discountDollar) || 0;
-    return Math.max(0, total - discD).toFixed(2);
+    return Math.max(0, sub - discD).toFixed(2);
   };
+
+  const depositAmount = () => (parseFloat(discountedTotal()) / 2).toFixed(2);
 
   const balanceDue = () => {
-    const adjusted = parseFloat(discountedTotal()) || 0;
-    const deposit  = parseFloat(form.depositAmount) || 0;
-    return adjusted > deposit ? (adjusted - deposit).toFixed(2) : "0.00";
+    const adj = parseFloat(discountedTotal()) || 0;
+    const dep = parseFloat(depositAmount()) || 0;
+    return Math.max(0, adj - dep).toFixed(2);
   };
 
+  const hasDiscount = !!(form.discountPercent || form.discountDollar);
+
+  // ── Submit ────────────────────────────────────────────────
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -223,10 +314,9 @@ const Contract = () => {
     });
 
     try {
-      // 1. Generate signed PDF and capture base64 for email attachment
-      const { filename: pdfFilename, base64: pdfBase64 } = await generateContractPDF(form, signature, signedDate);
+      const { filename: pdfFilename, base64: pdfBase64 } =
+        await generateContractPDF(form, signature, signedDate);
 
-      // 2. Send email with PDF attached via Google Apps Script
       const fmt12h = (t) => {
         if (!t) return "—";
         const [h, m] = t.split(":");
@@ -240,6 +330,8 @@ const Contract = () => {
         });
       };
 
+      const sub = calcSubtotal(form);
+
       const payload = {
         client_names:        form.clientNames,
         client_email:        form.clientEmail,
@@ -250,34 +342,53 @@ const Contract = () => {
         start_time:          fmt12h(form.startTime),
         end_time:            fmt12h(form.endTime),
         guest_count:         form.guestCount || "—",
-        total_fee:           form.totalFee ? `$${form.totalFee}` : "—",
+        // Services
+        setup_teardown:      form.setupTeardown  ? "Yes" : "No",
+        reception_hours:     form.receptionHours || "0",
+        cocktail_hours:      form.cocktailHours  || "0",
+        dinner_hours:        form.dinnerHours    || "0",
+        ceremony_hours:      form.ceremonyHours  || "0",
+        ceremony_mic:        form.ceremonyMic    ? "Yes" : "No",
+        dancefloor:          form.dancefloor     ? "Yes" : "No",
+        uplighting:          form.uplighting === "6" ? "6 units" : form.uplighting === "12" ? "12 units" : "None",
+        mileage_miles:       form.mileageMiles || "0",
+        // Pricing
+        subtotal:            `$${sub.toFixed(2)}`,
         discount_percent:    form.discountPercent ? `${form.discountPercent}%` : "None",
-        discount_dollar:     form.discountDollar ? `$${form.discountDollar}` : "None",
-        adjusted_total:      (form.discountPercent || form.discountDollar) ? `$${discountedTotal()}` : `$${form.totalFee}`,
-        deposit_amount:      form.depositAmount ? `$${form.depositAmount}` : "—",
+        discount_dollar:     form.discountDollar  ? `$${form.discountDollar}`  : "None",
+        adjusted_total:      hasDiscount ? `$${discountedTotal()}` : `$${sub.toFixed(2)}`,
+        deposit_amount:      `$${depositAmount()}`,
         balance_due:         `$${balanceDue()}`,
         special_notes:       form.specialNotes || "None",
         client_printed_name: form.clientPrintedName,
         signed_date:         signedDate,
-        pdf_base64:          pdfBase64,   // actual PDF attached in email
+        pdf_base64:          pdfBase64,
         pdf_filename:        pdfFilename,
       };
 
-      // Send without Content-Type header so the browser avoids a CORS preflight
       const resp = await fetch(APPS_SCRIPT_URL, {
         method: "POST",
         body: JSON.stringify(payload),
       });
 
-      if (!resp.ok) throw new Error(`Apps Script responded with ${resp.status}`);
+      if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+
+      // Apps Script returns 200 even on internal errors — check the body too
+      let result;
+      try { result = await resp.json(); } catch (_) { result = { success: true }; }
+      if (result.success === false) {
+        throw new Error(result.error || "Script reported failure");
+      }
+
       setSubmitStatus("success");
     } catch (err) {
       console.error("Contract submission failed:", err);
-      setErrorMsg("Something went wrong generating the PDF or sending the confirmation. Please try again or contact us directly.");
+      setErrorMsg(`Submission failed: ${err.message}. Please try again or email michael@fortherecordmn.com directly.`);
       setSubmitStatus("error");
     }
   };
 
+  // ── Success screen ────────────────────────────────────────
   if (submitStatus === "success") {
     return (
       <div className="contract-page">
@@ -298,15 +409,27 @@ const Contract = () => {
     );
   }
 
+  // ── Locked-field helper ───────────────────────────────────
+  const locked = isPreFilled;
+
   return (
     <div className="contract-page">
       <form className="contract-doc" onSubmit={handleSubmit}>
-        {/* ─── HEADER ──────────────────────────── */}
+
+        {/* ─── HEADER ─────────────────────────────────── */}
         <div className="contract-header">
           <img src="/images/favicon-192.png" alt="For the Record" className="contract-header__logo" />
           <h1>Wedding DJ Services Agreement</h1>
           <p className="contract-header__sub">For the Record</p>
         </div>
+
+        {/* ─── PRE-FILL BANNER ─────────────────────────── */}
+        {isPreFilled && (
+          <div className="contract-prefill-banner">
+            <IconLock />
+            <p>This contract has been prepared for you by Michael at For the Record. The event details and pricing are set — please fill in your contact information below and sign to confirm your booking.</p>
+          </div>
+        )}
 
         <p className="contract-intro">
           This Agreement ("Agreement") is entered into between <strong>For the Record</strong> operated
@@ -315,22 +438,29 @@ const Contract = () => {
           agree to the terms and conditions set forth herein.
         </p>
 
-        {/* ─── 1. EVENT DETAILS ────────────────── */}
-        <h2 className="contract-section-title">1. Event Details</h2>
-
+        {/* ─── 1. CLIENT INFORMATION ───────────────────── */}
+        <h2 className="contract-section-title">1. Client Information</h2>
         <div className="contract-field-grid">
           <div className="contract-field contract-field--full">
             <label>Client Name(s) <span className="req">*</span></label>
-            <input type="text" name="clientNames" value={form.clientNames} onChange={handleChange} placeholder="e.g. Jane Doe & John Smith" required />
+            <input type="text" name="clientNames" value={form.clientNames} onChange={handleChange}
+              placeholder="e.g. Jane Doe & John Smith" required />
           </div>
           <div className="contract-field">
             <label>Client Email <span className="req">*</span></label>
-            <input type="email" name="clientEmail" value={form.clientEmail} onChange={handleChange} placeholder="email@example.com" required />
+            <input type="email" name="clientEmail" value={form.clientEmail} onChange={handleChange}
+              placeholder="email@example.com" required />
           </div>
           <div className="contract-field">
             <label>Client Phone <span className="req">*</span></label>
-            <input type="tel" name="clientPhone" value={form.clientPhone} onChange={handleChange} placeholder="(555) 123-4567" required />
+            <input type="tel" name="clientPhone" value={form.clientPhone} onChange={handleChange}
+              placeholder="(555) 123-4567" required />
           </div>
+        </div>
+
+        {/* ─── 2. EVENT DETAILS ────────────────────────── */}
+        <h2 className="contract-section-title">2. Event Details</h2>
+        <div className="contract-field-grid">
           <div className="contract-field">
             <label>Event Date <span className="req">*</span></label>
             <input type="date" name="eventDate" value={form.eventDate} onChange={handleChange} required />
@@ -341,23 +471,28 @@ const Contract = () => {
           </div>
           <div className="contract-field contract-field--full">
             <label>Venue Name <span className="req">*</span></label>
-            <input type="text" name="venueName" value={form.venueName} onChange={handleChange} placeholder="Venue name" required />
+            <input type="text" name="venueName" value={form.venueName} onChange={handleChange}
+              placeholder="Venue name" required />
           </div>
           <div className="contract-field contract-field--full">
             <label>Venue Street Address</label>
-            <input type="text" name="venueAddress" value={form.venueAddress} onChange={handleChange} placeholder="123 Main St" />
+            <input type="text" name="venueAddress" value={form.venueAddress} onChange={handleChange}
+              placeholder="123 Main St" />
           </div>
           <div className="contract-field">
             <label>City</label>
-            <input type="text" name="venueCity" value={form.venueCity} onChange={handleChange} placeholder="Minneapolis" />
+            <input type="text" name="venueCity" value={form.venueCity} onChange={handleChange}
+              placeholder="Minneapolis" />
           </div>
           <div className="contract-field contract-field--sm">
             <label>State</label>
-            <input type="text" name="venueState" value={form.venueState} onChange={handleChange} placeholder="MN" maxLength={2} />
+            <input type="text" name="venueState" value={form.venueState} onChange={handleChange}
+              placeholder="MN" maxLength={2} />
           </div>
           <div className="contract-field contract-field--sm">
             <label>Zip</label>
-            <input type="text" name="venueZip" value={form.venueZip} onChange={handleChange} placeholder="55401" maxLength={10} />
+            <input type="text" name="venueZip" value={form.venueZip} onChange={handleChange}
+              placeholder="55401" maxLength={10} />
           </div>
           <div className="contract-field">
             <label>Music Start Time <span className="req">*</span></label>
@@ -369,59 +504,238 @@ const Contract = () => {
           </div>
         </div>
 
-        {/* ─── 2. SERVICES ─────────────────────── */}
-        <h2 className="contract-section-title">2. Services Provided</h2>
-        <p>DJ agrees to provide professional disc jockey and sound services for the Client's wedding event, including:</p>
-        <ul className="contract-list">
-          <li>Professional audio equipment and setup with backup gear</li>
-          <li>Music curation and live mixing for ceremony and/or reception</li>
-          <li>Wireless microphone(s) for announcements, speeches, and toasts</li>
-          <li>Arrival at least 2 hours before event start for setup and sound check</li>
-          <li>Teardown and equipment removal following the event</li>
-        </ul>
+        {/* ─── 3. SERVICES & COMPENSATION ──────────────── */}
+        <h2 className="contract-section-title">
+          3. Services &amp; Compensation {locked && <span className="contract-section-title__locked"><IconLock /> Set by DJ</span>}
+        </h2>
+        <p>DJ agrees to provide the following professional services for the Client's wedding event:</p>
 
-        {/* ─── 3. COMPENSATION ─────────────────── */}
-        <h2 className="contract-section-title">3. Compensation</h2>
-        <div className="contract-field-grid">
-          <div className="contract-field">
-            <label>Base Fee ($) <span className="req">*</span></label>
-            <input type="number" name="totalFee" value={form.totalFee} onChange={handleChange} placeholder="0.00" min="0" step="0.01" required />
+        {/* Service line-item table */}
+        <div className="csvc-table">
+          <div className="csvc-header">
+            <span className="csvc-name">Service</span>
+            <span className="csvc-rate">Rate</span>
+            <span className="csvc-qty">Qty</span>
+            <span className="csvc-total">Amount</span>
           </div>
-          <div className="contract-field">
-            <label>Discount (%)</label>
-            <input type="number" name="discountPercent" value={form.discountPercent} onChange={handleChange} placeholder="0" min="0" max="100" step="0.1" />
+
+          {/* Reception Setup & Teardown */}
+          <SvcRow
+            label="Reception Setup & Teardown"
+            rate="$200 flat"
+            total={form.setupTeardown ? RATES.setupTeardown : 0}
+          >
+            {locked ? (
+              <span className="csvc-qty-fixed">{form.setupTeardown ? "1" : "—"}</span>
+            ) : (
+              <label className="csvc-checkbox">
+                <input type="checkbox" name="setupTeardown" checked={form.setupTeardown} onChange={handleChange} />
+                <span>Include</span>
+              </label>
+            )}
+          </SvcRow>
+
+          {/* Reception / Dance DJ */}
+          <SvcRow
+            label="Reception / Dance DJ"
+            rate="$100/hr"
+            total={(parseFloat(form.receptionHours) || 0) * RATES.reception}
+          >
+            {locked ? (
+              <span className="csvc-qty-fixed">{form.receptionHours || "—"} hrs</span>
+            ) : (
+              <span className="csvc-input-wrap">
+                <input type="number" name="receptionHours" value={form.receptionHours}
+                  onChange={handleChange} min="0" step="0.5" placeholder="0" />
+                <span className="csvc-unit">hrs</span>
+              </span>
+            )}
+          </SvcRow>
+
+          {/* Cocktail Hour Music */}
+          <SvcRow
+            label="Cocktail Hour Music"
+            rate="$75/hr"
+            total={(parseFloat(form.cocktailHours) || 0) * RATES.cocktail}
+          >
+            {locked ? (
+              <span className="csvc-qty-fixed">{form.cocktailHours || "—"} hrs</span>
+            ) : (
+              <span className="csvc-input-wrap">
+                <input type="number" name="cocktailHours" value={form.cocktailHours}
+                  onChange={handleChange} min="0" step="0.5" placeholder="0" />
+                <span className="csvc-unit">hrs</span>
+              </span>
+            )}
+          </SvcRow>
+
+          {/* Dinner Music */}
+          <SvcRow
+            label="Dinner Music"
+            rate="$75/hr"
+            total={(parseFloat(form.dinnerHours) || 0) * RATES.dinner}
+          >
+            {locked ? (
+              <span className="csvc-qty-fixed">{form.dinnerHours || "—"} hrs</span>
+            ) : (
+              <span className="csvc-input-wrap">
+                <input type="number" name="dinnerHours" value={form.dinnerHours}
+                  onChange={handleChange} min="0" step="0.5" placeholder="0" />
+                <span className="csvc-unit">hrs</span>
+              </span>
+            )}
+          </SvcRow>
+
+          {/* Ceremony Music */}
+          <SvcRow
+            label="Ceremony Music"
+            rate="$100/hr"
+            total={(parseFloat(form.ceremonyHours) || 0) * RATES.ceremony}
+          >
+            {locked ? (
+              <span className="csvc-qty-fixed">{form.ceremonyHours || "—"} hrs</span>
+            ) : (
+              <span className="csvc-input-wrap">
+                <input type="number" name="ceremonyHours" value={form.ceremonyHours}
+                  onChange={handleChange} min="0" step="0.5" placeholder="0" />
+                <span className="csvc-unit">hrs</span>
+              </span>
+            )}
+          </SvcRow>
+
+          {/* Ceremony Mic & Speaker Setup */}
+          <SvcRow
+            label="Ceremony Mic & Speaker Setup"
+            rate="$150 flat"
+            total={form.ceremonyMic ? RATES.ceremonyMic : 0}
+          >
+            {locked ? (
+              <span className="csvc-qty-fixed">{form.ceremonyMic ? "1" : "—"}</span>
+            ) : (
+              <label className="csvc-checkbox">
+                <input type="checkbox" name="ceremonyMic" checked={form.ceremonyMic} onChange={handleChange} />
+                <span>Include</span>
+              </label>
+            )}
+          </SvcRow>
+
+          {/* Reception Dancefloor Lighting */}
+          <SvcRow
+            label="Reception Dancefloor Lighting"
+            rate="$150 flat"
+            total={form.dancefloor ? RATES.dancefloor : 0}
+          >
+            {locked ? (
+              <span className="csvc-qty-fixed">{form.dancefloor ? "1" : "—"}</span>
+            ) : (
+              <label className="csvc-checkbox">
+                <input type="checkbox" name="dancefloor" checked={form.dancefloor} onChange={handleChange} />
+                <span>Include</span>
+              </label>
+            )}
+          </SvcRow>
+
+          {/* Uplighting */}
+          <SvcRow
+            label="Ambient Uplighting"
+            rate="$250 / $500"
+            total={form.uplighting === "6" ? RATES.uplighting6 : form.uplighting === "12" ? RATES.uplighting12 : 0}
+          >
+            {locked ? (
+              <span className="csvc-qty-fixed">
+                {form.uplighting === "6" ? "6 units" : form.uplighting === "12" ? "12 units" : "—"}
+              </span>
+            ) : (
+              <div className="csvc-radio-group">
+                <label><input type="radio" name="uplighting" value="none"
+                  checked={form.uplighting === "none"} onChange={handleChange} /> None</label>
+                <label><input type="radio" name="uplighting" value="6"
+                  checked={form.uplighting === "6"} onChange={handleChange} /> 6 units ($250)</label>
+                <label><input type="radio" name="uplighting" value="12"
+                  checked={form.uplighting === "12"} onChange={handleChange} /> 12 units ($500)</label>
+              </div>
+            )}
+          </SvcRow>
+
+          {/* Venue Mileage */}
+          <SvcRow
+            label="Venue Mileage (round trip)"
+            rate="$0.50/mi"
+            total={(parseFloat(form.mileageMiles) || 0) * RATES.mileage}
+          >
+            {locked ? (
+              <span className="csvc-qty-fixed">
+                {form.mileageMiles ? `${form.mileageMiles} mi` : "—"}
+              </span>
+            ) : (
+              <span className="csvc-input-wrap">
+                <input type="number" name="mileageMiles" value={form.mileageMiles}
+                  onChange={handleChange} min="0" step="1" placeholder="0" />
+                <span className="csvc-unit">mi</span>
+              </span>
+            )}
+          </SvcRow>
+        </div>
+
+        {/* Totals */}
+        <div className="contract-totals">
+          <div className="contract-totals__row">
+            <span>Subtotal</span>
+            <span>${calcSubtotal(form).toFixed(2)}</span>
           </div>
-          <div className="contract-field">
-            <label>Discount ($)</label>
-            <input type="number" name="discountDollar" value={form.discountDollar} onChange={handleChange} placeholder="0.00" min="0" step="0.01" />
-          </div>
-          {(form.discountPercent || form.discountDollar) && (
-            <div className="contract-field">
-              <label>Adjusted Total ($)</label>
-              <input type="text" value={discountedTotal()} readOnly className="contract-field--readonly contract-field--highlight" />
+
+          {/* Discount inputs — only shown when not pre-filled */}
+          {!locked && (
+            <div className="contract-totals__discount-inputs">
+              <div className="contract-field-grid" style={{ marginBottom: 0 }}>
+                <div className="contract-field">
+                  <label>Discount (%)</label>
+                  <input type="number" name="discountPercent" value={form.discountPercent}
+                    onChange={handleChange} placeholder="0" min="0" max="100" step="0.1" />
+                </div>
+                <div className="contract-field">
+                  <label>Discount ($)</label>
+                  <input type="number" name="discountDollar" value={form.discountDollar}
+                    onChange={handleChange} placeholder="0.00" min="0" step="0.01" />
+                </div>
+              </div>
             </div>
           )}
-          <div className="contract-field">
-            <label>Deposit — 50% ($)</label>
-            <input type="number" name="depositAmount" value={form.depositAmount} onChange={handleChange} placeholder="Auto-calculated" min="0" step="0.01" readOnly className="contract-field--readonly" />
+
+          {hasDiscount && (
+            <>
+              <div className="contract-totals__row contract-totals__row--discount">
+                <span>Discount{form.discountPercent ? ` (${form.discountPercent}%)` : ""}</span>
+                <span>−${parseFloat(form.discountDollar || 0).toFixed(2)}</span>
+              </div>
+              <div className="contract-totals__row contract-totals__row--adjusted">
+                <span>Adjusted Total</span>
+                <span>${discountedTotal()}</span>
+              </div>
+            </>
+          )}
+
+          <div className="contract-totals__row contract-totals__row--deposit">
+            <span>Deposit (50%)</span>
+            <span>${depositAmount()}</span>
           </div>
-          <div className="contract-field">
-            <label>Balance Due ($)</label>
-            <input type="text" value={balanceDue()} readOnly className="contract-field--readonly" />
+          <div className="contract-totals__row contract-totals__row--balance">
+            <span>Balance Due</span>
+            <span>${balanceDue()}</span>
           </div>
         </div>
+
         <p className="contract-note">
-          A non-refundable deposit of 50% of the{form.discountPercent || form.discountDollar ? " adjusted" : ""} total
-          is due upon signing this Agreement to reserve the date.
-          The remaining balance is due no later than <strong>14 days before the event</strong>.
+          A non-refundable deposit of 50% of the{hasDiscount ? " adjusted" : ""} total is due upon signing
+          to reserve the date. The remaining balance is due no later than <strong>14 days before the event</strong>.
           Payment may be made via cash, check, Venmo, or Zelle.
-          {(form.discountPercent) && (
-            <> Any discount percentage applied in this agreement will also be applied
-            to any additional services or costs agreed upon beyond the contracted scope.</>
+          {form.discountPercent && (
+            <> Any discount percentage applied in this agreement will also be applied to any additional
+            services or costs agreed upon beyond the contracted scope.</>
           )}
         </p>
 
-        {/* ─── 4. CANCELLATION ─────────────────── */}
+        {/* ─── 4. CANCELLATION ─────────────────────────── */}
         <h2 className="contract-section-title">4. Cancellation &amp; Refund Policy</h2>
         <ul className="contract-list">
           <li><strong>60+ days before the event:</strong> Deposit is fully refundable.</li>
@@ -429,16 +743,16 @@ const Contract = () => {
           <li><strong>If DJ cancels:</strong> Full deposit will be refunded and DJ will make reasonable efforts to help Client find a replacement.</li>
         </ul>
 
-        {/* ─── 5. LIABILITY ────────────────────── */}
+        {/* ─── 5. LIABILITY ────────────────────────────── */}
         <h2 className="contract-section-title">5. Limitation of Liability</h2>
         <p>
           DJ shall not be held liable for any injury, damage, or loss to persons or property occurring at or
           in connection with the event venue. Client assumes responsibility for the safety of all guests
           and the condition of the event space. DJ's total liability under this Agreement shall not exceed the
-          Total Fee paid by Client.
+          total fee paid by Client.
         </p>
 
-        {/* ─── 6. FORCE MAJEURE ────────────────── */}
+        {/* ─── 6. FORCE MAJEURE ────────────────────────── */}
         <h2 className="contract-section-title">6. Force Majeure</h2>
         <p>
           Neither party shall be liable for failure to perform due to circumstances beyond their reasonable control,
@@ -448,7 +762,7 @@ const Contract = () => {
           is not possible within 12 months.
         </p>
 
-        {/* ─── 7. EQUIPMENT & VENUE ────────────── */}
+        {/* ─── 7. EQUIPMENT & VENUE ────────────────────── */}
         <h2 className="contract-section-title">7. Equipment &amp; Venue Access</h2>
         <p>
           DJ requires access to the venue at least 2 hours prior to the event start for setup and sound check.
@@ -457,15 +771,15 @@ const Contract = () => {
           DJ is not responsible for damage to equipment caused by venue conditions, guests, or third parties.
         </p>
 
-        {/* ─── 8. PERFORMANCE ──────────────────── */}
+        {/* ─── 8. PERFORMANCE ──────────────────────────── */}
         <h2 className="contract-section-title">8. Performance</h2>
         <p>
-          DJ will perform for the agreed-upon hours as specified in Section 1. Overtime beyond the contracted
+          DJ will perform for the agreed-upon hours as specified in Section 2. Overtime beyond the contracted
           end time is available at <strong>$150/hr</strong>, subject to DJ availability and must be
           agreed upon at the event. Breaks of reasonable length may be taken during the performance.
         </p>
 
-        {/* ─── 9. GENERAL ──────────────────────── */}
+        {/* ─── 9. GENERAL ──────────────────────────────── */}
         <h2 className="contract-section-title">9. General Provisions</h2>
         <p>
           This Agreement constitutes the entire agreement between the parties and supersedes all prior discussions.
@@ -474,19 +788,38 @@ const Contract = () => {
           the remaining provisions shall remain in full effect.
         </p>
 
-        {/* ─── SPECIAL NOTES ───────────────────── */}
-        <h2 className="contract-section-title">Additional Notes</h2>
-        <div className="contract-field contract-field--full">
-          <textarea
-            name="specialNotes"
-            value={form.specialNotes}
-            onChange={handleChange}
-            placeholder="Any additional agreements, special requests, or notes..."
-            rows={3}
-          />
-        </div>
+        {/* ─── 10. AMENDMENT & SUPERSESSION ────────────── */}
+        <h2 className="contract-section-title">10. Amendment &amp; Supersession</h2>
+        <p>
+          The parties acknowledge that the scope of services, event details, pricing, or other terms of this
+          Agreement may evolve prior to the event date. This Agreement may be amended, updated, or superseded
+          in its entirety by a subsequent written agreement executed by both parties. Upon execution of any
+          such subsequent agreement pertaining to the same event described herein, the most recently executed
+          agreement shall govern in all respects and shall render prior versions null and void as to any
+          conflicting terms. No amendment shall be binding unless reduced to writing and agreed upon by both
+          parties; provided, however, that verbal agreements confirmed in writing (including by email) by
+          both parties shall constitute a valid amendment for purposes of this section.
+        </p>
 
-        {/* ─── SIGNATURES ──────────────────────── */}
+        {/* ─── ADDITIONAL NOTES ────────────────────────── */}
+        {(!locked || form.specialNotes) && (
+          <>
+            <h2 className="contract-section-title">Additional Notes</h2>
+            <div className="contract-field contract-field--full">
+              <textarea
+                name="specialNotes"
+                value={form.specialNotes}
+                onChange={locked ? undefined : handleChange}
+                readOnly={locked}
+                className={locked ? "contract-field--readonly" : ""}
+                placeholder="Any additional agreements, special requests, or notes..."
+                rows={3}
+              />
+            </div>
+          </>
+        )}
+
+        {/* ─── SIGNATURES ──────────────────────────────── */}
         <div className="contract-signatures">
           <h2 className="contract-section-title">Signatures</h2>
           <p className="contract-note">
@@ -528,7 +861,7 @@ const Contract = () => {
           </div>
         </div>
 
-        {/* ─── AGREEMENT CHECKBOX + SUBMIT ─────── */}
+        {/* ─── SUBMIT ──────────────────────────────────── */}
         <div className="contract-submit-area">
           <label className="contract-agree">
             <input
@@ -552,17 +885,14 @@ const Contract = () => {
             className="contract-submit-btn"
             disabled={submitStatus === "sending"}
           >
-            {submitStatus === "sending" ? (
-              "Submitting..."
-            ) : (
-              <><IconSend /> Sign &amp; Submit Agreement</>
-            )}
+            {submitStatus === "sending" ? "Submitting..." : <><IconSend /> Sign &amp; Submit Agreement</>}
           </button>
 
           <p className="contract-submit-note">
             A copy of this signed agreement will be emailed to both you and For the Record.
           </p>
         </div>
+
       </form>
     </div>
   );

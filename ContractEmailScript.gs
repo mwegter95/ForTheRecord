@@ -194,34 +194,85 @@ function buildClientEmail(d) {
 }
 
 // ── Pricing rows (shared by both emails) ────────────────────
+// Builds itemized service rows + subtotal + optional discount + adjusted total.
+// Deposit & balance rows are added separately in each email template.
 function buildPricingRows(d) {
+  var rs  = "border-bottom:1px solid #f3f4f6";
+  var lbl = "padding:10px 0;color:#6b7280;width:150px;vertical-align:top";
+  var val = "padding:10px 0";
+  var rows = [];
+
+  function svcHourly(label, hoursStr, rate) {
+    var hrs = parseFloat(hoursStr) || 0;
+    if (hrs <= 0) return;
+    var amt = hrs * rate;
+    rows.push(
+      "<tr style='" + rs + "'>" +
+      "<td style='" + lbl + "'>" + esc(label) + "</td>" +
+      "<td style='" + val + "'>" + hrs + " hr" + (hrs !== 1 ? "s" : "") +
+      " &times; $" + rate + "/hr = <strong>$" + amt.toFixed(2) + "</strong></td>" +
+      "</tr>"
+    );
+  }
+
+  function svcFlat(label, amt) {
+    rows.push(
+      "<tr style='" + rs + "'>" +
+      "<td style='" + lbl + "'>" + esc(label) + "</td>" +
+      "<td style='" + val + "'>Flat rate — <strong>$" + amt.toFixed(2) + "</strong></td>" +
+      "</tr>"
+    );
+  }
+
+  if (d.setup_teardown === "Yes") svcFlat("Reception Setup & Teardown", 200);
+  svcHourly("Reception / Dance DJ",         d.reception_hours, 100);
+  svcHourly("Cocktail Hour Music",           d.cocktail_hours,   75);
+  svcHourly("Dinner Music",                  d.dinner_hours,     75);
+  svcHourly("Ceremony Music",                d.ceremony_hours,  100);
+  if (d.ceremony_mic === "Yes") svcFlat("Ceremony Mic & Speaker Setup", 150);
+  if (d.dancefloor   === "Yes") svcFlat("Reception Dancefloor Lighting", 150);
+  if (d.uplighting   === "6 units")  svcFlat("Ambient Uplighting (6 units)", 250);
+  if (d.uplighting   === "12 units") svcFlat("Ambient Uplighting (12 units)", 500);
+  var mMi = parseFloat(d.mileage_miles) || 0;
+  if (mMi > 0) {
+    rows.push(
+      "<tr style='" + rs + "'>" +
+      "<td style='" + lbl + "'>Venue Mileage (round trip)</td>" +
+      "<td style='" + val + "'>" + mMi + " mi &times; $0.50/mi = <strong>$" + (mMi * 0.50).toFixed(2) + "</strong></td>" +
+      "</tr>"
+    );
+  }
+
+  // Subtotal
+  rows.push(
+    "<tr style='" + rs + "'>" +
+    "<td style='padding:10px 0;font-weight:700;color:#0a1128'>Subtotal</td>" +
+    "<td style='padding:10px 0;font-weight:700'>" + esc(d.subtotal) + "</td>" +
+    "</tr>"
+  );
+
+  // Discount + adjusted total (if applicable)
   var hasDiscount = (d.discount_percent !== "None" || d.discount_dollar !== "None");
   if (hasDiscount) {
-    var discLabel = "";
-    if (d.discount_dollar !== "None") discLabel += "-" + esc(d.discount_dollar);
-    if (d.discount_percent !== "None") discLabel += " (" + esc(d.discount_percent) + ")";
-    return [
-      "<tr style='border-bottom:1px solid #f3f4f6'>",
-      "  <td style='padding:10px 0;color:#6b7280;width:140px'>Base Fee</td>",
-      "  <td style='padding:10px 0'>" + esc(d.total_fee) + "</td>",
-      "</tr>",
-      "<tr style='border-bottom:1px solid #f3f4f6'>",
-      "  <td style='padding:10px 0;color:#6b7280'>Discount</td>",
-      "  <td style='padding:10px 0;color:#16a34a;font-weight:600'>" + discLabel.trim() + "</td>",
-      "</tr>",
-      "<tr style='border-bottom:1px solid #f3f4f6'>",
-      "  <td style='padding:10px 0;color:#6b7280'>Adjusted Total</td>",
-      "  <td style='padding:10px 0;font-weight:600'>" + esc(d.adjusted_total) + "</td>",
-      "</tr>",
-    ].join("\n");
-  } else {
-    return [
-      "<tr style='border-bottom:1px solid #f3f4f6'>",
-      "  <td style='padding:10px 0;color:#6b7280;width:140px'>Total Fee</td>",
-      "  <td style='padding:10px 0;font-weight:600'>" + esc(d.total_fee) + "</td>",
-      "</tr>",
-    ].join("\n");
+    var discLabel = d.discount_percent !== "None"
+      ? "Discount (" + esc(d.discount_percent) + ")"
+      : "Discount";
+    var discAmt = d.discount_dollar !== "None" ? "&minus;" + esc(d.discount_dollar) : "";
+    rows.push(
+      "<tr style='" + rs + "'>" +
+      "<td style='padding:10px 0;color:#059669'>" + discLabel + "</td>" +
+      "<td style='padding:10px 0;color:#059669;font-weight:600'>" + discAmt + "</td>" +
+      "</tr>"
+    );
+    rows.push(
+      "<tr style='" + rs + "'>" +
+      "<td style='padding:10px 0;font-weight:700;color:#0a1128'>Adjusted Total</td>" +
+      "<td style='padding:10px 0;font-weight:700'>" + esc(d.adjusted_total) + "</td>" +
+      "</tr>"
+    );
   }
+
+  return rows.join("\n");
 }
 
 // ── HTML escape helper ───────────────────────────────────────

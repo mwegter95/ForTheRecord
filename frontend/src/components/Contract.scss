@@ -412,6 +412,270 @@
   }
 }
 
+// ── Pre-fill banner ──────────────────────────────────────────
+.contract-prefill-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  background: rgba(10, 17, 40, 0.04);
+  border: 1px solid rgba(10, 17, 40, 0.15);
+  border-left: 3px solid #c9a86a;
+  border-radius: 6px;
+  padding: 0.85rem 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.88rem;
+  color: #374151;
+  line-height: 1.55;
+
+  svg {
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+    color: #c9a86a;
+    width: 14px;
+    height: 14px;
+  }
+
+  p { margin: 0; }
+}
+
+// ── Section title "Set by DJ" badge ──────────────────────────
+.contract-section-title__locked {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.69rem;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: #c9a86a;
+  background: rgba(201, 168, 106, 0.12);
+  border: 1px solid rgba(201, 168, 106, 0.35);
+  padding: 0.18rem 0.5rem;
+  border-radius: 4px;
+  margin-left: 0.6rem;
+  vertical-align: middle;
+  line-height: 1;
+}
+
+// ── Service line-item table ───────────────────────────────────
+.csvc-table {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 0;
+}
+
+.csvc-header,
+.csvc-row {
+  display: grid;
+  grid-template-columns: 1fr 5.75rem 10rem 5.5rem;
+  align-items: center;
+  padding: 0.55rem 0.85rem;
+  gap: 0.5rem;
+}
+
+.csvc-header {
+  background: #0a1128;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.69rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.csvc-row {
+  border-top: 1px solid #f0f1f3;
+  font-size: 0.88rem;
+
+  &:nth-child(odd) { background: #fcfcfd; }
+  &:nth-child(even) { background: #fff; }
+}
+
+.csvc-name {
+  font-weight: 500;
+  color: #0a1128;
+  line-height: 1.4;
+}
+
+.csvc-rate {
+  font-size: 0.8rem;
+  color: #9ca3af;
+}
+
+.csvc-qty {
+  // container for either static text or an editable control
+}
+
+.csvc-total {
+  text-align: right;
+  font-weight: 600;
+  color: #0a1128;
+  font-variant-numeric: tabular-nums;
+}
+
+.csvc-zero {
+  color: #d1d5db;
+  font-weight: 400;
+}
+
+.csvc-qty-fixed {
+  font-size: 0.88rem;
+  color: #374151;
+}
+
+.csvc-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+
+  input[type="number"] {
+    width: 4rem;
+    padding: 0.3rem 0.45rem;
+    border: 1.5px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 0.88rem;
+    font-family: inherit;
+    color: #0a1128;
+    background: #fff;
+    outline: none;
+    text-align: center;
+
+    &:focus {
+      border-color: #c9a86a;
+      box-shadow: 0 0 0 2px rgba(201, 168, 106, 0.15);
+    }
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button { -webkit-appearance: none; }
+    -moz-appearance: textfield;
+  }
+}
+
+.csvc-unit {
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.csvc-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  font-size: 0.88rem;
+  color: #374151;
+
+  input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: #0a1128;
+    flex-shrink: 0;
+    cursor: pointer;
+    margin: 0;
+  }
+
+  span {
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+}
+
+.csvc-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.22rem;
+
+  label {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    cursor: pointer;
+    font-size: 0.8rem;
+    color: #374151;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0;
+    margin-bottom: 0;
+
+    input[type="radio"] {
+      accent-color: #0a1128;
+      cursor: pointer;
+      flex-shrink: 0;
+      margin: 0;
+    }
+  }
+}
+
+// ── Totals block ──────────────────────────────────────────────
+.contract-totals {
+  border: 1px solid #e5e7eb;
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+.contract-totals__discount-inputs {
+  padding: 0.75rem 0.85rem;
+  border-top: 1px solid #f0f1f3;
+  background: #fafafa;
+}
+
+.contract-totals__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.55rem 0.85rem;
+  font-size: 0.9rem;
+  border-top: 1px solid #f0f1f3;
+
+  &:first-child { border-top: none; }
+
+  span:first-child { color: #374151; }
+  span:last-child  {
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    color: #0a1128;
+  }
+
+  &--discount {
+    span:first-child { color: #059669; }
+    span:last-child  { color: #059669; }
+  }
+
+  &--adjusted {
+    background: rgba(201, 168, 106, 0.07);
+    border-top: 1px solid rgba(201, 168, 106, 0.25);
+
+    span:first-child { font-weight: 600; color: #0a1128; }
+    span:last-child  { color: #0a1128; font-size: 0.95rem; }
+  }
+
+  &--deposit {
+    background: #fafafa;
+
+    span:first-child { color: #6b7280; font-size: 0.85rem; }
+    span:last-child  {
+      color: #6b7280;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+  }
+
+  &--balance {
+    background: #0a1128;
+    border-top: none;
+
+    span:first-child { color: #c9a86a; font-weight: 700; font-size: 0.92rem; }
+    span:last-child  {
+      color: #fff;
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+  }
+}
+
 // ── Responsive ───────────────────────────────────────────────
 @media (max-width: 700px) {
   .contract-page {
@@ -437,6 +701,28 @@
 
   .contract-header h1 {
     font-size: 1.35rem;
+  }
+
+  // Service table: hide rate column, compress qty
+  .csvc-header,
+  .csvc-row {
+    grid-template-columns: 1fr 7.5rem 5rem;
+    padding: 0.5rem 0.65rem;
+  }
+
+  .csvc-header .csvc-rate,
+  .csvc-row .csvc-rate {
+    display: none;
+  }
+
+  .csvc-input-wrap input[type="number"] {
+    width: 3.5rem;
+  }
+
+  .csvc-radio-group {
+    gap: 0.15rem;
+
+    label { font-size: 0.75rem; }
   }
 }
 

@@ -213,36 +213,169 @@ async function generateContractPDF(form, signature, signedDate) {
   bullet("Teardown and equipment removal following the event");
 
   // ═════════════════════════════════════════════════════════
-  //  3. COMPENSATION
+  //  3. SERVICES & COMPENSATION
   // ═════════════════════════════════════════════════════════
-  sectionTitle("3. Compensation");
-  const total   = parseFloat(form.totalFee) || 0;
-  const discD   = parseFloat(form.discountDollar) || 0;
-  const discP   = parseFloat(form.discountPercent) || 0;
-  const adjusted = Math.max(0, total - discD);
-  const deposit = parseFloat(form.depositAmount) || 0;
-  const balance = Math.max(0, adjusted - deposit).toFixed(2);
+  sectionTitle("3. Services & Compensation");
 
+  // Build service line items
+  const RATES_LOCAL = {
+    setupTeardown: 200,
+    reception: 100, cocktail: 75, dinner: 75, ceremony: 100,
+    ceremonyMic: 150, dancefloor: 150, uplighting6: 250, uplighting12: 500,
+    mileage: 0.50,
+  };
+  const rHrs = parseFloat(form.receptionHours) || 0;
+  const cHrs = parseFloat(form.cocktailHours)  || 0;
+  const dHrs = parseFloat(form.dinnerHours)    || 0;
+  const eHrs = parseFloat(form.ceremonyHours)  || 0;
+  const svcItems = [];
+  if (form.setupTeardown)   svcItems.push({ name: "Reception Setup & Teardown",       rate: "$200 flat",     qty: "1",        amt: RATES_LOCAL.setupTeardown });
+  if (rHrs > 0) svcItems.push({ name: "Reception / Dance DJ",          rate: "$100/hr",       qty: `${rHrs} hrs`,  amt: rHrs * RATES_LOCAL.reception  });
+  if (cHrs > 0) svcItems.push({ name: "Cocktail Hour Music",           rate: "$75/hr",        qty: `${cHrs} hrs`,  amt: cHrs * RATES_LOCAL.cocktail   });
+  if (dHrs > 0) svcItems.push({ name: "Dinner Music",                  rate: "$75/hr",        qty: `${dHrs} hrs`,  amt: dHrs * RATES_LOCAL.dinner     });
+  if (eHrs > 0) svcItems.push({ name: "Ceremony Music",                rate: "$100/hr",       qty: `${eHrs} hrs`,  amt: eHrs * RATES_LOCAL.ceremony   });
+  if (form.ceremonyMic)         svcItems.push({ name: "Ceremony Mic & Speaker Setup",   rate: "$150 flat", qty: "1",        amt: RATES_LOCAL.ceremonyMic  });
+  if (form.dancefloor)          svcItems.push({ name: "Reception Dancefloor Lighting",  rate: "$150 flat", qty: "1",        amt: RATES_LOCAL.dancefloor   });
+  if (form.uplighting === "6")  svcItems.push({ name: "Ambient Uplighting",             rate: "$250 / 6 units", qty: "6 units",  amt: RATES_LOCAL.uplighting6  });
+  if (form.uplighting === "12") svcItems.push({ name: "Ambient Uplighting",             rate: "$500 / 12 units", qty: "12 units", amt: RATES_LOCAL.uplighting12 });
+  const mMi = parseFloat(form.mileageMiles) || 0;
+  if (mMi > 0) svcItems.push({ name: "Venue Mileage (round trip)", rate: "$0.50/mi", qty: `${mMi} mi`, amt: mMi * RATES_LOCAL.mileage });
+
+  const subtotal = svcItems.reduce((s, r) => s + r.amt, 0);
+  const discD    = parseFloat(form.discountDollar)  || 0;
+  const discP    = parseFloat(form.discountPercent) || 0;
+  const adjusted = Math.max(0, subtotal - discD);
+  const deposit  = adjusted / 2;
+  const balance  = Math.max(0, adjusted - deposit);
+
+  // ── Draw service table ──────────────────────────────────
+  const colN   = CW * 0.43;
+  const colR   = CW * 0.16;
+  // colQ = CW * 0.23; colAmt uses the remaining width
+  const tRowH  = 20;
+  const tHdrH  = 16;
+  const tTotal = svcItems.length * tRowH + tHdrH;
+  pb(tTotal + 100);
+
+  const tStartY = y;
+
+  // Header bar
+  doc.setFillColor(10, 17, 40);
+  doc.rect(M, y, CW, tHdrH, "F");
+  doc.setFontSize(7);
+  doc.setFont("helvetica", "bold");
+  doc.setTextColor(255, 255, 255);
+  doc.text("SERVICE",  M + 6,                    y + 11);
+  doc.text("RATE",     M + colN + 6,              y + 11);
+  doc.text("QTY",      M + colN + colR + 6,       y + 11);
+  doc.text("AMOUNT",   M + CW - 5,               y + 11, { align: "right" });
+  y += tHdrH;
+
+  // Data rows
+  svcItems.forEach((row, i) => {
+    if (i % 2 !== 0) {
+      doc.setFillColor(249, 250, 251);
+      doc.rect(M, y, CW, tRowH, "F");
+    }
+    // Name
+    doc.setFontSize(8.5);
+    doc.setFont("helvetica", "normal");
+    doc.setTextColor(45, 49, 66);
+    doc.text(row.name, M + 6, y + 13);
+    // Rate
+    doc.setFontSize(8);
+    doc.setTextColor(107, 114, 128);
+    doc.text(row.rate, M + colN + 6, y + 13);
+    // Qty
+    doc.setFontSize(8.5);
+    doc.setTextColor(45, 49, 66);
+    doc.text(row.qty, M + colN + colR + 6, y + 13);
+    // Amount
+    doc.setFont("helvetica", "bold");
+    doc.setTextColor(10, 17, 40);
+    doc.text("$" + row.amt.toFixed(2), M + CW - 5, y + 13, { align: "right" });
+    // Row divider
+    doc.setDrawColor(209, 213, 219);
+    doc.setLineWidth(0.25);
+    doc.line(M, y + tRowH, M + CW, y + tRowH);
+    y += tRowH;
+  });
+
+  // Table outer border
+  doc.setDrawColor(209, 213, 219);
+  doc.setLineWidth(0.5);
+  doc.rect(M, tStartY, CW, y - tStartY);
+
+  y += 6;
+
+  // ── Totals ─────────────────────────────────────────────
+  const totLX = M + Math.round(CW * 0.52);
+  const totRX = M + CW;
+  const totRowH = 16;
+
+  const totRow = (label, value, opts) => {
+    const o = opts || {};
+    pb(20);
+    if (o.bg) {
+      doc.setFillColor(o.bg[0], o.bg[1], o.bg[2]);
+      doc.rect(totLX - 4, y - 11, totRX - totLX + 9, totRowH, "F");
+    }
+    doc.setFontSize(o.sz || 9);
+    doc.setFont("helvetica", o.bold ? "bold" : "normal");
+    doc.setTextColor(o.labelColor ? o.labelColor[0] : 45, o.labelColor ? o.labelColor[1] : 49, o.labelColor ? o.labelColor[2] : 66);
+    doc.text(label, totLX, y);
+    doc.setFont("helvetica", "bold");
+    doc.setTextColor(o.valueColor ? o.valueColor[0] : 10, o.valueColor ? o.valueColor[1] : 17, o.valueColor ? o.valueColor[2] : 40);
+    doc.text(value, totRX, y, { align: "right" });
+    y += totRowH;
+  };
+
+  // Subtotal row
+  totRow("Subtotal", "$" + subtotal.toFixed(2));
+
+  // Discount rows (if any)
   if (discD > 0) {
-    fieldRow([
-      { label: "Base Fee",      value: `$${form.totalFee}` },
-      { label: "Discount",      value: discP > 0
-          ? `-$${discD.toFixed(2)} (${discP}%)`
-          : `-$${discD.toFixed(2)}` },
-      { label: "Adjusted Total", value: `$${adjusted.toFixed(2)}` },
-    ]);
-  } else {
-    fieldRow([{ label: "Total Fee", value: `$${form.totalFee}` }]);
+    const dLabel = discP > 0 ? "Discount (" + discP + "%)" : "Discount";
+    pb(20);
+    doc.setFontSize(9);
+    doc.setFont("helvetica", "normal");
+    doc.setTextColor(5, 150, 105);
+    doc.text(dLabel, totLX, y);
+    doc.setFont("helvetica", "bold");
+    doc.text("-$" + discD.toFixed(2), totRX, y, { align: "right" });
+    y += totRowH;
+
+    // Adjusted total
+    totRow("Adjusted Total", "$" + adjusted.toFixed(2), {
+      bg: [253, 248, 235],
+      bold: true,
+    });
   }
-  fieldRow([
-    { label: "Deposit (50%)",  value: `$${form.depositAmount}` },
-    { label: "Balance Due",    value: `$${balance}` },
-    { label: "Overtime Rate",  value: "$150/hr" },
-  ]);
+
+  // Deposit
+  totRow(
+    "Deposit Due Upon Signing (50%)",
+    "$" + deposit.toFixed(2),
+    { sz: 8.5, labelColor: [107, 114, 128], valueColor: [107, 114, 128] }
+  );
+
+  // Balance due — dark highlight
+  pb(22);
+  doc.setFillColor(10, 17, 40);
+  doc.rect(totLX - 4, y - 11, totRX - totLX + 9, 18, "F");
+  doc.setFontSize(9.5);
+  doc.setFont("helvetica", "bold");
+  doc.setTextColor(201, 168, 106);
+  doc.text("Balance Due", totLX + 2, y);
+  doc.setTextColor(255, 255, 255);
+  doc.text("$" + balance.toFixed(2), totRX - 2, y, { align: "right" });
+  y += 22;
+
+  // Payment terms
   body(
     discD > 0
-      ? `Deposit of 50% of the adjusted total ($${adjusted.toFixed(2)}) is due upon signing to reserve the date. Balance due no later than 14 days before the event. Payment accepted via cash, check, Venmo, or Zelle.`
-      : "Deposit of 50% is due upon signing to reserve the date. Balance due no later than 14 days before the event. Payment accepted via cash, check, Venmo, or Zelle.",
+      ? `Deposit of 50% of the adjusted total ($${adjusted.toFixed(2)}) is due upon signing to reserve the date. Balance due no later than 14 days before the event. Payment accepted via cash, check, Venmo, or Zelle. Overtime beyond contracted hours: $150/hr.`
+      : "Deposit of 50% is due upon signing to reserve the date. Balance due no later than 14 days before the event. Payment accepted via cash, check, Venmo, or Zelle. Overtime beyond contracted hours: $150/hr.",
     0,
     [75, 85, 99]
   );
@@ -302,6 +435,14 @@ async function generateContractPDF(form, signature, signedDate) {
   sectionTitle("9. General Provisions");
   body(
     "This Agreement constitutes the entire agreement between the parties and supersedes all prior discussions. It shall be governed by the laws of the State of Minnesota. Any modifications must be in writing and signed by both parties. If any provision is found unenforceable, remaining provisions remain in full effect."
+  );
+
+  // ═════════════════════════════════════════════════════════
+  //  10. AMENDMENT & SUPERSESSION
+  // ═════════════════════════════════════════════════════════
+  sectionTitle("10. Amendment & Supersession");
+  body(
+    "The parties acknowledge that the scope of services, event details, pricing, or other terms of this Agreement may evolve prior to the event date. This Agreement may be amended, updated, or superseded in its entirety by a subsequent written agreement executed by both parties. Upon execution of any such subsequent agreement pertaining to the same event described herein, the most recently executed agreement shall govern in all respects and shall render prior versions null and void as to any conflicting terms. No amendment shall be binding unless reduced to writing and agreed upon by both parties; provided, however, that verbal agreements confirmed in writing (including by email) by both parties shall constitute a valid amendment for purposes of this section."
   );
 
   // ═════════════════════════════════════════════════════════

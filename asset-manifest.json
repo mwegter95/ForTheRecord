@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.85af0774.css",
-    "main.js": "/static/js/main.f1cfec5b.js",
+    "main.js": "/static/js/main.b364dc9d.js",
     "static/css/233.72c4c5a6.chunk.css": "/static/css/233.72c4c5a6.chunk.css",
     "static/js/233.1f872ad5.chunk.js": "/static/js/233.1f872ad5.chunk.js",
     "static/css/524.5d66dc31.chunk.css": "/static/css/524.5d66dc31.chunk.css",
@@ -18,8 +18,8 @@
     "static/css/182.5e61774d.chunk.css": "/static/css/182.5e61774d.chunk.css",
     "static/js/182.10c374da.chunk.js": "/static/js/182.10c374da.chunk.js",
     "static/css/493.4979cf0e.chunk.css": "/static/css/493.4979cf0e.chunk.css",
-    "static/js/493.80207e6e.chunk.js": "/static/js/493.80207e6e.chunk.js",
-    "static/js/931.3fbcb059.chunk.js": "/static/js/931.3fbcb059.chunk.js",
+    "static/js/493.93d2b96f.chunk.js": "/static/js/493.93d2b96f.chunk.js",
+    "static/js/931.37dab55a.chunk.js": "/static/js/931.37dab55a.chunk.js",
     "static/media/wedding-dance-floor3-hq.webp": "/static/media/wedding-dance-floor3-hq.c64f064e5d476000a570.webp",
     "static/media/wedding-ceremony-audio2.webp": "/static/media/wedding-ceremony-audio2.de04cab2504485f5558d.webp",
     "static/media/wedding-dance-floor.webp": "/static/media/wedding-dance-floor.1edf6266f837c9076681.webp",
@@ -40,7 +40,7 @@
     "index.html": "/index.html",
     "static/media/for-the-record-logo.svg": "/static/media/for-the-record-logo.a9cfcca81bf3fdc81932f5f7eec04cfd.svg",
     "main.85af0774.css.map": "/static/css/main.85af0774.css.map",
-    "main.f1cfec5b.js.map": "/static/js/main.f1cfec5b.js.map",
+    "main.b364dc9d.js.map": "/static/js/main.b364dc9d.js.map",
     "233.72c4c5a6.chunk.css.map": "/static/css/233.72c4c5a6.chunk.css.map",
     "233.1f872ad5.chunk.js.map": "/static/js/233.1f872ad5.chunk.js.map",
     "524.5d66dc31.chunk.css.map": "/static/css/524.5d66dc31.chunk.css.map",
@@ -57,11 +57,11 @@
     "182.5e61774d.chunk.css.map": "/static/css/182.5e61774d.chunk.css.map",
     "182.10c374da.chunk.js.map": "/static/js/182.10c374da.chunk.js.map",
     "493.4979cf0e.chunk.css.map": "/static/css/493.4979cf0e.chunk.css.map",
-    "493.80207e6e.chunk.js.map": "/static/js/493.80207e6e.chunk.js.map",
-    "931.3fbcb059.chunk.js.map": "/static/js/931.3fbcb059.chunk.js.map"
+    "493.93d2b96f.chunk.js.map": "/static/js/493.93d2b96f.chunk.js.map",
+    "931.37dab55a.chunk.js.map": "/static/js/931.37dab55a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.85af0774.css",
-    "static/js/main.f1cfec5b.js"
+    "static/js/main.b364dc9d.js"
   ]
 }

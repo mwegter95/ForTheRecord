@@ -5,7 +5,7 @@ import "./Contract.scss";
 
 // ─── Google Apps Script web app URL ─────────────────────────
 const APPS_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbzzcpYcIITq-AqaFnaCn_oJ70Irgnc39PmQG7GDLXlqXHnh7liZQ_twOE-U6-FgEsTT/exec";
+  "https://script.google.com/macros/s/AKfycbz24yfqfuiotdBIZA0-qgVwDmNG5LZ8axbnU0exctJrZCyEoxowSnYtWKiZKKau0Jlb/exec";
 
 // ─── Service rates ───────────────────────────────────────────
 export const RATES = {
@@ -15,9 +15,9 @@ export const RATES = {
   dinner:         75, // $/hr
   ceremony:      100, // $/hr
   ceremonyMic:   150, // flat
-  dancefloor:    150, // flat
-  uplighting6:   250, // 6 units
-  uplighting12:  500, // 12 units
+  dancefloor:    175, // flat
+  uplighting6:   275, // 6 units
+  uplighting12:  550, // 12 units
   mileage:      0.50, // $/mi (round trip)
 };
 
@@ -622,7 +622,7 @@ const Contract = () => {
           {/* Reception Dancefloor Lighting */}
           <SvcRow
             label="Reception Dancefloor Lighting"
-            rate="$150 flat"
+            rate="$175 flat"
             total={form.dancefloor ? RATES.dancefloor : 0}
           >
             {locked ? (
@@ -638,7 +638,7 @@ const Contract = () => {
           {/* Uplighting */}
           <SvcRow
             label="Ambient Uplighting"
-            rate="$250 / $500"
+            rate="$275 / $550"
             total={form.uplighting === "6" ? RATES.uplighting6 : form.uplighting === "12" ? RATES.uplighting12 : 0}
           >
             {locked ? (
@@ -650,9 +650,9 @@ const Contract = () => {
                 <label><input type="radio" name="uplighting" value="none"
                   checked={form.uplighting === "none"} onChange={handleChange} /> None</label>
                 <label><input type="radio" name="uplighting" value="6"
-                  checked={form.uplighting === "6"} onChange={handleChange} /> 6 units ($250)</label>
+                  checked={form.uplighting === "6"} onChange={handleChange} /> 6 units ($275)</label>
                 <label><input type="radio" name="uplighting" value="12"
-                  checked={form.uplighting === "12"} onChange={handleChange} /> 12 units ($500)</label>
+                  checked={form.uplighting === "12"} onChange={handleChange} /> 12 units ($550)</label>
               </div>
             )}
           </SvcRow>

@@ -230,9 +230,9 @@ function buildPricingRows(d) {
   svcHourly("Dinner Music",                  d.dinner_hours,     75);
   svcHourly("Ceremony Music",                d.ceremony_hours,  100);
   if (d.ceremony_mic === "Yes") svcFlat("Ceremony Mic & Speaker Setup", 150);
-  if (d.dancefloor   === "Yes") svcFlat("Reception Dancefloor Lighting", 150);
-  if (d.uplighting   === "6 units")  svcFlat("Ambient Uplighting (6 units)", 250);
-  if (d.uplighting   === "12 units") svcFlat("Ambient Uplighting (12 units)", 500);
+  if (d.dancefloor   === "Yes") svcFlat("Reception Dancefloor Lighting", 175);
+  if (d.uplighting   === "6 units")  svcFlat("Ambient Uplighting (6 units)", 275);
+  if (d.uplighting   === "12 units") svcFlat("Ambient Uplighting (12 units)", 550);
   var mMi = parseFloat(d.mileage_miles) || 0;
   if (mMi > 0) {
     rows.push(

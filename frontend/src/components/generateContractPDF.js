@@ -221,7 +221,7 @@ async function generateContractPDF(form, signature, signedDate) {
   const RATES_LOCAL = {
     setupTeardown: 200,
     reception: 100, cocktail: 75, dinner: 75, ceremony: 100,
-    ceremonyMic: 150, dancefloor: 150, uplighting6: 250, uplighting12: 500,
+    ceremonyMic: 150, dancefloor: 175, uplighting6: 275, uplighting12: 550,
     mileage: 0.50,
   };
   const rHrs = parseFloat(form.receptionHours) || 0;
@@ -235,9 +235,9 @@ async function generateContractPDF(form, signature, signedDate) {
   if (dHrs > 0) svcItems.push({ name: "Dinner Music",                  rate: "$75/hr",        qty: `${dHrs} hrs`,  amt: dHrs * RATES_LOCAL.dinner     });
   if (eHrs > 0) svcItems.push({ name: "Ceremony Music",                rate: "$100/hr",       qty: `${eHrs} hrs`,  amt: eHrs * RATES_LOCAL.ceremony   });
   if (form.ceremonyMic)         svcItems.push({ name: "Ceremony Mic & Speaker Setup",   rate: "$150 flat", qty: "1",        amt: RATES_LOCAL.ceremonyMic  });
-  if (form.dancefloor)          svcItems.push({ name: "Reception Dancefloor Lighting",  rate: "$150 flat", qty: "1",        amt: RATES_LOCAL.dancefloor   });
-  if (form.uplighting === "6")  svcItems.push({ name: "Ambient Uplighting",             rate: "$250 / 6 units", qty: "6 units",  amt: RATES_LOCAL.uplighting6  });
-  if (form.uplighting === "12") svcItems.push({ name: "Ambient Uplighting",             rate: "$500 / 12 units", qty: "12 units", amt: RATES_LOCAL.uplighting12 });
+  if (form.dancefloor)          svcItems.push({ name: "Reception Dancefloor Lighting",  rate: "$175 flat", qty: "1",        amt: RATES_LOCAL.dancefloor   });
+  if (form.uplighting === "6")  svcItems.push({ name: "Ambient Uplighting",             rate: "$275 / 6 units", qty: "6 units",  amt: RATES_LOCAL.uplighting6  });
+  if (form.uplighting === "12") svcItems.push({ name: "Ambient Uplighting",             rate: "$550 / 12 units", qty: "12 units", amt: RATES_LOCAL.uplighting12 });
   const mMi = parseFloat(form.mileageMiles) || 0;
   if (mMi > 0) svcItems.push({ name: "Venue Mileage (round trip)", rate: "$0.50/mi", qty: `${mMi} mi`, amt: mMi * RATES_LOCAL.mileage });
 

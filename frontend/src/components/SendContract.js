@@ -357,7 +357,7 @@ const SendContract = () => {
 
             <div className="sc-svc-row">
               <span className="sc-svc-name">Reception Dancefloor Lighting</span>
-              <span className="sc-svc-rate">$150 flat</span>
+              <span className="sc-svc-rate">$175 flat</span>
               <span className="sc-svc-qty">
                 <label className="sc-svc-checkbox">
                   <input type="checkbox" name="dancefloor" checked={form.dancefloor} onChange={handleChange} />
@@ -365,26 +365,26 @@ const SendContract = () => {
                 </label>
               </span>
               <span className="sc-svc-amt">
-                {form.dancefloor ? "$150.00" : <span className="sc-svc-zero">—</span>}
+                {form.dancefloor ? "$175.00" : <span className="sc-svc-zero">—</span>}
               </span>
             </div>
 
             <div className="sc-svc-row">
               <span className="sc-svc-name">Ambient Uplighting</span>
-              <span className="sc-svc-rate">$250 / $500</span>
+              <span className="sc-svc-rate">$275 / $550</span>
               <span className="sc-svc-qty">
                 <div className="sc-svc-radio-group">
                   <label><input type="radio" name="uplighting" value="none"
                     checked={form.uplighting === "none"} onChange={handleChange} /> None</label>
                   <label><input type="radio" name="uplighting" value="6"
-                    checked={form.uplighting === "6"} onChange={handleChange} /> 6 units ($250)</label>
+                    checked={form.uplighting === "6"} onChange={handleChange} /> 6 units ($275)</label>
                   <label><input type="radio" name="uplighting" value="12"
-                    checked={form.uplighting === "12"} onChange={handleChange} /> 12 units ($500)</label>
+                    checked={form.uplighting === "12"} onChange={handleChange} /> 12 units ($550)</label>
                 </div>
               </span>
               <span className="sc-svc-amt">
-                {form.uplighting === "6"  ? "$250.00"
-                  : form.uplighting === "12" ? "$500.00"
+                {form.uplighting === "6"  ? "$275.00"
+                  : form.uplighting === "12" ? "$550.00"
                   : <span className="sc-svc-zero">—</span>}
               </span>
             </div>

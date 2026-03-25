@@ -1,11 +1,11 @@
 {
   "files": {
     "main.css": "/static/css/main.85af0774.css",
-    "main.js": "/static/js/main.b364dc9d.js",
+    "main.js": "/static/js/main.c69742ef.js",
     "static/css/233.72c4c5a6.chunk.css": "/static/css/233.72c4c5a6.chunk.css",
-    "static/js/233.1f872ad5.chunk.js": "/static/js/233.1f872ad5.chunk.js",
+    "static/js/233.c6364d5c.chunk.js": "/static/js/233.c6364d5c.chunk.js",
     "static/css/524.5d66dc31.chunk.css": "/static/css/524.5d66dc31.chunk.css",
-    "static/js/524.6f73ee13.chunk.js": "/static/js/524.6f73ee13.chunk.js",
+    "static/js/524.ddd2b7b0.chunk.js": "/static/js/524.ddd2b7b0.chunk.js",
     "static/css/157.391c2b9a.chunk.css": "/static/css/157.391c2b9a.chunk.css",
     "static/js/157.3fd4d934.chunk.js": "/static/js/157.3fd4d934.chunk.js",
     "static/css/328.cd3bb789.chunk.css": "/static/css/328.cd3bb789.chunk.css",
@@ -40,11 +40,11 @@
     "index.html": "/index.html",
     "static/media/for-the-record-logo.svg": "/static/media/for-the-record-logo.a9cfcca81bf3fdc81932f5f7eec04cfd.svg",
     "main.85af0774.css.map": "/static/css/main.85af0774.css.map",
-    "main.b364dc9d.js.map": "/static/js/main.b364dc9d.js.map",
+    "main.c69742ef.js.map": "/static/js/main.c69742ef.js.map",
     "233.72c4c5a6.chunk.css.map": "/static/css/233.72c4c5a6.chunk.css.map",
-    "233.1f872ad5.chunk.js.map": "/static/js/233.1f872ad5.chunk.js.map",
+    "233.c6364d5c.chunk.js.map": "/static/js/233.c6364d5c.chunk.js.map",
     "524.5d66dc31.chunk.css.map": "/static/css/524.5d66dc31.chunk.css.map",
-    "524.6f73ee13.chunk.js.map": "/static/js/524.6f73ee13.chunk.js.map",
+    "524.ddd2b7b0.chunk.js.map": "/static/js/524.ddd2b7b0.chunk.js.map",
     "157.391c2b9a.chunk.css.map": "/static/css/157.391c2b9a.chunk.css.map",
     "157.3fd4d934.chunk.js.map": "/static/js/157.3fd4d934.chunk.js.map",
     "328.cd3bb789.chunk.css.map": "/static/css/328.cd3bb789.chunk.css.map",
@@ -62,6 +62,6 @@
   },
   "entrypoints": [
     "static/css/main.85af0774.css",
-    "static/js/main.b364dc9d.js"
+    "static/js/main.c69742ef.js"
   ]
 }

@@ -50,8 +50,8 @@ export default function About() {
 
             <div className="story-highlight">
               <p className="highlight-quote">
-                "Perfect sound is the difference between a moving moment and a
-                disappointment."
+                Perfect sound is the difference between a moving moment and a
+                disappointment.
               </p>
             </div>
 

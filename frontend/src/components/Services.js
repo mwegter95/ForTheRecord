@@ -55,7 +55,7 @@ export default function Services() {
               preferences. Whether your friends are Beyonce fans, classic rock
               devotees, or an eclectic mix, I'll craft a setlist that keeps
               energy high and moments meaningful. No cookie-cutter DJ
-              playlists—just the songs that matter to you.
+              playlists, just the songs that matter to you.
             </p>
 
             <div className="service-list">
@@ -125,7 +125,7 @@ export default function Services() {
 
           <div className="difference-card">
             <i data-lucide="smile"></i>
-            <h3>Easeful Partnership</h3>
+            <h3>Easy Partnership</h3>
             <p>
               Quick responses, clear communication, and someone who actually
               cares about your day. I handle all audio logistics so you have

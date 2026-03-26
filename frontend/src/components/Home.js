@@ -7,8 +7,8 @@ import weddingDanceFloor3 from "../images/wedding-dance-floor3.webp";
 import weddingDanceFloor3HQ from "../images/wedding-dance-floor3-hq.webp";
 import weddingCeremonyAudio2 from "../images/wedding-ceremony-audio2.webp";
 import weddingDanceFloor4 from "../images/wedding-dance-floor4.webp";
-import weddingDanceFloor from "../images/wedding-dance-floor.webp";
-import weddingCeremonyAudio from "../images/wedding-ceremony-audio.webp";
+import weddingDanceFloor from "../images/wedding-dance-floor-hands-up-wave.webp";
+import weddingCeremonyAudio from "../images/wedding-dance-floor-hands-up.webp";
 import wedding1 from "../images/wedding1.webp";
 import "./Home.scss";
 
@@ -301,7 +301,7 @@ const Home = () => {
             <div className="gallery-item">
               <img
                 src={weddingCeremonyAudio}
-                alt="Ceremony audio and sound"
+                alt="Wedding guests with hands up on the dance floor"
                 loading="lazy"
                 width="800"
                 height="532"

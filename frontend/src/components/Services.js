@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import useSEO from "../hooks/useSEO";
-import WeddingCeremonyAudio from "../images/wedding-ceremony-audio.webp";
+import WeddingCeremonyAudio from "../images/wedding-ceremony-audio2.webp";
 import "./Services.scss";
 
 export default function Services() {
@@ -273,6 +273,23 @@ export default function Services() {
           Let's chat about your needs and build the perfect package for your
           day.
         </p>
+      </section>
+
+      {/* Testimonial */}
+      <section className="services-testimonial">
+        <div className="testimonial-card">
+          <div className="testimonial-stars">
+            <i data-lucide="star"></i>
+            <i data-lucide="star"></i>
+            <i data-lucide="star"></i>
+            <i data-lucide="star"></i>
+            <i data-lucide="star"></i>
+          </div>
+          <blockquote className="testimonial-quote">
+            "Michael provided excellent DJing services for our wedding! He made the process easy by having all of the equipment needed and coordinating directly with our venue to plan setup. He had us fill out a thorough survey to give all our likes/dislikes/wishes for the music selection at various points in the evening, so we knew we would only hear music we enjoy on our special day. He was able to incorporate our own Spotify playlist for the Horah (Jewish dance for celebrations), which made our night extra special. Thank you to Michael for setting the right mood for our big day!"
+          </blockquote>
+          <p className="testimonial-attribution">— Liz &amp; Riley</p>
+        </div>
       </section>
 
       {/* CTA Section */}

@@ -4,21 +4,23 @@ import useSEO from "../hooks/useSEO";
 import "./Gallery.scss";
 
 // Import gallery images (WebP)
-import weddingDanceFloor from "../images/wedding-dance-floor.webp";
 import weddingDanceFloor2 from "../images/wedding-dance-floor2.webp";
 import weddingDanceFloor3 from "../images/wedding-dance-floor3.webp";
 import weddingDanceFloor4 from "../images/wedding-dance-floor4.webp";
-import weddingCeremonyAudio from "../images/wedding-ceremony-audio.webp";
 import weddingCeremonyAudio2 from "../images/wedding-ceremony-audio2.webp";
 import wedding1 from "../images/wedding1.webp";
-import wedding2 from "../images/wedding2.webp";
 import wedding3 from "../images/wedding3.webp";
-import weddingDanceBouquetToss from "../images/wedding_dance_bouqet_toss.webp";
 import ashleyAndMe from "../images/Ashley_and_me.webp";
 import djDecks from "../images/DJ_Decks.webp";
 import djSetupDancefloor from "../images/dj-setup-dancefloor.webp";
 import weddingDanceFloorGuys from "../images/wedding-dance-floor-guys.webp";
 import weddingDanceFloorLaugh from "../images/wedding-dance-floor-laugh.webp";
+// New dance floor photos
+import danceFloorChairLift from "../images/wedding-dance-floor-chair-lift.webp";
+import danceFloorHandsUpWave from "../images/wedding-dance-floor-hands-up-wave.webp";
+import danceFloorHandsUp from "../images/wedding-dance-floor-hands-up.webp";
+import danceFloorCrowd from "../images/wedding-dance-floor-crowd.webp";
+import danceFloorBrideGroom from "../images/wedding-dance-floor-bride-and-groom.webp";
 
 const Gallery = () => {
   useSEO({
@@ -61,14 +63,22 @@ const Gallery = () => {
   const galleryItems = [
     {
       id: 1,
-      image: weddingDanceFloor,
-      category: "Dance Floor",
-      alt: "Couple dancing on wedding dance floor",
-      width: 800,
-      height: 533,
+      image: danceFloorChairLift,
+      category: "Couples",
+      alt: "Wedding chair lift celebration on the dance floor",
+      width: 1600,
+      height: 1067,
     },
     {
       id: 2,
+      image: danceFloorHandsUp,
+      category: "Dance Floor",
+      alt: "Wedding guests with hands up on the dance floor",
+      width: 1600,
+      height: 1067,
+    },
+    {
+      id: 3,
       image: weddingDanceFloor2,
       category: "Dance Floor",
       alt: "Wedding dance floor with energy and movement",
@@ -76,7 +86,23 @@ const Gallery = () => {
       height: 400,
     },
     {
-      id: 3,
+      id: 4,
+      image: danceFloorCrowd,
+      category: "Dance Floor",
+      alt: "Packed wedding dance floor crowd",
+      width: 1600,
+      height: 1067,
+    },
+    {
+      id: 5,
+      image: danceFloorHandsUpWave,
+      category: "Dance Floor",
+      alt: "Wedding guests waving hands up on the dance floor",
+      width: 1600,
+      height: 1067,
+    },
+    {
+      id: 6,
       image: weddingDanceFloor3,
       category: "Dance Floor",
       alt: "Wedding guests dancing",
@@ -84,7 +110,7 @@ const Gallery = () => {
       height: 400,
     },
     {
-      id: 4,
+      id: 7,
       image: weddingDanceFloor4,
       category: "Dance Floor",
       alt: "Dance floor celebration",
@@ -92,63 +118,7 @@ const Gallery = () => {
       height: 600,
     },
     {
-      id: 5,
-      image: weddingDanceBouquetToss,
-      category: "Dance Floor",
-      alt: "Wedding bouquet toss moment",
-      width: 800,
-      height: 499,
-    },
-    {
-      id: 6,
-      image: weddingCeremonyAudio,
-      category: "Ceremony",
-      alt: "Wedding ceremony setup",
-      width: 800,
-      height: 532,
-    },
-    {
-      id: 7,
-      image: weddingCeremonyAudio2,
-      category: "Ceremony",
-      alt: "Ceremony audio equipment",
-      width: 800,
-      height: 1000,
-    },
-    {
       id: 8,
-      image: wedding1,
-      category: "Ceremony",
-      alt: "Wedding ceremony moment",
-      width: 600,
-      height: 533,
-    },
-    {
-      id: 9,
-      image: ashleyAndMe,
-      category: "Couples",
-      alt: "Couple portrait",
-      width: 800,
-      height: 600,
-    },
-    {
-      id: 10,
-      image: wedding2,
-      category: "Couples",
-      alt: "Newlyweds",
-      width: 800,
-      height: 532,
-    },
-    {
-      id: 11,
-      image: wedding3,
-      category: "Couples",
-      alt: "Wedding couple",
-      width: 800,
-      height: 533,
-    },
-    {
-      id: 12,
       image: djDecks,
       category: "Dance Floor",
       alt: "DJ equipment and turntables",
@@ -156,7 +126,7 @@ const Gallery = () => {
       height: 328,
     },
     {
-      id: 13,
+      id: 9,
       image: djSetupDancefloor,
       category: "Dance Floor",
       alt: "DJ setup at dance floor",
@@ -164,7 +134,7 @@ const Gallery = () => {
       height: 533,
     },
     {
-      id: 14,
+      id: 10,
       image: weddingDanceFloorGuys,
       category: "Dance Floor",
       alt: "Grooms dancing at wedding reception",
@@ -172,10 +142,50 @@ const Gallery = () => {
       height: 669,
     },
     {
-      id: 15,
+      id: 11,
       image: weddingDanceFloorLaugh,
       category: "Dance Floor",
       alt: "Guests laughing and dancing at wedding",
+      width: 800,
+      height: 533,
+    },
+    {
+      id: 12,
+      image: weddingCeremonyAudio2,
+      category: ["Couples", "Ceremony"],
+      alt: "Ceremony audio equipment setup",
+      width: 800,
+      height: 1000,
+    },
+    {
+      id: 13,
+      image: wedding1,
+      category: "Ceremony",
+      alt: "Wedding ceremony moment",
+      width: 600,
+      height: 533,
+    },
+    {
+      id: 14,
+      image: danceFloorBrideGroom,
+      category: "Couples",
+      alt: "Bride and groom on the dance floor",
+      width: 1600,
+      height: 1067,
+    },
+    {
+      id: 15,
+      image: ashleyAndMe,
+      category: "Couples",
+      alt: "Couple portrait",
+      width: 800,
+      height: 600,
+    },
+    {
+      id: 16,
+      image: wedding3,
+      category: "Wedding",
+      alt: "Wedding couple",
       width: 800,
       height: 533,
     },
@@ -185,7 +195,11 @@ const Gallery = () => {
   const filteredItems =
     activeFilter === "All"
       ? galleryItems
-      : galleryItems.filter((item) => item.category === activeFilter);
+      : galleryItems.filter((item) =>
+          Array.isArray(item.category)
+            ? item.category.includes(activeFilter)
+            : item.category === activeFilter
+        );
 
   return (
     <div className="gallery-page">
@@ -225,7 +239,7 @@ const Gallery = () => {
             {filteredItems.map((item) => (
               <div
                 key={item.id}
-                className={`gallery-item ${item.id === 7 ? "shift-down" : ""} ${item.id === 12 ? "zoom-in" : ""}`}
+                className={`gallery-item ${item.id === 12 ? "shift-down" : ""} ${item.id === 8 ? "zoom-in" : ""}`}
                 onClick={() => setExpandedId(item.id)}
               >
                 <img

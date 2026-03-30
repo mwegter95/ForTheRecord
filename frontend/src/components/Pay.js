@@ -36,6 +36,7 @@ const Pay = () => {
 
   const [activeSection, setActiveSection] = useState(null);
   const [zelleCopied,   setZelleCopied]   = useState(false);
+  const [zelleAppFailed, setZelleAppFailed] = useState(false);
   const [paypalLoaded,  setPaypalLoaded]  = useState(false);
   const [paypalError,   setPaypalError]   = useState("");
   const [paypalSuccess, setPaypalSuccess] = useState(false);
@@ -104,6 +105,21 @@ const Pay = () => {
   const venmoHref = `venmo://paycharge?txn=pay&recipients=${VENMO_USERNAME}&amount=${venmoAmt}&note=${encodeURIComponent(note)}`;
   const venmoWeb  = `https://venmo.com/u/${VENMO_USERNAME}`;
 
+  // ── Try Zelle deep link, fall back to store links ─────────────────────────
+  const tryOpenZelle = () => {
+    setZelleAppFailed(false);
+    window.location.href = "zelle://";
+    // If page is still visible after 1.5s, the app wasn't installed
+    const t = setTimeout(() => {
+      if (!document.hidden) setZelleAppFailed(true);
+    }, 1500);
+    const onVisible = () => {
+      clearTimeout(t);
+      document.removeEventListener("visibilitychange", onVisible);
+    };
+    document.addEventListener("visibilitychange", onVisible);
+  };
+
   // ── Copy Zelle contact ────────────────────────────────────────────────────
   const copyZelle = async () => {
     try {
@@ -120,8 +136,10 @@ const Pay = () => {
     setTimeout(() => setZelleCopied(false), 2500);
   };
 
-  const toggle = (section) =>
+  const toggle = (section) => {
     setActiveSection((prev) => (prev === section ? null : section));
+    if (section !== "zelle") setZelleAppFailed(false);
+  };
 
   // ── Invalid / missing link ────────────────────────────────────────────────
   if (!payload || base <= 0) {
@@ -191,16 +209,41 @@ const Pay = () => {
                   <strong>{note}</strong>
                 </div>
               </div>
-              <a
-                href="zelle://"
+              <button
                 className="pay-btn-primary"
-                rel="noopener noreferrer"
+                onClick={tryOpenZelle}
               >
                 Open Zelle App
-              </a>
-              <p className="pay-sub-note">
-                Most major banks support Zelle — look for it in your bank's mobile app under "Send Money."
-              </p>
+              </button>
+              {zelleAppFailed && (
+                <div className="pay-zelle-stores">
+                  <p className="pay-sub-note" style={{ marginBottom: "0.5rem" }}>Zelle not installed? Download it:</p>
+                  <div className="pay-store-links">
+                    <a
+                      href="https://apps.apple.com/us/app/zelle-money-transfer/id1260755201"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="pay-store-btn"
+                    >
+                      App Store
+                    </a>
+                    <a
+                      href="https://play.google.com/store/apps/details?id=com.zellepay.zelle"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="pay-store-btn"
+                    >
+                      Google Play
+                    </a>
+                  </div>
+                  <p className="pay-sub-note" style={{ marginTop: "0.5rem" }}>Or send directly from your bank app — most major banks have Zelle built in.</p>
+                </div>
+              )}
+              {!zelleAppFailed && (
+                <p className="pay-sub-note">
+                  Most major banks support Zelle — look for it in your bank's mobile app under "Send Money."
+                </p>
+              )}
             </div>
           )}
         </div>

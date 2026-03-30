@@ -220,20 +220,12 @@ const Pay = () => {
                   <p className="pay-sub-note" style={{ marginBottom: "0.5rem" }}>Zelle not installed? Download it:</p>
                   <div className="pay-store-links">
                     <a
-                      href="https://apps.apple.com/us/app/zelle-money-transfer/id1260755201"
+                      href="https://www.zellepay.com/get-started"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="pay-store-btn"
                     >
-                      App Store
-                    </a>
-                    <a
-                      href="https://play.google.com/store/apps/details?id=com.zellepay.zelle"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="pay-store-btn"
-                    >
-                      Google Play
+                      Download Zelle
                     </a>
                   </div>
                   <p className="pay-sub-note" style={{ marginTop: "0.5rem" }}>Or send directly from your bank app — most major banks have Zelle built in.</p>

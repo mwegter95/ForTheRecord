@@ -71,6 +71,45 @@
   width: 100%;
 }
 
+.event-type-toggle {
+  display: flex;
+  gap: 0;
+  margin-bottom: 2rem;
+  border: 2px solid var(--gold);
+  border-radius: 50px;
+  overflow: hidden;
+  width: fit-content;
+
+  .toggle-option {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-family: "Inter", sans-serif;
+    border: none;
+    cursor: pointer;
+    background: transparent;
+    color: var(--navy);
+    transition: background 0.2s ease, color 0.2s ease;
+
+    i, svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    &.active {
+      background: var(--gold);
+      color: var(--navy);
+    }
+
+    &:not(.active):hover {
+      background: rgba(201, 168, 106, 0.15);
+    }
+  }
+}
+
 .contact-form {
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);

@@ -18,6 +18,7 @@ const GetInTouch = () => {
     source: "",
   });
 
+  const [isWedding, setIsWedding] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
 
@@ -44,6 +45,7 @@ const GetInTouch = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
+    const rawMessage = formData.message || "No additional details provided";
     const templateParams = {
       first_name: formData.firstName,
       last_name: formData.lastName,
@@ -51,7 +53,7 @@ const GetInTouch = () => {
       phone: formData.phone,
       date: formData.weddingDate,
       source: formData.source || "Not specified",
-      message: formData.message || "No additional details provided",
+      message: isWedding ? rawMessage : `Non-wedding event. ${rawMessage}`,
     };
 
     try {
@@ -107,12 +109,13 @@ const GetInTouch = () => {
       {/* Hero Section */}
       <section className="get-in-touch-hero">
         <div className="container">
-          <h1 className="hero-title">Book Your Wedding DJ</h1>
+          <h1 className="hero-title">
+            {isWedding ? "Book Your Wedding DJ" : "Book Your Event DJ"}
+          </h1>
           <p className="hero-subtitle">
-            Planning a wedding in Minneapolis, St. Paul, or anywhere in MN?
-            Fill out the form below and we'll respond within 24 hours—no
-            pressure, just a friendly conversation about making your day
-            perfect.
+            {isWedding
+              ? "Planning a wedding in Minneapolis, St. Paul, or anywhere in MN? Fill out the form below and we'll respond within 24 hours—no pressure, just a friendly conversation about making your day perfect."
+              : "Planning a private party, corporate event, or other celebration in MN? Fill out the form below and we'll respond within 24 hours—no pressure, just a friendly conversation about making your event great."}
           </p>
 
           {/* Trust Badges */}
@@ -173,6 +176,26 @@ const GetInTouch = () => {
                 </div>
               ) : (
                 <form className="contact-form" onSubmit={handleSubmit}>
+                  {/* Event Type Toggle */}
+                  <div className="event-type-toggle">
+                    <button
+                      type="button"
+                      className={`toggle-option ${isWedding ? "active" : ""}`}
+                      onClick={() => setIsWedding(true)}
+                    >
+                      <i data-lucide="heart"></i>
+                      Wedding
+                    </button>
+                    <button
+                      type="button"
+                      className={`toggle-option ${!isWedding ? "active" : ""}`}
+                      onClick={() => setIsWedding(false)}
+                    >
+                      <i data-lucide="music"></i>
+                      Other Event
+                    </button>
+                  </div>
+
                   {submitStatus === "error" && (
                     <div className="form-error-message">
                       <i data-lucide="alert-circle"></i>
@@ -251,7 +274,7 @@ const GetInTouch = () => {
 
                   <div className="form-group">
                     <label htmlFor="weddingDate" className="form-label">
-                      Wedding Date
+                      {isWedding ? "Wedding Date" : "Event Date"}
                     </label>
                     <input
                       type="date"
@@ -276,26 +299,36 @@ const GetInTouch = () => {
                       onChange={handleInputChange}
                     >
                       <option value="">Select an option</option>
-                      <option value="friend-referral">
+                      <option value="Friend or Family Referral">
                         Friend or Family Referral
                       </option>
-                      <option value="google">Google Search</option>
-                      <option value="instagram">Instagram</option>
-                      <option value="wedding-planner">Wedding Planner</option>
-                      <option value="wedding-vendor">Wedding Vendor</option>
-                      <option value="other">Other</option>
+                      <option value="Google Search">Google Search</option>
+                      <option value="Google Ad">Google Ad</option>
+                      <option value="Instagram">Instagram</option>
+                      <option value="Wedding Planner">Wedding Planner</option>
+                      <option value="Wedding Vendor">Wedding Vendor</option>
+                      <option value="White Bear Wedding Show">
+                        White Bear Wedding Show
+                      </option>
+                      <option value="Other">Other</option>
                     </select>
                   </div>
 
                   <div className="form-group">
                     <label htmlFor="message" className="form-label">
-                      Tell us about your day (Optional)
+                      {isWedding
+                        ? "Tell us about your day (Optional)"
+                        : "Tell us about your event (Optional)"}
                     </label>
                     <textarea
                       id="message"
                       name="message"
                       className="form-textarea"
-                      placeholder="Your venue, music style, vision... anything you'd like us to know!"
+                      placeholder={
+                        isWedding
+                          ? "Your venue, music style, vision... anything you'd like us to know!"
+                          : "Your venue, event type, vibe, guest count... anything you'd like us to know!"
+                      }
                       rows="5"
                       value={formData.message}
                       onChange={handleInputChange}

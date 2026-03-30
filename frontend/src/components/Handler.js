@@ -12,8 +12,10 @@ const FAQ = lazy(() => import("./FAQ"));
 const GetInTouch = lazy(() => import("./GetInTouch"));
 const SongRequest = lazy(() => import("./SongRequest"));
 const Contract = lazy(() => import("./Contract"));
-const CounterSign   = lazy(() => import("./CounterSign"));
-const SendContract  = lazy(() => import("./SendContract"));
+const CounterSign          = lazy(() => import("./CounterSign"));
+const SendContract         = lazy(() => import("./SendContract"));
+const SendPaymentRequest   = lazy(() => import("./SendPaymentRequest"));
+const Pay                  = lazy(() => import("./Pay"));
 
 // Scroll to top on route change & track pageviews
 const ScrollToTop = () => {
@@ -53,8 +55,10 @@ const Handler = () => {
             <Route path="/get-in-touch" element={<GetInTouch />} />
             <Route path="/request-a-song" element={<SongRequest />} />
             <Route path="/contract" element={<Contract />} />
-            <Route path="/countersign"    element={<CounterSign />} />
-            <Route path="/send-contract"  element={<SendContract />} />
+            <Route path="/countersign"           element={<CounterSign />} />
+            <Route path="/send-contract"         element={<SendContract />} />
+            <Route path="/send-payment-request"  element={<SendPaymentRequest />} />
+            <Route path="/pay"                   element={<Pay />} />
             {/* Redirects for old routes */}
             <Route
               path="/booknow"

@@ -1,0 +1,420 @@
+.pay-page {
+  min-height: 100vh;
+  background: var(--navy);
+  padding: 5rem 1rem 3rem;
+  font-family: "Inter", sans-serif;
+  color: var(--cream);
+}
+
+// ── Header ─────────────────────────────────────────────────────────────────
+.pay-header {
+  max-width: 520px;
+  margin: 0 auto 2.5rem;
+  text-align: center;
+}
+
+.pay-brand {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.1rem;
+  color: var(--gold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.pay-title {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 2.4rem;
+  font-weight: 400;
+  color: var(--cream);
+  margin: 0 0 0.35rem;
+  line-height: 1.2;
+}
+
+.pay-client {
+  font-size: 1rem;
+  color: rgba(248, 246, 241, 0.65);
+  margin: 0 0 1.25rem;
+}
+
+.pay-amount-badge {
+  display: inline-block;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--gold);
+  background: rgba(201, 168, 106, 0.1);
+  border: 1px solid rgba(201, 168, 106, 0.3);
+  border-radius: 50px;
+  padding: 0.4rem 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.pay-note {
+  font-size: 0.9rem;
+  color: rgba(248, 246, 241, 0.5);
+  margin: 0;
+}
+
+// ── Options list ───────────────────────────────────────────────────────────
+.pay-options {
+  max-width: 520px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+// ── Individual option card ─────────────────────────────────────────────────
+.pay-option-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(201, 168, 106, 0.2);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+
+  &.open {
+    border-color: var(--gold);
+  }
+}
+
+.pay-option-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 1.1rem 1.25rem;
+  color: var(--cream);
+  text-align: left;
+  gap: 0.75rem;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.04);
+  }
+}
+
+.pay-option-left {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.pay-option-rank {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(201, 168, 106, 0.15);
+  border: 1px solid rgba(201, 168, 106, 0.3);
+  color: var(--gold);
+  font-size: 0.8rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.pay-option-name {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--cream);
+  margin-bottom: 0.2rem;
+}
+
+.pay-option-tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  border-radius: 20px;
+  padding: 0.1rem 0.55rem;
+
+  &.no-fee {
+    background: rgba(52, 211, 153, 0.15);
+    color: #34d399;
+    border: 1px solid rgba(52, 211, 153, 0.3);
+  }
+
+  &.small-fee {
+    background: rgba(251, 191, 36, 0.12);
+    color: #fbbf24;
+    border: 1px solid rgba(251, 191, 36, 0.25);
+  }
+
+  &.card-fee {
+    background: rgba(248, 113, 113, 0.12);
+    color: #f87171;
+    border: 1px solid rgba(248, 113, 113, 0.25);
+  }
+}
+
+.pay-option-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.pay-option-amount {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--gold);
+}
+
+.pay-chevron {
+  font-size: 0.65rem;
+  color: rgba(248, 246, 241, 0.4);
+}
+
+// ── Expanded body ──────────────────────────────────────────────────────────
+.pay-option-body {
+  padding: 0 1.25rem 1.25rem;
+  border-top: 1px solid rgba(201, 168, 106, 0.15);
+}
+
+.pay-instructions {
+  font-size: 0.9rem;
+  color: rgba(248, 246, 241, 0.7);
+  margin: 1rem 0 0.9rem;
+  line-height: 1.5;
+}
+
+.pay-zelle-contact {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(201, 168, 106, 0.2);
+  border-radius: 8px;
+  padding: 0.7rem 0.9rem;
+  margin-bottom: 1rem;
+  gap: 0.75rem;
+
+  span {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--cream);
+    word-break: break-all;
+  }
+}
+
+.pay-copy-btn {
+  background: rgba(201, 168, 106, 0.15);
+  border: 1px solid rgba(201, 168, 106, 0.3);
+  border-radius: 6px;
+  padding: 0.3rem 0.7rem;
+  color: var(--gold);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s;
+
+  &:hover {
+    background: rgba(201, 168, 106, 0.25);
+  }
+}
+
+.pay-zelle-details {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 8px;
+  padding: 0.75rem 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.pay-detail-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.88rem;
+  padding: 0.25rem 0;
+  color: rgba(248, 246, 241, 0.7);
+
+  strong {
+    color: var(--cream);
+    font-weight: 600;
+  }
+}
+
+.pay-btn-primary {
+  display: block;
+  width: 100%;
+  text-align: center;
+  background: var(--gold);
+  color: var(--navy);
+  border: none;
+  border-radius: 8px;
+  padding: 0.85rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  font-family: "Inter", sans-serif;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s;
+  box-sizing: border-box;
+
+  &:hover {
+    background: #b8944f;
+  }
+}
+
+.pay-btn-venmo {
+  display: block;
+  width: 100%;
+  text-align: center;
+  background: #3d95ce;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.85rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  font-family: "Inter", sans-serif;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s;
+  box-sizing: border-box;
+
+  &:hover {
+    background: #2e7ab0;
+  }
+}
+
+.pay-sub-note {
+  font-size: 0.8rem;
+  color: rgba(248, 246, 241, 0.45);
+  text-align: center;
+  margin: 0.75rem 0 0;
+  line-height: 1.5;
+
+  a {
+    color: var(--gold);
+    text-decoration: underline;
+  }
+}
+
+.pay-paypal-container {
+  margin-top: 0.25rem;
+}
+
+.pay-loading {
+  text-align: center;
+  color: rgba(248, 246, 241, 0.5);
+  font-size: 0.9rem;
+  padding: 1rem 0;
+}
+
+.pay-config-warning {
+  background: rgba(251, 191, 36, 0.1);
+  border: 1px solid rgba(251, 191, 36, 0.3);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  font-size: 0.88rem;
+  color: #fbbf24;
+  text-align: center;
+}
+
+// ── Success state ──────────────────────────────────────────────────────────
+.pay-success {
+  text-align: center;
+  padding: 1.5rem 0 0.5rem;
+}
+
+.pay-success-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(52, 211, 153, 0.15);
+  border: 2px solid #34d399;
+  color: #34d399;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+}
+
+.pay-success h3 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.5rem;
+  color: var(--cream);
+  margin: 0 0 0.5rem;
+  font-weight: 400;
+}
+
+.pay-success p {
+  font-size: 0.9rem;
+  color: rgba(248, 246, 241, 0.7);
+  margin: 0;
+}
+
+// ── Invalid page ───────────────────────────────────────────────────────────
+.pay-invalid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pay-invalid-card {
+  max-width: 400px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(201, 168, 106, 0.2);
+  border-radius: 16px;
+  padding: 3rem 2rem;
+}
+
+.pay-invalid-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.pay-invalid-card h1 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: var(--cream);
+  margin: 0 0 0.75rem;
+}
+
+.pay-invalid-card p {
+  font-size: 0.95rem;
+  color: rgba(248, 246, 241, 0.65);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.pay-btn-outline {
+  display: inline-block;
+  border: 1px solid rgba(201, 168, 106, 0.5);
+  border-radius: 8px;
+  padding: 0.6rem 1.5rem;
+  color: var(--gold);
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: background 0.2s;
+
+  &:hover {
+    background: rgba(201, 168, 106, 0.1);
+  }
+}
+
+// ── Footer ─────────────────────────────────────────────────────────────────
+.pay-footer {
+  max-width: 520px;
+  margin: 2rem auto 0;
+  text-align: center;
+  font-size: 0.82rem;
+  color: rgba(248, 246, 241, 0.35);
+
+  a {
+    color: rgba(248, 246, 241, 0.5);
+    text-decoration: underline;
+
+    &:hover {
+      color: var(--gold);
+    }
+  }
+}

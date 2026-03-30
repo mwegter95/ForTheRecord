@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.85af0774.css",
-    "main.js": "/static/js/main.85807fb1.js",
+    "main.js": "/static/js/main.7bf64ca6.js",
     "static/css/233.72c4c5a6.chunk.css": "/static/css/233.72c4c5a6.chunk.css",
     "static/js/233.c6364d5c.chunk.js": "/static/js/233.c6364d5c.chunk.js",
     "static/css/524.62fb89b4.chunk.css": "/static/css/524.62fb89b4.chunk.css",
@@ -22,7 +22,7 @@
     "static/css/866.15cdd779.chunk.css": "/static/css/866.15cdd779.chunk.css",
     "static/js/866.496265a3.chunk.js": "/static/js/866.496265a3.chunk.js",
     "static/css/306.c3792ae6.chunk.css": "/static/css/306.c3792ae6.chunk.css",
-    "static/js/306.dc3aeb1b.chunk.js": "/static/js/306.dc3aeb1b.chunk.js",
+    "static/js/306.2adb3b48.chunk.js": "/static/js/306.2adb3b48.chunk.js",
     "static/js/931.37dab55a.chunk.js": "/static/js/931.37dab55a.chunk.js",
     "static/media/wedding-dance-floor-crowd.webp": "/static/media/wedding-dance-floor-crowd.bac86707c9537d53408e.webp",
     "static/media/wedding-dance-floor3-hq.webp": "/static/media/wedding-dance-floor3-hq.c64f064e5d476000a570.webp",
@@ -45,7 +45,7 @@
     "index.html": "/index.html",
     "static/media/for-the-record-logo.svg": "/static/media/for-the-record-logo.a9cfcca81bf3fdc81932f5f7eec04cfd.svg",
     "main.85af0774.css.map": "/static/css/main.85af0774.css.map",
-    "main.85807fb1.js.map": "/static/js/main.85807fb1.js.map",
+    "main.7bf64ca6.js.map": "/static/js/main.7bf64ca6.js.map",
     "233.72c4c5a6.chunk.css.map": "/static/css/233.72c4c5a6.chunk.css.map",
     "233.c6364d5c.chunk.js.map": "/static/js/233.c6364d5c.chunk.js.map",
     "524.62fb89b4.chunk.css.map": "/static/css/524.62fb89b4.chunk.css.map",
@@ -66,11 +66,11 @@
     "866.15cdd779.chunk.css.map": "/static/css/866.15cdd779.chunk.css.map",
     "866.496265a3.chunk.js.map": "/static/js/866.496265a3.chunk.js.map",
     "306.c3792ae6.chunk.css.map": "/static/css/306.c3792ae6.chunk.css.map",
-    "306.dc3aeb1b.chunk.js.map": "/static/js/306.dc3aeb1b.chunk.js.map",
+    "306.2adb3b48.chunk.js.map": "/static/js/306.2adb3b48.chunk.js.map",
     "931.37dab55a.chunk.js.map": "/static/js/931.37dab55a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.85af0774.css",
-    "static/js/main.85807fb1.js"
+    "static/js/main.7bf64ca6.js"
   ]
 }

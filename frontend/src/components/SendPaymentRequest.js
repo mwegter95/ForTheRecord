@@ -7,6 +7,10 @@ const VENMO_USERNAME  = "fortherecordmn";   // ← your Venmo @handle (no @)
 const ZELLE_CONTACT   = "mwegter95@gmail.com"; // ← phone or email registered with Zelle
 const PAYPAL_CLIENT_ID = "ARlbzz6TTIG0HgC8GY4Ci-k2zjUhkRYn6S0_yFdun6WBfLa4XgzmgsMZwCnZGxtHQRGYHOWYWErFQTLq";
 
+// ─── Google Apps Script URL ──────────────────────────────────────────────────
+const SEND_PAYMENT_SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbwJN0Z0n7xPcCAagljKfoUtVtegv_hBtOrmr90b5XpzSTNtpJq0scU7nmG9Lp9CjhTKGA/exec";
+
 // ─── Password gate ────────────────────────────────────────────────────────────
 const SEND_PASSWORD = process.env.REACT_APP_COUNTERSIGN_PASSWORD;
 
@@ -56,6 +60,10 @@ const SendPaymentRequest = () => {
   const [generatedLink, setGeneratedLink] = useState("");
   const [qrUrl,         setQrUrl]         = useState("");
   const [copied,        setCopied]        = useState(false);
+  
+  const [emailSending,  setEmailSending]  = useState(false);
+  const [emailSent,     setEmailSent]     = useState(false);
+  const [emailError,    setEmailError]    = useState("");
 
   // ── Auth ─────────────────────────────────────────────────────────────────
   const handleAuth = (e) => {
@@ -71,6 +79,8 @@ const SendPaymentRequest = () => {
   // ── Form change ───────────────────────────────────────────────────────────
   const handleChange = (e) => {
     const { name, value } = e.target;
+    setEmailSent(false);
+    setEmailError("");
     setForm((prev) => ({ ...prev, [name]: value }));
     setGeneratedLink("");
     setQrUrl("");
@@ -110,24 +120,40 @@ const SendPaymentRequest = () => {
     setTimeout(() => setCopied(false), 2500);
   };
 
-  // ── Email via mailto ──────────────────────────────────────────────────────
-  const openMailto = () => {
-    const subject = encodeURIComponent(`Payment Request – For the Record`);
-    const amt     = parseFloat(form.amount) || 0;
-    const body    = encodeURIComponent(
-      `Hi ${form.clientName},\n\nThank you for booking with For the Record! ` +
-      `Here is your secure payment link:\n\n${generatedLink}\n\n` +
-      `Base amount: $${amt.toFixed(2)}\n` +
-      `Note: ${form.note || "—"}\n\n` +
-      `Payment options available:\n` +
-      `• Zelle — $${amt.toFixed(2)} (no fee) → send to ${ZELLE_CONTACT}\n` +
-      `• Venmo — $${(amt * 1.02).toFixed(2)} (2% processing fee)\n` +
-      `• Credit Card — $${(amt * 1.03).toFixed(2)} (3% processing fee)\n\n` +
-      `The link will walk you through each option.\n\n` +
-      `Please don't hesitate to reach out with any questions!\n\nBest,\nMichael\nFor the Record`
-    );
-    const to = form.clientEmail ? encodeURIComponent(form.clientEmail) : "";
-    window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+  // ── Send email via Google Apps Script ─────────────────────────────────────
+  const sendEmail = async () => {
+    if (!form.clientEmail || !generatedLink) return;
+    
+    setEmailSending(true);
+    setEmailError("");
+    setEmailSent(false);
+
+    try {
+      const response = await fetch(SEND_PAYMENT_SCRIPT_URL, {
+        method: "POST",
+        body: JSON.stringify({
+          client_email: form.clientEmail,
+          client_name:  form.clientName,
+          amount:       parseFloat(form.amount),
+          note:         form.note,
+          payment_url:  generatedLink,
+        }),
+      });
+
+      const result = await response.json();
+      
+      if (result.success) {
+        setEmailSent(true);
+        setTimeout(() => setEmailSent(false), 5000);
+      } else {
+        throw new Error(result.error || "Failed to send email");
+      }
+    } catch (err) {
+      console.error("Email send error:", err);
+      setEmailError(err.message || "Failed to send email. Please try again.");
+    } finally {
+      setEmailSending(false);
+    }
   };
 
   // ─── Password gate UI ─────────────────────────────────────────────────────
@@ -262,14 +288,32 @@ const SendPaymentRequest = () => {
                 {copied ? <><IconCheck /> Copied!</> : <><IconCopy /> Copy Link</>}
               </button>
               <button
-                className="spr-btn-secondary"
-                onClick={openMailto}
-                disabled={!form.clientEmail}
-                title={!form.clientEmail ? "Add client email to send" : ""}
+                className={`spr-btn-secondary ${emailSent ? "spr-btn-success" : ""}`}
+                onClick={sendEmail}
+                disabled={!form.clientEmail || emailSending || SEND_PAYMENT_SCRIPT_URL === "YOUR_GOOGLE_SCRIPT_WEB_APP_URL_HERE"}
+                title={
+                  !form.clientEmail 
+                    ? "Add client email to send" 
+                    : SEND_PAYMENT_SCRIPT_URL === "YOUR_GOOGLE_SCRIPT_WEB_APP_URL_HERE"
+                    ? "Configure Google Apps Script URL first"
+                    : ""
+                }
               >
-                <IconMail /> Open in Email
+                {emailSending ? (
+                  <>⏳ Sending...</>
+                ) : emailSent ? (
+                  <><IconCheck /> Email Sent!</>
+                ) : (
+                  <><IconMail /> Send Email</>
+                )}
               </button>
             </div>
+
+            {emailError && (
+              <div className="spr-email-error">
+                ⚠ {emailError}
+              </div>
+            )}
 
             {qrUrl && (
               <div className="spr-qr">
@@ -282,6 +326,9 @@ const SendPaymentRequest = () => {
               <strong>Config check:</strong> Venmo @{VENMO_USERNAME} · Zelle {ZELLE_CONTACT}
               {PAYPAL_CLIENT_ID === "YOUR_PAYPAL_CLIENT_ID_HERE" && (
                 <span className="spr-warning"> · ⚠ PayPal Client ID not set</span>
+              )}
+              {SEND_PAYMENT_SCRIPT_URL === "YOUR_GOOGLE_SCRIPT_WEB_APP_URL_HERE" && (
+                <span className="spr-warning"> · ⚠ Email script URL not set</span>
               )}
             </div>
           </div>

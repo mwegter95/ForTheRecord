@@ -29,7 +29,9 @@ const Pay = () => {
   const base    = parseFloat(payload?.amount) || 0;
   const note    = payload?.note   || "For the Record";
 
+  const venmoFee = (base * 0.02).toFixed(2);
   const venmoAmt = (base * 1.02).toFixed(2);
+  const cardFee  = (base * 0.03).toFixed(2);
   const cardAmt  = (base * 1.03).toFixed(2);
 
   const [activeSection, setActiveSection] = useState(null);
@@ -242,7 +244,15 @@ const Pay = () => {
                   <strong>@{VENMO_USERNAME}</strong>
                 </div>
                 <div className="pay-detail-row">
-                  <span>Amount:</span>
+                  <span>Base amount:</span>
+                  <strong>{fmt(base)}</strong>
+                </div>
+                <div className="pay-detail-row">
+                  <span>Service fee (2%):</span>
+                  <strong>{fmt(venmoFee)}</strong>
+                </div>
+                <div className="pay-detail-row" style={{ borderTop: '1px solid rgba(10, 17, 40, 0.1)', paddingTop: '0.5rem', marginTop: '0.5rem' }}>
+                  <span><strong>Total:</strong></span>
                   <strong>{fmt(venmoAmt)}</strong>
                 </div>
                 <div className="pay-detail-row">
@@ -295,7 +305,15 @@ const Pay = () => {
                 <>
                   <div className="pay-zelle-details" style={{ marginBottom: "1.25rem" }}>
                     <div className="pay-detail-row">
-                      <span>Amount (incl. 3% fee):</span>
+                      <span>Base amount:</span>
+                      <strong>{fmt(base)}</strong>
+                    </div>
+                    <div className="pay-detail-row">
+                      <span>Processing fee (3%):</span>
+                      <strong>{fmt(cardFee)}</strong>
+                    </div>
+                    <div className="pay-detail-row" style={{ borderTop: '1px solid rgba(10, 17, 40, 0.1)', paddingTop: '0.5rem', marginTop: '0.5rem' }}>
+                      <span><strong>Total:</strong></span>
                       <strong>{fmt(cardAmt)}</strong>
                     </div>
                     <div className="pay-detail-row">

@@ -23,12 +23,12 @@
  */
 
 // ── Email addresses ───────────────────────────────────────────
-var DJ_FROM  = "michael@fortherecordmn.com"; // verified "Send mail as" alias
-var DJ_NAME  = "Michael — For the Record";
+var DJ_FROM = "michael@fortherecordmn.com"; // verified "Send mail as" alias
+var DJ_NAME = "Michael — For the Record";
 
 // ── Payment config (must match frontend) ──────────────────────
 var VENMO_USERNAME = "fortherecordmn";
-var ZELLE_CONTACT  = "mwegter95@gmail.com";
+var ZELLE_CONTACT = "mwegter95@gmail.com";
 
 // ── Handle POST from the /send-payment-request page ───────────
 function doPost(e) {
@@ -36,10 +36,10 @@ function doPost(e) {
     var data = JSON.parse(e.postData.contents);
 
     var clientEmail = data.client_email;
-    var clientName  = data.client_name;
-    var amount      = parseFloat(data.amount);
-    var note        = data.note || "";
-    var paymentUrl  = data.payment_url;
+    var clientName = data.client_name;
+    var amount = parseFloat(data.amount);
+    var note = data.note || "";
+    var paymentUrl = data.payment_url;
 
     if (!clientEmail || !clientName || !amount || !paymentUrl) {
       throw new Error("Missing required fields");
@@ -47,44 +47,38 @@ function doPost(e) {
 
     var subject = "Payment Request — For the Record";
 
-    GmailApp.sendEmail(
-      clientEmail,
-      subject,
-      "",
-      {
-        from:     DJ_FROM,
-        name:     DJ_NAME,
-        replyTo:  DJ_FROM,
-        htmlBody: buildEmail(clientName, amount, note, paymentUrl),
-      }
-    );
+    GmailApp.sendEmail(clientEmail, subject, "", {
+      from: DJ_FROM,
+      name: DJ_NAME,
+      replyTo: DJ_FROM,
+      htmlBody: buildEmail(clientName, amount, note, paymentUrl),
+    });
 
-    return ContentService
-      .createTextOutput(JSON.stringify({ success: true }))
-      .setMimeType(ContentService.MimeType.JSON);
-
+    return ContentService.createTextOutput(
+      JSON.stringify({ success: true }),
+    ).setMimeType(ContentService.MimeType.JSON);
   } catch (err) {
     Logger.log("Error: " + err.toString());
-    return ContentService
-      .createTextOutput(JSON.stringify({ success: false, error: err.toString() }))
-      .setMimeType(ContentService.MimeType.JSON);
+    return ContentService.createTextOutput(
+      JSON.stringify({ success: false, error: err.toString() }),
+    ).setMimeType(ContentService.MimeType.JSON);
   }
 }
 
 // ── CORS preflight ────────────────────────────────────────────
 function doGet(e) {
-  return ContentService
-    .createTextOutput(JSON.stringify({ status: "ok" }))
-    .setMimeType(ContentService.MimeType.JSON);
+  return ContentService.createTextOutput(
+    JSON.stringify({ status: "ok" }),
+  ).setMimeType(ContentService.MimeType.JSON);
 }
 
 // ── Email template ────────────────────────────────────────────
 function buildEmail(clientName, amount, note, paymentUrl) {
-  var baseAmt   = amount.toFixed(2);
-  var venmoAmt  = (amount * 1.02).toFixed(2);
-  var venmoFee  = (amount * 0.02).toFixed(2);
-  var cardAmt   = (amount * 1.03).toFixed(2);
-  var cardFee   = (amount * 0.03).toFixed(2);
+  var baseAmt = amount.toFixed(2);
+  var venmoAmt = (amount * 1.02).toFixed(2);
+  var venmoFee = (amount * 0.02).toFixed(2);
+  var cardAmt = (amount * 1.03).toFixed(2);
+  var cardFee = (amount * 0.03).toFixed(2);
 
   var bodyLines = [
     "<!DOCTYPE html>",
@@ -120,9 +114,15 @@ function buildEmail(clientName, amount, note, paymentUrl) {
 
     // ── Amount box
     "  <div style='background:#f8f7f4;border:1px solid #e5e7eb;border-radius:6px;padding:20px;margin:0 0 28px;text-align:center'>",
-    "    <p style='margin:0 0 8px;font-size:13px;color:#6b7280;letter-spacing:1px'>BASE AMOUNT</p>",
-    "    <p style='margin:0;font-size:32px;color:#0a1128;font-weight:400'>$" + baseAmt + "</p>",
-    note ? "    <p style='margin:12px 0 0;font-size:14px;color:#6b7280;font-style:italic'>" + esc(note) + "</p>" : "",
+    "    <p style='margin:0 0 8px;font-size:13px;color:#6b7280;letter-spacing:1px'>AMOUNT</p>",
+    "    <p style='margin:0;font-size:32px;color:#0a1128;font-weight:400'>$" +
+      baseAmt +
+      "</p>",
+    note
+      ? "    <p style='margin:12px 0 0;font-size:14px;color:#6b7280;font-style:italic'>" +
+        esc(note) +
+        "</p>"
+      : "",
     "  </div>",
 
     "  <p style='margin:0 0 24px;font-size:15px;color:#374151;line-height:1.7'>",
@@ -136,19 +136,22 @@ function buildEmail(clientName, amount, note, paymentUrl) {
     "              padding:18px 44px;border-radius:50px;font-family:Georgia,serif;",
     "              font-size:16px;font-weight:400;letter-spacing:1px;",
     "              border:1px solid #c9a86a'>",
-    "      View Payment Options &rarr;",
+    "      Go to Payment Page &rarr;",
     "    </a>",
     "  </td></tr></table>",
 
     // ── Payment options breakdown
     "  <div style='background:#f8f7f4;border:1px solid #e5e7eb;border-radius:6px;padding:24px;margin:0 0 32px'>",
     "    <p style='margin:0 0 16px;font-size:13px;color:#6b7280;letter-spacing:1px;text-transform:uppercase'>Payment Options Available</p>",
-    
+
     // Zelle
     "    <div style='margin:0 0 14px'>",
     "      <p style='margin:0 0 4px;font-size:15px;color:#0a1128;font-weight:600'>Zelle (no fee)</p>",
     "      <p style='margin:0;font-size:14px;color:#6b7280'>",
-    "        <strong style='color:#0a1128'>$" + baseAmt + "</strong> → send to " + esc(ZELLE_CONTACT),
+    "        <strong style='color:#0a1128'>$" +
+      baseAmt +
+      "</strong> → send to " +
+      esc(ZELLE_CONTACT),
     "      </p>",
     "    </div>",
 
@@ -156,16 +159,32 @@ function buildEmail(clientName, amount, note, paymentUrl) {
     "    <div style='margin:0 0 14px'>",
     "      <p style='margin:0 0 4px;font-size:15px;color:#0a1128;font-weight:600'>Venmo (2% processing fee)</p>",
     "      <p style='margin:0;font-size:14px;color:#6b7280'>",
-    "        <strong style='color:#0a1128'>$" + venmoAmt + "</strong> (incl. $" + venmoFee + " fee) → @" + esc(VENMO_USERNAME),
+    "        <strong style='color:#0a1128'>$" +
+      venmoAmt +
+      "</strong> (incl. $" +
+      venmoFee +
+      " fee) → @" +
+      esc(VENMO_USERNAME),
     "      </p>",
     "    </div>",
 
     // Credit Card
-    "    <div style='margin:0'>",
+    "    <div style='margin:0 0 16px'>",
     "      <p style='margin:0 0 4px;font-size:15px;color:#0a1128;font-weight:600'>Credit or Debit Card (3% processing fee)</p>",
     "      <p style='margin:0;font-size:14px;color:#6b7280'>",
-    "        <strong style='color:#0a1128'>$" + cardAmt + "</strong> (incl. $" + cardFee + " fee)",
+    "        <strong style='color:#0a1128'>$" +
+      cardAmt +
+      "</strong> (incl. $" +
+      cardFee +
+      " fee)",
     "      </p>",
+    "    </div>",
+
+    // ── Link inside box
+    "    <div style='border-top:1px solid #e5e7eb;padding-top:14px'>",
+    "      <a href='" +
+      paymentUrl +
+      "' style='font-size:14px;color:#c9a86a;text-decoration:underline;font-family:Georgia,serif'>Go to payment page to easily pay &rarr;</a>",
     "    </div>",
 
     "  </div>",
@@ -204,9 +223,9 @@ function buildEmail(clientName, amount, note, paymentUrl) {
     "  </p>",
     "</td></tr>",
 
-    "</table>",  // inner
+    "</table>", // inner
     "</td></tr>",
-    "</table>",  // outer
+    "</table>", // outer
     "</body></html>",
   ];
 

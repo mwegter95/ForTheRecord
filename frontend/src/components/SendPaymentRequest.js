@@ -3,9 +3,10 @@ import useSEO from "../hooks/useSEO";
 import "./SendPaymentRequest.scss";
 
 // ─── Config — fill these in once ─────────────────────────────────────────────
-const VENMO_USERNAME  = "fortherecordmn";   // ← your Venmo @handle (no @)
-const ZELLE_CONTACT   = "mwegter95@gmail.com"; // ← phone or email registered with Zelle
-const PAYPAL_CLIENT_ID = "ARlbzz6TTIG0HgC8GY4Ci-k2zjUhkRYn6S0_yFdun6WBfLa4XgzmgsMZwCnZGxtHQRGYHOWYWErFQTLq";
+const VENMO_USERNAME = "fortherecordmn"; // ← your Venmo @handle (no @)
+const ZELLE_CONTACT = "mwegter95@gmail.com"; // ← phone or email registered with Zelle
+const PAYPAL_CLIENT_ID =
+  "ARlbzz6TTIG0HgC8GY4Ci-k2zjUhkRYn6S0_yFdun6WBfLa4XgzmgsMZwCnZGxtHQRGYHOWYWErFQTLq";
 
 // ─── Google Apps Script URL ──────────────────────────────────────────────────
 const SEND_PAYMENT_SCRIPT_URL =
@@ -16,23 +17,60 @@ const SEND_PASSWORD = process.env.REACT_APP_COUNTERSIGN_PASSWORD;
 
 // ─── Inline SVG icons ─────────────────────────────────────────────────────────
 const IconLock = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <rect x="3" y="11" width="18" height="11" rx="2" ry="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" />
+  <svg
+    width="18"
+    height="18"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
   </svg>
 );
 const IconCopy = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
     <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
     <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
   </svg>
 );
 const IconCheck = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+  <svg
+    width="14"
+    height="14"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
     <polyline points="20 6 9 17 4 12" />
   </svg>
 );
 const IconMail = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
     <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
     <polyline points="22,6 12,13 2,6" />
   </svg>
@@ -46,24 +84,24 @@ const SendPaymentRequest = () => {
     canonical: "https://fortherecordmn.com/send-payment-request",
   });
 
-  const [authed,   setAuthed]   = useState(false);
-  const [pwInput,  setPwInput]  = useState("");
-  const [pwError,  setPwError]  = useState("");
+  const [authed, setAuthed] = useState(false);
+  const [pwInput, setPwInput] = useState("");
+  const [pwError, setPwError] = useState("");
 
   const [form, setForm] = useState({
-    clientName:  "",
+    clientName: "",
     clientEmail: "",
-    amount:      "",
-    note:        "",
+    amount: "",
+    note: "",
   });
 
   const [generatedLink, setGeneratedLink] = useState("");
-  const [qrUrl,         setQrUrl]         = useState("");
-  const [copied,        setCopied]        = useState(false);
-  
-  const [emailSending,  setEmailSending]  = useState(false);
-  const [emailSent,     setEmailSent]     = useState(false);
-  const [emailError,    setEmailError]    = useState("");
+  const [qrUrl, setQrUrl] = useState("");
+  const [copied, setCopied] = useState(false);
+
+  const [emailSending, setEmailSending] = useState(false);
+  const [emailSent, setEmailSent] = useState(false);
+  const [emailError, setEmailError] = useState("");
 
   // ── Auth ─────────────────────────────────────────────────────────────────
   const handleAuth = (e) => {
@@ -92,9 +130,9 @@ const SendPaymentRequest = () => {
     const amt = parseFloat(form.amount);
     if (!form.clientName || !amt || amt <= 0) return;
     const payload = {
-      name:   form.clientName.trim(),
+      name: form.clientName.trim(),
       amount: amt.toFixed(2),
-      note:   form.note.trim() || `For the Record – ${form.clientName.trim()}`,
+      note: form.note.trim() || `For the Record – ${form.clientName.trim()}`,
     };
     const encoded = btoa(encodeURIComponent(JSON.stringify(payload)));
     const link = `${window.location.origin}/pay?p=${encoded}`;
@@ -123,7 +161,7 @@ const SendPaymentRequest = () => {
   // ── Send email via Google Apps Script ─────────────────────────────────────
   const sendEmail = async () => {
     if (!form.clientEmail || !generatedLink) return;
-    
+
     setEmailSending(true);
     setEmailError("");
     setEmailSent(false);
@@ -133,15 +171,15 @@ const SendPaymentRequest = () => {
         method: "POST",
         body: JSON.stringify({
           client_email: form.clientEmail,
-          client_name:  form.clientName,
-          amount:       parseFloat(form.amount),
-          note:         form.note,
-          payment_url:  generatedLink,
+          client_name: form.clientName,
+          amount: parseFloat(form.amount),
+          note: form.note,
+          payment_url: generatedLink,
         }),
       });
 
       const result = await response.json();
-      
+
       if (result.success) {
         setEmailSent(true);
         setTimeout(() => setEmailSent(false), 5000);
@@ -161,7 +199,9 @@ const SendPaymentRequest = () => {
     return (
       <div className="spr-page">
         <div className="spr-auth-card">
-          <div className="spr-auth-icon"><IconLock /></div>
+          <div className="spr-auth-icon">
+            <IconLock />
+          </div>
           <h1>Payment Request Portal</h1>
           <p>Enter your access code to continue.</p>
           <form onSubmit={handleAuth}>
@@ -174,7 +214,9 @@ const SendPaymentRequest = () => {
               autoFocus
             />
             {pwError && <p className="spr-pw-error">{pwError}</p>}
-            <button type="submit" className="spr-btn-primary">Unlock</button>
+            <button type="submit" className="spr-btn-primary">
+              Unlock
+            </button>
           </form>
         </div>
       </div>
@@ -207,7 +249,9 @@ const SendPaymentRequest = () => {
           </div>
 
           <div className="spr-form-group">
-            <label>Client Email <span className="spr-optional">(for mailto)</span></label>
+            <label>
+              Client Email <span className="spr-optional">(for mailto)</span>
+            </label>
             <input
               type="email"
               name="clientEmail"
@@ -219,7 +263,10 @@ const SendPaymentRequest = () => {
           </div>
 
           <div className="spr-form-group">
-            <label>Amount <span className="spr-optional">(base, before any fees)</span></label>
+            <label>
+              Amount{" "}
+              <span className="spr-optional">(base, before any fees)</span>
+            </label>
             <div className="spr-amount-wrap">
               <span className="spr-dollar">$</span>
               <input
@@ -285,50 +332,79 @@ const SendPaymentRequest = () => {
 
             <div className="spr-actions">
               <button className="spr-btn-secondary" onClick={copyLink}>
-                {copied ? <><IconCheck /> Copied!</> : <><IconCopy /> Copy Link</>}
+                {copied ? (
+                  <>
+                    <IconCheck /> Copied!
+                  </>
+                ) : (
+                  <>
+                    <IconCopy /> Copy Link
+                  </>
+                )}
               </button>
               <button
                 className={`spr-btn-secondary ${emailSent ? "spr-btn-success" : ""}`}
                 onClick={sendEmail}
-                disabled={!form.clientEmail || emailSending || SEND_PAYMENT_SCRIPT_URL === "YOUR_GOOGLE_SCRIPT_WEB_APP_URL_HERE"}
+                disabled={
+                  !form.clientEmail ||
+                  emailSending ||
+                  SEND_PAYMENT_SCRIPT_URL ===
+                    "YOUR_GOOGLE_SCRIPT_WEB_APP_URL_HERE"
+                }
                 title={
-                  !form.clientEmail 
-                    ? "Add client email to send" 
-                    : SEND_PAYMENT_SCRIPT_URL === "YOUR_GOOGLE_SCRIPT_WEB_APP_URL_HERE"
-                    ? "Configure Google Apps Script URL first"
-                    : ""
+                  !form.clientEmail
+                    ? "Add client email to send"
+                    : SEND_PAYMENT_SCRIPT_URL ===
+                        "YOUR_GOOGLE_SCRIPT_WEB_APP_URL_HERE"
+                      ? "Configure Google Apps Script URL first"
+                      : ""
                 }
               >
                 {emailSending ? (
                   <>⏳ Sending...</>
                 ) : emailSent ? (
-                  <><IconCheck /> Email Sent!</>
+                  <>
+                    <IconCheck /> Email Sent!
+                  </>
                 ) : (
-                  <><IconMail /> Send Email</>
+                  <>
+                    <IconMail /> Send Email
+                  </>
                 )}
               </button>
             </div>
 
             {emailError && (
-              <div className="spr-email-error">
-                ⚠ {emailError}
-              </div>
+              <div className="spr-email-error">⚠ {emailError}</div>
             )}
 
             {qrUrl && (
               <div className="spr-qr">
                 <p className="spr-qr-label">QR Code</p>
-                <img src={qrUrl} alt="Payment link QR code" width="220" height="220" />
+                <img
+                  src={qrUrl}
+                  alt="Payment link QR code"
+                  width="220"
+                  height="220"
+                />
               </div>
             )}
 
             <div className="spr-config-note">
-              <strong>Config check:</strong> Venmo @{VENMO_USERNAME} · Zelle {ZELLE_CONTACT}
+              <strong>Config check:</strong> Venmo @{VENMO_USERNAME} · Zelle{" "}
+              {ZELLE_CONTACT}
               {PAYPAL_CLIENT_ID === "YOUR_PAYPAL_CLIENT_ID_HERE" && (
-                <span className="spr-warning"> · ⚠ PayPal Client ID not set</span>
+                <span className="spr-warning">
+                  {" "}
+                  · ⚠ PayPal Client ID not set
+                </span>
               )}
-              {SEND_PAYMENT_SCRIPT_URL === "YOUR_GOOGLE_SCRIPT_WEB_APP_URL_HERE" && (
-                <span className="spr-warning"> · ⚠ Email script URL not set</span>
+              {SEND_PAYMENT_SCRIPT_URL ===
+                "YOUR_GOOGLE_SCRIPT_WEB_APP_URL_HERE" && (
+                <span className="spr-warning">
+                  {" "}
+                  · ⚠ Email script URL not set
+                </span>
               )}
             </div>
           </div>

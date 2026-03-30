@@ -430,13 +430,23 @@
   text-align: center;
   font-size: 0.82rem;
   color: rgba(248, 246, 241, 0.35);
+}
+
+.pay-footer-contact {
+  display: inline-block;
+  background: var(--gold);
+  color: #0a1128;
+  border-radius: 8px;
+  padding: 0.45rem 0.9rem;
+  font-size: 0.85rem;
 
   a {
-    color: rgba(248, 246, 241, 0.5);
+    color: #0a1128;
     text-decoration: underline;
+    text-underline-offset: 2px;
 
     &:hover {
-      color: var(--gold);
+      opacity: 0.75;
     }
   }
 }

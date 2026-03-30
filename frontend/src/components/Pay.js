@@ -404,7 +404,7 @@ const Pay = () => {
 
       {/* Footer */}
       <div className="pay-footer">
-        <p>
+        <p className="pay-footer-contact">
           Questions?{" "}
           <a href="mailto:michael@fortherecordmn.com">
             michael@fortherecordmn.com

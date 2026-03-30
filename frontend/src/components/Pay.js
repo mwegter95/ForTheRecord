@@ -53,7 +53,7 @@ const Pay = () => {
     if (activeSection !== "card" || paypalLoaded || PAYPAL_CLIENT_ID === "YOUR_PAYPAL_CLIENT_ID_HERE") return;
 
     const script    = document.createElement("script");
-    script.src      = `https://www.paypal.com/sdk/js?client-id=${PAYPAL_CLIENT_ID}&components=buttons&disable-funding=venmo,paylater,credit&enable-funding=applepay,googlepay`;
+    script.src      = `https://www.paypal.com/sdk/js?client-id=${PAYPAL_CLIENT_ID}&components=buttons&disable-funding=venmo,paylater,credit&vault=false`;
     script.async    = true;
     script.onload   = () => setPaypalLoaded(true);
     script.onerror  = () => setPaypalError("Could not load payment processor. Please try another option.");
@@ -75,6 +75,7 @@ const Pay = () => {
       createOrder: (data, actions) =>
         actions.order.create({
           purchase_units: [{ amount: { value: cardAmt }, description: note }],
+          application_context: { shipping_preference: "NO_SHIPPING" },
         }),
       onApprove: (data, actions) =>
         actions.order.capture().then(() => setPaypalSuccess(true)),
@@ -91,25 +92,12 @@ const Pay = () => {
       style: { shape: "rect", color: "black", label: "pay", height: 48 },
     }).render(paypalContainerRef.current);
 
-    // Apple Pay — only renders on Safari/iOS after onboarding is complete
-    if (window.paypal.FUNDING.APPLEPAY) {
-      const appleBtn = window.paypal.Buttons({
-        ...orderConfig,
-        fundingSource: window.paypal.FUNDING.APPLEPAY,
-        style: { height: 48 },
-      });
-      if (appleBtn.isEligible()) appleBtn.render(paypalContainerRef.current);
-    }
-
-    // Google Pay — only renders on Chrome/Android after onboarding is complete
-    if (window.paypal.FUNDING.GOOGLEPAY) {
-      const googleBtn = window.paypal.Buttons({
-        ...orderConfig,
-        fundingSource: window.paypal.FUNDING.GOOGLEPAY,
-        style: { height: 48 },
-      });
-      if (googleBtn.isEligible()) googleBtn.render(paypalContainerRef.current);
-    }
+    // Apple Pay / Google Pay — only render if eligible (requires PPCP Advanced onboarding)
+    [window.paypal.FUNDING.APPLEPAY, window.paypal.FUNDING.GOOGLEPAY].forEach((source) => {
+      if (!source) return;
+      const btn = window.paypal.Buttons({ ...orderConfig, fundingSource: source, style: { height: 48 } });
+      if (btn.isEligible()) btn.render(paypalContainerRef.current);
+    });
   }, [paypalLoaded, cardAmt, note]);
 
   // ── Venmo deep link ───────────────────────────────────────────────────────

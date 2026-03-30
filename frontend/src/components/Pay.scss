@@ -1,9 +1,13 @@
 .pay-page {
   min-height: 100vh;
   background: var(--navy);
-  padding: 5rem 1rem 3rem;
+  padding: 9rem 1rem 3rem;
   font-family: "Inter", sans-serif;
   color: var(--cream);
+
+  @media (max-width: 700px) {
+    padding: 7.5rem 1rem 3rem;
+  }
 }
 
 // ── Header ─────────────────────────────────────────────────────────────────
@@ -297,6 +301,9 @@
 
 .pay-paypal-container {
   margin-top: 0.25rem;
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 1rem;
 }
 
 .pay-loading {

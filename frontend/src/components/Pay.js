@@ -39,7 +39,10 @@ const Pay = () => {
   const [zelleCopied, setZelleCopied] = useState(false);
   const [paypalLoaded, setPaypalLoaded] = useState(false);
   const [paypalError, setPaypalError] = useState("");
+  const [paypalCancelled, setPaypalCancelled] = useState(false);
+  const [paypalCapturing, setPaypalCapturing] = useState(false);
   const [paypalSuccess, setPaypalSuccess] = useState(false);
+  const [paypalRenderKey, setPaypalRenderKey] = useState(0);
   const paypalContainerRef = useRef(null);
   const paypalRendered = useRef(false);
 
@@ -84,15 +87,39 @@ const Pay = () => {
     const orderConfig = {
       createOrder: (data, actions) =>
         actions.order.create({
-          purchase_units: [{ amount: { value: cardAmt }, description: note }],
+          purchase_units: [
+            {
+              amount: {
+                value: String(Number(cardAmt).toFixed(2)),
+                currency_code: "USD",
+              },
+              description: note,
+            },
+          ],
           application_context: { shipping_preference: "NO_SHIPPING" },
         }),
-      onApprove: (data, actions) =>
-        actions.order.capture().then(() => setPaypalSuccess(true)),
+      onApprove: async (data, actions) => {
+        setPaypalCapturing(true);
+        try {
+          await actions.order.capture();
+          setPaypalSuccess(true);
+        } catch (err) {
+          console.error("PayPal capture error:", err);
+          setPaypalError(
+            "Your payment was not captured. Please try again or contact us.",
+          );
+        } finally {
+          setPaypalCapturing(false);
+        }
+      },
+      onCancel: () => {
+        setPaypalCancelled(true);
+      },
       onError: (err) => {
         console.error("PayPal error:", err);
+        setPaypalCapturing(false);
         setPaypalError(
-          "Payment failed. Please try again or choose another method.",
+          "Something went wrong with the payment form. Please try again.",
         );
       },
     };
@@ -118,11 +145,11 @@ const Pay = () => {
         if (btn.isEligible()) btn.render(paypalContainerRef.current);
       },
     );
-  }, [paypalLoaded, cardAmt, note]);
+  }, [paypalLoaded, cardAmt, note, paypalRenderKey]);
 
   // ── Venmo deep link ───────────────────────────────────────────────────────
   const venmoHref = `venmo://paycharge?txn=pay&recipients=${VENMO_USERNAME}&amount=${venmoAmt}&note=${encodeURIComponent(note)}`;
-  const venmoWeb = `https://venmo.com/u/${VENMO_USERNAME}?txn=pay&amount=${venmoAmt}&note=${encodeURIComponent(note).replace(/%20/g, '+')}`;
+  const venmoWeb = `https://venmo.com/u/${VENMO_USERNAME}?txn=pay&amount=${venmoAmt}&note=${encodeURIComponent(note).replace(/%20/g, "+")}`;
 
   // ── Copy Zelle contact ────────────────────────────────────────────────────
   const copyZelle = async () => {
@@ -142,6 +169,15 @@ const Pay = () => {
 
   const toggle = (section) => {
     setActiveSection((prev) => (prev === section ? null : section));
+  };
+
+  const retryPaypal = () => {
+    setPaypalError("");
+    setPaypalCancelled(false);
+    setPaypalCapturing(false);
+    paypalRendered.current = false;
+    if (paypalContainerRef.current) paypalContainerRef.current.innerHTML = "";
+    setPaypalRenderKey((k) => k + 1);
   };
 
   // ── Invalid / missing link ────────────────────────────────────────────────
@@ -340,8 +376,19 @@ const Pay = () => {
                   <div className="pay-success-icon">✓</div>
                   <h3>Payment Received!</h3>
                   <p>
-                    Thank you! We'll be in touch shortly to confirm your
-                    booking.
+                    Thank you{name ? `, ${name}` : ""}! Your payment of{" "}
+                    <strong>{fmt(cardAmt)}</strong> was processed successfully.
+                  </p>
+                  <p style={{ marginTop: "0.5rem" }}>
+                    You'll receive a receipt from PayPal to the email you
+                    entered during checkout.
+                  </p>
+                  <p style={{ marginTop: "0.5rem" }}>
+                    We'll be in touch shortly to confirm your booking.
+                    Questions?{" "}
+                    <a href="mailto:michael@fortherecordmn.com">
+                      michael@fortherecordmn.com
+                    </a>
                   </p>
                 </div>
               ) : (
@@ -383,15 +430,58 @@ const Pay = () => {
                       Venmo.
                     </div>
                   ) : paypalError ? (
-                    <div className="pay-config-warning">{paypalError}</div>
+                    <div className="pay-error-state">
+                      <p className="pay-config-warning">{paypalError}</p>
+                      <p
+                        className="pay-sub-note"
+                        style={{ marginTop: "0.5rem" }}
+                      >
+                        No charge was made. You can try again or{" "}
+                        <a href="mailto:michael@fortherecordmn.com">
+                          contact us
+                        </a>
+                        .
+                      </p>
+                      <button
+                        className="pay-btn-outline"
+                        style={{ marginTop: "1rem" }}
+                        onClick={retryPaypal}
+                      >
+                        Try Again
+                      </button>
+                    </div>
+                  ) : paypalCancelled ? (
+                    <div className="pay-error-state">
+                      <p className="pay-sub-note">
+                        Payment was not submitted — your card was not charged.
+                      </p>
+                      <button
+                        className="pay-btn-outline"
+                        style={{ marginTop: "1rem" }}
+                        onClick={retryPaypal}
+                      >
+                        Try Again
+                      </button>
+                    </div>
                   ) : (
                     <>
-                      {!paypalLoaded && (
+                      {paypalCapturing && (
+                        <div className="pay-capturing">
+                          <span className="pay-capturing-spinner" />
+                          Processing your payment… do not close this page.
+                        </div>
+                      )}
+                      {!paypalLoaded && !paypalCapturing && (
                         <div className="pay-loading">Loading payment form…</div>
                       )}
                       <div
                         ref={paypalContainerRef}
                         className="pay-paypal-container"
+                        style={
+                          paypalCapturing
+                            ? { opacity: 0.4, pointerEvents: "none" }
+                            : {}
+                        }
                       />
                     </>
                   )}

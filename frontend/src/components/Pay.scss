@@ -338,6 +338,39 @@
   text-align: center;
 }
 
+.pay-error-state {
+  text-align: center;
+  padding: 0.5rem 0;
+}
+
+.pay-capturing {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  font-size: 0.9rem;
+  color: var(--gold);
+  padding: 0.75rem 0 0.5rem;
+  font-weight: 500;
+}
+
+.pay-capturing-spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(201, 168, 106, 0.3);
+  border-top-color: var(--gold);
+  border-radius: 50%;
+  animation: paypal-spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes paypal-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 // ── Success state ──────────────────────────────────────────────────────────
 .pay-success {
   text-align: center;
@@ -370,6 +403,11 @@
   font-size: 0.9rem;
   color: rgba(248, 246, 241, 0.7);
   margin: 0;
+
+  a {
+    color: var(--gold);
+    text-decoration: underline;
+  }
 }
 
 // ── Invalid page ───────────────────────────────────────────────────────────

@@ -122,7 +122,7 @@ const Pay = () => {
 
   // ── Venmo deep link ───────────────────────────────────────────────────────
   const venmoHref = `venmo://paycharge?txn=pay&recipients=${VENMO_USERNAME}&amount=${venmoAmt}&note=${encodeURIComponent(note)}`;
-  const venmoWeb = `https://venmo.com/u/${VENMO_USERNAME}?txn=pay&amount=${venmoAmt}&note=${encodeURIComponent(note)}`;
+  const venmoWeb = `https://venmo.com/u/${VENMO_USERNAME}?txn=pay&amount=${venmoAmt}&note=${encodeURIComponent(note).replace(/%20/g, '+')}`;
 
   // ── Copy Zelle contact ────────────────────────────────────────────────────
   const copyZelle = async () => {

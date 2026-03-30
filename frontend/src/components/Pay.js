@@ -36,7 +36,6 @@ const Pay = () => {
 
   const [activeSection, setActiveSection] = useState(null);
   const [zelleCopied,   setZelleCopied]   = useState(false);
-  const [zelleAppFailed, setZelleAppFailed] = useState(false);
   const [paypalLoaded,  setPaypalLoaded]  = useState(false);
   const [paypalError,   setPaypalError]   = useState("");
   const [paypalSuccess, setPaypalSuccess] = useState(false);
@@ -103,22 +102,7 @@ const Pay = () => {
 
   // ── Venmo deep link ───────────────────────────────────────────────────────
   const venmoHref = `venmo://paycharge?txn=pay&recipients=${VENMO_USERNAME}&amount=${venmoAmt}&note=${encodeURIComponent(note)}`;
-  const venmoWeb  = `https://venmo.com/u/${VENMO_USERNAME}`;
-
-  // ── Try Zelle deep link, fall back to store links ─────────────────────────
-  const tryOpenZelle = () => {
-    setZelleAppFailed(false);
-    window.location.href = "zelle://";
-    // If page is still visible after 1.5s, the app wasn't installed
-    const t = setTimeout(() => {
-      if (!document.hidden) setZelleAppFailed(true);
-    }, 1500);
-    const onVisible = () => {
-      clearTimeout(t);
-      document.removeEventListener("visibilitychange", onVisible);
-    };
-    document.addEventListener("visibilitychange", onVisible);
-  };
+  const venmoWeb  = `https://venmo.com/u/${VENMO_USERNAME}?txn=pay&amount=${venmoAmt}&note=${encodeURIComponent(note)}`;
 
   // ── Copy Zelle contact ────────────────────────────────────────────────────
   const copyZelle = async () => {
@@ -138,7 +122,6 @@ const Pay = () => {
 
   const toggle = (section) => {
     setActiveSection((prev) => (prev === section ? null : section));
-    if (section !== "zelle") setZelleAppFailed(false);
   };
 
   // ── Invalid / missing link ────────────────────────────────────────────────
@@ -190,52 +173,26 @@ const Pay = () => {
 
           {activeSection === "zelle" && (
             <div className="pay-option-body">
-              <p className="pay-instructions">
-                Open your bank's app and send via Zelle to:
-              </p>
-              <div className="pay-zelle-contact">
-                <span>{ZELLE_CONTACT}</span>
-                <button className="pay-copy-btn" onClick={copyZelle}>
-                  {zelleCopied ? "✓ Copied" : "Copy"}
-                </button>
-              </div>
-              <div className="pay-zelle-details">
-                <div className="pay-detail-row">
-                  <span>Amount:</span>
-                  <strong>{fmt(base)}</strong>
-                </div>
-                <div className="pay-detail-row">
-                  <span>Memo:</span>
-                  <strong>{note}</strong>
-                </div>
-              </div>
-              <button
-                className="pay-btn-primary"
-                onClick={tryOpenZelle}
-              >
-                Open Zelle App
-              </button>
-              {zelleAppFailed && (
-                <div className="pay-zelle-stores">
-                  <p className="pay-sub-note" style={{ marginBottom: "0.5rem" }}>Zelle not installed? Download it:</p>
-                  <div className="pay-store-links">
-                    <a
-                      href="https://www.zellepay.com/get-started"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="pay-store-btn"
-                    >
-                      Download Zelle
-                    </a>
+              <ol className="pay-zelle-steps">
+                <li>Open your banking app</li>
+                <li>Navigate to <strong>Send Money</strong> or <strong>Transfers</strong></li>
+                <li>Select <strong>Zelle</strong></li>
+                <li>
+                  Enter the recipient:
+                  <div className="pay-zelle-contact" style={{ marginTop: "0.5rem" }}>
+                    <span>{ZELLE_CONTACT}</span>
+                    <button className="pay-copy-btn" onClick={copyZelle}>
+                      {zelleCopied ? "✓ Copied" : "Copy"}
+                    </button>
                   </div>
-                  <p className="pay-sub-note" style={{ marginTop: "0.5rem" }}>Or send directly from your bank app — most major banks have Zelle built in.</p>
-                </div>
-              )}
-              {!zelleAppFailed && (
-                <p className="pay-sub-note">
-                  Most major banks support Zelle — look for it in your bank's mobile app under "Send Money."
-                </p>
-              )}
+                </li>
+                <li>Enter the amount: <strong>{fmt(base)}</strong></li>
+                <li>Add memo: <strong>{note}</strong></li>
+                <li>Confirm and send</li>
+              </ol>
+              <p className="pay-sub-note">
+                Most major banks have Zelle built in — look under "Send Money" or "Pay &amp; Transfer."
+              </p>
             </div>
           )}
         </div>

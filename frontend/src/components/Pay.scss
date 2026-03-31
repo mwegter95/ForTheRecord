@@ -343,6 +343,47 @@
   padding: 0.5rem 0;
 }
 
+.pay-paypal-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.9rem;
+}
+
+.pay-paypal-badge-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.pay-paypal-badge-provider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  text-align: center;
+}
+
+.pay-paypal-badge-label {
+  font-size: 0.75rem;
+  color: rgba(248, 246, 241, 0.4);
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+}
+
+.pay-card-logo {
+  height: 28px;
+  width: auto;
+  display: block;
+  border-radius: 4px;
+}
+
+.pay-card-logo-paypal {
+  height: 22px;
+}
+
 .pay-capturing {
   display: flex;
   align-items: center;

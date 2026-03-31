@@ -1,6 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import useSEO from "../hooks/useSEO";
 import "./Pay.scss";
+import ccVisa from "../images/cc-visa.svg";
+import ccMastercard from "../images/cc-mastercard.svg";
+import ccAmex from "../images/cc-amex.svg";
+import ccDiscover from "../images/cc-discover.svg";
+import ccPaypal from "../images/cc-paypal.svg";
 
 // ─── Config ── keep in sync with SendPaymentRequest.js ───────────────────────
 const VENMO_USERNAME = "fortherecordmn";
@@ -465,6 +470,44 @@ const Pay = () => {
                     </div>
                   ) : (
                     <>
+                      <div className="pay-paypal-badge">
+                        <div className="pay-paypal-badge-row">
+                          <span className="pay-paypal-badge-label">
+                            Accepting
+                          </span>
+                          <img
+                            src={ccVisa}
+                            alt="Visa"
+                            className="pay-card-logo"
+                          />
+                          <img
+                            src={ccMastercard}
+                            alt="Mastercard"
+                            className="pay-card-logo"
+                          />
+                          <img
+                            src={ccAmex}
+                            alt="Amex"
+                            className="pay-card-logo"
+                          />
+                          <img
+                            src={ccDiscover}
+                            alt="Discover"
+                            className="pay-card-logo"
+                          />
+                        </div>
+                        <div className="pay-paypal-badge-provider">
+                          <span className="pay-paypal-badge-label">
+                            With this secure credit card payment portal provided
+                            by
+                          </span>
+                          <img
+                            src={ccPaypal}
+                            alt="PayPal"
+                            className="pay-card-logo pay-card-logo-paypal"
+                          />
+                        </div>
+                      </div>
                       {paypalCapturing && (
                         <div className="pay-capturing">
                           <span className="pay-capturing-spinner" />

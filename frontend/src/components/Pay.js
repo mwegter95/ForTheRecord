@@ -173,6 +173,12 @@ const Pay = () => {
   };
 
   const toggle = (section) => {
+    const isOpeningCard = section === "card" && activeSection !== "card";
+    if (isOpeningCard) {
+      // Container div is about to be mounted fresh — reset so useEffect re-renders buttons
+      paypalRendered.current = false;
+      setPaypalRenderKey((k) => k + 1);
+    }
     setActiveSection((prev) => (prev === section ? null : section));
   };
 

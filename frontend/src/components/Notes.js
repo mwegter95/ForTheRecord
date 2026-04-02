@@ -325,7 +325,7 @@ const Notes = () => {
 
   // ── JSX ─────────────────────────────────────────────────────────────────────
   return (
-    <div className="notes-page">
+    <div className={`notes-page${currentNote ? " note-open" : ""}`}>
 
       {/* ── List panel ──────────────────────────────────────────────────────── */}
       <div className="notes-list-panel">
@@ -385,6 +385,7 @@ const Notes = () => {
 
             {/* Top bar */}
             <div className="notes-editor-topbar">
+              <button className="notes-back-btn" onClick={() => { setSelected(null); setSaveStatus(""); }}>← Back</button>
               <span className={`notes-save-status${saveStatus ? " " + saveStatus : ""}`}>
                 {saveStatus === "saving" && "Saving…"}
                 {saveStatus === "saved"  && "✓ Saved"}

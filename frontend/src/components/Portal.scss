@@ -136,6 +136,10 @@
   padding: 0 1.25rem 1.5rem;
   border-bottom: 1px solid rgba(201, 168, 106, 0.12);
   margin-bottom: 1rem;
+
+  @media (max-width: 768px) {
+    padding-top: 3.25rem; // push brand title below the fixed ✕ toggle button
+  }
 }
 
 .portal-brand-name {
@@ -251,9 +255,17 @@
   min-width: 0;
   overflow-y: auto;
 
+  @media (max-width: 768px) {
+    padding-top: 3.5rem; // clear the fixed hamburger toggle button on mobile
+  }
+
   // Override padding on child pages since portal provides the chrome
   .spr-page,
   .send-contract-page {
     padding-top: 2rem;
+
+    @media (max-width: 768px) {
+      padding-top: 0; // portal-main already provides top clearance on mobile
+    }
   }
 }

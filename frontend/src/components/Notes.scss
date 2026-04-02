@@ -23,6 +23,13 @@
   }
 }
 
+// Hide list panel on mobile when a note is open (note-open class on .notes-page)
+.note-open .notes-list-panel {
+  @media (max-width: 640px) {
+    display: none;
+  }
+}
+
 .notes-list-header {
   display: flex;
   justify-content: space-between;
@@ -30,6 +37,10 @@
   padding: 1.25rem 1rem 0.75rem;
   border-bottom: 1px solid rgba(201, 168, 106, 0.1);
   flex-shrink: 0;
+
+  @media (max-width: 768px) {
+    padding-left: 3.5rem; // clear the fixed hamburger toggle button
+  }
 
   h2 {
     font-family: "Cormorant Garamond", serif;
@@ -216,6 +227,25 @@
   padding: 0.65rem 1.5rem;
   border-bottom: 1px solid rgba(201, 168, 106, 0.1);
   flex-shrink: 0;
+}
+
+// Mobile-only back button (takes user back to the notes list)
+.notes-back-btn {
+  display: none;
+  background: none;
+  border: none;
+  padding: 0.25rem 0.1rem;
+  color: var(--gold);
+  font-size: 0.88rem;
+  font-family: "Inter", sans-serif;
+  cursor: pointer;
+  flex-shrink: 0;
+
+  @media (max-width: 640px) {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
 }
 
 .notes-save-status {

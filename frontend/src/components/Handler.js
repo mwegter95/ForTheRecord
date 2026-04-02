@@ -3,6 +3,7 @@ import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Home from "./Home";
 import TopNavbar from "./Navbar";
 import Footer from "./Footer";
+import { PortalProvider } from "../context/PortalContext";
 
 // Lazy-load non-home routes to reduce initial bundle size
 const About = lazy(() => import("./About"));
@@ -16,6 +17,8 @@ const CounterSign          = lazy(() => import("./CounterSign"));
 const SendContract         = lazy(() => import("./SendContract"));
 const SendPaymentRequest   = lazy(() => import("./SendPaymentRequest"));
 const Pay                  = lazy(() => import("./Pay"));
+const Portal               = lazy(() => import("./Portal"));
+const Notes                = lazy(() => import("./Notes"));
 
 // Scroll to top on route change & track pageviews
 const ScrollToTop = () => {
@@ -39,7 +42,29 @@ const ScrollToTop = () => {
   return null;
 };
 
+// ── Portal routes — no navbar/footer, own chrome ──────────────────────────────
+const PortalRoutes = () => (
+  <PortalProvider>
+    <Suspense fallback={null}>
+      <Routes>
+        <Route path="/portal" element={<Portal />}>
+          <Route index element={<Navigate to="send-contract" replace />} />
+          <Route path="send-contract"  element={<SendContract  portalMode />} />
+          <Route path="payment"        element={<SendPaymentRequest portalMode />} />
+          <Route path="countersign"    element={<CounterSign   portalMode />} />
+          <Route path="notes"          element={<Notes />} />
+        </Route>
+        <Route path="*" element={<Navigate to="/portal" replace />} />
+      </Routes>
+    </Suspense>
+  </PortalProvider>
+);
+
 const Handler = () => {
+  const { pathname } = useLocation();
+
+  if (pathname.startsWith("/portal")) return <PortalRoutes />;
+
   return (
     <div className="app-wrapper">
       <ScrollToTop />
@@ -55,31 +80,17 @@ const Handler = () => {
             <Route path="/get-in-touch" element={<GetInTouch />} />
             <Route path="/request-a-song" element={<SongRequest />} />
             <Route path="/contract" element={<Contract />} />
-            <Route path="/countersign"           element={<CounterSign />} />
-            <Route path="/send-contract"         element={<SendContract />} />
-            <Route path="/send-payment-request"  element={<SendPaymentRequest />} />
-            <Route path="/pay"                   element={<Pay />} />
-            {/* Redirects for old routes */}
-            <Route
-              path="/booknow"
-              element={<Navigate to="/get-in-touch" replace />}
-            />
-            <Route
-              path="/book-now"
-              element={<Navigate to="/get-in-touch" replace />}
-            />
-            <Route
-              path="/weddings"
-              element={<Navigate to="/services" replace />}
-            />
-            <Route
-              path="/events"
-              element={<Navigate to="/services" replace />}
-            />
-            <Route
-              path="/contact"
-              element={<Navigate to="/get-in-touch" replace />}
-            />
+            <Route path="/countersign"          element={<CounterSign />} />
+            <Route path="/pay"                  element={<Pay />} />
+            {/* Old standalone portal URLs → redirect to portal */}
+            <Route path="/send-contract"        element={<Navigate to="/portal/send-contract" replace />} />
+            <Route path="/send-payment-request" element={<Navigate to="/portal/payment" replace />} />
+            {/* Other redirects */}
+            <Route path="/booknow"  element={<Navigate to="/get-in-touch" replace />} />
+            <Route path="/book-now" element={<Navigate to="/get-in-touch" replace />} />
+            <Route path="/weddings" element={<Navigate to="/services" replace />} />
+            <Route path="/events"   element={<Navigate to="/services" replace />} />
+            <Route path="/contact"  element={<Navigate to="/get-in-touch" replace />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </Suspense>

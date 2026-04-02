@@ -603,14 +603,14 @@ const CounterSignForm = () => {
 };
 
 // ─── Root Component ──────────────────────────────────────────
-const CounterSign = () => {
+const CounterSign = ({ portalMode = false }) => {
   useSEO({
     title: "DJ Portal | For the Record",
     description: "Countersign wedding DJ contracts.",
     canonical: "https://fortherecordmn.com/countersign",
   });
 
-  const [authed, setAuthed] = useState(false);
+  const [authed, setAuthed] = useState(portalMode);
 
   if (!authed) {
     return <PasswordGate onAuth={() => setAuthed(true)} />;

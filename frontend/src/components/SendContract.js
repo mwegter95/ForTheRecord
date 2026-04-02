@@ -48,7 +48,7 @@ const IconQR = () => (
 );
 
 // ─── Main component ───────────────────────────────────────────
-const SendContract = () => {
+const SendContract = ({ portalMode = false }) => {
   useSEO({
     title: "Send Contract | For the Record",
     description: "DJ portal — generate a pre-filled contract link for clients.",
@@ -56,7 +56,7 @@ const SendContract = () => {
   });
 
   // ── Auth state ────────────────────────────────────────────
-  const [authed,  setAuthed]  = useState(false);
+  const [authed,  setAuthed]  = useState(portalMode);
   const [pwInput, setPwInput] = useState("");
   const [pwError, setPwError] = useState("");
 

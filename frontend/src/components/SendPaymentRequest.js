@@ -77,14 +77,14 @@ const IconMail = () => (
 );
 
 // ─── Main component ───────────────────────────────────────────────────────────
-const SendPaymentRequest = () => {
+const SendPaymentRequest = ({ portalMode = false }) => {
   useSEO({
     title: "Send Payment Request | For the Record",
     description: "DJ portal — send a payment request link to a client.",
     canonical: "https://fortherecordmn.com/send-payment-request",
   });
 
-  const [authed, setAuthed] = useState(false);
+  const [authed, setAuthed] = useState(portalMode);
   const [pwInput, setPwInput] = useState("");
   const [pwError, setPwError] = useState("");
 

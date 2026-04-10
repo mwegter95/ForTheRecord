@@ -229,12 +229,15 @@ function loadAllNotes(ss) {
       if (BOOLEAN_KEYS.indexOf(k) >= 0) {
         note[k] = raw === true || raw === "TRUE" || raw === "true";
       } else if (raw instanceof Date) {
-        // Sheets auto-converts date strings to Date objects; reformat as yyyy-MM-dd
-        note[k] = Utilities.formatDate(
-          raw,
-          Session.getScriptTimeZone(),
-          "yyyy-MM-dd",
-        );
+        var tz = Session.getScriptTimeZone();
+        var yr = Utilities.formatDate(raw, tz, "yyyy");
+        if (yr === "1899") {
+          // Sheets stores time-only values anchored to 1899-12-30; return as readable time
+          note[k] = Utilities.formatDate(raw, tz, "h:mm a");
+        } else {
+          // Normal date — reformat as yyyy-MM-dd
+          note[k] = Utilities.formatDate(raw, tz, "yyyy-MM-dd");
+        }
       } else {
         note[k] = raw === null || raw === undefined ? "" : String(raw);
       }

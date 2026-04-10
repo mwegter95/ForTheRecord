@@ -58,15 +58,19 @@ function doPost(e) {
     );
 
     // ── 2. Confirmation email to client with their copy ───
+    var contractType = (data.contract_type || "wedding").toLowerCase();
+    var clientSubject = contractType === "event"
+      ? "Your Event DJ Contract — For the Record"
+      : "Your Wedding DJ Contract — For the Record";
     GmailApp.sendEmail(
       data.client_email,
-      "Your Wedding DJ Contract — For the Record",
+      clientSubject,
       "",
       {
         from:        DJ_FROM,
         name:        DJ_NAME,
         replyTo:     DJ_FROM,
-        htmlBody:    buildClientEmail(data),
+        htmlBody:    buildClientEmail(data, contractType),
         attachments: [pdfBlob],
       }
     );
@@ -92,11 +96,13 @@ function doGet(e) {
 
 // ── Email to Michael ─────────────────────────────────────────
 function buildDJEmail(d) {
+  var contractType = (d.contract_type || "wedding").toLowerCase();
+  var svcLabel = contractType === "event" ? "Event DJ Services Agreement" : "Wedding DJ Services Agreement";
   return [
     "<div style='font-family:Georgia,serif;max-width:600px;margin:0 auto;color:#1a1a1a'>",
     "<div style='background:#0a1128;padding:24px 32px;border-radius:8px 8px 0 0'>",
     "  <h2 style='margin:0;color:#c9a86a;font-size:20px;letter-spacing:1px'>FOR THE RECORD</h2>",
-    "  <p style='margin:4px 0 0;color:#fff;font-size:13px'>Wedding DJ Services Agreement</p>",
+    "  <p style='margin:4px 0 0;color:#fff;font-size:13px'>" + svcLabel + "</p>",
     "</div>",
     "<div style='background:#fff;padding:32px;border:1px solid #e5e7eb;border-top:none;border-radius:0 0 8px 8px'>",
     "  <h3 style='margin:0 0 20px;color:#0a1128'>New Signed Contract Received</h3>",
@@ -126,7 +132,7 @@ function buildDJEmail(d) {
     "      <td style='padding:10px 0;color:#6b7280'>Time</td>",
     "      <td style='padding:10px 0'>" + esc(d.start_time) + " – " + esc(d.end_time) + "</td>",
     "    </tr>",
-    buildPricingRows(d),
+    buildPricingRows(d, contractType),
     "    <tr style='border-bottom:1px solid #f3f4f6'>",
     "      <td style='padding:10px 0;color:#6b7280'>Deposit (50%)</td>",
     "      <td style='padding:10px 0'>" + esc(d.deposit_amount) + "</td>",
@@ -147,17 +153,21 @@ function buildDJEmail(d) {
 }
 
 // ── Confirmation email to client ─────────────────────────────
-function buildClientEmail(d) {
+function buildClientEmail(d, contractType) {
+  contractType = (contractType || d.contract_type || "wedding").toLowerCase();
+  var isEvent = contractType === "event";
+  var svcShort = isEvent ? "Event DJ Services" : "Wedding DJ Services";
+  var svcFull  = isEvent ? "Event DJ Services Agreement" : "Wedding DJ Services Agreement";
   return [
     "<div style='font-family:Georgia,serif;max-width:600px;margin:0 auto;color:#1a1a1a'>",
     "<div style='background:#0a1128;padding:24px 32px;border-radius:8px 8px 0 0'>",
     "  <h2 style='margin:0;color:#c9a86a;font-size:20px;letter-spacing:1px'>FOR THE RECORD</h2>",
-    "  <p style='margin:4px 0 0;color:#fff;font-size:13px'>Wedding DJ Services</p>",
+    "  <p style='margin:4px 0 0;color:#fff;font-size:13px'>" + svcShort + "</p>",
     "</div>",
     "<div style='background:#fff;padding:32px;border:1px solid #e5e7eb;border-top:none;border-radius:0 0 8px 8px'>",
     "  <h3 style='margin:0 0 16px;color:#0a1128'>Your Contract Has Been Received</h3>",
     "  <p>Hi " + esc(d.client_names) + ",</p>",
-    "  <p>Thank you for signing your Wedding DJ Services Agreement with For the Record! " +
+    "  <p>Thank you for signing your " + svcFull + " with For the Record! " +
        "A copy of your signed contract is attached to this email for your records.</p>",
     "  <p>Here's a summary of your booking:</p>",
     "  <table style='width:100%;border-collapse:collapse;font-size:14px'>",
@@ -173,7 +183,7 @@ function buildClientEmail(d) {
     "      <td style='padding:10px 0;color:#6b7280'>Time</td>",
     "      <td style='padding:10px 0'>" + esc(d.start_time) + " – " + esc(d.end_time) + "</td>",
     "    </tr>",
-    buildPricingRows(d),
+    buildPricingRows(d, contractType),
     "    <tr style='border-bottom:1px solid #f3f4f6'>",
     "      <td style='padding:10px 0;color:#6b7280'>Deposit Due</td>",
     "      <td style='padding:10px 0;font-weight:600'>" + esc(d.deposit_amount) + " (due upon signing)</td>",
@@ -196,7 +206,9 @@ function buildClientEmail(d) {
 // ── Pricing rows (shared by both emails) ────────────────────
 // Builds itemized service rows + subtotal + optional discount + adjusted total.
 // Deposit & balance rows are added separately in each email template.
-function buildPricingRows(d) {
+function buildPricingRows(d, contractType) {
+  contractType = (contractType || d.contract_type || "wedding").toLowerCase();
+  var isEvent = contractType === "event";
   var rs  = "border-bottom:1px solid #f3f4f6";
   var lbl = "padding:10px 0;color:#6b7280;width:150px;vertical-align:top";
   var val = "padding:10px 0";
@@ -224,15 +236,25 @@ function buildPricingRows(d) {
     );
   }
 
-  if (d.setup_teardown === "Yes") svcFlat("Reception Setup & Teardown", 200);
-  svcHourly("Reception / Dance DJ",         d.reception_hours, 100);
-  svcHourly("Cocktail Hour Music",           d.cocktail_hours,   75);
-  svcHourly("Dinner Music",                  d.dinner_hours,     75);
-  svcHourly("Ceremony Music",                d.ceremony_hours,  100);
-  if (d.ceremony_mic === "Yes") svcFlat("Ceremony Mic & Speaker Setup", 150);
-  if (d.dancefloor   === "Yes") svcFlat("Reception Dancefloor Lighting", 175);
-  if (d.uplighting   === "6 units")  svcFlat("Ambient Uplighting (6 units)", 275);
-  if (d.uplighting   === "12 units") svcFlat("Ambient Uplighting (12 units)", 550);
+  if (isEvent) {
+    // ── Event contract line items ──
+    if (d.setup_teardown === "Yes") svcFlat("Event Setup & Teardown", 200);
+    svcHourly("DJ Performance", d.dj_hours, 100);
+    if (d.dancefloor === "Yes") svcFlat("Dancefloor Lighting", 175);
+    if (d.uplighting === "6 units")  svcFlat("Ambient Uplighting (6 units)", 275);
+    if (d.uplighting === "12 units") svcFlat("Ambient Uplighting (12 units)", 550);
+  } else {
+    // ── Wedding contract line items ──
+    if (d.setup_teardown === "Yes") svcFlat("Reception Setup & Teardown", 200);
+    svcHourly("Reception / Dance DJ",         d.reception_hours, 100);
+    svcHourly("Cocktail Hour Music",           d.cocktail_hours,   75);
+    svcHourly("Dinner Music",                  d.dinner_hours,     75);
+    svcHourly("Ceremony Music",                d.ceremony_hours,  100);
+    if (d.ceremony_mic === "Yes") svcFlat("Ceremony Mic & Speaker Setup", 150);
+    if (d.dancefloor   === "Yes") svcFlat("Reception Dancefloor Lighting", 175);
+    if (d.uplighting   === "6 units")  svcFlat("Ambient Uplighting (6 units)", 275);
+    if (d.uplighting   === "12 units") svcFlat("Ambient Uplighting (12 units)", 550);
+  }
   var mMi = parseFloat(d.mileage_miles) || 0;
   if (mMi > 0) {
     rows.push(
@@ -241,6 +263,24 @@ function buildPricingRows(d) {
       "<td style='" + val + "'>" + mMi + " mi &times; $0.50/mi = <strong>$" + (mMi * 0.50).toFixed(2) + "</strong></td>" +
       "</tr>"
     );
+  }
+
+  // Additional costs (semicolon-separated "Description: $amount" pairs)
+  if (d.additional_costs && d.additional_costs !== "None") {
+    var costItems = d.additional_costs.split(";");
+    costItems.forEach(function(item) {
+      item = item.trim();
+      if (!item) return;
+      var sepIdx = item.lastIndexOf(": $");
+      var desc = sepIdx !== -1 ? item.substring(0, sepIdx) : item;
+      var amt  = sepIdx !== -1 ? "$" + item.substring(sepIdx + 3) : "";
+      rows.push(
+        "<tr style='" + rs + "'>" +
+        "<td style='" + lbl + "'>" + esc(desc) + "</td>" +
+        "<td style='" + val + "'>" + (amt ? "<strong>" + esc(amt) + "</strong>" : "") + "</td>" +
+        "</tr>"
+      );
+    });
   }
 
   // Subtotal

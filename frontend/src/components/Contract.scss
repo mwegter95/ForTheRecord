@@ -557,6 +557,70 @@
   color: #6b7280;
 }
 
+// ── Additional cost row styles ────────────────────────────────
+.csvc-row--additional {
+  background: rgba(201, 168, 106, 0.03);
+  border-bottom: 1px solid rgba(201, 168, 106, 0.12);
+}
+
+.csvc-additional-desc {
+  width: 100%;
+  border: 1.5px solid #d1d5db;
+  border-radius: 5px;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.85rem;
+  font-family: inherit;
+  color: #0a1128;
+  background: #fff;
+
+  &:focus {
+    outline: none;
+    border-color: #c9a86a;
+    box-shadow: 0 0 0 2px rgba(201, 168, 106, 0.12);
+  }
+}
+
+.csvc-additional-amt {
+  width: 5rem !important;
+}
+
+.csvc-remove-btn {
+  background: none;
+  border: none;
+  padding: 0.15rem 0.2rem;
+  cursor: pointer;
+  color: #ef4444;
+  opacity: 0.55;
+  line-height: 1;
+  transition: opacity 0.15s;
+  flex-shrink: 0;
+
+  &:hover { opacity: 1; }
+}
+
+.csvc-add-row {
+  padding: 0.55rem 0.75rem;
+  border-bottom: 1px solid #f0f1f3;
+}
+
+.csvc-add-btn {
+  background: none;
+  border: 1px dashed rgba(201, 168, 106, 0.5);
+  border-radius: 5px;
+  color: rgba(201, 168, 106, 0.85);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.3rem 0.8rem;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+
+  &:hover {
+    background: rgba(201, 168, 106, 0.08);
+    border-color: #c9a86a;
+    color: #c9a86a;
+  }
+}
+
 .csvc-checkbox {
   display: inline-flex;
   align-items: center;

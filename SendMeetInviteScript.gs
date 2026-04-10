@@ -117,7 +117,7 @@ function doPost(e) {
         from:     DJ_FROM,
         name:     DJ_NAME,
         replyTo:  DJ_FROM,
-        htmlBody: buildClientEmail({ clientName, meetLink, eventDate, eventTime, notes }),
+        htmlBody: buildClientEmail({ clientName, meetLink, eventDate, startTime, endTime, ianaTimezone, eventTime, notes }),
       }
     );
 
@@ -193,6 +193,26 @@ function createCalendarEvent(clientName, clientEmail, dateStr, startStr, endStr,
   return { meetLink: meetLink, eventId: created.id };
 }
 
+// ── Build a Google Calendar quick-add URL ─────────────────────────────────────
+// Produces a pre-filled "Add to Calendar" link using local datetime + timezone.
+// Format required by Google: YYYYMMDDTHHmmss (no dashes, no colons, no Z)
+function buildCalendarUrl(eventDate, startTime, endTime, ianaTimezone, meetLink) {
+  if (!eventDate || !startTime) return "";
+
+  var startStr = eventDate.replace(/-/g, "") + "T" + startTime.replace(":", "") + "00";
+  var endStr   = eventDate.replace(/-/g, "") + "T" + (endTime || addMinutes(startTime, 30)).replace(":", "") + "00";
+
+  var title   = encodeURIComponent("Consultation \u2014 For the Record");
+  var details = encodeURIComponent("Wedding & Event DJ consultation." + (meetLink ? "\n\nJoin: " + meetLink : ""));
+  var tz      = encodeURIComponent(ianaTimezone || "America/Chicago");
+
+  return "https://calendar.google.com/calendar/render?action=TEMPLATE"
+    + "&text="    + title
+    + "&dates="   + startStr + "/" + endStr
+    + "&ctz="     + tz
+    + "&details=" + details;
+}
+
 // ── Add minutes to "HH:MM" string ────────────────────────────────────────────
 function addMinutes(timeStr, minutes) {
   var parts = timeStr.split(":");
@@ -217,21 +237,22 @@ function formatDisplayDate(dateStr) {
 
 // ── Email to client ───────────────────────────────────────────────────────────
 function buildClientEmail(d) {
-  var displayDate = d.eventDate ? formatDisplayDate(d.eventDate) : "";
-  var hasDetails  = displayDate || d.eventTime;
+  var displayDate  = d.eventDate ? formatDisplayDate(d.eventDate) : "";
+  var hasDetails   = displayDate || d.eventTime;
+  var calendarUrl  = buildCalendarUrl(d.eventDate, d.startTime, d.endTime, d.ianaTimezone, d.meetLink);
 
   var detailsBlock = hasDetails
     ? [
         "<div style='background:#f9f7f4;border-left:3px solid #c9a86a;border-radius:4px;padding:16px 20px;margin:24px 0'>",
         displayDate
-          ? "<div style='display:flex;align-items:flex-start;gap:10px;margin-bottom:" + (d.eventTime ? "10px" : "0") + "'>"
-            + "<span style='font-size:18px;line-height:1'>&#x1F4C5;</span>"
+          ? "<div style='display:flex;align-items:flex-start;gap:16px;margin-bottom:" + (d.eventTime ? "12px" : "0") + "'>"
+            + "<span style='font-size:18px;line-height:1.4'>&#x1F4C5;</span>"
             + "<div><p style='margin:0;font-size:13px;color:#6b7280;text-transform:uppercase;letter-spacing:0.5px;font-weight:600'>Date</p>"
             + "<p style='margin:4px 0 0;font-size:15px;color:#0a1128;font-weight:600'>" + esc(displayDate) + "</p></div></div>"
           : "",
         d.eventTime
-          ? "<div style='display:flex;align-items:flex-start;gap:10px'>"
-            + "<span style='font-size:18px;line-height:1'>&#x1F550;</span>"
+          ? "<div style='display:flex;align-items:flex-start;gap:16px'>"
+            + "<span style='font-size:18px;line-height:1.4'>&#x1F550;</span>"
             + "<div><p style='margin:0;font-size:13px;color:#6b7280;text-transform:uppercase;letter-spacing:0.5px;font-weight:600'>Time</p>"
             + "<p style='margin:4px 0 0;font-size:15px;color:#0a1128;font-weight:600'>" + esc(d.eventTime) + "</p></div></div>"
           : "",
@@ -248,6 +269,12 @@ function buildClientEmail(d) {
         "  </a>",
         "  <p style='margin:12px 0 0;font-size:12px;color:#9ca3af'>Or copy the link: "
           + "<a href='" + esc(d.meetLink) + "' style='color:#c9a86a;word-break:break-all'>" + esc(d.meetLink) + "</a></p>",
+        calendarUrl
+          ? "  <p style='margin:16px 0 0'>"
+            + "<a href='" + esc(calendarUrl) + "' style='display:inline-block;color:#0a1128;text-decoration:none;"
+            + "padding:9px 20px;border-radius:6px;font-size:13px;font-weight:600;border:1.5px solid #d1d5db;"
+            + "font-family:Georgia,serif'>&#x1F4C5;&nbsp; Add to My Calendar</a></p>"
+          : "",
         "</div>",
       ].join("\n")
     : "";

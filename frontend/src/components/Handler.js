@@ -13,8 +13,10 @@ const FAQ = lazy(() => import("./FAQ"));
 const GetInTouch = lazy(() => import("./GetInTouch"));
 const SongRequest = lazy(() => import("./SongRequest"));
 const Contract = lazy(() => import("./Contract"));
+const EventContract        = lazy(() => import("./EventContract"));
 const CounterSign          = lazy(() => import("./CounterSign"));
 const SendContract         = lazy(() => import("./SendContract"));
+const SendEventContract    = lazy(() => import("./SendEventContract"));
 const SendPaymentRequest   = lazy(() => import("./SendPaymentRequest"));
 const Pay                  = lazy(() => import("./Pay"));
 const Portal               = lazy(() => import("./Portal"));
@@ -50,7 +52,8 @@ const PortalRoutes = () => (
       <Routes>
         <Route path="/portal" element={<Portal />}>
           <Route index element={<Navigate to="send-contract" replace />} />
-          <Route path="send-contract"  element={<SendContract  portalMode />} />
+          <Route path="send-contract"  element={<SendContract       portalMode />} />
+          <Route path="event-contract" element={<SendEventContract  portalMode />} />
           <Route path="payment"        element={<SendPaymentRequest portalMode />} />
           <Route path="meet-invite"    element={<SendMeetInvite />} />
           <Route path="countersign"    element={<CounterSign   portalMode />} />
@@ -81,7 +84,8 @@ const Handler = () => {
             <Route path="/faq" element={<FAQ />} />
             <Route path="/get-in-touch" element={<GetInTouch />} />
             <Route path="/request-a-song" element={<SongRequest />} />
-            <Route path="/contract" element={<Contract />} />
+            <Route path="/contract"       element={<Contract />} />
+            <Route path="/event-contract" element={<EventContract />} />
             <Route path="/countersign"          element={<CounterSign />} />
             <Route path="/pay"                  element={<Pay />} />
             {/* Old standalone portal URLs → redirect to portal */}

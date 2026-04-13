@@ -207,6 +207,7 @@ const Contract = () => {
   const [agreed,       setAgreed]       = useState(false);
   const [submitStatus, setSubmitStatus] = useState("idle");
   const [errorMsg,     setErrorMsg]     = useState("");
+  const [payUrl,       setPayUrl]       = useState("");
 
   // ── Parse pre-fill URL param on mount ─────────────────────
   useEffect(() => {
@@ -245,6 +246,14 @@ const Contract = () => {
       console.warn("Invalid pre-fill data in URL:", e);
     }
   }, []);
+
+  // ── Redirect to payment page after successful signing ─────
+  useEffect(() => {
+    if (!payUrl) return;
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    const t = setTimeout(() => { window.location.href = payUrl; }, 10000);
+    return () => clearTimeout(t);
+  }, [payUrl]);
 
   // ── handleChange ─────────────────────────────────────────
   const handleChange = (e) => {
@@ -398,6 +407,18 @@ const Contract = () => {
         pdf_filename:        pdfFilename,
       };
 
+      // Build deposit payment link and include in email payload
+      const dep = depositAmount();
+      const payPayload = {
+        name:   form.clientNames,
+        email:  form.clientEmail,
+        amount: dep,
+        note:   `Deposit for ${form.clientNames ? `${form.clientNames} wedding` : "your wedding"}`,
+      };
+      const generatedPayUrl = `${window.location.origin}/pay?p=${btoa(encodeURIComponent(JSON.stringify(payPayload)))}`;
+      payload.payment_link  = generatedPayUrl;
+      payload.deposit_link  = generatedPayUrl; // alias for template flexibility
+
       const resp = await fetch(APPS_SCRIPT_URL, {
         method: "POST",
         body: JSON.stringify(payload),
@@ -412,6 +433,7 @@ const Contract = () => {
         throw new Error(result.error || "Script reported failure");
       }
 
+      setPayUrl(generatedPayUrl);
       setSubmitStatus("success");
     } catch (err) {
       console.error("Contract submission failed:", err);
@@ -422,17 +444,27 @@ const Contract = () => {
 
   // ── Success screen ────────────────────────────────────────
   if (submitStatus === "success") {
+    const dep = depositAmount();
     return (
       <div className="contract-page">
         <div className="contract-success">
           <div className="contract-success__icon"><IconCheck /></div>
-          <h2>Agreement Signed Successfully</h2>
+          <h2>Agreement Signed!</h2>
           <p>
             Thank you, {form.clientNames}! Your signed contract has been emailed to{" "}
             <strong>{form.clientEmail}</strong> — please save it for your records.
           </p>
           <p className="contract-success__note">
-            Michael will countersign and send you a fully executed copy shortly. Questions?{" "}
+            Your deposit of <strong>${dep}</strong> is due to officially reserve your date.
+            You're being redirected to payment — or tap the button below.
+          </p>
+          {payUrl && (
+            <a className="contract-pay-btn" href={payUrl}>
+              Pay ${dep} Deposit Now →
+            </a>
+          )}
+          <p className="contract-success__sub">
+            Questions?{" "}
             <a href="mailto:michael@fortherecordmn.com">michael@fortherecordmn.com</a>{" "}
             or <a href="tel:6123897005">(612) 389-7005</a>.
           </p>

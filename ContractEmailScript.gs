@@ -193,6 +193,32 @@ function buildClientEmail(d, contractType) {
     "      <td style='padding:10px 0'>" + esc(d.balance_due) + " (14 days before event)</td>",
     "    </tr>",
     "  </table>",
+
+    // ── Pay deposit button (only shown when a payment link exists) ──────────
+    d.payment_link
+      ? [
+          "<div style='margin:28px 0;padding:20px 24px;background:#f9f7f3;border-radius:10px;border:1px solid #e5e7eb;text-align:center'>",
+          "  <p style='margin:0 0 6px;font-size:13px;color:#6b7280'>Ready to secure your date?</p>",
+          "  <p style='margin:0 0 16px;font-size:15px;font-weight:700;color:#0a1128'>Deposit due: " + esc(d.deposit_amount) + "</p>",
+          "  <a href='" + d.payment_link + "' style='",
+          "    display:inline-block;",
+          "    background:#0a1128;",
+          "    color:#c9a86a;",
+          "    padding:13px 32px;",
+          "    border-radius:8px;",
+          "    font-weight:700;",
+          "    font-size:15px;",
+          "    text-decoration:none;",
+          "    font-family:sans-serif;",
+          "    letter-spacing:.3px;",
+          "  '>Pay " + esc(d.deposit_amount) + " Deposit →</a>",
+          "  <p style='margin:12px 0 0;font-size:11px;color:#9ca3af'>",
+          "    Zelle · Venmo · Credit card — choose what works best for you.",
+          "  </p>",
+          "</div>",
+        ].join("\n")
+      : "",
+
     "  <p style='margin:24px 0 0'>Michael will review, countersign, and send you a fully executed copy shortly. " +
        "In the meantime, feel free to reach out with any questions:</p>",
     "  <p style='margin:8px 0'><a href='mailto:michael@fortherecordmn.com' style='color:#c9a86a'>michael@fortherecordmn.com</a></p>",

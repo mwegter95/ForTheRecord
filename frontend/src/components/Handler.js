@@ -21,6 +21,7 @@ const SendPaymentRequest   = lazy(() => import("./SendPaymentRequest"));
 const Pay                  = lazy(() => import("./Pay"));
 const Portal               = lazy(() => import("./Portal"));
 const Notes                = lazy(() => import("./Notes"));
+const Invoice              = lazy(() => import("./Invoice"));
 const SendMeetInvite       = lazy(() => import("./SendMeetInvite"));
 
 // Scroll to top on route change & track pageviews
@@ -58,6 +59,7 @@ const PortalRoutes = () => (
           <Route path="meet-invite"    element={<SendMeetInvite />} />
           <Route path="countersign"    element={<CounterSign   portalMode />} />
           <Route path="notes"          element={<Notes />} />
+          <Route path="invoice"        element={<Invoice />} />
         </Route>
         <Route path="*" element={<Navigate to="/portal" replace />} />
       </Routes>

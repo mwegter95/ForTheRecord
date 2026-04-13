@@ -410,6 +410,34 @@
       }
     }
   }
+
+  &__sub {
+    font-size: 0.82rem;
+    color: #9ca3af;
+    margin-top: 1rem;
+
+    a { color: #c9a86a; text-decoration: none; &:hover { text-decoration: underline; } }
+  }
+}
+
+.contract-pay-btn {
+  display: inline-block;
+  margin: 1.25rem auto 0.5rem;
+  padding: 0.85rem 2rem;
+  background: #0a1128;
+  color: #c9a86a;
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: background 0.18s, color 0.18s;
+
+  &:hover {
+    background: #c9a86a;
+    color: #0a1128;
+  }
 }
 
 // ── Pre-fill banner ──────────────────────────────────────────
